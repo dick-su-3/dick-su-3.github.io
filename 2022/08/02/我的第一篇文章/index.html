@@ -6,12 +6,12 @@
   
   <title>我的第一篇文章 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="简单的说一下Java的垃圾回收机制，解决了什么问题？  这个题目其实我是不太想写的，原因在于太笼统了，容易让面试者陷入误区，难以正确的回答，但是，如何加上一个解决了什么问题，那么，这个面试题还是有意义的，可以看看面试者的理解。 在c语言和c++中，对于内存的管理是非常的让人头疼的，也是很多人放弃的原因，因此，在后面的一些高级语言中，设计者就想解决这一个问题，让开发者专注于自己的业务开发即可，因此">
+  <meta name="description" content="简单的说一下Java的垃圾回收机制，解决了什么问题？  在c语言和c++中，对于内存的管理是非常的让人头疼的，也是很多人放弃的原因，因此，在后面的一些高级语言中，设计者就想解决这一个问题，让开发者专注于自己的业务开发即可，因此，在Java中也引入了垃圾回收机制，它使得开发者在编写程序的时候不再需要考虑内存管理，由于有个垃圾回收机制，Java中的对象不再有“作用域”的概念，只有对象的引用才有“作用">
 <meta property="og:type" content="article">
 <meta property="og:title" content="我的第一篇文章">
 <meta property="og:url" content="http://example.com/2022/08/02/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="简单的说一下Java的垃圾回收机制，解决了什么问题？  这个题目其实我是不太想写的，原因在于太笼统了，容易让面试者陷入误区，难以正确的回答，但是，如何加上一个解决了什么问题，那么，这个面试题还是有意义的，可以看看面试者的理解。 在c语言和c++中，对于内存的管理是非常的让人头疼的，也是很多人放弃的原因，因此，在后面的一些高级语言中，设计者就想解决这一个问题，让开发者专注于自己的业务开发即可，因此">
+<meta property="og:description" content="简单的说一下Java的垃圾回收机制，解决了什么问题？  在c语言和c++中，对于内存的管理是非常的让人头疼的，也是很多人放弃的原因，因此，在后面的一些高级语言中，设计者就想解决这一个问题，让开发者专注于自己的业务开发即可，因此，在Java中也引入了垃圾回收机制，它使得开发者在编写程序的时候不再需要考虑内存管理，由于有个垃圾回收机制，Java中的对象不再有“作用域”的概念，只有对象的引用才有“作用">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://image.ouyangsihai.cn/FhxTjHOieWt_ugomW5L33YNkJlJQ">
 <meta property="og:image" content="http://image.ouyangsihai.cn/FksaMoFlAkSPkTB84bV4cK7xa8L3">
@@ -61,7 +61,7 @@
 <meta property="og:image" content="http://image.ouyangsihai.cn/FpontTFCT65kRlJvGhuMsP9lkRkZ">
 <meta property="og:image" content="http://image.ouyangsihai.cn/FoFkvh_XGVUdHkp3F6dYBpwE8tgb">
 <meta property="article:published_time" content="2022-08-02T09:12:36.000Z">
-<meta property="article:modified_time" content="2022-08-02T09:20:47.703Z">
+<meta property="article:modified_time" content="2022-08-02T09:34:31.197Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="jvm面试题收集一">
 <meta name="twitter:card" content="summary">
@@ -147,7 +147,6 @@
         <blockquote>
 <p>简单的说一下Java的垃圾回收机制，解决了什么问题？</p>
 </blockquote>
-<p>这个题目其实我是不太想写的，原因在于太笼统了，容易让面试者陷入误区，难以正确的回答，但是，如何加上一个解决了什么问题，那么，这个面试题还是有意义的，可以看看面试者的理解。</p>
 <p>在c语言和c++中，对于内存的管理是非常的让人头疼的，也是很多人放弃的原因，因此，在后面的一些高级语言中，设计者就想解决这一个问题，让开发者专注于自己的业务开发即可，因此，在Java中也引入了垃圾回收机制，它使得开发者在编写程序的时候不再需要考虑内存管理，由于有个垃圾回收机制，Java中的对象不再有“作用域”的概念，只有对象的引用才有“作用域”。垃圾回收可以有效的防止内存泄露，有效的使用空闲的内存。</p>
 <blockquote>
 <p>了解JVM的内存模型吗？</p>
@@ -1455,7 +1454,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/08/02/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/" data-id="cl6bzfyss0001lkuy5l8sfefu" data-title="我的第一篇文章" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/08/02/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/" data-id="cl6c1j3j50001y0uycrqk1tcd" data-title="我的第一篇文章" class="article-share-link">Share</a>
       
       
       
