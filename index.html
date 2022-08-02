@@ -34,7 +34,7 @@
 
 <meta name="generator" content="Hexo 6.2.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
-</head>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 <body>
   <div id="container" q-class="show:isCtnShow">
@@ -222,8 +222,33 @@
 <li>使用-Xss参数减少栈内存容量（更多的JVM参数可以参考这篇文章：<a target="_blank" rel="noopener" href="https://blog.ouyangsihai.cn/shen-ru-li-jie-java-xu-ni-ji-chang-yong-vm-can-shu-fen-xi.html">深入理解Java虚拟机-常用vm参数分析</a>）</li>
 </ul>
 <p>这个例子中，我们将栈内存的容量设置为<code>256K</code>（默认1 M），并且再定义一个变量查看栈递归的深度。</p>
-<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@ClassName</span> Test_02</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Description</span> 设置Jvm参数：-Xss256k</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Author</span> 欧阳思海</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span> 2019/9/30 11:05</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Version</span> 1.0</span></span><br><span class="line"><span class="comment"> **/</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test_02</span> {</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> <span class="variable">len</span> <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">stackTest</span><span class="params">()</span> {</span><br><span class="line">        len++;</span><br><span class="line">        System.out.println(<span class="string">"stack len:"</span> + len);</span><br><span class="line">        stackTest();</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> {</span><br><span class="line">        <span class="type">Test_02</span> <span class="variable">test</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Test_02</span>();</span><br><span class="line">        <span class="keyword">try</span> {</span><br><span class="line">            test.stackTest();</span><br><span class="line">        } <span class="keyword">catch</span> (Throwable e) {</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
+ * @ClassName Test_02
+ * @Description 设置Jvm参数：-Xss256k
+ * @Author 欧阳思海
+ * @Date 2019/9/30 11:05
+ * @Version 1.0
+ **/</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Test_02</span> <span class="token punctuation">{</span>
 
+    <span class="token keyword">private</span> <span class="token keyword">int</span> len <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">stackTest</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        len<span class="token operator">++</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"stack len:"</span> <span class="token operator">+</span> len<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">stackTest</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        Test_02 test <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Test_02</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">try</span> <span class="token punctuation">{</span>
+            test<span class="token punctuation">.</span><span class="token function">stackTest</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Throwable</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
 <p>运行时设置JVM参数</p>
 <p><img src="http://image.ouyangsihai.cn/Fp8Z9xGi-AN7k7laSOHupU7htMg9"></p>
 <p>输出结果：</p>
@@ -250,8 +275,25 @@
 <li>JVM参数设置：-Xms10m -Xmx10m</li>
 </ul>
 <p>这里将堆的最小值和最大值都设置为10 m，如果不了解这些参数的含义，可以参考这篇文章：<a target="_blank" rel="noopener" href="https://blog.ouyangsihai.cn/shen-ru-li-jie-java-xu-ni-ji-chang-yong-vm-can-shu-fen-xi.html">深入理解Java虚拟机-常用v m参数分析</a> </p>
-<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * VM Args：-Xms10m -Xmx10m -XX:+HeapDumpOnOutOfMemoryError</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> zzm</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">HeapTest</span> {</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">class</span> <span class="title class_">HeapObject</span> {</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> {</span><br><span class="line">        List&lt;HeapObject&gt; list = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;HeapObject&gt;();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//不断的向堆中添加对象</span></span><br><span class="line">        <span class="keyword">while</span> (<span class="literal">true</span>) {</span><br><span class="line">            list.add(<span class="keyword">new</span> <span class="title class_">HeapObject</span>());</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
+ * VM Args：-Xms10m -Xmx10m -XX:+HeapDumpOnOutOfMemoryError
+ * @author zzm
+ */</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">HeapTest</span> <span class="token punctuation">{</span>
 
+    <span class="token keyword">static</span> <span class="token keyword">class</span> <span class="token class-name">HeapObject</span> <span class="token punctuation">{</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        List<span class="token operator">&lt;</span>HeapObject<span class="token operator">></span> list <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span>HeapObject<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment" spellcheck="true">//不断的向堆中添加对象</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">HeapObject</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
 <p>输出结果：<br><img src="http://image.ouyangsihai.cn/Fhky14SMLxHjx9R9ZCcY0jAJ8ljg"></p>
 <p>图中出现了<code>java.lang.OutOfMemoryError</code>，并且提示了<code>Java heap space</code>，这就说明是Java堆内存溢出的情况。</p>
 <p><strong>堆的Dump文件分析</strong></p>
@@ -271,8 +313,26 @@
 <p>运行时常量池相对于Class文件常量池的另外一个重要特征是具备<strong>动态性</strong>，Java语言并不要求常量一定只有编译器才能产生，也就是<strong>并非置入Class文件中的常量池的内容才能进入方法区运行时常量池，运行期间也可能将新的常量放入池中</strong>。</p>
 <h4 id="运行时常量池举例"><a href="#运行时常量池举例" class="headerlink" title="运行时常量池举例"></a>运行时常量池举例</h4><p>上面的<strong>动态性</strong>在开发中用的比较多的便是String类的<code>intern()</code> 方法。所以，我们以<code>intern()</code> 方法举例，讲解一下<strong>运行时常量池</strong>。</p>
 <p><code>String.intern()</code>是一个<code>native</code>方法，作用是：如果字符串常量池中已经包含有一个等于此String对象的字符串，则直接返回池中的字符串；否则，加入到池中，并返回。</p>
-<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@ClassName</span> MethodTest</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Description</span> vm参数设置：-Xms512m -Xmx512m -Xmn128m -XX:PermSize=10M -XX:MaxPermSize=10M -XX:NewRatio=4 -XX:SurvivorRatio=8 -XX:MaxTenuringThreshold=15 -XX:-HeapDumpOnOutOfMemoryError -XX:+UseParNewGC -XX:+UseConcMarkSweepGC</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Author</span> 欧阳思海</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span> 2019/11/25 20:06</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Version</span> 1.0</span></span><br><span class="line"><span class="comment"> **/</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MethodTest</span> {</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> {</span><br><span class="line">        List&lt;String&gt; list = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;String&gt;();</span><br><span class="line">        <span class="type">long</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (i &lt; <span class="number">1000000000</span>) {</span><br><span class="line">            System.out.println(i);</span><br><span class="line">            list.add(String.valueOf(i++).intern());</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
+ * @ClassName MethodTest
+ * @Description vm参数设置：-Xms512m -Xmx512m -Xmn128m -XX:PermSize=10M -XX:MaxPermSize=10M -XX:NewRatio=4 -XX:SurvivorRatio=8 -XX:MaxTenuringThreshold=15 -XX:-HeapDumpOnOutOfMemoryError -XX:+UseParNewGC -XX:+UseConcMarkSweepGC
+ * @Author 欧阳思海
+ * @Date 2019/11/25 20:06
+ * @Version 1.0
+ **/</span>
 
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">MethodTest</span> <span class="token punctuation">{</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        List<span class="token operator">&lt;</span>String<span class="token operator">></span> list <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span>String<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">long</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>i <span class="token operator">&lt;</span> <span class="token number">1000000000</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>String<span class="token punctuation">.</span><span class="token function">valueOf</span><span class="token punctuation">(</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">intern</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
 <p>vm参数介绍：</p>
 <blockquote>
 <p>-Xms512m -Xmx512m -Xmn128m -XX:PermSize=10M -XX:MaxPermSize=10M -XX:NewRatio=4 -XX:SurvivorRatio=8 -XX:MaxTenuringThreshold=15 -XX:-HeapDumpOnOutOfMemoryError -XX:+UseParNewGC -XX:+UseConcMarkSweepGC<br>开始堆内存和最大堆内存都是512m，永久代大小10m，新生代和老年代1：4，E:S1:S2=8:1:1，最大经过15次survivor进入老年代，使用的，垃圾收集器是新生代ParNew，老年代CMS。</p>
@@ -296,8 +356,10 @@
 <li>强引用</li>
 </ul>
 <p>以前我们使用的大部分引用实际上都是强引用，这是使用最普遍的引用。如果一个对象具有强引用，那就类似于必不可少的生活用品，垃圾回收器绝不会回收它。当内存空间不足，Java虚拟机宁愿抛出OutOfMemoryError错误，使程序异常终止，也不会靠随意回收具有强引用的对象来解决内存不足问题。 </p>
-<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">str</span> <span class="operator">=</span> <span class="string">"sihai"</span>;</span><br><span class="line">List&lt;String&gt; list = <span class="keyword">new</span> <span class="title class_">Arraylist</span>&lt;String&gt;();</span><br><span class="line">list.add(str);</span><br></pre></td></tr></tbody></table></figure>
-
+<pre class=" language-java"><code class="language-java"> String str <span class="token operator">=</span> <span class="token string">"sihai"</span><span class="token punctuation">;</span>
+ List<span class="token operator">&lt;</span>String<span class="token operator">></span> list <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Arraylist</span><span class="token operator">&lt;</span>String<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>str<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
 <p>以上就是一个强引用的例子，及时内存不足，该对象也不会被回收。</p>
 <ul>
 <li>软引用</li>
@@ -332,8 +394,36 @@
 <p>其实，这个算法的思想非常的简单，一句话就是：<strong>给对象中添加一个引用计数器，每当有一个地方引用它时，计数器加1；当引用失效时，计数器减1；任何时刻计数器为0的对象就是不可能再被使用的。</strong></p>
 <p>这些简单的算法现在是否还被大量的使用呢，其实，现在用的已经不多，没有被使用的最主要的原因是他有一个很大的<strong>缺点</strong>：<strong>很难解决对象之间循环引用的问题</strong>。</p>
 <p><strong>循环引用</strong>：当A有B的引用，B又有A的引用的时候，这个时候，即使A和B对象都为null，这个时候，引用计数算法也不会将他们进行垃圾回收。</p>
-<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@ClassName</span> Test_02</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Description</span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Author</span> 欧阳思海</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span> 2019/12/5 16:59</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Version</span> 1.0</span></span><br><span class="line"><span class="comment"> **/</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test_02</span> {</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> {</span><br><span class="line">        <span class="type">Instance</span> <span class="variable">instanceA</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Instance</span>();</span><br><span class="line">        <span class="type">Instance</span> <span class="variable">instanceB</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Instance</span>();</span><br><span class="line"></span><br><span class="line">        instanceA.instance = instanceB;</span><br><span class="line">        instanceB.instance = instanceA;</span><br><span class="line"></span><br><span class="line">        instanceA = <span class="literal">null</span>;</span><br><span class="line">        instanceB = <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line">        System.gc();</span><br><span class="line"></span><br><span class="line">        <span class="type">Scanner</span> <span class="variable">scanner</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Scanner</span>(System.in);</span><br><span class="line">        scanner.next();</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Instance</span>{</span><br><span class="line">    <span class="keyword">public</span> <span class="type">Object</span> <span class="variable">instance</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
+ * @ClassName Test_02
+ * @Description
+ * @Author 欧阳思海
+ * @Date 2019/12/5 16:59
+ * @Version 1.0
+ **/</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Test_02</span> <span class="token punctuation">{</span>
 
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        Instance instanceA <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Instance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Instance instanceB <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Instance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        instanceA<span class="token punctuation">.</span>instance <span class="token operator">=</span> instanceB<span class="token punctuation">;</span>
+        instanceB<span class="token punctuation">.</span>instance <span class="token operator">=</span> instanceA<span class="token punctuation">;</span>
+
+        instanceA <span class="token operator">=</span> null<span class="token punctuation">;</span>
+        instanceB <span class="token operator">=</span> null<span class="token punctuation">;</span>
+
+        System<span class="token punctuation">.</span><span class="token function">gc</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        Scanner scanner <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Scanner</span><span class="token punctuation">(</span>System<span class="token punctuation">.</span>in<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        scanner<span class="token punctuation">.</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Instance</span><span class="token punctuation">{</span>
+    <span class="token keyword">public</span> Object instance <span class="token operator">=</span> null<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
 <p>如果使用的是<strong>引用计数算法</strong>，这是不能被回收的，当然，现在的JVM是可以被回收的。</p>
 <h4 id="可达性分析算法"><a href="#可达性分析算法" class="headerlink" title="可达性分析算法"></a>可达性分析算法</h4><p>这个算法的思想也是很简单的，这里有一个概念叫做<strong>可达性分析</strong>，如果知道图的数据结构，这里可以把每一个对象当做图中的一个节点，我们把一个节点叫做<strong>GC Roots</strong>，如果一个节点到<strong>GC Roots</strong>没有任何的相连的路径，那么就说明这个节点不可达，也就是这个节点可以被回收。</p>
 <p><img src="http://image.ouyangsihai.cn/FqyjRBThJ5HhXAIEH4UE7znJhOuk"></p>
@@ -371,8 +461,25 @@
 <li>JVM参数设置：-Xms10m -Xmx10m</li>
 </ul>
 <p>这里将堆的最小值和最大值都设置为10m，如果不了解这些参数的含义，可以参考这篇文章：<a target="_blank" rel="noopener" href="https://blog.ouyangsihai.cn/shen-ru-li-jie-java-xu-ni-ji-chang-yong-vm-can-shu-fen-xi.html">深入理解Java虚拟机-常用vm参数分析</a></p>
-<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * VM Args：-Xms10m -Xmx10m -XX:+HeapDumpOnOutOfMemoryError</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> zzm</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">HeapTest</span> {</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">class</span> <span class="title class_">HeapObject</span> {</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> {</span><br><span class="line">        List&lt;HeapObject&gt; list = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;HeapObject&gt;();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//不断的向堆中添加对象</span></span><br><span class="line">        <span class="keyword">while</span> (<span class="literal">true</span>) {</span><br><span class="line">            list.add(<span class="keyword">new</span> <span class="title class_">HeapObject</span>());</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
+ * VM Args：-Xms10m -Xmx10m -XX:+HeapDumpOnOutOfMemoryError
+ * @author zzm
+ */</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">HeapTest</span> <span class="token punctuation">{</span>
 
+    <span class="token keyword">static</span> <span class="token keyword">class</span> <span class="token class-name">HeapObject</span> <span class="token punctuation">{</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        List<span class="token operator">&lt;</span>HeapObject<span class="token operator">></span> list <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span>HeapObject<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment" spellcheck="true">//不断的向堆中添加对象</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">HeapObject</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
 <p>输出结果：<br><img src="http://image.ouyangsihai.cn/Fhky14SMLxHjx9R9ZCcY0jAJ8ljg"></p>
 <p>图中出现了<code>java.lang.OutOfMemoryError</code>，并且提示了<code>Java heap space</code>，这就说明是Java堆内存溢出的情况。</p>
 <blockquote>
@@ -473,15 +580,15 @@
 </li>
 </ul>
 <p>老年代空间只有在新生代对象转入及创建为大对象、大数组时才会出现不足的现象，当执行Full GC后空间仍然不足，则抛出如下错误：</p>
-<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java.lang.OutOfMemoryError: Java heap space</span><br></pre></td></tr></tbody></table></figure>
-
+<pre class=" language-java"><code class="language-java">java<span class="token punctuation">.</span>lang<span class="token punctuation">.</span>OutOfMemoryError<span class="token operator">:</span> Java heap space
+</code></pre>
 <p>为避免以上两种状况引起的Full GC，调优时应尽量做到让对象在Minor GC阶段被回收、让对象在新生代多存活一段时间及不要创建过大的对象及数组。</p>
 <ul>
 <li>永生区空间不足</li>
 </ul>
 <p>JVM规范中运行时数据区域中的方法区，在HotSpot虚拟机中又被习惯称为永生代或者永生区，<code>Permanet Generation</code>中存放的为一些class的信息、常量、静态变量等数据，当系统中要加载的类、反射的类和调用的方法较多时，<code>Permanet Generation</code>可能会被占满，在未配置为采用CMS GC的情况下也会执行Full GC。如果经过Full GC仍然回收不了，那么JVM会抛出如下错误信息：</p>
-<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java.lang.OutOfMemoryError: PermGen space</span><br></pre></td></tr></tbody></table></figure>
-
+<pre class=" language-java"><code class="language-java">java<span class="token punctuation">.</span>lang<span class="token punctuation">.</span>OutOfMemoryError<span class="token operator">:</span> PermGen space
+</code></pre>
 <p>为避免Perm Gen占满造成Full GC现象，可采用的方法为增大Perm Gen空间或转为使用CMS GC。</p>
 <ul>
 <li>CMS GC时出现<code>promotion failed</code>和<code>concurrent mode failure</code></li>
@@ -539,8 +646,10 @@
 <p>Extension，搜索路径可以用<code>System.getProperty("java.ext.dirs")</code>获得；</p>
 <p><strong>3.搜索用户自定义目录，顺序为：当前目录（.），CLASSPATH，-cp。</strong></p>
 <p>搜索路径用<code>System.getProperty("java.class.path")</code>获得。</p>
-<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">System.out.println(System.getProperty(<span class="string">"sun.boot.class.path"</span>));</span><br><span class="line">System.out.println(System.getProperty(<span class="string">"java.ext.dirs"</span>));</span><br><span class="line">System.out.println(System.getProperty(<span class="string">"java.class.path"</span>));</span><br></pre></td></tr></tbody></table></figure>
-
+<pre class=" language-java"><code class="language-java">System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>System<span class="token punctuation">.</span><span class="token function">getProperty</span><span class="token punctuation">(</span><span class="token string">"sun.boot.class.path"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>System<span class="token punctuation">.</span><span class="token function">getProperty</span><span class="token punctuation">(</span><span class="token string">"java.ext.dirs"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>System<span class="token punctuation">.</span><span class="token function">getProperty</span><span class="token punctuation">(</span><span class="token string">"java.class.path"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
 <p><img src="http://image.ouyangsihai.cn/FnHtFC8cd9UucBd39nAiLcCrT5mY"></p>
 <p>如上就是我电脑的JVM的路径。</p>
 <ul>
@@ -549,8 +658,8 @@
 <p>定义系统的全局属性值，如配置文件地址等，如果value有空格，则需要使用双引号。</p>
 <p>另外用<code>System.getProperty("hello")</code>可以获得这些定义的属性值，在代码中也可以用<code>System.setProperty("hello","world")</code>的形式来定义属性。</p>
 <p>如键值对设置为hello=world。<br><img src="http://image.ouyangsihai.cn/Fp74h47lvnSt4LAq4S7bKH_Qcilr"></p>
-<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">System.out.println(System.getProperty(<span class="string">"hello"</span>));</span><br></pre></td></tr></tbody></table></figure>
-
+<pre class=" language-java"><code class="language-java">System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>System<span class="token punctuation">.</span><span class="token function">getProperty</span><span class="token punctuation">(</span><span class="token string">"hello"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
 <p>运行结果就是：<br><img src="http://image.ouyangsihai.cn/Fu6bGzdxxsaJ_bOzjDbd1RUxFKIM"></p>
 <ul>
 <li>-verbose</li>
@@ -826,8 +935,26 @@
 <p>最后，给大家一个实例，看看在工作中是怎么去运用这些参数的，怎么在工作中去解决这些问题的。</p>
 <h4 id="参数实例"><a href="#参数实例" class="headerlink" title="参数实例"></a><strong>参数实例</strong></h4><p>设置<code>-Xms</code>、<code>-Xmn</code>和<code>-Xmx</code>参数分别为<code>-Xms512m -Xmx512m -Xmn128m</code>。同时设置新生代和老生代之比为1:4，E:S0:S1=8:1:1。除此之外，当然，你还可以设置一些其他的参数，比如，前面说到的，性能参数 <code>-XX:MaxNewSize</code>、 <code>-XX:NewRatio=</code>、，行为参数 <code>-XX:-UseParNewGC</code>，调试参数 <code>-XX:-PrintGCDetails</code>。</p>
 <p>这些参数都是可以在 IDEA 中启动时直接设置的。</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">**</span><br><span class="line"> * @ClassName MethodTest</span><br><span class="line"> * @Description vm参数设置：-Xms512m -Xmx512m -Xmn128m -XX:NewRatio=4 -XX:SurvivorRatio=8 </span><br><span class="line"> * @Author 欧阳思海</span><br><span class="line"> * @Date 2019/11/25 20:06</span><br><span class="line"> * @Version 1.0</span><br><span class="line"> **/</span><br><span class="line"></span><br><span class="line">public class MethodTest {</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) {</span><br><span class="line">        List&lt;String&gt; list = new ArrayList&lt;String&gt;();</span><br><span class="line">        long i = 0;</span><br><span class="line">        while (i &lt; 1000000000) {</span><br><span class="line">            System.out.println(i);</span><br><span class="line">            list.add(String.valueOf(i++).intern());</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>**
+ * @ClassName MethodTest
+ * @Description vm参数设置：-Xms512m -Xmx512m -Xmn128m -XX:NewRatio=4 -XX:SurvivorRatio=8 
+ * @Author 欧阳思海
+ * @Date 2019/11/25 20:06
+ * @Version 1.0
+ **/
 
+public class MethodTest {
+
+    public static void main(String[] args) {
+        List&lt;String&gt; list = new ArrayList&lt;String&gt;();
+        long i = 0;
+        while (i &lt; 1000000000) {
+            System.out.println(i);
+            list.add(String.valueOf(i++).intern());
+        }
+    }
+}
+</code></pre>
 <p>运行之后，用VisualVM查看相关信息是否正确。</p>
 <p>当我们<strong>没有设置</strong><code>-XX:NewRatio=4 -XX:SurvivorRatio=8</code>时，使用官方默认的情况如下： </p>
 <p><img src="http://image.ouyangsihai.cn/FgIr8Niw2F9Cs1IK6ABn74oEi66T"></p>
@@ -877,8 +1004,8 @@
 <ul>
 <li>命令格式：</li>
 </ul>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jps [选项] [主机id]</span><br></pre></td></tr></tbody></table></figure>
-
+<pre><code>jps [选项] [主机id]
+</code></pre>
 <ul>
 <li>jps主要选项：</li>
 </ul>
@@ -909,16 +1036,17 @@
 <ul>
 <li>实例</li>
 </ul>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">jps -l</span><br><span class="line">jps -v</span><br></pre></td></tr></tbody></table></figure>
-
+<pre><code>jps -l
+jps -v
+</code></pre>
 <p><img src="http://image.ouyangsihai.cn/Fq2nwxo46q4EpQ08Ba_qKIU2JN-J"></p>
 <p><img src="http://image.ouyangsihai.cn/FmEvrlfb6kTEk8u_Hc-NcGHg8wW9"></p>
 <h4 id="2-jinfo：Java配置信息工具"><a href="#2-jinfo：Java配置信息工具" class="headerlink" title="2 jinfo：Java配置信息工具"></a>2 jinfo：Java配置信息工具</h4><p>jinfo的功能很简单，主要就是显示和查看调整虚拟机的各种参数。</p>
 <ul>
 <li>jinfo命令格式：</li>
 </ul>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jinfo [选项] pid</span><br></pre></td></tr></tbody></table></figure>
-
+<pre><code>jinfo [选项] pid
+</code></pre>
 <ul>
 <li>相关选项</li>
 </ul>
@@ -934,8 +1062,8 @@
 <ul>
 <li>jmap命令格式：</li>
 </ul>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jmap [选项] vmid</span><br></pre></td></tr></tbody></table></figure>
-
+<pre><code>jmap [选项] vmid
+</code></pre>
 <ul>
 <li>相关选项</li>
 </ul>
@@ -984,16 +1112,16 @@
 <ul>
 <li>实例</li>
 </ul>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jhat D:\dump.bin</span><br></pre></td></tr></tbody></table></figure>
-
+<pre><code>jhat D:\dump.bin
+</code></pre>
 <p><img src="http://image.ouyangsihai.cn/FsLOf6D2M9Ta8YiA9DCJ-zj6I-_X"></p>
 <p>如果有兴趣查看如何利用VisualVM进行查看，可以查看这篇文章：<a target="_blank" rel="noopener" href="https://blog.ouyangsihai.cn/shen-ru-li-jie-java-xu-ni-ji-ru-he-li-yong-visualvm-dui-gao-bing-fa-xiang-mu-jin-xing-xing-neng-fen-xi.html">深入理解Java虚拟机-如何利用VisualVM对高并发项目进行性能分析</a>。</p>
 <h4 id="5-jstack：Java堆栈跟踪工具"><a href="#5-jstack：Java堆栈跟踪工具" class="headerlink" title="5 jstack：Java堆栈跟踪工具"></a>5 jstack：Java堆栈跟踪工具</h4><p><code>jstack</code> 命令主要用于生成虚拟机当前时刻的<strong>线程快照</strong>。线程快照就是当前虚拟机内每一条线程正在执行的方法堆栈的集合，生成线程快照的<strong>主要目的</strong>：定位线程出现长时间停顿的原因、请求外部资源导致的长时间等待等这些原因。</p>
 <ul>
 <li>jstack命令格式：</li>
 </ul>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jstack [选项] vmid</span><br></pre></td></tr></tbody></table></figure>
-
+<pre><code>jstack [选项] vmid
+</code></pre>
 <ul>
 <li>相关选项</li>
 </ul>
@@ -1020,15 +1148,15 @@
 <ul>
 <li>实例</li>
 </ul>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jstack -l 6708</span><br></pre></td></tr></tbody></table></figure>
-
+<pre><code>jstack -l 6708
+</code></pre>
 <p><img src="http://image.ouyangsihai.cn/FrcFS7iWpybtIg48OoDjrdmsSDJa"></p>
 <h4 id="6-jstat：虚拟机统计信息监视工具"><a href="#6-jstat：虚拟机统计信息监视工具" class="headerlink" title="6 jstat：虚拟机统计信息监视工具"></a>6 jstat：虚拟机统计信息监视工具</h4><p>jstat这个工具还是很有作用的，他可以显示本地或者远程<strong>虚拟机进程中的类装载、内存、垃圾收集、JIT编译</strong>等运行数据，在服务器上，他是运行期定位虚拟机性能问题的首选工具。</p>
 <ul>
 <li>jstat命令格式：</li>
 </ul>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jstat [选项 vmid [interval[s|ms] [count]]]</span><br></pre></td></tr></tbody></table></figure>
-
+<pre><code>jstat [选项 vmid [interval[s|ms] [count]]]
+</code></pre>
 <ul>
 <li>相关选项</li>
 </ul>
@@ -1092,8 +1220,8 @@
 <li>实例</li>
 </ul>
 <p>我们这里还关注一下虚拟机GC的状况。</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jstat -gcutil 9676</span><br></pre></td></tr></tbody></table></figure>
-
+<pre><code>jstat -gcutil 9676
+</code></pre>
 <p><img src="http://image.ouyangsihai.cn/FkelCR8JIup_jpEFY9UQvqD2l0EC"></p>
 <p>上面参数的含义：</p>
 <blockquote>
@@ -1237,8 +1365,12 @@
 <p>YoungGC 在 Eden 充满时触发，在回收之后所有之前属于 Eden 的区块全变成空白。然后至少有一个区块是属于 S 区的（如图半满的那个区域），同时可能有一些数据移到了 O 区。</p>
 <p>目前大都使用 PrintGCDetails 参数打出GC日志、这个参数对G1同样有效、但日志内容颇为不同。</p>
 <p>下面是一个Young GC的例子：</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">23.430: [GC pause (young)， 0.23094400 secs]</span><br><span class="line">...</span><br><span class="line">[Eden: 1286M(1286M)-&gt;0B(1212M)</span><br><span class="line">Survivors: 78M-&gt;152M Heap: 1454M(4096M)-&gt;242M(4096M)]</span><br><span class="line">[Times: user=0.85 sys=0.05, real=0.23 secs]</span><br></pre></td></tr></tbody></table></figure>
-
+<pre><code>23.430: [GC pause (young)， 0.23094400 secs]
+...
+[Eden: 1286M(1286M)-&gt;0B(1212M)
+Survivors: 78M-&gt;152M Heap: 1454M(4096M)-&gt;242M(4096M)]
+[Times: user=0.85 sys=0.05, real=0.23 secs]
+</code></pre>
 <p>上面日志的内容解析：Young GC实际占用230毫秒、其中GC线程占用850毫秒的CPU时间</p>
 <ul>
 <li>E：内存占用从 1286MB 变成 0、都被移出</li>
@@ -1254,31 +1386,48 @@
 <li>在并发阶段完成之后实际上 O 区的容量变得更大了（O+X 的方块）。这时因为这个过程中发生了 YGC 有新的对象进入所致。此外，这个阶段在 O 区没有回收任何对象：它的作用主要是标记出垃圾最多的区块出来。对象实际上是在后面的阶段真正开始被回收</li>
 </ul>
 <p>G1 并发标记周期可以分成几个阶段、其中有些需要暂停应用线程。第一个阶段是初始标记阶段。这个阶段会暂停所有应用线程-部分原因是这个过程会执行一次 YGC、下面是一个日志示例：</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">50.541: [GC pause (young) (initial-mark), 0.27767100 secs]</span><br><span class="line">[Eden: 1220M(1220M)-&gt;0B(1220M)</span><br><span class="line">Survivors: 144M-&gt;144M Heap: 3242M(4096M)-&gt;2093M(4096M)]</span><br><span class="line">[Times: user=1.02 sys=0.04, real=0.28 secs]</span><br></pre></td></tr></tbody></table></figure>
-
+<pre><code>50.541: [GC pause (young) (initial-mark), 0.27767100 secs]
+[Eden: 1220M(1220M)-&gt;0B(1220M)
+Survivors: 144M-&gt;144M Heap: 3242M(4096M)-&gt;2093M(4096M)]
+[Times: user=1.02 sys=0.04, real=0.28 secs]
+</code></pre>
 <p>上面的日志表明发生了 YGC 、应用线程为此暂停了 280 毫秒，Eden 区被清空（71MB 从 Young 区移到了 O 区）。</p>
 <p>日志里面 initial-mark 的字样表明后台的并发 GC 阶段开始了。因为初始标记阶段本身也是要暂停应用线程的，G1 正好在 YGC 的过程中把这个事情也一起干了。为此带来的额外开销不是很大、增加了 20% 的 CPU ，暂停时间相应的略微变长了些。</p>
 <p>接下来，G1 开始扫描根区域、日志示例：</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">50.819: [GC concurrent-root-region-scan-start]</span><br><span class="line">51.408: [GC concurrent-root-region-scan-end, 0.5890230]</span><br></pre></td></tr></tbody></table></figure>
-
+<pre><code>50.819: [GC concurrent-root-region-scan-start]
+51.408: [GC concurrent-root-region-scan-end, 0.5890230]
+</code></pre>
 <p>一共花了 580 毫秒，这个过程没有暂停应用线程；是后台线程并行处理的。这个阶段不能被 YGC 所打断、因此后台线程有足够的 CPU 时间很关键。如果 Young 区空间恰好在 Root 扫描的时候满了、YGC 必须等待 root 扫描之后才能进行。带来的影响是 YGC 暂停时间会相应的增加。这时的 GC 日志是这样的： </p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">350.994: [GC pause (young)</span><br><span class="line">351.093: [GC concurrent-root-region-scan-end, 0.6100090]</span><br><span class="line">351.093: [GC concurrent-mark-start],0.37559600 secs]</span><br></pre></td></tr></tbody></table></figure>
-
+<pre><code>350.994: [GC pause (young)
+351.093: [GC concurrent-root-region-scan-end, 0.6100090]
+351.093: [GC concurrent-mark-start],0.37559600 secs]
+</code></pre>
 <p>GC 暂停这里可以看出在 root 扫描结束之前就发生了，表明 YGC 发生了等待，等待时间大概是100毫秒。</p>
 <p>在 root 扫描完成后，G1 进入了一个并发标记阶段。这个阶段也是完全后台进行的；GC 日志里面下面的信息代表这个阶段的开始和结束：</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">111.382: [GC concurrent-mark-start]</span><br><span class="line">....</span><br><span class="line">120.905: [GC concurrent-mark-end, 9.5225160 sec]</span><br></pre></td></tr></tbody></table></figure>
-
+<pre><code>111.382: [GC concurrent-mark-start]
+....
+120.905: [GC concurrent-mark-end, 9.5225160 sec]
+</code></pre>
 <p>并发标记阶段是可以被打断的，比如这个过程中发生了 YGC 就会。这个阶段之后会有一个二次标记阶段和清理阶段：</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">120.910: [GC remark 120.959:</span><br><span class="line">[GC ref-PRC, 0.0000890 secs], 0.0718990 secs]</span><br><span class="line">[Times: user=0.23 sys=0.01, real=0.08 secs]</span><br><span class="line">120.985: [GC cleanup 3510M-&gt;3434M(4096M), 0.0111040 secs]</span><br><span class="line">[Times: user=0.04 sys=0.00, real=0.01 secs]</span><br></pre></td></tr></tbody></table></figure>
-
+<pre><code>120.910: [GC remark 120.959:
+[GC ref-PRC, 0.0000890 secs], 0.0718990 secs]
+[Times: user=0.23 sys=0.01, real=0.08 secs]
+120.985: [GC cleanup 3510M-&gt;3434M(4096M), 0.0111040 secs]
+[Times: user=0.04 sys=0.00, real=0.01 secs]
+</code></pre>
 <p>这两个阶段同样会暂停应用线程，但时间很短。接下来还有额外的一次并发清理阶段：</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">120.996: [GC concurrent-cleanup-start]</span><br><span class="line">120.996: [GC concurrent-cleanup-end, 0.0004520]</span><br></pre></td></tr></tbody></table></figure>
-
+<pre><code>120.996: [GC concurrent-cleanup-start]
+120.996: [GC concurrent-cleanup-end, 0.0004520]
+</code></pre>
 <p>到此为止，正常的一个 G1 周期已完成–这个周期主要做的是发现哪些区域包含可回收的垃圾最多（标记为 X ），实际空间释放较少。</p>
 <h5 id="混合-GC"><a href="#混合-GC" class="headerlink" title="混合 GC"></a>混合 GC</h5><p>接下来 G1 执行一系列的混合 GC。这个时期因为会同时进行 YGC 和清理上面已标记为 X 的区域，所以称之为混合阶段，下面是一个混合 GC 执行的前后示意图：<br><img src="http://image.ouyangsihai.cn/Flo526oI2G_UIbkT-Jibo5ZoX27u"></p>
 <p>像普通的 YGC 那样、G1 完全清空掉 Eden 同时调整 survivor 区。另外，两个标记也被回收了，他们有个共同的特点是包含最多可回收的对象，因此这两个区域绝对部分空间都被释放了。这两个区域任何存活的对象都被移到了其他区域（和 YGC 存活对象晋升到 O 区类似）。这就是为什么 G1 的堆比 CMS 内存碎片要少很多的原因——移动这些对象的同时也就是在压缩对内存。下面是一个混合GC的日志：</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">79.826: [GC pause (mixed), 0.26161600 secs]</span><br><span class="line">....</span><br><span class="line">[Eden: 1222M(1222M)-&gt;0B(1220M)</span><br><span class="line">Survivors: 142M-&gt;144M Heap: 3200M(4096M)-&gt;1964M(4096M)]</span><br><span class="line">[Times: user=1.01 sys=0.00, real=0.26 secs]</span><br></pre></td></tr></tbody></table></figure>
-
+<pre><code>79.826: [GC pause (mixed), 0.26161600 secs]
+....
+[Eden: 1222M(1222M)-&gt;0B(1220M)
+Survivors: 142M-&gt;144M Heap: 3200M(4096M)-&gt;1964M(4096M)]
+[Times: user=1.01 sys=0.00, real=0.26 secs]
+</code></pre>
 <p>上面的日志可以注意到 Eden 释放了 1222 MB、但整个堆的空间释放内存要大于这个数目。数量相差看起来比较少、只有 16 MB，但是要考虑同时有 survivor 区的对象晋升到 O 区；另外，每次混合 GC 只是清理一部分的 O 区内存，整个 GC 会一直持续到几乎所有的标记区域垃圾对象都被回收，这个阶段完了之后 G1 会重新回到正常的 YGC 阶段。周期性的，当O区内存占用达到一定数量之后 G1 又会开启一次新的并行 GC 阶段.</p>
 <p>G1来源：<a target="_blank" rel="noopener" href="https://blog.51cto.com/lqding/1770055">https://blog.51cto.com/lqding/1770055</a></p>
 <h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>这里把上面的这些垃圾回收器做个总结，看完这个，面试给面试官讲的时候思路就非常清晰了。</p>
@@ -1444,11 +1593,11 @@
 <li>符号引用验证：基于方法区的存储结构验证。</li>
 </ol>
 <h4 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h4><p>为类变量分配内存，并将其初始化为默认值。（此时为默认值，在初始化的时候才会给变量赋值）即在方法区中分配这些变量所使用的内存空间。例如：</p>
-<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">int</span> <span class="variable">value</span> <span class="operator">=</span> <span class="number">123</span>;</span><br></pre></td></tr></tbody></table></figure>
-
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">int</span> value <span class="token operator">=</span> <span class="token number">123</span><span class="token punctuation">;</span>
+</code></pre>
 <p>此时在准备阶段过后的初始值为0而不是 123 ；将 value 赋值为 123 的 putstatic 指令是程序被编译后，存放于类构造器方法之中。特例：</p>
-<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">int</span> <span class="variable">value</span> <span class="operator">=</span> <span class="number">123</span>;</span><br></pre></td></tr></tbody></table></figure>
-
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token keyword">int</span> value <span class="token operator">=</span> <span class="token number">123</span><span class="token punctuation">;</span>
+</code></pre>
 <p>此时 value 的值在准备阶段过后就是 123 。</p>
 <h4 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h4><p>把类型中的符号引用转换为直接引用。</p>
 <ul>
@@ -1554,17 +1703,17 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></tbody></table></figure>
-
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre class=" language-bash"><code class="language-bash">$ hexo new <span class="token string">"My New Post"</span>
+</code></pre>
 <p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></tbody></table></figure>
-
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre class=" language-bash"><code class="language-bash">$ hexo server
+</code></pre>
 <p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></tbody></table></figure>
-
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre class=" language-bash"><code class="language-bash">$ hexo generate
+</code></pre>
 <p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></tbody></table></figure>
-
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre class=" language-bash"><code class="language-bash">$ hexo deploy
+</code></pre>
 <p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 
       
