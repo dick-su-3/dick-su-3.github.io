@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://example.com/2022/08/02/Hashmap%E7%AC%94%E8%AE%B0/</loc>
+    <loc>https://dick-su-3.github.io/archives/46251.html</loc>
     
     <lastmod>2022-08-06</lastmod>
     
@@ -11,7 +11,7 @@
   </url>
   
   <url>
-    <loc>http://example.com/2022/08/02/SpringBoot%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</loc>
+    <loc>https://dick-su-3.github.io/archives/9502.html</loc>
     
     <lastmod>2022-08-06</lastmod>
     
@@ -20,7 +20,7 @@
   </url>
   
   <url>
-    <loc>http://example.com/2022/08/02/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/</loc>
+    <loc>https://dick-su-3.github.io/archives/62824.html</loc>
     
     <lastmod>2022-08-06</lastmod>
     
@@ -29,7 +29,7 @@
   </url>
   
   <url>
-    <loc>http://example.com/categories/index.html</loc>
+    <loc>https://dick-su-3.github.io/categories/index.html</loc>
     
     <lastmod>2022-08-06</lastmod>
     
@@ -38,7 +38,7 @@
   </url>
   
   <url>
-    <loc>http://example.com/404.html</loc>
+    <loc>https://dick-su-3.github.io/404.html</loc>
     
     <lastmod>2021-06-12</lastmod>
     
@@ -48,7 +48,7 @@
   
 
   <url>
-    <loc>http://example.com/</loc>
+    <loc>https://dick-su-3.github.io/</loc>
     <lastmod>2022-08-06</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
@@ -56,21 +56,21 @@
 
   
   <url>
-    <loc>http://example.com/tags/jvm%E9%9D%A2%E8%AF%95%E9%A2%98%E6%94%B6%E9%9B%86%E4%B8%80/</loc>
+    <loc>https://dick-su-3.github.io/tags/hashmap/</loc>
     <lastmod>2022-08-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://example.com/tags/springboot%E6%91%98%E5%BD%95%E5%AD%A6%E4%B9%A0/</loc>
+    <loc>https://dick-su-3.github.io/tags/springboot%E6%91%98%E5%BD%95%E5%AD%A6%E4%B9%A0/</loc>
     <lastmod>2022-08-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://example.com/tags/hashmap/</loc>
+    <loc>https://dick-su-3.github.io/tags/jvm%E9%9D%A2%E8%AF%95%E9%A2%98%E6%94%B6%E9%9B%86%E4%B8%80/</loc>
     <lastmod>2022-08-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -79,21 +79,21 @@
 
   
   <url>
-    <loc>http://example.com/categories/JVM/</loc>
+    <loc>https://dick-su-3.github.io/categories/hashmap/</loc>
     <lastmod>2022-08-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://example.com/categories/springboot/</loc>
+    <loc>https://dick-su-3.github.io/categories/springboot/</loc>
     <lastmod>2022-08-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://example.com/categories/hashmap/</loc>
+    <loc>https://dick-su-3.github.io/categories/JVM/</loc>
     <lastmod>2022-08-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
