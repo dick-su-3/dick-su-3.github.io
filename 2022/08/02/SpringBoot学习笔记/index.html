@@ -6,15 +6,15 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>SpringBoot学习笔记 | Hexo</title>
+  <title>SpringBoot学习笔记 | 云卷舒</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="1. Spring Boot是什么我们知道，从 2002 年开始，Spring 一直在飞速的发展，如今已经成为了在Java EE（Java Enterprise Edition）开发中真正意义上的标准，但是随着技术的发展，Java EE使用 Spring 逐渐变得笨重起来，大量的 XML 文件存在于项目之中。繁琐的配置，整合第三方框架的配置问题，导致了开发和部署效率的降低。 2012 年 10 月">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SpringBoot学习笔记">
 <meta property="og:url" content="http://example.com/2022/08/02/SpringBoot%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:site_name" content="云卷舒">
 <meta property="og:description" content="1. Spring Boot是什么我们知道，从 2002 年开始，Spring 一直在飞速的发展，如今已经成为了在Java EE（Java Enterprise Edition）开发中真正意义上的标准，但是随着技术的发展，Java EE使用 Spring 逐渐变得笨重起来，大量的 XML 文件存在于项目之中。繁琐的配置，整合第三方框架的配置问题，导致了开发和部署效率的降低。 2012 年 10 月">
-<meta property="og:locale" content="en_US">
+<meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pbWFnZXMuZ2l0Ym9vay5jbi85OGZkYTdmMC04NjU2LTExZTgtODY3NS01NTM3YTcwMWFlN2Q?x-oss-process=image/format,png">
 <meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pbWFnZXMuZ2l0Ym9vay5jbi9lMTdiOGM0MC04NjU2LTExZTgtOGE5MS1kNzBiYzJkODQ3YzU?x-oss-process=image/format,png">
 <meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pbWFnZXMuZ2l0Ym9vay5jbi8wMDA3ODY1MC04NjU3LTExZTgtODdkZS1kOTEwYTNlZTA4N2U?x-oss-process=image/format,png">
@@ -42,12 +42,12 @@
 <meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pbWFnZXMuZ2l0Ym9vay5jbi82ZjIzYzk4MC1iODllLTExZTgtODdmMS01NTljOWI0NTY3NTQ?x-oss-process=image/format,png">
 <meta property="article:published_time" content="2022-08-02T13:45:09.000Z">
 <meta property="article:modified_time" content="2022-08-02T14:35:50.484Z">
-<meta property="article:author" content="John Doe">
+<meta property="article:author" content="SuoLiweng">
 <meta property="article:tag" content="springboot摘录学习">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pbWFnZXMuZ2l0Ym9vay5jbi85OGZkYTdmMC04NjU2LTExZTgtODY3NS01NTM3YTcwMWFlN2Q?x-oss-process=image/format,png">
   
-    <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+    <link rel="alternative" href="/atom.xml" title="云卷舒" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png">
@@ -95,7 +95,7 @@ color="0,0,255" opacity='0.9' zIndex="-1" count="300" src="//cdn.bootcss.com/can
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
-			<img src="https://avatars.githubusercontent.com/u/3333" class="js-avatar">
+			<img src="/img/v2-da.jpg" class="js-avatar">
 		</a>
 		<hgroup>
 		  <h1 class="header-author"><a href="/"></a></h1>
@@ -137,23 +137,29 @@ color="0,0,255" opacity='0.9' zIndex="-1" count="300" src="//cdn.bootcss.com/can
 		<nav class="header-nav">
 			<div class="social">
 				
-					<a class="github" target="_blank" href="#" title="github"><i class="icon-github"></i></a>
-		        
-					<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
+					<a class="github" target="_blank" href="https://github.com/dick-su-3" title="github"><i class="icon-github"></i></a>
 		        
 					<a class="zhihu" target="_blank" href="#" title="zhihu"><i class="icon-zhihu"></i></a>
 		        
 					<a class="qq" target="_blank" href="/3228287795" title="qq"><i class="icon-qq"></i></a>
 		        
+					<a class="weixin" target="_blank" href="/img/%E5%BE%AE%E4%BF%A1%E4%BA%8C%E7%BB%B4%E7%A0%81.png" title="weixin"><i class="icon-weixin"></i></a>
+		        
 			</div>
+			
+			<!-- 网易云音乐插件 -->
+				
+				<div style="position:absolute; bottom:120px left:auto; width:85%">
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=240 height=52 src="//music.163.com/outchain/player?type=2&id=445886994&auto=1&height=66"></iframe>
+</div>
+	
+
 		</nav>
 		<span class="post-count">76.4k</span>
 	</header>
 
 </div>
-				
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=445886994&auto=1&height=66"></iframe>
-	
+                
 
     </div>
     <div class="mid-col" q-class="show:isShow,hide:isShow|isFalse">
@@ -166,7 +172,7 @@ color="0,0,255" opacity='0.9' zIndex="-1" count="300" src="//cdn.bootcss.com/can
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img src="https://avatars.githubusercontent.com/u/3333" class="js-avatar">
+				<img src="/img/v2-da.jpg" class="js-avatar">
 			</div>
 			<hgroup>
 			  <h1 class="header-author js-header-author"></h1>
@@ -185,13 +191,13 @@ color="0,0,255" opacity='0.9' zIndex="-1" count="300" src="//cdn.bootcss.com/can
 			<nav class="header-nav">
 				<div class="social">
 					
-						<a class="github" target="_blank" href="#" title="github"><i class="icon-github"></i></a>
-			        
-						<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
+						<a class="github" target="_blank" href="https://github.com/dick-su-3" title="github"><i class="icon-github"></i></a>
 			        
 						<a class="zhihu" target="_blank" href="#" title="zhihu"><i class="icon-zhihu"></i></a>
 			        
 						<a class="qq" target="_blank" href="/3228287795" title="qq"><i class="icon-qq"></i></a>
+			        
+						<a class="weixin" target="_blank" href="/img/%E5%BE%AE%E4%BF%A1%E4%BA%8C%E7%BB%B4%E7%A0%81.png" title="weixin"><i class="icon-weixin"></i></a>
 			        
 				</div>
 			</nav>
@@ -247,7 +253,14 @@ color="0,0,255" opacity='0.9' zIndex="-1" count="300" src="//cdn.bootcss.com/can
 <!--显示阅读次数完毕-->
 
         
-        <a href="/2022/08/02/SpringBoot%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="archive-article-date">
+        
+        <!-- 不蒜子统计 -->
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
+
+<a href="/2022/08/02/SpringBoot%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="archive-article-date">
   	<time datetime="2022-08-02T13:45:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-08-02</time>
 </a>
         
@@ -4617,19 +4630,20 @@ public class GlobalExceptionHandler {
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2022 John Doe
+    		&copy; 2022 SuoLiweng
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
       	</div>
     </div>
   </div>
+  
   # PV方式，单个用户连续点击 n 篇，记录 n 次记录值
 <span id="busuanzi_container_site_pv">    本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
 
 # UV方式，单个用户连续点击 n 篇，记录 1 次记录值
 <span id="busuanzi_container_site_uv">  本站访客数<span id="busuanzi_value_site_uv"></span>人次</span>
-
+ 
 </footer>
 <!--页面点击小红心-->
 <script type="text/javascript" src="/love.js"></script>
@@ -4714,11 +4728,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">springboot摘录学习</a>
+                <a href="javascript:void(0)" class="js-tag color5">jvm面试题收集一</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">jvm面试题收集一</a>
+                <a href="javascript:void(0)" class="js-tag color5">springboot摘录学习</a>
               </li>
             
             <div class="clearfix"></div>
@@ -4770,27 +4784,31 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
         <ul class="search-ul">
           
             <li class="search-li">
-              <a href="https://hellogithub.com/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接1</a>
+              <a href="https://hellogithub.com/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>HelloGithub</a>
             </li>
           
             <li class="search-li">
-              <a href="https://www.jb51.net/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接2</a>
+              <a href="https://www.jb51.net/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>脚本之家</a>
             </li>
           
             <li class="search-li">
-              <a href="https://zh.wikihow.com/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接3</a>
+              <a href="https://zh.wikihow.com/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>wikihow</a>
             </li>
           
             <li class="search-li">
-              <a href="http://snailclimb.gitee.io/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接4</a>
+              <a href="https://javaguide.cn/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>Javaguide</a>
             </li>
           
             <li class="search-li">
-              <a href="https://www.kuangstudy.com/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接5</a>
+              <a href="https://www.kuangstudy.com/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>狂神说</a>
             </li>
           
             <li class="search-li">
-              <a href="https://www.ruanyifeng.com/blog/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接6</a>
+              <a href="https://www.ruanyifeng.com/blog/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>阮一峰博客</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="https://www.runoob.com/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>菜鸟教程</a>
             </li>
           
         </ul>
@@ -4875,5 +4893,5 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
 
 </div>
   </div>
-</body>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
 </html>
