@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://dick-su-3.github.io/archives/6abaae53.html</loc>
+    
+    <lastmod>2022-08-07</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://dick-su-3.github.io/archives/e4931122.html</loc>
     
     <lastmod>2022-08-07</lastmod>
@@ -79,6 +88,13 @@
   </url>
   
   <url>
+    <loc>https://dick-su-3.github.io/tags/springboot%E6%91%98%E5%BD%95%E5%AD%A6%E4%B9%A0/</loc>
+    <lastmod>2022-08-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://dick-su-3.github.io/tags/jvm%E9%9D%A2%E8%AF%95%E9%A2%98%E6%94%B6%E9%9B%86%E4%B8%80/</loc>
     <lastmod>2022-08-07</lastmod>
     <changefreq>weekly</changefreq>
@@ -86,7 +102,7 @@
   </url>
   
   <url>
-    <loc>https://dick-su-3.github.io/tags/springboot%E6%91%98%E5%BD%95%E5%AD%A6%E4%B9%A0/</loc>
+    <loc>https://dick-su-3.github.io/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/</loc>
     <lastmod>2022-08-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -109,6 +125,13 @@
   </url>
   
   <url>
+    <loc>https://dick-su-3.github.io/categories/springboot/</loc>
+    <lastmod>2022-08-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://dick-su-3.github.io/categories/JVM/</loc>
     <lastmod>2022-08-07</lastmod>
     <changefreq>weekly</changefreq>
@@ -116,7 +139,7 @@
   </url>
   
   <url>
-    <loc>https://dick-su-3.github.io/categories/springboot/</loc>
+    <loc>https://dick-su-3.github.io/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/</loc>
     <lastmod>2022-08-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
