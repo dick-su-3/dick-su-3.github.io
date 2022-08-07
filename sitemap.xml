@@ -92,6 +92,13 @@
 
   
   <url>
+    <loc>https://dick-su-3.github.io/tags/DNS/</loc>
+    <lastmod>2022-08-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://dick-su-3.github.io/tags/hashmap/</loc>
     <lastmod>2022-08-07</lastmod>
     <changefreq>weekly</changefreq>
@@ -100,13 +107,6 @@
   
   <url>
     <loc>https://dick-su-3.github.io/tags/hexo/</loc>
-    <lastmod>2022-08-07</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://dick-su-3.github.io/tags/DNS/</loc>
     <lastmod>2022-08-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -129,20 +129,6 @@
 
   
   <url>
-    <loc>https://dick-su-3.github.io/categories/hashmap/</loc>
-    <lastmod>2022-08-07</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://dick-su-3.github.io/categories/hexo%E3%80%81blog/</loc>
-    <lastmod>2022-08-07</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://dick-su-3.github.io/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/</loc>
     <lastmod>2022-08-07</lastmod>
     <changefreq>weekly</changefreq>
@@ -150,7 +136,21 @@
   </url>
   
   <url>
+    <loc>https://dick-su-3.github.io/categories/hashmap/</loc>
+    <lastmod>2022-08-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://dick-su-3.github.io/categories/IP/</loc>
+    <lastmod>2022-08-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://dick-su-3.github.io/categories/hexo%E3%80%81blog/</loc>
     <lastmod>2022-08-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
