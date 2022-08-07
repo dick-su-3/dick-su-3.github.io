@@ -6,17 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://dick-su-3.github.io">
-  <title>Category: Git | 云卷舒</title>
+  <title>Java 如何实现线程间通信 | 云卷舒</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="岁月不回头，且行且珍惜">
-<meta property="og:type" content="website">
-<meta property="og:title" content="云卷舒">
-<meta property="og:url" content="https://dick-su-3.github.io/categories/Git/index.html">
+  <meta name="description" content="虽然通常每个子线程只需要完成自己的任务，但是有时我们希望多个线程一起工作来完成一个任务，这就涉及到线程间通信。 关于线程间通信本文涉及到的方法和类包括：thread.join()、object.wait()、object.notify()、CountdownLatch、CyclicBarrier、FutureTask、Callable。 接下来将用几个例子来介绍如何在Java中实现线程间通信：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java 如何实现线程间通信">
+<meta property="og:url" content="https://dick-su-3.github.io/archives/5c704262.html">
 <meta property="og:site_name" content="云卷舒">
-<meta property="og:description" content="岁月不回头，且行且珍惜">
+<meta property="og:description" content="虽然通常每个子线程只需要完成自己的任务，但是有时我们希望多个线程一起工作来完成一个任务，这就涉及到线程间通信。 关于线程间通信本文涉及到的方法和类包括：thread.join()、object.wait()、object.notify()、CountdownLatch、CyclicBarrier、FutureTask、Callable。 接下来将用几个例子来介绍如何在Java中实现线程间通信：">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/img_convert/41cdd9426d1418fe870ae32c45bbd428.png">
+<meta property="article:published_time" content="2022-08-07T17:04:55.000Z">
+<meta property="article:modified_time" content="2022-08-07T17:06:55.160Z">
 <meta property="article:author" content="SuoLiweng">
+<meta property="article:tag" content="Java线程间通信">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/img_convert/41cdd9426d1418fe870ae32c45bbd428.png">
   
     <link rel="alternative" href="/atom.xml" title="云卷舒" type="application/atom+xml">
   
@@ -210,124 +215,627 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Java-中如何实现线程间通信" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2022" class="archive-year">2022</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-
-<a href="/archives/fe29e710.html" class="archive-article-date">
-  	<time datetime="2022-08-07T15:09:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-08-07</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/archives/fe29e710.html">Redis基础</a>
+    <h1 class="article-title" itemprop="name">
+      Java 如何实现线程间通信
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <!-- 目录内容 -->
+
+<!-- 目录内容结束 -->
+
+        <div align="center" class="post-count">
+字数：3.2k字 | 预计阅读时长：13分钟</div>
+
+        <!--显示阅读次数-->
+
+  <br/>
+  <a class="cloud-tie-join-count" href="javascript:void(0);" style="color:gray;font-size:14px;">
+  <span class="icon-sort"></span>
+  <span id="busuanzi_container_page_pv" style="color:#ef7522;font-size:14px;">
+            阅读数: <span id="busuanzi_value_page_pv"></span>次 &nbsp;&nbsp;
+  </span>
+  </a>
+
+<!--显示阅读次数完毕-->
+
+        
+        
+        <!-- 不蒜子统计 -->
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
+
+<a href="/archives/5c704262.html" class="archive-article-date">
+  	<time datetime="2022-08-07T17:04:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-08-08</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>虽然通常每个子线程只需要完成自己的任务，但是有时我们希望多个线程一起工作来完成一个任务，这就涉及到线程间通信。</p>
+<p>关于线程间通信本文涉及到的方法和类包括：<code>thread.join()</code>、<code>object.wait()</code>、<code>object.notify()</code>、<code>CountdownLatch</code>、<code>CyclicBarrier</code>、<code>FutureTask</code>、<code>Callable</code>。</p>
+<p>接下来将用几个例子来介绍如何在Java中实现线程间通信：</p>
+<ol>
+<li><p><strong>如何让两个线程依次执行，即一个线程等待另一个线程执行完成后再执行？</strong></p>
+</li>
+<li><p><strong>如何让两个线程以指定的方式有序相交执行？</strong></p>
+</li>
+<li><p><strong>有四个线程：A、B、C、D，如何实现 D 在 A、B、C 都同步执行完毕后执行？</strong></p>
+</li>
+<li><p><strong>三个运动员分开准备，然后在每个人准备好后同时开始跑步。</strong></p>
+</li>
+<li><p><strong>子线程完成任务后，将结果返回给主线程。</strong></p>
+<span id="more"></span></li>
+</ol>
+<h1 id="1-如何让两个线程依次执行？"><a href="#1-如何让两个线程依次执行？" class="headerlink" title="1. 如何让两个线程依次执行？"></a>1. 如何让两个线程依次执行？</h1><p>假设有两个线程：A 和 B，这两个线程都可以按照顺序打印数字，代码如下：</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Test01</span> <span class="token punctuation">{</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token keyword">throws</span> InterruptedException <span class="token punctuation">{</span>
+        <span class="token function">demo1</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">demo1</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        Thread a <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Thread</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token punctuation">{</span>
+            <span class="token function">printNumber</span><span class="token punctuation">(</span><span class="token string">"A"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        Thread b <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Thread</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token punctuation">{</span>
+            <span class="token function">printNumber</span><span class="token punctuation">(</span><span class="token string">"B"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        a<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        b<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">printNumber</span><span class="token punctuation">(</span>String threadName<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>i<span class="token operator">++</span> <span class="token operator">&lt;</span> <span class="token number">3</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">try</span> <span class="token punctuation">{</span>
+                Thread<span class="token punctuation">.</span><span class="token function">sleep</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">InterruptedException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>threadName <span class="token operator">+</span> <span class="token string">" print: "</span> <span class="token operator">+</span> i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+</code></pre>
+<p>得到的结果如下：</p>
+<pre class=" language-java"><code class="language-java">A print<span class="token operator">:</span> <span class="token number">1</span>
+B print<span class="token operator">:</span> <span class="token number">1</span>
+B print<span class="token operator">:</span> <span class="token number">2</span>
+A print<span class="token operator">:</span> <span class="token number">2</span>
+A print<span class="token operator">:</span> <span class="token number">3</span>
+B print<span class="token operator">:</span> <span class="token number">3</span>
+</code></pre>
+<p>可以看到 A 和 B 同时打印数字，如果我们希望 B 在 A 执行完成之后开始执行，那么可以使用 <code>thread.join()</code> 方法实现，代码如下：</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">demo2</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    Thread a <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Thread</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token punctuation">{</span>
+        <span class="token function">printNumber</span><span class="token punctuation">(</span><span class="token string">"A"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    Thread b <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Thread</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token punctuation">{</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"B 等待 A 执行"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">try</span> <span class="token punctuation">{</span>
+            a<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">InterruptedException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token function">printNumber</span><span class="token punctuation">(</span><span class="token string">"B"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    a<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    b<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>得到的结果如下：</p>
+<pre class=" language-java"><code class="language-java">B 等待 A 执行
+A print<span class="token operator">:</span> <span class="token number">1</span>
+A print<span class="token operator">:</span> <span class="token number">2</span>
+A print<span class="token operator">:</span> <span class="token number">3</span>
+B print<span class="token operator">:</span> <span class="token number">1</span>
+B print<span class="token operator">:</span> <span class="token number">2</span>
+B print<span class="token operator">:</span> <span class="token number">3</span>
+</code></pre>
+<p>我们可以看到该 <code>a.join()</code> 方法会让 B 等待 A 完成打印。</p>
+<p><code>thread.join()</code> 方法的作用就是阻塞当前线程，等待调用 <code>join()</code> 方法的线程执行完毕后再执行后面的代码。</p>
+<p>查看 <code>join()</code> 方法的源码，内部是调用了 <code>join(0)</code> ，如下：</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">final</span> <span class="token keyword">void</span> <span class="token function">join</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> InterruptedException <span class="token punctuation">{</span>
+    <span class="token function">join</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>查看 <code>join(0)</code> 的源码如下：</p>
+<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">// 注意这里使用了 sychronized 加锁，锁对象是线程的实例对象</span>
+<span class="token keyword">public</span> <span class="token keyword">final</span> <span class="token keyword">synchronized</span> <span class="token keyword">void</span> <span class="token function">join</span><span class="token punctuation">(</span><span class="token keyword">long</span> millis<span class="token punctuation">)</span> <span class="token keyword">throws</span> InterruptedException <span class="token punctuation">{</span>
+    <span class="token keyword">long</span> base <span class="token operator">=</span> System<span class="token punctuation">.</span><span class="token function">currentTimeMillis</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">long</span> now <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>millis <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">IllegalArgumentException</span><span class="token punctuation">(</span><span class="token string">"timeout value is negative"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment" spellcheck="true">// 调用 join(0) 执行下面的代码</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>millis <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// 这里使用 while 循环的目的是为了避免虚假唤醒</span>
+        <span class="token comment" spellcheck="true">// 如果当前线程存活则调用 wait(0), 0 表示永久等待，直到调用 notifyAll() 或者 notify() 方法</span>
+        <span class="token comment" spellcheck="true">// 当线程结束的时候会调用 notifyAll() 方法</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token function">isAlive</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token function">wait</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token function">isAlive</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">long</span> delay <span class="token operator">=</span> millis <span class="token operator">-</span> now<span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>delay <span class="token operator">&lt;=</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">break</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token function">wait</span><span class="token punctuation">(</span>delay<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            now <span class="token operator">=</span> System<span class="token punctuation">.</span><span class="token function">currentTimeMillis</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span> base<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>从源码中可以看出 <code>join(long millis)</code> 方法是通过 <code>wait(long timeout)</code> （<code>Object</code> 提供的方法）方法实现的，调用 <code>wait</code> 方法之前，当前线程必须获得对象的锁，所以此 <code>join</code> 方法使用了 <code>synchronized</code> 加锁，锁对象是线程的实例对象。其中 <code>wait(0)</code>方法会让当前线程阻塞等待，直到另一个线程调用<strong>此对象</strong>的 <code>notify()</code> 或者 <code>notifyAll()</code> 方法才会继续执行。当调用 <code>join</code> 方法的线程结束的时候会调用 <code>notifyAll()</code> 方法，所以 <code>join()</code> 方法可以实现一个线程等待另一个调用 <code>join()</code> 的线程结束后再执行。</p>
+<blockquote>
+<p><strong>虚假唤醒</strong>：一个线程在没有被通知、中断、超时的情况下被唤醒；</p>
+<p>虚假唤醒可能导致条件不成立的情况下执行代码，破坏被锁保护的约束关系；</p>
+<p>为什么使用 while 循环来避免<strong>虚假唤醒</strong>：</p>
+<p>在 if 块中使用 wait 方法，是非常危险的，因为一旦线程被唤醒，并得到锁，就不会再判断 if 条件而执行 if 语句块外的代码，所以建议凡是先要做条件判断，再 wait 的地方，都使用 while 循环来做，循环会在等待之前和之后对条件进行测试。</p>
+</blockquote>
+<h1 id="2-如何让两个线程按照指定的方式有序相交？"><a href="#2-如何让两个线程按照指定的方式有序相交？" class="headerlink" title="2. 如何让两个线程按照指定的方式有序相交？"></a>2. 如何让两个线程按照指定的方式有序相交？</h1><p>如果现在我们希望 B线程在 A 线程打印 1 后立即打印 1，2，3，然后 A 线程继续打印 2，3，那么我们需要更细粒度的锁来控制执行顺序。</p>
+<p>在这里，我们可以利用 <code>object.wait()</code> 和 <code>object.notify()</code> 方法，代码如下：</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">demo3</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    Object lock <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Object</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    Thread A <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Thread</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token punctuation">{</span>
+        <span class="token keyword">synchronized</span> <span class="token punctuation">(</span>lock<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"A 1"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">try</span> <span class="token punctuation">{</span>
+                lock<span class="token punctuation">.</span><span class="token function">wait</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">InterruptedException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"A 2"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"A 3"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    Thread B <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Thread</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token punctuation">{</span>
+        <span class="token keyword">synchronized</span> <span class="token punctuation">(</span>lock<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"B 1"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"B 2"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"B 3"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            lock<span class="token punctuation">.</span><span class="token function">notify</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    A<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    B<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>得到的结果如下：</p>
+<pre class=" language-java"><code class="language-java">A <span class="token number">1</span>
+B <span class="token number">1</span>
+B <span class="token number">2</span>
+B <span class="token number">3</span>
+A <span class="token number">2</span>
+A <span class="token number">3</span>
+</code></pre>
+<p>上述代码的执行流程如下：</p>
+<ol>
+<li>首先我们创建一个由 A 和 B 共享的对象锁： <code>lock = new Object()</code>;</li>
+<li>当A拿到锁时，先打印1，然后调用<code>lock.wait()</code>方法进入等待状态，然后交出锁的控制权；</li>
+<li>B 不会被执行，直到 A 调用该<code>lock.wait()</code>方法释放控制权并且 B 获得锁；</li>
+<li>B拿到锁后打印1，2，3，然后调用<code>lock.notify()</code>方法唤醒正在等待的A；</li>
+<li>A 唤醒后继续打印剩余的 2，3。</li>
+</ol>
+<p>为了便于理解，我将上面的代码添加了日志，代码如下：</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">demo3</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    Object lock <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Object</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    Thread A <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Thread</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token punctuation">{</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"INFO：A 等待获取锁"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">synchronized</span> <span class="token punctuation">(</span>lock<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"INFO：A 获取到锁"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"A 1"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">try</span> <span class="token punctuation">{</span>
+                System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"INFO：A 进入 waiting 状态，放弃锁的控制权"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                lock<span class="token punctuation">.</span><span class="token function">wait</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">InterruptedException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"INFO：A 被 B 唤醒继续执行"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"A 2"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"A 3"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    Thread B <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Thread</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token punctuation">{</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"INFO：B 等待获取锁"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">synchronized</span> <span class="token punctuation">(</span>lock<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"INFO：B 获取到锁"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"B 1"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"B 2"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"B 3"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"INFO：B 执行结束，调用 notify 方法唤醒 A"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            lock<span class="token punctuation">.</span><span class="token function">notify</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    A<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    B<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>得到的结果如下：</p>
+<pre class=" language-java"><code class="language-java">INFO：A 等待获取锁
+INFO：A 获取到锁
+A <span class="token number">1</span>
+INFO：A 进入 waiting 状态，放弃锁的控制权
+INFO：B 等待获取锁
+INFO：B 获取到锁
+B <span class="token number">1</span>
+B <span class="token number">2</span>
+B <span class="token number">3</span>
+INFO：B 执行结束，调用 notify 方法唤醒 A
+INFO：A 被 B 唤醒继续执行
+A <span class="token number">2</span>
+A <span class="token number">3</span>
+</code></pre>
+<h1 id="3-线程-D-在A、B、C都同步执行完毕后执行"><a href="#3-线程-D-在A、B、C都同步执行完毕后执行" class="headerlink" title="3. 线程 D 在A、B、C都同步执行完毕后执行"></a>3. 线程 D 在A、B、C都同步执行完毕后执行</h1><p><code>thread.join()</code> 前面介绍的方法允许一个线程在等待另一个线程完成运行后继续执行。但是如果我们将A、B、C依次加入到D线程中，就会让A、B、C依次执行，而我们希望它们三个同步运行。</p>
+<p>我们要实现的目标是：A、B、C三个线程可以同时开始运行，各自独立运行完成后通知D；D 不会开始运行，直到 A、B 和 C 都运行完毕。所以我们 <code>CountdownLatch</code> 用来实现这种类型的通信。它的基本用法是：</p>
+<ol>
+<li>创建一个计数器，并设置一个初始值， <code>CountdownLatch countDownLatch = new CountDownLatch(3)</code>;</li>
+<li>调用<code>countDownLatch.await()</code>进入等待状态，直到计数值变为0；</li>
+<li>在其他线程调用<code>countDownLatch.countDown()</code>，该方法会将计数值减一；</li>
+<li>当计数器的值变为 <code>0</code> 时，<code>countDownLatch.await()</code>等待线程中的方法会继续执行下面的代码。</li>
+</ol>
+<p>实现代码如下：</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">runDAfterABC</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">int</span> count <span class="token operator">=</span> <span class="token number">3</span><span class="token punctuation">;</span>
+    CountDownLatch countDownLatch <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">CountDownLatch</span><span class="token punctuation">(</span>count<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">new</span> <span class="token class-name">Thread</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token punctuation">{</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"INFO: D 等待 A B C 运行完成"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">try</span> <span class="token punctuation">{</span>
+            countDownLatch<span class="token punctuation">.</span><span class="token function">await</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"INFO: A B C 运行完成，D 开始运行"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"D is working"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">InterruptedException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">char</span> threadName <span class="token operator">=</span> <span class="token string">'A'</span><span class="token punctuation">;</span> threadName <span class="token operator">&lt;=</span> <span class="token string">'C'</span> <span class="token punctuation">;</span> threadName<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">final</span> String name <span class="token operator">=</span> String<span class="token punctuation">.</span><span class="token function">valueOf</span><span class="token punctuation">(</span>threadName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">new</span> <span class="token class-name">Thread</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token punctuation">{</span>
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>name <span class="token operator">+</span> <span class="token string">" is working"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">try</span> <span class="token punctuation">{</span>
+                Thread<span class="token punctuation">.</span><span class="token function">sleep</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">InterruptedException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>name <span class="token operator">+</span> <span class="token string">" finished"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            countDownLatch<span class="token punctuation">.</span><span class="token function">countDown</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>得到的结果如下：</p>
+<pre class=" language-java"><code class="language-java">INFO<span class="token operator">:</span> D 等待 A B C 运行完成
+A is working
+B is working
+C is working
+C finished
+B finished
+A finished
+INFO<span class="token operator">:</span> A B C 运行完成，D 开始运行
+D is working
+</code></pre>
+<p>其实<code>CountDownLatch</code>它本身就是一个倒数计数器，我们把初始的count值设置为3。D运行的时候，首先调用该<code>countDownLatch.await()</code>方法检查计数器的值是否为0，如果不是0则保持等待状态. A、B、C 运行完毕后，分别使用<code>countDownLatch.countDown()</code>方法将倒数计数器减1。计数器将减为 0，然后通知<code>await()</code>方法结束等待，D开始继续执行。</p>
+<p>因此，<code>CountDownLatch</code>适用于一个线程需要等待多个线程的情况。</p>
+<h1 id="4-三个运动员分开准备同时开跑"><a href="#4-三个运动员分开准备同时开跑" class="headerlink" title="4. 三个运动员分开准备同时开跑"></a>4. 三个运动员分开准备同时开跑</h1><p>这一次，A、B、C这三个线程都需要分别准备，等三个线程都准备好后开始同时运行，我们应该如何做到这一点？</p>
+<p><code>CountDownLatch</code>可以用来计数，但完成计数的时候，只有一个线程的一个<code>await()</code>方法会得到响应，所以多线程不能在同一时间被触发。为了达到线程相互等待的效果，我们可以使用该<code>CyclicBarrier</code>，其基本用法为：</p>
+<ol>
+<li>首先创建一个公共对象<code>CyclicBarrier</code>，并设置同时等待的线程数，<code>CyclicBarrier cyclicBarrier = new CyclicBarrier(3);</code></li>
+<li>这些线程同时开始准备，准备好后，需要等待别人准备好，所以调用<code>cyclicBarrier.await()</code>方法等待别人；</li>
+<li>当指定的需要同时等待的线程都调用了该<code>cyclicBarrier.await()</code>方法时，意味着这些线程准备好了，那么这些线程就会开始同时继续执行。</li>
+</ol>
+<p>想象一下有三个跑步者需要同时开始跑步，所以他们需要等待其他人都准备好，实现代码如下：</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">runABCWhenAllReady</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">int</span> count <span class="token operator">=</span> <span class="token number">3</span><span class="token punctuation">;</span>
+    CyclicBarrier cyclicBarrier <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">CyclicBarrier</span><span class="token punctuation">(</span>count<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    Random random <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Random</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">char</span> threadName <span class="token operator">=</span> <span class="token string">'A'</span><span class="token punctuation">;</span> threadName <span class="token operator">&lt;=</span> <span class="token string">'C'</span> <span class="token punctuation">;</span> threadName<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">final</span> String name <span class="token operator">=</span> String<span class="token punctuation">.</span><span class="token function">valueOf</span><span class="token punctuation">(</span>threadName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">new</span> <span class="token class-name">Thread</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token punctuation">{</span>
+            <span class="token keyword">int</span> prepareTime <span class="token operator">=</span> random<span class="token punctuation">.</span><span class="token function">nextInt</span><span class="token punctuation">(</span><span class="token number">10000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>name <span class="token operator">+</span> <span class="token string">" 准备时间："</span> <span class="token operator">+</span> prepareTime<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">try</span> <span class="token punctuation">{</span>
+                Thread<span class="token punctuation">.</span><span class="token function">sleep</span><span class="token punctuation">(</span>prepareTime<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">InterruptedException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>name <span class="token operator">+</span> <span class="token string">" 准备好了，等待其他人"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">try</span> <span class="token punctuation">{</span>
+                cyclicBarrier<span class="token punctuation">.</span><span class="token function">await</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">InterruptedException</span> <span class="token operator">|</span> BrokenBarrierException e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>name <span class="token operator">+</span> <span class="token string">" 开始跑步"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>得到结果如下：</p>
+<pre class=" language-java"><code class="language-java">A 准备时间：<span class="token number">1085</span>
+B 准备时间：<span class="token number">7729</span>
+C 准备时间：<span class="token number">8444</span>
+A 准备好了，等待其他人
+B 准备好了，等待其他人
+C 准备好了，等待其他人
+C 开始跑步
+A 开始跑步
+B 开始跑步
+</code></pre>
+<p><code>CyclicBarrier</code> 的作用就是等待多个线程同时执行。</p>
+<h1 id="5-子线程将结果返回给主线程"><a href="#5-子线程将结果返回给主线程" class="headerlink" title="5. 子线程将结果返回给主线程"></a>5. 子线程将结果返回给主线程</h1><p>在实际开发中，往往我们需要创建子线程来做一些耗时的任务，然后将执行结果传回主线程。那么如何在 Java 中实现呢？</p>
+<p>一般在创建线程的时候，我们会把 <code>Runnable</code> 对象传递给 <code>Thread</code> 执行，<code>Runable</code> 的源码如下：</p>
+<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@FunctionalInterface</span>
+<span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">Runnable</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">abstract</span> <span class="token keyword">void</span> <span class="token function">run</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>可以看到 Runable 是一个函数式接口，该接口中的 run 方法没有返回值，那么如果要返回结果，可以使用另一个类似的接口 <code>Callable</code>。</p>
+<blockquote>
+<p>函数式接口：只有一个方法的接口</p>
+</blockquote>
+<p><code>Callable</code> 接口的源码如下：</p>
+<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@FunctionalInterface</span>
+<span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">Callable</span><span class="token operator">&lt;</span>V<span class="token operator">></span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">/**
+     * Computes a result, or throws an exception if unable to do so.
+     *
+     * @return computed result
+     * @throws Exception if unable to compute a result
+     */</span>
+    V <span class="token function">call</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> Exception<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>可以看出，最大的区别<code>Callable</code>在于它返回的是泛型。</p>
+<p>那么接下来的问题是，如何将子线程的结果传回去呢？Java 有一个类，<code>FutureTask</code>，它可以与 一起工作<code>Callable</code>，但请注意，<code>get</code>用于获取结果的方法会阻塞主线程。<code>FutureTask</code> 本质上还是一个 <code>Runnable</code>，所以可以直接传到 <code>Thread</code> 中。</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/41cdd9426d1418fe870ae32c45bbd428.png" alt="image-20210905183800030.png"></p>
+<p>比如我们想让子线程计算1到100的总和，并将结果返回给主线程，代码如下：</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">getResultInWorker</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    Callable<span class="token operator">&lt;</span>Integer<span class="token operator">></span> callable <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token punctuation">{</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"子任务开始执行"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Thread<span class="token punctuation">.</span><span class="token function">sleep</span><span class="token punctuation">(</span><span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">int</span> result <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> <span class="token number">100</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            result <span class="token operator">+=</span> i<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"子任务执行完成并返回结果"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> result<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    FutureTask<span class="token operator">&lt;</span>Integer<span class="token operator">></span> futureTask <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">FutureTask</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span>callable<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">new</span> <span class="token class-name">Thread</span><span class="token punctuation">(</span>futureTask<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">try</span> <span class="token punctuation">{</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"开始执行 futureTask.get()"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Integer result <span class="token operator">=</span> futureTask<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"执行的结果："</span> <span class="token operator">+</span> result<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">InterruptedException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">ExecutionException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>得到的结果如下：</p>
+<pre class=" language-java"><code class="language-java">开始执行 futureTask<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+子任务开始执行
+子任务执行完成并返回结果
+执行的结果：<span class="token number">5050</span>
+</code></pre>
+<p>可以看出在主线程调用<code>futureTask.get()</code>方法时阻塞了主线程；然后<code>Callable</code>开始在内部执行并返回操作的结果；然后<code>futureTask.get()</code>得到结果，主线程恢复运行。</p>
+<p>在这里我们可以了解到，<code>FutureTask</code>和<code>Callable</code>可以直接在主线程中获取子线程的结果，但是它们会阻塞主线程。当然，如果你不希望阻塞主线程，可以考虑使用<code>ExecutorService</code>把<code>FutureTask</code>到线程池来管理执行。</p>
+<p>参考文章：</p>
+<p><a target="_blank" rel="noopener" href="https://www.tutorialdocs.com/article/java-inter-thread-communication.html">https://www.tutorialdocs.com/article/java-inter-thread-communication.html</a></p>
+
+      
+
+
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/alipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/weixin.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+        <div class="article-pop-out tagcloud">
+          <i class="icon-tuding"></i>
+          <a class="article-tag-list-link color3">置顶</a>
+        </div>
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Redis</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java线程间通信</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/Git//" class="article-tag-list-link color4">Git</a>
+        			<a href="/categories/Java//" class="article-tag-list-link color5">Java</a>
         		</li>
       		
 		</ul>
 	</div>
 
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://dick-su-3.github.io/archives/5c704262.html" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
 
-<a href="/archives/45e57f1.html" class="archive-article-date">
-  	<time datetime="2022-08-07T15:07:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-08-07</time>
-</a>
+  
+<nav id="article-nav">
+  
+    <a href="/archives/7c5d4ed3.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          爬虫Scrapy基础
+        
+      </div>
+    </a>
+  
+  
+    <a href="/archives/6ab7fbd2.html" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">阅读阿里Java开发手册记录</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/archives/45e57f1.html">Git版本控制笔记</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Git</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Git//" class="article-tag-list-link color4">Git</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-%E5%A6%82%E4%BD%95%E8%AE%A9%E4%B8%A4%E4%B8%AA%E7%BA%BF%E7%A8%8B%E4%BE%9D%E6%AC%A1%E6%89%A7%E8%A1%8C%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">1. 如何让两个线程依次执行？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-%E5%A6%82%E4%BD%95%E8%AE%A9%E4%B8%A4%E4%B8%AA%E7%BA%BF%E7%A8%8B%E6%8C%89%E7%85%A7%E6%8C%87%E5%AE%9A%E7%9A%84%E6%96%B9%E5%BC%8F%E6%9C%89%E5%BA%8F%E7%9B%B8%E4%BA%A4%EF%BC%9F"><span class="toc-number">2.</span> <span class="toc-text">2. 如何让两个线程按照指定的方式有序相交？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-%E7%BA%BF%E7%A8%8B-D-%E5%9C%A8A%E3%80%81B%E3%80%81C%E9%83%BD%E5%90%8C%E6%AD%A5%E6%89%A7%E8%A1%8C%E5%AE%8C%E6%AF%95%E5%90%8E%E6%89%A7%E8%A1%8C"><span class="toc-number">3.</span> <span class="toc-text">3. 线程 D 在A、B、C都同步执行完毕后执行</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-%E4%B8%89%E4%B8%AA%E8%BF%90%E5%8A%A8%E5%91%98%E5%88%86%E5%BC%80%E5%87%86%E5%A4%87%E5%90%8C%E6%97%B6%E5%BC%80%E8%B7%91"><span class="toc-number">4.</span> <span class="toc-text">4. 三个运动员分开准备同时开跑</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-%E5%AD%90%E7%BA%BF%E7%A8%8B%E5%B0%86%E7%BB%93%E6%9E%9C%E8%BF%94%E5%9B%9E%E7%BB%99%E4%B8%BB%E7%BA%BF%E7%A8%8B"><span class="toc-number">5.</span> <span class="toc-text">5. 子线程将结果返回给主线程</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
   
-    </div></section>
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -372,10 +880,10 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
-		isCategory: true,
+		isCategory: false,
 		open_in_new: [object Object],
 		toc_hide_index: true,
 		root: "/",

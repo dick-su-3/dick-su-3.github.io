@@ -97,7 +97,7 @@
 		</nav>
 		
 		<nav>
-总文章数 15
+总文章数 19
 </nav>
 
 		<nav class="header-smart-menu">
@@ -136,7 +136,7 @@
 	
 
 		</nav>
-		<span class="post-count">106.7k</span>
+		<span class="post-count">124.5k</span>
 	</header>
 
 </div>
@@ -211,6 +211,389 @@
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-爬虫Scrapy基础" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/archives/7c5d4ed3.html">爬虫Scrapy基础</a>
+    </h1>
+  
+
+        
+        <!-- 目录内容 -->
+
+<!-- 目录内容结束 -->
+
+        <div align="center" class="post-count">
+字数：5.2k字 | 预计阅读时长：22分钟</div>
+
+        <!--显示阅读次数-->
+
+<!--显示阅读次数完毕-->
+
+        
+        
+
+<a href="/archives/7c5d4ed3.html" class="archive-article-date">
+  	<time datetime="2022-08-07T17:10:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-08-08</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="一-概述"><a href="#一-概述" class="headerlink" title="一. 概述"></a>一. 概述</h1><p>最近学习了一下这个非常强大的爬虫框架，这里将自己的学习过程记录下来，希望对有同样需求的小伙伴提供一些帮助。</p>
+<p>本文主要从下面几个方面进行介绍：</p>
+<ul>
+<li>我的学习过程</li>
+<li>需求分析</li>
+<li>搭建项目</li>
+<li>编写代码实现需求</li>
+<li>部署爬虫项目到 <code>SpiderKeeper</code></li>
+</ul>
+<h1 id="二-我的学习过程"><a href="#二-我的学习过程" class="headerlink" title="二. 我的学习过程"></a>二. 我的学习过程</h1><p>学习一个新的技术，首先就是去阅读它的官方文档，因为官方文档写的是比较全面的而且权威。</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://docs.scrapy.org/en/latest/">scrapy 官方文档地址</a>： <a target="_blank" rel="noopener" href="https://docs.scrapy.org/en/latest/">https://docs.scrapy.org/en/latest/</a></p>
+</blockquote>
+<p>上面是 <code>scrapy</code> 的官方文档地址，文档是英文的，如果英文比较好建议直接看英文文档，其实自己的英语也不是很好，但是一直强迫自己看英文文档，遇到不认识的单词，就是用 <code>chrome</code> 的 一个叫做 <code>沙拉查词</code> 的插件翻译，翻译完就记下这些单词，慢慢的读这些英文技术文档就没有太大问题了。</p>
+<p>如果学习的时间比较充足，可以看完整个文档再进行实践开发，如果需要快速上手，可以看文档中的快速开始。因为自己在开发需求之前有空闲的时间，所以把它的文档看了七七八八。</p>
+<h2 id="Scrapy-简介"><a href="#Scrapy-简介" class="headerlink" title="Scrapy 简介"></a>Scrapy 简介</h2><p>下面根据自己阅读官方文档的过程做一个总结：</p>
+<p><code>Scrapy</code> 是一个快速强大的高级 web 抓取框架，用于抓取网站和从网页中提取结构化数据，它可以用于从数据挖掘到监控和自动化测试等广泛的用途。</p>
+<p><code>Scrapy</code> 提供了许多强大的功能来使抓取变得简单高效，例如：</p>
+<ul>
+<li>内置支持使用扩展的 <code>CSS</code> 选择器和 <code>XPath</code> 表达式从 <code>HTML/XML</code> 源中<a target="_blank" rel="noopener" href="https://docs.scrapy.org/en/latest/topics/selectors.html#topics-selectors">选择和提取</a>数据，以及使用正则表达式提取的辅助方法。</li>
+<li>一个<a target="_blank" rel="noopener" href="https://docs.scrapy.org/en/latest/topics/shell.html#topics-shell">交互式 shell 控制台</a>（IPython 感知），用于尝试使用 <code>CSS</code> 和 <code>XPath</code> 表达式来抓取数据，在编写或调试时非常有用。</li>
+<li>内置支持以多种格式（<code>JSON、CSV、XML</code>）<a target="_blank" rel="noopener" href="https://docs.scrapy.org/en/latest/topics/feed-exports.html#topics-feed-exports">生成提要导出</a>并将它们存储在多个后端（FTP、S3、本地文件系统）</li>
+<li>强大的编码支持和自动检测，用于处理外部、非标准和损坏的编码声明。</li>
+<li><a target="_blank" rel="noopener" href="https://docs.scrapy.org/en/latest/index.html#extending-scrapy">强大的可扩展性支持</a>，允许您使用<a target="_blank" rel="noopener" href="https://docs.scrapy.org/en/latest/topics/signals.html#topics-signals">signals</a>和定义良好的 API（中间件、<a target="_blank" rel="noopener" href="https://docs.scrapy.org/en/latest/topics/extensions.html#topics-extensions">扩展</a>和 <a target="_blank" rel="noopener" href="https://docs.scrapy.org/en/latest/topics/item-pipeline.html#topics-item-pipeline">pipeline </a>）插入自己的功能。</li>
+<li>一个<a target="_blank" rel="noopener" href="https://docs.scrapy.org/en/latest/topics/telnetconsole.html#topics-telnetconsole">Telnet 控制台，</a>用于连接到在 <code>Scrapy</code> 进程中运行的 Python 控制台，以检查和调试您的爬虫</li>
+<li>可重复使用的spider从<a target="_blank" rel="noopener" href="https://www.sitemaps.org/index.html">站点地图</a>和 <code>XML/CSV</code> 提要中抓取站点、用于<a target="_blank" rel="noopener" href="https://docs.scrapy.org/en/latest/topics/media-pipeline.html#topics-media-pipeline">自动下载</a>与抓取的项目相关联的<a target="_blank" rel="noopener" href="https://docs.scrapy.org/en/latest/topics/media-pipeline.html#topics-media-pipeline">图像</a>（或任何其他媒体）的媒体 pipeline 、缓存 DNS 解析器等等！</li>
+<li>用于处理的各种内置扩展和中间件：<ul>
+<li>cookie 和会话处理</li>
+<li>HTTP 功能，如压缩、身份验证、缓存</li>
+<li>用户代理欺骗</li>
+<li>robots.txt</li>
+<li>爬行深度限制</li>
+</ul>
+</li>
+</ul>
+<p>从前面的介绍可以看出 <code>scrapy</code> 的功能非常强大，如果要掌握全部功能，需要花费大量的时间，并且也没有那个必要，只是需要的时候再去查阅官方文档即可。对于一般的网站都没有特别的反爬虫措施，除非一些数据比较敏感的网站，可能需要输入图形验证码之类的，个人觉得对于一般的网站，在抓取网页的过程中合理设置请求头，控制爬取的速度都能够将网页抓取下来。获取到网页内容之后，我们开发的内容就是根据需求解析出需要的结构化数据，所以重点是掌握 <code>scrapy</code> 的选择器。</p>
+        
+          <a class="article-more-a" href="/archives/7c5d4ed3.html#more">more >></a>
+        
+      
+
+
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+        <div class="article-pop-out tagcloud">
+          <i class="icon-tuding"></i>
+          <a class="article-tag-list-link color3">置顶</a>
+        </div>
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">爬虫Scrapy</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Scarpy、爬虫//" class="article-tag-list-link color5">Scarpy、爬虫</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/archives/7c5d4ed3.html">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Java-中如何实现线程间通信" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/archives/5c704262.html">Java 如何实现线程间通信</a>
+    </h1>
+  
+
+        
+        <!-- 目录内容 -->
+
+<!-- 目录内容结束 -->
+
+        <div align="center" class="post-count">
+字数：3.2k字 | 预计阅读时长：13分钟</div>
+
+        <!--显示阅读次数-->
+
+<!--显示阅读次数完毕-->
+
+        
+        
+
+<a href="/archives/5c704262.html" class="archive-article-date">
+  	<time datetime="2022-08-07T17:04:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-08-08</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>虽然通常每个子线程只需要完成自己的任务，但是有时我们希望多个线程一起工作来完成一个任务，这就涉及到线程间通信。</p>
+<p>关于线程间通信本文涉及到的方法和类包括：<code>thread.join()</code>、<code>object.wait()</code>、<code>object.notify()</code>、<code>CountdownLatch</code>、<code>CyclicBarrier</code>、<code>FutureTask</code>、<code>Callable</code>。</p>
+<p>接下来将用几个例子来介绍如何在Java中实现线程间通信：</p>
+<ol>
+<li><p><strong>如何让两个线程依次执行，即一个线程等待另一个线程执行完成后再执行？</strong></p>
+</li>
+<li><p><strong>如何让两个线程以指定的方式有序相交执行？</strong></p>
+</li>
+<li><p><strong>有四个线程：A、B、C、D，如何实现 D 在 A、B、C 都同步执行完毕后执行？</strong></p>
+</li>
+<li><p><strong>三个运动员分开准备，然后在每个人准备好后同时开始跑步。</strong></p>
+</li>
+<li><p><strong>子线程完成任务后，将结果返回给主线程。</strong></p></li></ol>
+        
+          <a class="article-more-a" href="/archives/5c704262.html#more">more >></a>
+        
+      
+
+
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+        <div class="article-pop-out tagcloud">
+          <i class="icon-tuding"></i>
+          <a class="article-tag-list-link color3">置顶</a>
+        </div>
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java线程间通信</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Java//" class="article-tag-list-link color5">Java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/archives/5c704262.html">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Java-异常分析" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/archives/b563544.html">Java 异常分析</a>
+    </h1>
+  
+
+        
+        <!-- 目录内容 -->
+
+<!-- 目录内容结束 -->
+
+        <div align="center" class="post-count">
+字数：4.4k字 | 预计阅读时长：15分钟</div>
+
+        <!--显示阅读次数-->
+
+<!--显示阅读次数完毕-->
+
+        
+        
+
+<a href="/archives/b563544.html" class="archive-article-date">
+  	<time datetime="2022-08-07T16:43:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-08-08</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>本文是对以下内容的分析：</strong></p>
+<ul>
+<li><strong>Java异常设计</strong></li>
+<li><strong>Java 异常分类</strong></li>
+<li><strong>Java异常可以告诉什么问题</strong></li>
+<li><strong>Java异常处理最佳实践</strong></li>
+</ul>
+<p>Java Exception 是为了处理应用程序的异常行为而创建的类。在本文中，将解释如何使用 Java Exception 类以及如何在考虑现有 Java Exception 设计的情况下创建异常结构。Java 异常概念是 Java 中的重要里程碑之一，每个开发人员都<em><strong>必须</strong></em>知道它。</p>
+<h2 id="Java-异常体系结构"><a href="#Java-异常体系结构" class="headerlink" title="Java 异常体系结构"></a>Java 异常体系结构</h2><p>基本结构如下图：</p>
+<p><img src="https://img2020.cnblogs.com/blog/1373850/202109/1373850-20210916171610134-74256038.png" alt="img"></p>
+<p><code>Throwable</code> 是所有异常的父类，它有两个子类：<code>Error</code> 和 <code>Exception</code>。</p>
+<p><strong>Error ：程序一旦出现 Error 错误，程序可能会停止运行。</strong></p>
+<p><strong>Exception：与 Error 不同，程序中出现 Exception 异常有机会从问题中恢复，并尝试保持程序运行。</strong></p>
+        
+          <a class="article-more-a" href="/archives/b563544.html#more">more >></a>
+        
+      
+
+
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+        <div class="article-pop-out tagcloud">
+          <i class="icon-tuding"></i>
+          <a class="article-tag-list-link color3">置顶</a>
+        </div>
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Java//" class="article-tag-list-link color5">Java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/archives/b563544.html">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
   
     <article id="post-Redis基础" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
@@ -1020,349 +1403,6 @@
 
 
   
-    <article id="post-Hashmap笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/archives/46251.html">Hashmap笔记</a>
-    </h1>
-  
-
-        
-        <!-- 目录内容 -->
-
-<!-- 目录内容结束 -->
-
-        <div align="center" class="post-count">
-字数：3.9k字 | 预计阅读时长：13分钟</div>
-
-        <!--显示阅读次数-->
-
-<!--显示阅读次数完毕-->
-
-        
-        
-
-<a href="/archives/46251.html" class="archive-article-date">
-  	<time datetime="2022-08-02T14:11:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-08-02</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>你知道的越多，你不知道的越多</p>
-</blockquote>
-<blockquote>
-<p>本文 <strong>GitHub</strong> <a target="_blank" rel="noopener" href="https://github.com/AobingJava/JavaFamily">https://github.com/JavaFamily</a> 上已经收录，大家面试可以参照考点复习，希望我们一起有点东西。</p>
-</blockquote>
-<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>于是在一个寂寞难耐的夜晚，我痛定思痛，决定开始写互联网技术栈面试相关的文章，希望能帮助各位读者以后面试势如破竹，对面试官进行360°的反击，吊打问你的面试官，让一同面试的同僚瞠目结舌，疯狂收割大厂Offer！</p>
-<p>希望大家怀着空杯心态好好学，一起进步。</p>
-        
-          <a class="article-more-a" href="/archives/46251.html#more">more >></a>
-        
-      
-
-
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-        <div class="article-pop-out tagcloud">
-          <i class="icon-tuding"></i>
-          <a class="article-tag-list-link color3">置顶</a>
-        </div>
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">hashmap</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/hashmap//" class="article-tag-list-link color3">hashmap</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/archives/46251.html">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-SpringBoot学习笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/archives/9502.html">SpringBoot学习笔记</a>
-    </h1>
-  
-
-        
-        <!-- 目录内容 -->
-
-<!-- 目录内容结束 -->
-
-        <div align="center" class="post-count">
-字数：49.6k字 | 预计阅读时长：197分钟</div>
-
-        <!--显示阅读次数-->
-
-<!--显示阅读次数完毕-->
-
-        
-        
-
-<a href="/archives/9502.html" class="archive-article-date">
-  	<time datetime="2022-08-02T13:45:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-08-02</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="1-Spring-Boot是什么"><a href="#1-Spring-Boot是什么" class="headerlink" title="1. Spring Boot是什么"></a>1. Spring Boot是什么</h2><p>我们知道，从 2002 年开始，Spring 一直在飞速的发展，如今已经成为了在Java EE（Java Enterprise Edition）开发中真正意义上的标准，但是随着技术的发展，Java EE使用 Spring 逐渐变得笨重起来，大量的 XML 文件存在于项目之中。繁琐的配置，整合第三方框架的配置问题，导致了开发和部署效率的降低。</p>
-<p>2012 年 10 月，Mike Youngstrom 在 Spring jira 中创建了一个功能请求，要求在 Spring 框架中支持无容器 Web 应用程序体系结构。他谈到了在主容器引导 spring 容器内配置 Web 容器服务。这是 jira 请求的摘录：</p>
-<p>我认为 Spring 的 Web 应用体系结构可以大大简化，如果它提供了从上到下利用 Spring 组件和配置模型的工具和参考体系结构。在简单的 main()方法引导的 Spring 容器内嵌入和统一这些常用Web 容器服务的配置。</p>
-<p>这一要求促使了 2013 年初开始的 Spring Boot 项目的研发，到今天，Spring Boot 的版本已经到了 2.0.3 RELEASE。Spring Boot 并不是用来替代 Spring 的解决方案，而是和 Spring 框架紧密结合用于提升 Spring 开发者体验的工具。</p>
-<p>它集成了大量常用的第三方库配置，Spring Boot应用中这些第三方库几乎可以是零配置的开箱即用（out-of-the-box），大部分的 Spring Boot 应用都只需要非常少量的配置代码（基于 Java 的配置），开发者能够更加专注于业务逻辑。</p>
-        
-          <a class="article-more-a" href="/archives/9502.html#more">more >></a>
-        
-      
-
-
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-        <div class="article-pop-out tagcloud">
-          <i class="icon-tuding"></i>
-          <a class="article-tag-list-link color3">置顶</a>
-        </div>
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">springboot摘录学习</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/springboot//" class="article-tag-list-link color1">springboot</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/archives/9502.html">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-我的第一篇文章" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/archives/62824.html">我的第一篇文章</a>
-    </h1>
-  
-
-        
-        <!-- 目录内容 -->
-
-<!-- 目录内容结束 -->
-
-        <div align="center" class="post-count">
-字数：22.8k字 | 预计阅读时长：83分钟</div>
-
-        <!--显示阅读次数-->
-
-<!--显示阅读次数完毕-->
-
-        
-        
-
-<a href="/archives/62824.html" class="archive-article-date">
-  	<time datetime="2022-08-02T09:12:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-08-02</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>简单的说一下Java的垃圾回收机制，解决了什么问题？</p>
-</blockquote>
-<p>在c语言和c++中，对于内存的管理是非常的让人头疼的，也是很多人放弃的原因，因此，在后面的一些高级语言中，设计者就想解决这一个问题，让开发者专注于自己的业务开发即可，因此，在Java中也引入了垃圾回收机制，它使得开发者在编写程序的时候不再需要考虑内存管理，由于有个垃圾回收机制，Java中的对象不再有“作用域”的概念，只有对象的引用才有“作用域”。垃圾回收可以有效的防止内存泄露，有效的使用空闲的内存。</p>
-<blockquote>
-<p>了解JVM的内存模型吗？</p>
-</blockquote>
-<p>JVM载执行Java程序的过程中会把它所管理的内存划分为若干个不同的数据区域。</p>
-<p>Java 虚拟机所管理的内存一共分为Method Area（方法区）、VM Stack（虚拟机栈）、Native Method Stack（本地方法栈）、Heap（堆）、Program Counter Register（程序计数器）五个区域。</p>
-        
-          <a class="article-more-a" href="/archives/62824.html#more">more >></a>
-        
-      
-
-
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-        <div class="article-pop-out tagcloud">
-          <i class="icon-tuding"></i>
-          <a class="article-tag-list-link color3">置顶</a>
-        </div>
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">jvm面试题收集一</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/JVM//" class="article-tag-list-link color4">JVM</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/archives/62824.html">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
@@ -1492,15 +1532,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">yilia配置</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">hashmap</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">yilia配置</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Redis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java线程间通信</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1516,19 +1564,27 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">springboot摘录学习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">jvm面试题收集一</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Hexo GitHub Mac Windows</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">爬虫Scrapy</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">springboot摘录学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">开发手册</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">选键盘</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">jvm面试题收集一</a>
               </li>
             
             <div class="clearfix"></div>

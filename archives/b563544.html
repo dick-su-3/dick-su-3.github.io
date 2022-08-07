@@ -6,17 +6,27 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://dick-su-3.github.io">
-  <title>Category: Git | 云卷舒</title>
+  <title>Java 异常分析 | 云卷舒</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="岁月不回头，且行且珍惜">
-<meta property="og:type" content="website">
-<meta property="og:title" content="云卷舒">
-<meta property="og:url" content="https://dick-su-3.github.io/categories/Git/index.html">
+  <meta name="description" content="本文是对以下内容的分析：  Java异常设计 Java 异常分类 Java异常可以告诉什么问题 Java异常处理最佳实践  Java Exception 是为了处理应用程序的异常行为而创建的类。在本文中，将解释如何使用 Java Exception 类以及如何在考虑现有 Java Exception 设计的情况下创建异常结构。Java 异常概念是 Java 中的重要里程碑之一，每个开发人员都必须知">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java 异常分析">
+<meta property="og:url" content="https://dick-su-3.github.io/archives/b563544.html">
 <meta property="og:site_name" content="云卷舒">
-<meta property="og:description" content="岁月不回头，且行且珍惜">
+<meta property="og:description" content="本文是对以下内容的分析：  Java异常设计 Java 异常分类 Java异常可以告诉什么问题 Java异常处理最佳实践  Java Exception 是为了处理应用程序的异常行为而创建的类。在本文中，将解释如何使用 Java Exception 类以及如何在考虑现有 Java Exception 设计的情况下创建异常结构。Java 异常概念是 Java 中的重要里程碑之一，每个开发人员都必须知">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img2020.cnblogs.com/blog/1373850/202109/1373850-20210916171610134-74256038.png">
+<meta property="og:image" content="https://img2020.cnblogs.com/blog/1373850/202109/1373850-20210916171647519-902584283.png">
+<meta property="og:image" content="https://img2020.cnblogs.com/blog/1373850/202109/1373850-20210916171732070-500009018.png">
+<meta property="og:image" content="https://img2020.cnblogs.com/blog/1373850/202109/1373850-20210916171750289-1950745888.png">
+<meta property="og:image" content="https://img2020.cnblogs.com/blog/1373850/202109/1373850-20210916171907687-1229459232.png">
+<meta property="og:image" content="https://img2020.cnblogs.com/blog/1373850/202109/1373850-20210916171930515-322340961.png">
+<meta property="article:published_time" content="2022-08-07T16:43:03.000Z">
+<meta property="article:modified_time" content="2022-08-07T17:00:34.598Z">
 <meta property="article:author" content="SuoLiweng">
+<meta property="article:tag" content="Java">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img2020.cnblogs.com/blog/1373850/202109/1373850-20210916171610134-74256038.png">
   
     <link rel="alternative" href="/atom.xml" title="云卷舒" type="application/atom+xml">
   
@@ -210,124 +220,683 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Java-异常分析" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2022" class="archive-year">2022</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-
-<a href="/archives/fe29e710.html" class="archive-article-date">
-  	<time datetime="2022-08-07T15:09:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-08-07</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/archives/fe29e710.html">Redis基础</a>
+    <h1 class="article-title" itemprop="name">
+      Java 异常分析
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <!-- 目录内容 -->
+
+<!-- 目录内容结束 -->
+
+        <div align="center" class="post-count">
+字数：4.4k字 | 预计阅读时长：15分钟</div>
+
+        <!--显示阅读次数-->
+
+  <br/>
+  <a class="cloud-tie-join-count" href="javascript:void(0);" style="color:gray;font-size:14px;">
+  <span class="icon-sort"></span>
+  <span id="busuanzi_container_page_pv" style="color:#ef7522;font-size:14px;">
+            阅读数: <span id="busuanzi_value_page_pv"></span>次 &nbsp;&nbsp;
+  </span>
+  </a>
+
+<!--显示阅读次数完毕-->
+
+        
+        
+        <!-- 不蒜子统计 -->
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
+
+<a href="/archives/b563544.html" class="archive-article-date">
+  	<time datetime="2022-08-07T16:43:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-08-08</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>本文是对以下内容的分析：</strong></p>
+<ul>
+<li><strong>Java异常设计</strong></li>
+<li><strong>Java 异常分类</strong></li>
+<li><strong>Java异常可以告诉什么问题</strong></li>
+<li><strong>Java异常处理最佳实践</strong></li>
+</ul>
+<p>Java Exception 是为了处理应用程序的异常行为而创建的类。在本文中，将解释如何使用 Java Exception 类以及如何在考虑现有 Java Exception 设计的情况下创建异常结构。Java 异常概念是 Java 中的重要里程碑之一，每个开发人员都<em><strong>必须</strong></em>知道它。</p>
+<h2 id="Java-异常体系结构"><a href="#Java-异常体系结构" class="headerlink" title="Java 异常体系结构"></a>Java 异常体系结构</h2><p>基本结构如下图：</p>
+<p><img src="https://img2020.cnblogs.com/blog/1373850/202109/1373850-20210916171610134-74256038.png" alt="img"></p>
+<p><code>Throwable</code> 是所有异常的父类，它有两个子类：<code>Error</code> 和 <code>Exception</code>。</p>
+<p><strong>Error ：程序一旦出现 Error 错误，程序可能会停止运行。</strong></p>
+<p><strong>Exception：与 Error 不同，程序中出现 Exception 异常有机会从问题中恢复，并尝试保持程序运行。</strong></p>
+<span id="more"></span>
+
+<h2 id="Java-检查异常和非检查异常"><a href="#Java-检查异常和非检查异常" class="headerlink" title="Java 检查异常和非检查异常"></a>Java 检查异常和非检查异常</h2><p><strong>检查异常：</strong>所有不是 <code>Runtime Exception</code> 的异常，统称为 <code>Checked Exception</code>，又被称为检查性异常。这类异常的产生不是程序本身的问题，通常由外界因素造成的。为了预防这些异常产生时，造成程序的中断或得到不正确的结果，Java 要求编写可能产生这类异常的程序代码时，一定要去做异常的处理。</p>
+<p><strong>非检查异常：</strong> Java 语言将派生于 <code>RuntimeException</code> 类或 <code>Error</code> 类的所有异常称为非检查性异常。</p>
+<p><img src="https://img2020.cnblogs.com/blog/1373850/202109/1373850-20210916171647519-902584283.png" alt="img"></p>
+<h2 id="Java-中的异常处理"><a href="#Java-中的异常处理" class="headerlink" title="Java 中的异常处理"></a>Java 中的异常处理</h2><p>有两种方法可以处理抛出的异常：</p>
+<ol>
+<li><strong>在当前方法中通过 <code>try-catch</code> 的方式处理该异常。</strong></li>
+<li><strong>在方法签名的后面通过 <code>throws</code> 重新抛出该异常。</strong></li>
+</ol>
+<p><img src="https://img2020.cnblogs.com/blog/1373850/202109/1373850-20210916171732070-500009018.png" alt="img"></p>
+<h2 id="Java-中的异常分类"><a href="#Java-中的异常分类" class="headerlink" title="Java 中的异常分类"></a>Java 中的异常分类</h2><p>我们可以将所有的异常分为三类：</p>
+<ul>
+<li><strong>检查性异常(checked exceptions)</strong> 是必须在在方法的 throws 子句中声明的异常。它们扩展了异常，旨在成为一种“在你面前”的异常类型。JAVA希望你能够处理它们，因为它们以某种方式依赖于程序之外的外部因素。检查的异常表示在正常系统操作期间可能发生的预期问题。 当你尝试通过网络或文件系统使用外部系统时，通常会发生这些异常。 大多数情况下，对检查性异常的正确响应应该是稍后重试，或者提示用户修改其输入。</li>
+<li><strong>非检查性异常(unchecked Exceptions)</strong> 是不需要在throws子句中声明的异常。 由于程序错误，JVM并不会强制你处理它们，因为它们大多数是在运行时生成的。 它们扩展了 RuntimeException。 最常见的例子是 NullPointerException， 未经检查的异常可能不应该重试，正确的操作通常应该是什么都不做，并让它从你的方法和执行堆栈中出来。</li>
+<li><strong>错误(errors)</strong> 是严重的运行时环境问题，肯定无法恢复。 例如 <code>OutOfMemoryError</code>，<code>LinkageError</code> 和 <code>StackOverflowError</code>，通常会让程序崩溃。</li>
+</ul>
+<p>了解异常类的类型后，我们可能需要回答以下问题：</p>
+<ul>
+<li><strong>异常情况有多糟糕以及异常的原因是什么？</strong></li>
+<li><strong>如何解决这个异常？</strong></li>
+<li><strong>我们需要重启JVM吗？</strong></li>
+<li><strong>我们需要重写代码吗？</strong></li>
+</ul>
+<p>知道异常类，我们可以预测可能出错的地方。考虑潜在的原因，我们可以假设问题的原因是什么以及如何解决它。在接下来的段落中，我们将回顾常见的异常并调查潜在的原因是什么。在我们的调查中，我们假设应用程序足够稳定并且已经完成开发和测试。</p>
+<h3 id="常见-Error-异常"><a href="#常见-Error-异常" class="headerlink" title="常见 Error 异常"></a>常见 Error 异常</h3><p><img src="https://img2020.cnblogs.com/blog/1373850/202109/1373850-20210916171750289-1950745888.png" alt="img"></p>
+<table>
+<thead>
+<tr>
+<th>异常类型</th>
+<th>潜在原因</th>
+<th>原因的可能性有多大</th>
+<th>怎么修复</th>
+<th>需要重写代码吗？</th>
+<th>需要重启JVM吗？</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>OutOfMemoryError</td>
+<td>应用程序吃掉了所有内存</td>
+<td>高的</td>
+<td>增加堆内存大小</td>
+<td>不</td>
+<td>是的</td>
+</tr>
+<tr>
+<td>内存泄漏</td>
+<td>低的</td>
+<td>查找内存泄漏并修复</td>
+<td>是的</td>
+<td>是的</td>
+<td></td>
+</tr>
+<tr>
+<td>StackOverflowError</td>
+<td>堆栈内存不足</td>
+<td>高的</td>
+<td>增加堆栈内存大小</td>
+<td>不</td>
+<td>是的</td>
+</tr>
+<tr>
+<td>无限递归</td>
+<td>低的</td>
+<td>设置递归调用的限制</td>
+<td>是的</td>
+<td>是的</td>
+<td></td>
+</tr>
+<tr>
+<td>NoClassDefFoundError</td>
+<td>缺少依赖</td>
+<td>高的</td>
+<td>添加依赖或修复依赖配置</td>
+<td>不</td>
+<td>是的</td>
+</tr>
+<tr>
+<td>初始化期间加载类失败</td>
+<td>低的</td>
+<td>更改初始化过程</td>
+<td>是的</td>
+<td>是的</td>
+<td></td>
+</tr>
+</tbody></table>
+<p>在大多数情况下，需要做的就是更改 JVM 配置或添加缺少的依赖项，仍然存在需要更改代码的情况，但它们不太可能在每种情况下更改。</p>
+<h3 id="常见-Runtime-异常"><a href="#常见-Runtime-异常" class="headerlink" title="常见 Runtime 异常"></a>常见 Runtime 异常</h3><p><img src="https://img2020.cnblogs.com/blog/1373850/202109/1373850-20210916171907687-1229459232.png" alt="img"></p>
+<table>
+<thead>
+<tr>
+<th>异常类型</th>
+<th>潜在原因</th>
+<th>原因的可能性有多大</th>
+<th>怎么修复</th>
+<th>需要重写代码吗？</th>
+<th>需要重启吗？</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>NullPointerException</td>
+<td>预期的不可为空的对象为空</td>
+<td>高的</td>
+<td>调用前添加验证层</td>
+<td>是的</td>
+<td>是的</td>
+</tr>
+<tr>
+<td>某些资源不可用并返回空数据</td>
+<td>中等的</td>
+<td>调用前添加验证层</td>
+<td>是的</td>
+<td>是的</td>
+<td></td>
+</tr>
+<tr>
+<td>ConcurrentModificationException</td>
+<td>迭代期间集合已更改</td>
+<td>高的</td>
+<td>分别进行集合迭代和修改</td>
+<td>是的</td>
+<td>是的</td>
+</tr>
+<tr>
+<td></td>
+<td>集合在迭代期间已从另一个线程更改</td>
+<td>高的</td>
+<td>为集合添加同步</td>
+<td>是的</td>
+<td>是的</td>
+</tr>
+<tr>
+<td>IlliegalArgumentException</td>
+<td>传递的参数无效</td>
+<td>高的</td>
+<td>在传递参数之前添加验证</td>
+<td>是的</td>
+<td>是的</td>
+</tr>
+<tr>
+<td>NumberFormatException</td>
+<td>传递的参数格式错误或符号错误</td>
+<td>高的</td>
+<td>在传递数据之前添加格式或删除不可见符号</td>
+<td>是的</td>
+<td>是的</td>
+</tr>
+<tr>
+<td>ArrayIndexOutOfBoundsException</td>
+<td>指令试图通过不存在的索引访问单元格</td>
+<td>高的</td>
+<td>将访问逻辑更改为正确的逻辑</td>
+<td>是的</td>
+<td>是的</td>
+</tr>
+<tr>
+<td>NoSuchElementException</td>
+<td>当指针已经改变位置时访问元素</td>
+<td>高的</td>
+<td>将访问逻辑更改为正确的逻辑</td>
+<td>是的</td>
+<td>是的</td>
+</tr>
+<tr>
+<td>集合在迭代过程中被修改</td>
+<td>高的</td>
+<td>为集合添加同步</td>
+<td>是的</td>
+<td>是的</td>
+<td></td>
+</tr>
+</tbody></table>
+<p>Checked 和 Error 异常错误不会导致任何代码更改，但是在大多数情况下，运行时异常突出了代码中的真正问题，如果不重写代码就无法修复这些问题。</p>
+<h3 id="常见-Checked-异常"><a href="#常见-Checked-异常" class="headerlink" title="常见 Checked 异常"></a>常见 Checked 异常</h3><p><img src="https://img2020.cnblogs.com/blog/1373850/202109/1373850-20210916171930515-322340961.png" alt="img"></p>
+<table>
+<thead>
+<tr>
+<th>异常类型</th>
+<th>潜在原因</th>
+<th>原因的可能性有多大</th>
+<th>怎么修复</th>
+<th>需要重写代码吗？</th>
+<th>需要重启吗？</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>FileNotFoundException</td>
+<td>该文件不存在</td>
+<td>高的</td>
+<td>创建文件</td>
+<td>不</td>
+<td>不</td>
+</tr>
+<tr>
+<td>应用程序调用错误的路径</td>
+<td>低的</td>
+<td>修复错误的路径生成</td>
+<td>是的</td>
+<td>是的</td>
+<td></td>
+</tr>
+<tr>
+<td>IOException</td>
+<td>访问资源无效</td>
+<td>高的</td>
+<td>让资源再次可用</td>
+<td>不</td>
+<td>不</td>
+</tr>
+<tr>
+<td>ClassNotFoundException</td>
+<td>该类未添加依赖项</td>
+<td>高的</td>
+<td>添加缺少的依赖项</td>
+<td>不</td>
+<td>是的</td>
+</tr>
+<tr>
+<td>实现调用了错误的类</td>
+<td>中等的</td>
+<td>更改类调用</td>
+<td>是的</td>
+<td>是的</td>
+<td></td>
+</tr>
+<tr>
+<td>SqlException</td>
+<td>架构与查询不匹配</td>
+<td>高的</td>
+<td>将缺失的脚本应用到数据库</td>
+<td>不</td>
+<td>不</td>
+</tr>
+<tr>
+<td>查询错误</td>
+<td>低的</td>
+<td>更改查询</td>
+<td>是的</td>
+<td>是的</td>
+<td></td>
+</tr>
+<tr>
+<td>拒绝连接</td>
+<td>高的</td>
+<td>打开数据库，更改端口</td>
+<td>不</td>
+<td>不</td>
+<td></td>
+</tr>
+<tr>
+<td>InterruptedException</td>
+<td>依赖线程通知中断（锁释放，另一个线程完成操作）</td>
+<td>高的</td>
+<td>没有必要修复它；这是一种通知相关线程中事件的方法</td>
+<td>不</td>
+<td>不</td>
+</tr>
+<tr>
+<td>另一个线程中断并使用中断通知相关</td>
+<td>中等的</td>
+<td>修复另一个线程中出现的问题（可以是任何东西）</td>
+<td>是的</td>
+<td>是的</td>
+<td></td>
+</tr>
+<tr>
+<td>SocketException</td>
+<td>端口被占用</td>
+<td>高的</td>
+<td>打开/释放端口</td>
+<td>不</td>
+<td>不</td>
+</tr>
+<tr>
+<td>服务器断开连接</td>
+<td>高的</td>
+<td>检查网络连接</td>
+<td>不</td>
+<td>不</td>
+<td></td>
+</tr>
+</tbody></table>
+<p>如果我们查看最可能的原因，我们会发现其中的<em>大多数</em> 不仅不需要任何代码更改，甚至不需要重新启动应用程序。</p>
+<h1 id="Java-异常处理最佳实践"><a href="#Java-异常处理最佳实践" class="headerlink" title="Java 异常处理最佳实践"></a>Java 异常处理最佳实践</h1><h2 id="1-不要忽略捕获的异常"><a href="#1-不要忽略捕获的异常" class="headerlink" title="1. 不要忽略捕获的异常"></a>1. 不要忽略捕获的异常</h2><pre class=" language-java"><code class="language-java"><span class="token function">Copycatch</span> <span class="token punctuation">(</span><span class="token class-name">NoSuchMethodException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+   <span class="token keyword">return</span> null<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>虽然捕获了异常但是却没有做任何处理，除非你确信这个异常可以忽略，不然不应该这样做，这样会导致外面无法知晓该方法发生了错误，无法定位错误原因。</p>
+<h2 id="2-在你的方法里抛出具体的检查性异常"><a href="#2-在你的方法里抛出具体的检查性异常" class="headerlink" title="2. 在你的方法里抛出具体的检查性异常"></a>2. 在你的方法里抛出具体的检查性异常</h2><pre class=" language-java"><code class="language-java">Copypublic <span class="token keyword">void</span> <span class="token function">foo</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> Exception <span class="token punctuation">{</span> <span class="token comment" spellcheck="true">//错误方式</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>一定要避免出现上面的代码示例，它破坏了检查性异常的目的。 声明你的方法可能抛出的具体检查性异常，如果有太多这样的检查性异常，你应该把它们包装在你自己的异常中，并在异常消息中添加信息。 如果可能的话，你也可以考虑代码重构。</p>
+<pre class=" language-java"><code class="language-java">Copypublic <span class="token keyword">void</span> <span class="token function">foo</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> SpecificException1<span class="token punctuation">,</span> SpecificException2 <span class="token punctuation">{</span> <span class="token comment" spellcheck="true">//正确方式</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h2 id="3-捕获具体的子类而不是捕获-Exception-类"><a href="#3-捕获具体的子类而不是捕获-Exception-类" class="headerlink" title="3. 捕获具体的子类而不是捕获 Exception 类"></a>3. 捕获具体的子类而不是捕获 Exception 类</h2><pre class=" language-java"><code class="language-java">Copytry <span class="token punctuation">{</span>
+   <span class="token function">someMethod</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment" spellcheck="true">//错误方式</span>
+   LOGGER<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">"method has failed"</span><span class="token punctuation">,</span> e<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>捕获 <code>Exception</code> 的问题是，如果稍后调用的方法为其方法声明添加了新的检查性异常，则开发人员的意图是应该处理具体的新异常，但是你的代码只是捕获 <code>Exception</code> （或 <code>Throwable</code>），那么永远不会知道这个新的异常，并且你的程序可能会在运行时的任何时候中断。</p>
+<h2 id="3-永远不要捕获-Throwable-类"><a href="#3-永远不要捕获-Throwable-类" class="headerlink" title="3. 永远不要捕获 Throwable 类"></a>3. 永远不要捕获 Throwable 类</h2><p>这是一个更严重的问题，因为 <code>Error</code> 也是 <code>Throwable</code> 的子类，<code>Error</code> 是 JVM 本身无法处理的不可逆转的错误，对于某些 JVM 的实现，JVM 可能实际上甚至不会在 Error 上调用 catch 子句。</p>
+<h2 id="4-始终正确包装自定义异常中的异常，以便堆栈跟踪不会丢失"><a href="#4-始终正确包装自定义异常中的异常，以便堆栈跟踪不会丢失" class="headerlink" title="4. 始终正确包装自定义异常中的异常，以便堆栈跟踪不会丢失"></a>4. 始终正确包装自定义异常中的异常，以便堆栈跟踪不会丢失</h2><pre class=" language-java"><code class="language-java"><span class="token function">Copycatch</span> <span class="token punctuation">(</span><span class="token class-name">NoSuchMethodException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+   <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">MyServiceException</span><span class="token punctuation">(</span><span class="token string">"Some information: "</span> <span class="token operator">+</span> e<span class="token punctuation">.</span><span class="token function">getMessage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">//错误方式</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>这破坏了原始异常的堆栈跟踪，并且始终是错误的，正确的做法是：</p>
+<pre class=" language-java"><code class="language-java"><span class="token function">Copycatch</span> <span class="token punctuation">(</span><span class="token class-name">NoSuchMethodException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+   <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">MyServiceException</span><span class="token punctuation">(</span><span class="token string">"Some information: "</span> <span class="token punctuation">,</span> e<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">//正确方式</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h2 id="5-要么记录异常要么抛出异常，但不要一起执行"><a href="#5-要么记录异常要么抛出异常，但不要一起执行" class="headerlink" title="5. 要么记录异常要么抛出异常，但不要一起执行"></a>5. 要么记录异常要么抛出异常，但不要一起执行</h2><pre class=" language-java"><code class="language-java"><span class="token function">Copycatch</span> <span class="token punctuation">(</span><span class="token class-name">NoSuchMethodException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+    <span class="token comment" spellcheck="true">//错误方式 </span>
+   LOGGER<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">"Some information"</span><span class="token punctuation">,</span> e<span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token keyword">throw</span> e<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>正如上面的代码中，记录和抛出异常会在日志文件中产生多条日志消息，代码中存在单个问题，并且对尝试分析日志的同事很不友好。</p>
+<h2 id="6-finally-块中永远不要抛出任何异常"><a href="#6-finally-块中永远不要抛出任何异常" class="headerlink" title="6. finally 块中永远不要抛出任何异常"></a>6. finally 块中永远不要抛出任何异常</h2><pre class=" language-java"><code class="language-java">Copytry <span class="token punctuation">{</span>
+  <span class="token function">someMethod</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">//Throws exceptionOne</span>
+<span class="token punctuation">}</span> <span class="token keyword">finally</span> <span class="token punctuation">{</span>
+  <span class="token function">cleanUp</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">//如果finally还抛出异常，那么exceptionOne将永远丢失</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>只要 <code>cleanUp()</code> 永远不会抛出任何异常，上面的代码没有问题，但是如果 <code>someMethod()</code> 抛出一个异常，并且在 <code>finally</code> 块中，<code>cleanUp()</code> 也抛出另一个异常，那么程序只会把第二个异常抛出来，原来的第一个异常（正确的原因）将永远丢失。如果在 <code>finally</code> 块中调用的代码可能会引发异常，请确保要么处理它，要么将其记录下来，永远不要让它从 finally 块中抛出来。</p>
+<h2 id="7-始终只捕获实际可处理的异常"><a href="#7-始终只捕获实际可处理的异常" class="headerlink" title="7. 始终只捕获实际可处理的异常"></a>7. 始终只捕获实际可处理的异常</h2><pre class=" language-java"><code class="language-java"><span class="token function">Copycatch</span> <span class="token punctuation">(</span><span class="token class-name">NoSuchMethodException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+   <span class="token keyword">throw</span> e<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//避免这种情况，因为它没有任何帮助</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>这是最重要的概念，不要为了捕获异常而捕获，只有在想要处理异常时才捕获异常，或者希望在该异常中提供其他上下文信息。如果你不能在 catch 块中处理它，那么最好的建议就是不要只为了重新抛出它而捕获它。</p>
+<h2 id="8-不要使用-printStackTrace-语句或类似的方法"><a href="#8-不要使用-printStackTrace-语句或类似的方法" class="headerlink" title="8. 不要使用 printStackTrace() 语句或类似的方法"></a>8. 不要使用 printStackTrace() 语句或类似的方法</h2><p>完成代码后，切勿忽略 <code>printStackTrace()</code>，最终别人可能会得到这些堆栈，并且对于如何处理它完全没有任何帮助，因为它不会附加任何上下文信息。</p>
+<h2 id="9-对于不打算处理的异常，直接使用-finally"><a href="#9-对于不打算处理的异常，直接使用-finally" class="headerlink" title="9. 对于不打算处理的异常，直接使用 finally"></a>9. 对于不打算处理的异常，直接使用 finally</h2><pre class=" language-java"><code class="language-java">Copytry <span class="token punctuation">{</span>
+  <span class="token function">someMethod</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">//Method 2</span>
+<span class="token punctuation">}</span> <span class="token keyword">finally</span> <span class="token punctuation">{</span>
+  <span class="token function">cleanUp</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">//do cleanup here</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>这是一个很好的做法，如果在你的方法中你正在访问 Method 2，而 Method 2 抛出一些你不想在 Method 1 中处理的异常，但是仍然希望在发生异常时进行一些清理，然后在 finally 块中进行清理，不要使用 catch 块。</p>
+<h2 id="10-记住早-throw-晚-catch-原则"><a href="#10-记住早-throw-晚-catch-原则" class="headerlink" title="10. 记住早 throw 晚 catch 原则"></a>10. 记住早 throw 晚 catch 原则</h2><p>这可能是关于异常处理最著名的原则，简单说，应该尽快抛出(throw)异常，并尽可能晚地捕获(catch)它。应该等到有足够的信息来妥善处理它。</p>
+<p>这个原则隐含地说，你将更有可能把它放在低级方法中，在那里你将检查单个值是否为空或不适合。而且你会让异常堆栈跟踪上升好几个级别，直到达到足够的抽象级别才能处理问题。</p>
+<h2 id="11-在异常处理后清理资源"><a href="#11-在异常处理后清理资源" class="headerlink" title="11. 在异常处理后清理资源"></a>11. 在异常处理后清理资源</h2><p>如果你正在使用数据库连接或网络连接等资源，请确保关闭它们。如果你正在调用的 API 仅使用非检查性异常，则仍应使用 try-finally 块来清理资源。 在 try 模块里面访问资源，在 finally 里面最后关闭资源。即使在访问资源时发生任何异常，资源也会优雅地关闭。</p>
+<h2 id="12-只抛出和方法相关的异常"><a href="#12-只抛出和方法相关的异常" class="headerlink" title="12. 只抛出和方法相关的异常"></a>12. 只抛出和方法相关的异常</h2><p>相关性对于应用程序排查问题非常重要。一种尝试读取文件的方法，如果抛出 <code>NullPointerException</code>，那么它不会给用户任何相关的信息。相反，如果这种异常被包裹在自定义异常中，则会更好，<code>NoSuchFileFoundException</code> 则对该方法的用户更有用。</p>
+<h2 id="13-切勿在程序中使用异常来进行流程控制"><a href="#13-切勿在程序中使用异常来进行流程控制" class="headerlink" title="13. 切勿在程序中使用异常来进行流程控制"></a>13. 切勿在程序中使用异常来进行流程控制</h2><p>不要在项目中出现使用异常来处理应用程序逻辑，永远不要这样做，它会使代码很难阅读和理解。</p>
+<h2 id="14-尽早验证用户输入以在请求处理的早期捕获异常"><a href="#14-尽早验证用户输入以在请求处理的早期捕获异常" class="headerlink" title="14. 尽早验证用户输入以在请求处理的早期捕获异常"></a>14. 尽早验证用户输入以在请求处理的早期捕获异常</h2><p>始终要在非常早的阶段验证用户输入，甚至在达到 <code>controller</code> 之前，它将帮助你把核心应用程序逻辑中的异常处理代码量降到最低。如果用户输入出现错误，还可以保证与应用程序一致。</p>
+<p>例如：如果在用户注册应用程序中，遵循以下逻辑：</p>
+<ol>
+<li>验证用户</li>
+<li>插入用户</li>
+<li>验证地址</li>
+<li>插入地址</li>
+<li>如果出问题回滚一切</li>
+</ol>
+<p>这是不正确的做法，它会使数据库在各种情况下处于不一致的状态，应该首先验证所有内容，然后将用户数据置于 <code>dao</code> 层并进行数据库更新。正确的做法是：</p>
+<ol>
+<li>验证用户</li>
+<li>验证地址</li>
+<li>插入用户</li>
+<li>插入地址</li>
+<li>如果问题回滚一切</li>
+</ol>
+<h2 id="15-一个异常只能包含在一个日志中"><a href="#15-一个异常只能包含在一个日志中" class="headerlink" title="15. 一个异常只能包含在一个日志中"></a>15. 一个异常只能包含在一个日志中</h2><pre class=" language-java"><code class="language-java">CopyLOGGER<span class="token punctuation">.</span><span class="token function">debug</span><span class="token punctuation">(</span><span class="token string">"Using cache sector A"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+LOGGER<span class="token punctuation">.</span><span class="token function">debug</span><span class="token punctuation">(</span><span class="token string">"Using retry sector B"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>不要像上面这样做，对多个 <code>LOGGER.debug()</code> 调用使用多行日志消息可能在你的测试用例中看起来不错，但是当它在具有 100 个并行运行的线程的应用程序服务器的日志文件中显示时，所有信息都输出到相同的日志文件，即使它们在实际代码中为前后行，但是在日志文件中这两个日志消息可能会间隔 100 多行。应该这样做：</p>
+<pre class=" language-java"><code class="language-java">CopyLOGGER<span class="token punctuation">.</span><span class="token function">debug</span><span class="token punctuation">(</span><span class="token string">"Using cache sector A, using retry sector B"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<h2 id="16-将所有相关信息尽可能地传递给异常"><a href="#16-将所有相关信息尽可能地传递给异常" class="headerlink" title="16. 将所有相关信息尽可能地传递给异常"></a>16. 将所有相关信息尽可能地传递给异常</h2><p>有用的异常消息和堆栈跟踪非常重要，如果你的日志不能定位异常位置，那要日志有什么用呢？</p>
+<h2 id="17-终止掉被中断的线程"><a href="#17-终止掉被中断的线程" class="headerlink" title="17. 终止掉被中断的线程"></a>17. 终止掉被中断的线程</h2><pre class=" language-java"><code class="language-java"><span class="token function">Copywhile</span> <span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">try</span> <span class="token punctuation">{</span>
+    Thread<span class="token punctuation">.</span><span class="token function">sleep</span><span class="token punctuation">(</span><span class="token number">100000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">InterruptedException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span> <span class="token comment" spellcheck="true">//别这样做</span>
+  <span class="token function">doSomethingCool</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p><code>InterruptedException</code> 异常提示应该停止程序正在做的事情，比如事务超时或线程池被关闭等。</p>
+<p>应该尽最大努力完成正在做的事情，并完成当前执行的线程，而不是忽略 <code>InterruptedException</code>。修改后的程序如下：</p>
+<pre class=" language-java"><code class="language-java"><span class="token function">Copywhile</span> <span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">try</span> <span class="token punctuation">{</span>
+    Thread<span class="token punctuation">.</span><span class="token function">sleep</span><span class="token punctuation">(</span><span class="token number">100000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">InterruptedException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">break</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token function">doSomethingCool</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<h2 id="18-对于重复的-try-catch，使用模板方法"><a href="#18-对于重复的-try-catch，使用模板方法" class="headerlink" title="18. 对于重复的 try-catch，使用模板方法"></a>18. 对于重复的 try-catch，使用模板方法</h2><p>在代码中有许多类似的 catch 块是无用的，只会增加代码的重复性，针对这样的问题可以使用模板方法。</p>
+<p>例如，在尝试关闭数据库连接时的异常处理。</p>
+<pre class=" language-java"><code class="language-java">Copyclass DBUtil<span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">closeConnection</span><span class="token punctuation">(</span>Connection conn<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">try</span><span class="token punctuation">{</span>
+            conn<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">catch</span><span class="token punctuation">(</span>Exception ex<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token comment" spellcheck="true">//Log Exception - Cannot close connection</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>这类的方法将在应用程序很多地方使用，不要把这块代码放的到处都是，而是定义上面的方法，然后像下面这样使用它：</p>
+<pre class=" language-java"><code class="language-java">Copypublic <span class="token keyword">void</span> <span class="token function">dataAccessCode</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    Connection conn <span class="token operator">=</span> null<span class="token punctuation">;</span>
+    <span class="token keyword">try</span><span class="token punctuation">{</span>
+        conn <span class="token operator">=</span> <span class="token function">getConnection</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+    <span class="token punctuation">}</span> <span class="token keyword">finally</span><span class="token punctuation">{</span>
+        DBUtil<span class="token punctuation">.</span><span class="token function">closeConnection</span><span class="token punctuation">(</span>conn<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h2 id="19-使用-JavaDoc-中记录应用程序中的所有异常"><a href="#19-使用-JavaDoc-中记录应用程序中的所有异常" class="headerlink" title="19. 使用 JavaDoc 中记录应用程序中的所有异常"></a>19. 使用 JavaDoc 中记录应用程序中的所有异常</h2><p>把用 JavaDoc 记录运行时可能抛出的所有异常作为一种习惯，其中也尽量包括用户应该遵循的操作，以防这些异常发生。</p>
+<h2 id="20-使用-try-with-resource-自动地关闭资源"><a href="#20-使用-try-with-resource-自动地关闭资源" class="headerlink" title="20. 使用 try-with-resource 自动地关闭资源"></a>20. 使用 try-with-resource 自动地关闭资源</h2><p>1、当一个外部资源的句柄对象实现了 <code>AutoCloseable</code> 接口，JDK7中便可以利用 try-with-resource 语法更优雅的关闭资源，消除板式代码。</p>
+<p>2、使用 try-with-resource 时，如果对外部资源的处理和对外部资源的关闭均遭遇了异常，“关闭异常”将被抑制，“处理异常”将被抛出，但“关闭异常”并没有丢失，而是存放在“处理异常”的被抑制的异常列表中。</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">try</span> <span class="token punctuation">(</span>FileInputStream inputStream <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">FileInputStream</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">File</span><span class="token punctuation">(</span><span class="token string">"test"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>inputStream<span class="token punctuation">.</span><span class="token function">read</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">IOException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">RuntimeException</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span><span class="token function">getMessage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> e<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p><strong>将外部资源的句柄对象的创建放在try关键字后面的括号中</strong>，当这个try-catch代码块执行完毕后，Java会确保外部资源的close方法被调用。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>这篇文章首先介绍了什么是异常，以及异常的三种分类，然后通过 20 个最佳实践来讨论如何处理异常，希望能在以后异常处理的时候有所改进及感悟。</p>
+<p>参考文档：</p>
+<p><a target="_blank" rel="noopener" href="https://dzone.com/articles/java-exceptions-1">https://dzone.com/articles/java-exceptions-1</a></p>
+<p><a target="_blank" rel="noopener" href="http://www.yinwang.org/blog-cn/2015/11/21/programming-philosophy">http://www.yinwang.org/blog-cn/2015/11/21/programming-philosophy</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/wupeixuan/p/11746117.html">https://www.cnblogs.com/wupeixuan/p/11746117.html</a></p>
+<p><a target="_blank" rel="noopener" href="https://howtodoinjava.com/best-practices/java-exception-handling-best-practices/">https://howtodoinjava.com/best-practices/java-exception-handling-best-practices/</a></p>
+
+      
+
+
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/alipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/weixin.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+        <div class="article-pop-out tagcloud">
+          <i class="icon-tuding"></i>
+          <a class="article-tag-list-link color3">置顶</a>
+        </div>
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Redis</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/Git//" class="article-tag-list-link color4">Git</a>
+        			<a href="/categories/Java//" class="article-tag-list-link color5">Java</a>
         		</li>
       		
 		</ul>
 	</div>
 
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://dick-su-3.github.io/archives/b563544.html" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
 
-<a href="/archives/45e57f1.html" class="archive-article-date">
-  	<time datetime="2022-08-07T15:07:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-08-07</time>
-</a>
+  
+<nav id="article-nav">
+  
+    <a href="/archives/6ab7fbd2.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          阅读阿里Java开发手册记录
+        
+      </div>
+    </a>
+  
+  
+    <a href="/archives/fe29e710.html" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Redis基础</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/archives/45e57f1.html">Git版本控制笔记</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Git</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Git//" class="article-tag-list-link color4">Git</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Java-%E5%BC%82%E5%B8%B8%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84"><span class="toc-number">1.</span> <span class="toc-text">Java 异常体系结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Java-%E6%A3%80%E6%9F%A5%E5%BC%82%E5%B8%B8%E5%92%8C%E9%9D%9E%E6%A3%80%E6%9F%A5%E5%BC%82%E5%B8%B8"><span class="toc-number">2.</span> <span class="toc-text">Java 检查异常和非检查异常</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Java-%E4%B8%AD%E7%9A%84%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86"><span class="toc-number">3.</span> <span class="toc-text">Java 中的异常处理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Java-%E4%B8%AD%E7%9A%84%E5%BC%82%E5%B8%B8%E5%88%86%E7%B1%BB"><span class="toc-number">4.</span> <span class="toc-text">Java 中的异常分类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81-Error-%E5%BC%82%E5%B8%B8"><span class="toc-number">4.1.</span> <span class="toc-text">常见 Error 异常</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81-Runtime-%E5%BC%82%E5%B8%B8"><span class="toc-number">4.2.</span> <span class="toc-text">常见 Runtime 异常</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81-Checked-%E5%BC%82%E5%B8%B8"><span class="toc-number">4.3.</span> <span class="toc-text">常见 Checked 异常</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Java-%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5"><span class="toc-number"></span> <span class="toc-text">Java 异常处理最佳实践</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E4%B8%8D%E8%A6%81%E5%BF%BD%E7%95%A5%E6%8D%95%E8%8E%B7%E7%9A%84%E5%BC%82%E5%B8%B8"><span class="toc-number">1.</span> <span class="toc-text">1. 不要忽略捕获的异常</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%9C%A8%E4%BD%A0%E7%9A%84%E6%96%B9%E6%B3%95%E9%87%8C%E6%8A%9B%E5%87%BA%E5%85%B7%E4%BD%93%E7%9A%84%E6%A3%80%E6%9F%A5%E6%80%A7%E5%BC%82%E5%B8%B8"><span class="toc-number">2.</span> <span class="toc-text">2. 在你的方法里抛出具体的检查性异常</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E6%8D%95%E8%8E%B7%E5%85%B7%E4%BD%93%E7%9A%84%E5%AD%90%E7%B1%BB%E8%80%8C%E4%B8%8D%E6%98%AF%E6%8D%95%E8%8E%B7-Exception-%E7%B1%BB"><span class="toc-number">3.</span> <span class="toc-text">3. 捕获具体的子类而不是捕获 Exception 类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E6%B0%B8%E8%BF%9C%E4%B8%8D%E8%A6%81%E6%8D%95%E8%8E%B7-Throwable-%E7%B1%BB"><span class="toc-number">4.</span> <span class="toc-text">3. 永远不要捕获 Throwable 类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E5%A7%8B%E7%BB%88%E6%AD%A3%E7%A1%AE%E5%8C%85%E8%A3%85%E8%87%AA%E5%AE%9A%E4%B9%89%E5%BC%82%E5%B8%B8%E4%B8%AD%E7%9A%84%E5%BC%82%E5%B8%B8%EF%BC%8C%E4%BB%A5%E4%BE%BF%E5%A0%86%E6%A0%88%E8%B7%9F%E8%B8%AA%E4%B8%8D%E4%BC%9A%E4%B8%A2%E5%A4%B1"><span class="toc-number">5.</span> <span class="toc-text">4. 始终正确包装自定义异常中的异常，以便堆栈跟踪不会丢失</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E8%A6%81%E4%B9%88%E8%AE%B0%E5%BD%95%E5%BC%82%E5%B8%B8%E8%A6%81%E4%B9%88%E6%8A%9B%E5%87%BA%E5%BC%82%E5%B8%B8%EF%BC%8C%E4%BD%86%E4%B8%8D%E8%A6%81%E4%B8%80%E8%B5%B7%E6%89%A7%E8%A1%8C"><span class="toc-number">6.</span> <span class="toc-text">5. 要么记录异常要么抛出异常，但不要一起执行</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-finally-%E5%9D%97%E4%B8%AD%E6%B0%B8%E8%BF%9C%E4%B8%8D%E8%A6%81%E6%8A%9B%E5%87%BA%E4%BB%BB%E4%BD%95%E5%BC%82%E5%B8%B8"><span class="toc-number">7.</span> <span class="toc-text">6. finally 块中永远不要抛出任何异常</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-%E5%A7%8B%E7%BB%88%E5%8F%AA%E6%8D%95%E8%8E%B7%E5%AE%9E%E9%99%85%E5%8F%AF%E5%A4%84%E7%90%86%E7%9A%84%E5%BC%82%E5%B8%B8"><span class="toc-number">8.</span> <span class="toc-text">7. 始终只捕获实际可处理的异常</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-%E4%B8%8D%E8%A6%81%E4%BD%BF%E7%94%A8-printStackTrace-%E8%AF%AD%E5%8F%A5%E6%88%96%E7%B1%BB%E4%BC%BC%E7%9A%84%E6%96%B9%E6%B3%95"><span class="toc-number">9.</span> <span class="toc-text">8. 不要使用 printStackTrace() 语句或类似的方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-%E5%AF%B9%E4%BA%8E%E4%B8%8D%E6%89%93%E7%AE%97%E5%A4%84%E7%90%86%E7%9A%84%E5%BC%82%E5%B8%B8%EF%BC%8C%E7%9B%B4%E6%8E%A5%E4%BD%BF%E7%94%A8-finally"><span class="toc-number">10.</span> <span class="toc-text">9. 对于不打算处理的异常，直接使用 finally</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-%E8%AE%B0%E4%BD%8F%E6%97%A9-throw-%E6%99%9A-catch-%E5%8E%9F%E5%88%99"><span class="toc-number">11.</span> <span class="toc-text">10. 记住早 throw 晚 catch 原则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11-%E5%9C%A8%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86%E5%90%8E%E6%B8%85%E7%90%86%E8%B5%84%E6%BA%90"><span class="toc-number">12.</span> <span class="toc-text">11. 在异常处理后清理资源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#12-%E5%8F%AA%E6%8A%9B%E5%87%BA%E5%92%8C%E6%96%B9%E6%B3%95%E7%9B%B8%E5%85%B3%E7%9A%84%E5%BC%82%E5%B8%B8"><span class="toc-number">13.</span> <span class="toc-text">12. 只抛出和方法相关的异常</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#13-%E5%88%87%E5%8B%BF%E5%9C%A8%E7%A8%8B%E5%BA%8F%E4%B8%AD%E4%BD%BF%E7%94%A8%E5%BC%82%E5%B8%B8%E6%9D%A5%E8%BF%9B%E8%A1%8C%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6"><span class="toc-number">14.</span> <span class="toc-text">13. 切勿在程序中使用异常来进行流程控制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#14-%E5%B0%BD%E6%97%A9%E9%AA%8C%E8%AF%81%E7%94%A8%E6%88%B7%E8%BE%93%E5%85%A5%E4%BB%A5%E5%9C%A8%E8%AF%B7%E6%B1%82%E5%A4%84%E7%90%86%E7%9A%84%E6%97%A9%E6%9C%9F%E6%8D%95%E8%8E%B7%E5%BC%82%E5%B8%B8"><span class="toc-number">15.</span> <span class="toc-text">14. 尽早验证用户输入以在请求处理的早期捕获异常</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#15-%E4%B8%80%E4%B8%AA%E5%BC%82%E5%B8%B8%E5%8F%AA%E8%83%BD%E5%8C%85%E5%90%AB%E5%9C%A8%E4%B8%80%E4%B8%AA%E6%97%A5%E5%BF%97%E4%B8%AD"><span class="toc-number">16.</span> <span class="toc-text">15. 一个异常只能包含在一个日志中</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#16-%E5%B0%86%E6%89%80%E6%9C%89%E7%9B%B8%E5%85%B3%E4%BF%A1%E6%81%AF%E5%B0%BD%E5%8F%AF%E8%83%BD%E5%9C%B0%E4%BC%A0%E9%80%92%E7%BB%99%E5%BC%82%E5%B8%B8"><span class="toc-number">17.</span> <span class="toc-text">16. 将所有相关信息尽可能地传递给异常</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#17-%E7%BB%88%E6%AD%A2%E6%8E%89%E8%A2%AB%E4%B8%AD%E6%96%AD%E7%9A%84%E7%BA%BF%E7%A8%8B"><span class="toc-number">18.</span> <span class="toc-text">17. 终止掉被中断的线程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#18-%E5%AF%B9%E4%BA%8E%E9%87%8D%E5%A4%8D%E7%9A%84-try-catch%EF%BC%8C%E4%BD%BF%E7%94%A8%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95"><span class="toc-number">19.</span> <span class="toc-text">18. 对于重复的 try-catch，使用模板方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#19-%E4%BD%BF%E7%94%A8-JavaDoc-%E4%B8%AD%E8%AE%B0%E5%BD%95%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E4%B8%AD%E7%9A%84%E6%89%80%E6%9C%89%E5%BC%82%E5%B8%B8"><span class="toc-number">20.</span> <span class="toc-text">19. 使用 JavaDoc 中记录应用程序中的所有异常</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#20-%E4%BD%BF%E7%94%A8-try-with-resource-%E8%87%AA%E5%8A%A8%E5%9C%B0%E5%85%B3%E9%97%AD%E8%B5%84%E6%BA%90"><span class="toc-number">21.</span> <span class="toc-text">20. 使用 try-with-resource 自动地关闭资源</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number"></span> <span class="toc-text">总结</span></a>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
   
-    </div></section>
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -372,10 +941,10 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
-		isCategory: true,
+		isCategory: false,
 		open_in_new: [object Object],
 		toc_hide_index: true,
 		root: "/",
