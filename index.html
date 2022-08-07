@@ -97,7 +97,7 @@
 		</nav>
 		
 		<nav>
-总文章数 10
+总文章数 15
 </nav>
 
 		<nav class="header-smart-menu">
@@ -136,7 +136,7 @@
 	
 
 		</nav>
-		<span class="post-count">91.5k</span>
+		<span class="post-count">106.7k</span>
 	</header>
 
 </div>
@@ -211,6 +211,594 @@
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-Redis基础" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/archives/fe29e710.html">Redis基础</a>
+    </h1>
+  
+
+        
+        <!-- 目录内容 -->
+
+<!-- 目录内容结束 -->
+
+        <div align="center" class="post-count">
+字数：2.5k字 | 预计阅读时长：8分钟</div>
+
+        <!--显示阅读次数-->
+
+<!--显示阅读次数完毕-->
+
+        
+        
+
+<a href="/archives/fe29e710.html" class="archive-article-date">
+  	<time datetime="2022-08-07T15:09:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-08-07</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="一、学习Redis基础"><a href="#一、学习Redis基础" class="headerlink" title="一、学习Redis基础"></a>一、学习Redis基础</h2><ol>
+<li>在前面学习了MySQL数据库，它是一种传统的关系型数据库，我们可以使用MySQL来更好地管理和组织我们的数据，虽然在小型Web下，只需要一个MySQL+Mybatis自带的缓存系统就可以胜任大部分的数据存储工作，但是MySQL的缺点也很明显，他的数据始终是存储在硬盘上，对于我们的用户信息这种不需要经常发生修改的内容，使用MySQL确实可以，但是如果是快速更新或是频繁使用的数据，比如微博resource、双十一秒杀，这些数据不仅要求服务器需要提供更高的响应速度，而且还需要面对短时间内上百万甚至上千万次访问，而MySQL的磁盘IO读写性能完全不能满足上面的需求，能够满足上述需求的只有内存，因为速度远高于磁盘IO。</li>
+<li>NoSQL概论<br>NoSQL全称是Not Only SQL(不仅仅是SQL) 它是一种非关系型数据库，相比传统SQL关系型数据库，它：</li>
+</ol>
+<ul>
+<li>特点：<ol>
+<li>不保证关系数据的ACID特性</li>
+<li>并不遵循SQL标准</li>
+<li>消除数据之间关联性</li>
+</ol>
+</li>
+<li>优势：</li>
+</ul>
+<ol>
+<li><p>远超传统关系型数据库的性能</p>
+</li>
+<li><p>非常易于扩展</p>
+</li>
+<li><p>数据模型更加灵活</p>
+</li>
+<li><p>高可用</p>
+<blockquote>
+<p>这样，NoSQL的优势就出来了，这就是我们正在寻找的高并发海量数据的解决方案。</p></blockquote></li></ol>
+        
+          <a class="article-more-a" href="/archives/fe29e710.html#more">more >></a>
+        
+      
+
+
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+        <div class="article-pop-out tagcloud">
+          <i class="icon-tuding"></i>
+          <a class="article-tag-list-link color3">置顶</a>
+        </div>
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Redis</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Git//" class="article-tag-list-link color4">Git</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/archives/fe29e710.html">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Git版本控制笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/archives/45e57f1.html">Git版本控制笔记</a>
+    </h1>
+  
+
+        
+        <!-- 目录内容 -->
+
+<!-- 目录内容结束 -->
+
+        <div align="center" class="post-count">
+字数：1.9k字 | 预计阅读时长：7分钟</div>
+
+        <!--显示阅读次数-->
+
+<!--显示阅读次数完毕-->
+
+        
+        
+
+<a href="/archives/45e57f1.html" class="archive-article-date">
+  	<time datetime="2022-08-07T15:07:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-08-07</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="一、Git工作流"><a href="#一、Git工作流" class="headerlink" title="一、Git工作流"></a>一、Git工作流</h2><p><a target="_blank" rel="noopener" href="https://s2.loli.net/2022/01/22/VWYkdFjNil5A6L1.jpg"><img src="https://s2.loli.net/2022/01/22/VWYkdFjNil5A6L1.jpg" alt="1.jpg"></a></p>
+<h3 id="四大板块"><a href="#四大板块" class="headerlink" title="四大板块"></a>四大板块</h3><h4 id="1-工作目录"><a href="#1-工作目录" class="headerlink" title="(1)工作目录"></a>(1)工作目录</h4><p>存放我们正在写的代码</p>
+<h4 id="2-暂存区"><a href="#2-暂存区" class="headerlink" title="(2)暂存区"></a>(2)暂存区</h4><p>暂时保存待提交的内容</p>
+<h4 id="3-本地仓库"><a href="#3-本地仓库" class="headerlink" title="(3)本地仓库"></a>(3)本地仓库</h4><p>位于我们电脑上的一个版本控制仓库</p>
+<h4 id="4-远程仓库"><a href="#4-远程仓库" class="headerlink" title="(4)远程仓库"></a>(4)远程仓库</h4><p>位于服务器上的版本控制仓库</p>
+        
+          <a class="article-more-a" href="/archives/45e57f1.html#more">more >></a>
+        
+      
+
+
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+        <div class="article-pop-out tagcloud">
+          <i class="icon-tuding"></i>
+          <a class="article-tag-list-link color3">置顶</a>
+        </div>
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Git</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Git//" class="article-tag-list-link color4">Git</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/archives/45e57f1.html">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-SSM框架工作原理及流程" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/archives/813428a5.html">SSM框架工作原理及流程</a>
+    </h1>
+  
+
+        
+        <!-- 目录内容 -->
+
+<!-- 目录内容结束 -->
+
+        <div align="center" class="post-count">
+字数：4.9k字 | 预计阅读时长：23分钟</div>
+
+        <!--显示阅读次数-->
+
+<!--显示阅读次数完毕-->
+
+        
+        
+
+<a href="/archives/813428a5.html" class="archive-article-date">
+  	<time datetime="2022-08-07T15:05:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-08-07</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="一、什么是SSM框架："><a href="#一、什么是SSM框架：" class="headerlink" title="一、什么是SSM框架："></a>一、什么是SSM框架：</h2><p>SSM框架是Spring、SpringMVC和Mybatis框架的整合，是标准的MVC模式，将整个系统划分为View层，Controller层，Service层，DAO层四层，使用Spring MVC负责请求的转发和视图管理，Spring实现业务对象管理，Mybatis作为数据对象的持久化引擎。</p>
+<h2 id="二、各框架介绍"><a href="#二、各框架介绍" class="headerlink" title="二、各框架介绍"></a>二、各框架介绍</h2><ol>
+<li>Spring</li>
+</ol>
+<p>Spring就像是整个项目中装配bean的大工厂，在配置文件中可以指定使用特定的参数去调用实体类的构造方法来实例化对象。也可以称之为项目中的粘合剂。<br>Spring的核心思想是IoC（控制反转），即不再需要程序员去显式地<code>new</code>一个对象，而是让Spring框架帮你来完成这一切。</p>
+<ol>
+<li>SpringMVC</li>
+</ol>
+<p>SpringMVC作用于web层，相当于controller，与struts中的action一样，都是用来处理用户请求的。同时，相比于struts2来说，更加细粒度，它是基于方法层面的，而struts是基于类层面的。Spring MVC 分离了控制器、模型对象、分派器以及处理程序对象的角色，这种分离让它们更容易进行定制。</p>
+<p>SpringMVC在项目中拦截用户请求，它的核心Servlet即DispatcherServlet承担中介或是前台这样的职责，将用户请求通过HandlerMapping去匹配Controller，Controller就是具体对应请求所执行的操作。SpringMVC相当于SSH框架中struts。</p>
+        
+          <a class="article-more-a" href="/archives/813428a5.html#more">more >></a>
+        
+      
+
+
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+        <div class="article-pop-out tagcloud">
+          <i class="icon-tuding"></i>
+          <a class="article-tag-list-link color3">置顶</a>
+        </div>
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">SSM</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/SSM框架//" class="article-tag-list-link color1">SSM框架</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/archives/813428a5.html">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Spring中AOP的理解" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/archives/b6262337.html">Spring中AOP的理解</a>
+    </h1>
+  
+
+        
+        <!-- 目录内容 -->
+
+<!-- 目录内容结束 -->
+
+        <div align="center" class="post-count">
+字数：3k字 | 预计阅读时长：11分钟</div>
+
+        <!--显示阅读次数-->
+
+<!--显示阅读次数完毕-->
+
+        
+        
+
+<a href="/archives/b6262337.html" class="archive-article-date">
+  	<time datetime="2022-08-07T15:02:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-08-07</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="一、Spring是什么？"><a href="#一、Spring是什么？" class="headerlink" title="一、Spring是什么？"></a>一、Spring是什么？</h1><p>Spring是一个轻量级的2EE框架。它是一个容器框架，用来装<code>javabean</code>(java对象)，中间层框架(万能胶)可以起到一个连接作用，比如把Struts和hibernate粘合在一起运作，可以让我们的企业开发更快，更简洁。<br>spring是一个轻量级的控制反转(IoC)和面向切面(AOP)的容器框架。</p>
+<ul>
+<li><p>1、从大小与开销两方面而言，spring都是轻量级的</p>
+</li>
+<li><p>2、通过控制反转(IoC)的技术达到松耦合的目的</p>
+</li>
+<li><p>3、提供了面向切面编程的丰富支持，允许通过分离应用的业务逻辑与系统级服务进行内聚性的开发</p>
+</li>
+<li><p>4、包含并管理应用对象(Bean)的配置和生命周期，这个意义上是一个容器</p>
+</li>
+<li><p>5、将简单的组件配置，组合成为复杂的应用，这个意义上是一个框架</p></li></ul>
+        
+          <a class="article-more-a" href="/archives/b6262337.html#more">more >></a>
+        
+      
+
+
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+        <div class="article-pop-out tagcloud">
+          <i class="icon-tuding"></i>
+          <a class="article-tag-list-link color3">置顶</a>
+        </div>
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">spring</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/spring、AOP//" class="article-tag-list-link color1">spring、AOP</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/archives/b6262337.html">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Spring中IoC和DI的理解" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/archives/e49c87f4.html">Spring中IoC和DI的理解</a>
+    </h1>
+  
+
+        
+        <!-- 目录内容 -->
+
+<!-- 目录内容结束 -->
+
+        <div align="center" class="post-count">
+字数：2.9k字 | 预计阅读时长：10分钟</div>
+
+        <!--显示阅读次数-->
+
+<!--显示阅读次数完毕-->
+
+        
+        
+
+<a href="/archives/e49c87f4.html" class="archive-article-date">
+  	<time datetime="2022-08-07T14:59:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-08-07</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>tips:<br>学习过Spring框架的人一定都会听过Spring的IoC(控制反转) 、DI(依赖注入)这两个概念，对于初学Spring的人来说，总觉得IoC 、DI这两个概念是模糊不清的，是很难理解的，今天和大家分享网上的一些技术大牛们对Spring框架的IOC的理解以及谈谈我对Spring Ioc的理解。</p>
+</blockquote>
+<h1 id="一、分享Iteye的开涛对IoC的精彩讲解"><a href="#一、分享Iteye的开涛对IoC的精彩讲解" class="headerlink" title="一、分享Iteye的开涛对IoC的精彩讲解"></a>一、分享Iteye的开涛对IoC的精彩讲解</h1><h2 id="1-1、IoC是什么"><a href="#1-1、IoC是什么" class="headerlink" title="1.1、IoC是什么"></a>1.1、IoC是什么</h2><p>　　IoC—Inversion of Control，即“控制反转”，不是什么技术，而是一种设计思想。在Java开发中，Ioc意味着将你设计好的对象交给容器控制，而不是传统的在你的对象内部直接控制。如何理解好Ioc呢？理解好Ioc的关键是要明确“谁控制谁，控制什么，为何是反转（有反转就应该有正转了），哪些方面反转了”，那我们来深入分析一下：</p>
+        
+          <a class="article-more-a" href="/archives/e49c87f4.html#more">more >></a>
+        
+      
+
+
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+        <div class="article-pop-out tagcloud">
+          <i class="icon-tuding"></i>
+          <a class="article-tag-list-link color3">置顶</a>
+        </div>
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">spring</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/spring、Ioc、DI//" class="article-tag-list-link color4">spring、Ioc、DI</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/archives/e49c87f4.html">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
   
     <article id="post-hashmap的hash方法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
@@ -775,558 +1363,10 @@
 
 
   
-    <article id="post-键盘选择" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/archives/4ac2cecb.html">键盘选择</a>
-    </h1>
-  
-
-        
-        <!-- 目录内容 -->
-
-<!-- 目录内容结束 -->
-
-        <div align="center" class="post-count">
-字数：763字 | 预计阅读时长：2分钟</div>
-
-        <!--显示阅读次数-->
-
-<!--显示阅读次数完毕-->
-
-        
-        
-
-<a href="/archives/4ac2cecb.html" class="archive-article-date">
-  	<time datetime="2022-08-07T14:50:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-08-07</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>最简单最快速最精辟的挑选键盘指南</p>
-<p>1 手感<br>  1.1 键帽支撑（平衡杆 优于 卫星轴 优于 啥都没有）直接问店家有没有平衡杆/卫星轴<br>  1.2 线性VS段落<br>    1.2.1 喜欢反馈的感觉（按下的时候有东西弹你类似圆珠笔），选段落轴<br>    1.2.2 喜欢直上直下，选线性<br>  1.3 键程<br>    1.3.1 特别喜欢敲击触感体验，选机械<br>    1.3.2 少一点敲击感，多一点轻松，选静电容、薄膜<br>    1.3.3 喜欢点一下就可以的选巧克力键盘，触摸屏键盘等<br>  1.4 压力克数<br>    1.4.1 喜欢更爽，回弹快就选克数大的（45）<br>    1.4.2 喜欢轻松就选小的（35）<br>2 敲击速度（打字速度）<br>  2.1 选择标准<br>    2.1.1 喜欢快速敲击（更爽但是更累）则选压力克数大的<br>    2.1.2 喜欢长时间轻松敲击的可以选压力克数小的<br>    2.1.3 速度和耐用性上 静电容、光轴&gt;机械&gt;薄膜<br>  2.2 回弹速度<br>    2.2.1 打字更爽更快，但是更累选回弹快的<br>    2.2.2 打字稍慢但是更轻松选回弹慢的<br>  2.3 灵敏度<br>    2.3.1 静电容是程序判断触发，所以可调，个人认为灵活性最好，耐用性最好。首推<br>    2.3.2 静电容和光轴触发都很快，灵敏度高，需要灵敏度的游戏可选<br>    2.3.3 机械轴触发稍慢一丢丢，可以从缩短触发键程角度改良<br>    2.3.4 薄膜最慢</p>
-        
-          <a class="article-more-a" href="/archives/4ac2cecb.html#more">more >></a>
-        
-      
-
-
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">选键盘</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/键盘//" class="article-tag-list-link color3">键盘</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/archives/4ac2cecb.html">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-从零搭建hexo博客" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/archives/2f76a78a.html">从零搭建hexo博客</a>
-    </h1>
-  
-
-        
-        <!-- 目录内容 -->
-
-<!-- 目录内容结束 -->
-
-        <div align="center" class="post-count">
-字数：2.1k字 | 预计阅读时长：8分钟</div>
-
-        <!--显示阅读次数-->
-
-<!--显示阅读次数完毕-->
-
-        
-        
-
-<a href="/archives/2f76a78a.html" class="archive-article-date">
-  	<time datetime="2022-08-07T14:46:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-08-07</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><strong>搭建博客</strong><br>1.在GitHub创建个人仓库「名字必须是user.github.io」（此处省略，文章底部有教程链接）<br>2.本地安装Git（此处省略，文章底部有教程链接）<br>3.本地安装Node.js（此处省略，文章底部有教程链接）<br>4.本地安装Hexo<br>5.网站推送至github<br>6.github绑定域名<br>7.更换主题<br>8.Hexo高级个性化设置</p>
-<p><strong>编写博客</strong><br>1.Hexo文章的开头<br>2.Hexo文章的内容<br>2.1MarkDown语法<br>2.2寻找图床</p>
-        
-          <a class="article-more-a" href="/archives/2f76a78a.html#more">more >></a>
-        
-      
-
-
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Hexo GitHub Mac Windows</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/hexo、github//" class="article-tag-list-link color2">hexo、github</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/archives/2f76a78a.html">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Hexo-Yilia-高级配置" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/archives/a5f1f796.html">Hexo Yilia高级配置</a>
-    </h1>
-  
-
-        
-        <!-- 目录内容 -->
-
-<!-- 目录内容结束 -->
-
-        <div align="center" class="post-count">
-字数：4.8k字 | 预计阅读时长：22分钟</div>
-
-        <!--显示阅读次数-->
-
-<!--显示阅读次数完毕-->
-
-        
-        
-
-<a href="/archives/a5f1f796.html" class="archive-article-date">
-  	<time datetime="2022-08-07T14:19:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-08-07</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><strong>这篇文章列举了搭建博客至今遇到所有问题的解决方法以及一些新功能的添加方法。</strong><br>这篇文章集合了几乎所有的Hexo Yilia进阶用法教程，包括且不限于：<br>1.微信分享异常 2.“所有文章”无显示 3.显示总文章数 4.置顶文章 5.文章加密 6.文章点击数统计 7.版权声明 8.字数、阅读时长 9.点击红心 10.文章结束 11.404 12.Sitemap 13.自动推送 14.百度统计 15.链接提交 16.google收录 17.Valine增删改查，邮件提示，云引擎 18.板娘<br>19.Yilia标签搜索Bug 20.添加文章顶部转载说明 21.google广告投放 22 Gitment/Gitalk评论系统 23.tag中含有大写字母的bug 24.hexo-d失败 25 跳转到指定位置</p>
-<h1 id="1、微信分享异常"><a href="#1、微信分享异常" class="headerlink" title="1、微信分享异常"></a>1、微信分享异常</h1><p>这里是themes\yilia\layout\ _partial\post\share.ejs出了问题。<br>而且是两个问题：</p>
-<h2 id="1-1-首先是百度网盘取消了生成二维码的功能。"><a href="#1-1-首先是百度网盘取消了生成二维码的功能。" class="headerlink" title="1.1 首先是百度网盘取消了生成二维码的功能。"></a>1.1 首先是百度网盘取消了生成二维码的功能。</h2><p>解决方法是修改themes\yilia\layout_partial\post\share.ejs<br>文件中的</p>
-<pre><code>//pan.baidu.com/share/qrcode?url=
-</code></pre>
-<p>修改为</p>
-<pre><code>//api.qrserver.com/v1/create-qr-code/?size=150x150&amp;data=
-</code></pre>
-        
-          <a class="article-more-a" href="/archives/a5f1f796.html#more">more >></a>
-        
-      
-
-
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">yilia配置</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/hexo、yilia//" class="article-tag-list-link color1">hexo、yilia</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/archives/a5f1f796.html">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-hexo相关2" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/archives/e48a9d1b.html">hexo模版yilia头像增加旋转效果</a>
-    </h1>
-  
-
-        
-        <!-- 目录内容 -->
-
-<!-- 目录内容结束 -->
-
-        <div align="center" class="post-count">
-字数：236字 | 预计阅读时长：1分钟</div>
-
-        <!--显示阅读次数-->
-
-<!--显示阅读次数完毕-->
-
-        
-        
-
-<a href="/archives/e48a9d1b.html" class="archive-article-date">
-  	<time datetime="2022-08-07T12:46:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-08-07</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>在<code>themes\yilia\source\</code>文件夹下<br>增加一个css文件<code>avatarrotation.css</code>用来旋转360度<br>内容如下：</p>
-<pre><code>.left-col #header .profilepic img {
-    /* 控制旋转速度时间*/
-  -webkit-transition: -webkit-transform 1.0s ease-out;
-  -moz-transition: -moz-transform 1.0s ease-out;
-  transition: transform 1.0s ease-out;
-}
-.left-col #header .profilepic img:hover {
-    /* 鼠标经过360% */
-  -webkit-transform: rotateZ(360deg);
-  -moz-transform: rotateZ(360deg);
-  transform: rotateZ(360deg);
-}
-</code></pre>
-        
-          <a class="article-more-a" href="/archives/e48a9d1b.html#more">more >></a>
-        
-      
-
-
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/hexo、blog//" class="article-tag-list-link color5">hexo、blog</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/archives/e48a9d1b.html">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-hexo相关" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/archives/fbe1990d.html">hexo相关</a>
-    </h1>
-  
-
-        
-        <!-- 目录内容 -->
-
-<!-- 目录内容结束 -->
-
-        <div align="center" class="post-count">
-字数：568字 | 预计阅读时长：2分钟</div>
-
-        <!--显示阅读次数-->
-
-<!--显示阅读次数完毕-->
-
-        
-        
-
-<a href="/archives/fbe1990d.html" class="archive-article-date">
-  	<time datetime="2022-08-07T12:43:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-08-07</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ul>
-<li><p>node_modules：文件夹中放依赖包</p>
-</li>
-<li><p>public：存放的是hexo根据source里的内容生成的页面</p>
-</li>
-<li><p>scaffolds：命令生成文章等的模板</p>
-</li>
-<li><p>source：用hexo命令创建的各种文章</p>
-</li>
-<li><p>themes：所下载的主题全放里面</p>
-</li>
-<li><p>_config.yml：整个博客站点的配置</p>
-</li>
-<li><p>db.json：source解析所得到的</p>
-</li>
-<li><p>package.json：项目所需模块项目的配置信息</p></li></ul>
-        
-          <a class="article-more-a" href="/archives/fbe1990d.html#more">more >></a>
-        
-      
-
-
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/hexo、blog//" class="article-tag-list-link color5">hexo、blog</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/archives/fbe1990d.html">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
+    <nav id="page-nav">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
+    </nav>
   
 
 
@@ -1448,11 +1488,27 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">hashmap</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SSM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">yilia配置</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Redis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">spring</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1464,15 +1520,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">springboot摘录学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">选键盘</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">jvm面试题收集一</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">springboot摘录学习</a>
               </li>
             
             <div class="clearfix"></div>
