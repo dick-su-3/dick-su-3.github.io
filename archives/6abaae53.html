@@ -8,12 +8,12 @@
   <link rel="dns-prefetch" href="https://dick-su-3.github.io">
   <title>DNS查询原理详解 | 云卷舒</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="过 DNS 查询，得到域名的 IP 地址，才能访问网站。 那么，DNS 查询到底是怎么完成的？本文通过实例，详细介绍背后的步骤。  一、DNS 服务器域名对应的 IP 地址，都保存在 DNS 服务器。 我们输入域名，浏览器就会在后台，自动向 DNS 服务器发出请求，获取对应的 IP 地址。这就是 DNS 查询。  举例来说，我输入 es6.ruanyifeng.com 这个域名，浏览器就要向 DN">
+  <meta name="description" content="过 DNS 查询，得到域名的 IP 地址，才能访问网站。 那么，DNS 查询到底是怎么完成的？本文通过实例，详细介绍背后的步骤。  一、DNS 服务器域名对应的 IP 地址，都保存在 DNS 服务器。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="DNS查询原理详解">
 <meta property="og:url" content="https://dick-su-3.github.io/archives/6abaae53.html">
 <meta property="og:site_name" content="云卷舒">
-<meta property="og:description" content="过 DNS 查询，得到域名的 IP 地址，才能访问网站。 那么，DNS 查询到底是怎么完成的？本文通过实例，详细介绍背后的步骤。  一、DNS 服务器域名对应的 IP 地址，都保存在 DNS 服务器。 我们输入域名，浏览器就会在后台，自动向 DNS 服务器发出请求，获取对应的 IP 地址。这就是 DNS 查询。  举例来说，我输入 es6.ruanyifeng.com 这个域名，浏览器就要向 DN">
+<meta property="og:description" content="过 DNS 查询，得到域名的 IP 地址，才能访问网站。 那么，DNS 查询到底是怎么完成的？本文通过实例，详细介绍背后的步骤。  一、DNS 服务器域名对应的 IP 地址，都保存在 DNS 服务器。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://cdn.beekka.com/blogimg/asset/202208/bg2022080102.webp">
 <meta property="og:image" content="https://cdn.beekka.com/blogimg/asset/202208/bg2022080103.webp">
@@ -27,7 +27,7 @@
 <meta property="og:image" content="https://cdn.beekka.com/blogimg/asset/202208/bg2022080112.webp">
 <meta property="og:image" content="https://cdn.beekka.com/blogimg/asset/202208/bg2022080111.webp">
 <meta property="article:published_time" content="2022-08-07T03:39:01.000Z">
-<meta property="article:modified_time" content="2022-08-07T04:13:15.418Z">
+<meta property="article:modified_time" content="2022-08-07T04:17:14.886Z">
 <meta property="article:author" content="SuoLiweng">
 <meta property="article:tag" content="DNS">
 <meta name="twitter:card" content="summary">
@@ -265,6 +265,8 @@
 <p>那么，DNS 查询到底是怎么完成的？本文通过实例，详细介绍背后的步骤。</p>
 <p><img src="https://cdn.beekka.com/blogimg/asset/202208/bg2022080102.webp" alt="img"></p>
 <h2 id="一、DNS-服务器"><a href="#一、DNS-服务器" class="headerlink" title="一、DNS 服务器"></a>一、DNS 服务器</h2><p>域名对应的 IP 地址，都保存在 DNS 服务器。</p>
+<span id="more"></span>
+
 <p>我们输入域名，浏览器就会在后台，自动向 DNS 服务器发出请求，获取对应的 IP 地址。这就是 DNS 查询。</p>
 <p><img src="https://cdn.beekka.com/blogimg/asset/202208/bg2022080103.webp" alt="img"></p>
 <p>举例来说，我输入 <code>es6.ruanyifeng.com</code> 这个域名，浏览器就要向 DNS 服务器查询，它的 IP 地址是什么，然后向该 IP 发出访问请求。</p>
@@ -668,11 +670,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">hashmap</a>
+                <a href="javascript:void(0)" class="js-tag color4">DNS</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">DNS</a>
+                <a href="javascript:void(0)" class="js-tag color3">hashmap</a>
               </li>
              
               <li class="article-tag-list-item">

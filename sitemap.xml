@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://dick-su-3.github.io/categories/index.html</loc>
+    
+    <lastmod>2022-08-07</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://dick-su-3.github.io/archives/6abaae53.html</loc>
     
     <lastmod>2022-08-07</lastmod>
@@ -47,15 +56,6 @@
   </url>
   
   <url>
-    <loc>https://dick-su-3.github.io/categories/index.html</loc>
-    
-    <lastmod>2022-08-06</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://dick-su-3.github.io/404.html</loc>
     
     <lastmod>2021-06-12</lastmod>
@@ -74,14 +74,14 @@
 
   
   <url>
-    <loc>https://dick-su-3.github.io/tags/hashmap/</loc>
+    <loc>https://dick-su-3.github.io/tags/DNS/</loc>
     <lastmod>2022-08-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://dick-su-3.github.io/tags/DNS/</loc>
+    <loc>https://dick-su-3.github.io/tags/hashmap/</loc>
     <lastmod>2022-08-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -104,20 +104,6 @@
 
   
   <url>
-    <loc>https://dick-su-3.github.io/categories/hashmap/</loc>
-    <lastmod>2022-08-07</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://dick-su-3.github.io/categories/IP/</loc>
-    <lastmod>2022-08-07</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://dick-su-3.github.io/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/</loc>
     <lastmod>2022-08-07</lastmod>
     <changefreq>weekly</changefreq>
@@ -125,7 +111,21 @@
   </url>
   
   <url>
+    <loc>https://dick-su-3.github.io/categories/hashmap/</loc>
+    <lastmod>2022-08-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://dick-su-3.github.io/categories/springboot/</loc>
+    <lastmod>2022-08-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://dick-su-3.github.io/categories/IP/</loc>
     <lastmod>2022-08-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
