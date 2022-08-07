@@ -6,35 +6,32 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://dick-su-3.github.io">
-  <title>服务器软件 | 云卷舒</title>
+  <title>DNS查询原理详解 | 云卷舒</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="通常来讲，只要运行在服务器系统之上，绑定了服务器IP地址并且在某一个端口监听用户请求并提供服务的软件都可以叫服务器软件。  静态服务 VS 动态服务在开始下文之前，首先必须搞清楚：静态服务和动态服务这两个基本概念。 多种博客框架的搭建，比如：Hexo、Hugo、WordPress、Halo等等。像Hexo这种属于静态博客，而Halo，WordPress这种则是动态博客。  静态服务一般返回的是静态">
+  <meta name="description" content="过 DNS 查询，得到域名的 IP 地址，才能访问网站。 那么，DNS 查询到底是怎么完成的？本文通过实例，详细介绍背后的步骤。  一、DNS 服务器域名对应的 IP 地址，都保存在 DNS 服务器。 我们输入域名，浏览器就会在后台，自动向 DNS 服务器发出请求，获取对应的 IP 地址。这就是 DNS 查询。  举例来说，我输入 es6.ruanyifeng.com 这个域名，浏览器就要向 DN">
 <meta property="og:type" content="article">
-<meta property="og:title" content="服务器软件">
+<meta property="og:title" content="DNS查询原理详解">
 <meta property="og:url" content="https://dick-su-3.github.io/archives/6abaae53.html">
 <meta property="og:site_name" content="云卷舒">
-<meta property="og:description" content="通常来讲，只要运行在服务器系统之上，绑定了服务器IP地址并且在某一个端口监听用户请求并提供服务的软件都可以叫服务器软件。  静态服务 VS 动态服务在开始下文之前，首先必须搞清楚：静态服务和动态服务这两个基本概念。 多种博客框架的搭建，比如：Hexo、Hugo、WordPress、Halo等等。像Hexo这种属于静态博客，而Halo，WordPress这种则是动态博客。  静态服务一般返回的是静态">
+<meta property="og:description" content="过 DNS 查询，得到域名的 IP 地址，才能访问网站。 那么，DNS 查询到底是怎么完成的？本文通过实例，详细介绍背后的步骤。  一、DNS 服务器域名对应的 IP 地址，都保存在 DNS 服务器。 我们输入域名，浏览器就会在后台，自动向 DNS 服务器发出请求，获取对应的 IP 地址。这就是 DNS 查询。  举例来说，我输入 es6.ruanyifeng.com 这个域名，浏览器就要向 DN">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="c:/Users/86185/AppData/Roaming/Typora/typora-user-images/image-20220807115110637.png">
-<meta property="og:image" content="c:/Users/86185/AppData/Roaming/Typora/typora-user-images/image-20220807115056845.png">
-<meta property="og:image" content="c:/Users/86185/AppData/Roaming/Typora/typora-user-images/image-20220807115044291.png">
-<meta property="og:image" content="c:/Users/86185/AppData/Roaming/Typora/typora-user-images/image-20220807115029631.png">
-<meta property="og:image" content="c:/Users/86185/AppData/Roaming/Typora/typora-user-images/image-20220807115016013.png">
-<meta property="og:image" content="c:/Users/86185/AppData/Roaming/Typora/typora-user-images/image-20220807114953945.png">
-<meta property="og:image" content="c:/Users/86185/AppData/Roaming/Typora/typora-user-images/image-20220807114938752.png">
-<meta property="og:image" content="c:/Users/86185/AppData/Roaming/Typora/typora-user-images/image-20220807114922112.png">
-<meta property="og:image" content="c:/Users/86185/AppData/Roaming/Typora/typora-user-images/image-20220807114908087.png">
-<meta property="og:image" content="c:/Users/86185/AppData/Roaming/Typora/typora-user-images/image-20220807114852837.png">
-<meta property="og:image" content="c:/Users/86185/AppData/Roaming/Typora/typora-user-images/image-20220807114835730.png">
-<meta property="og:image" content="c:/Users/86185/AppData/Roaming/Typora/typora-user-images/image-20220807114819821.png">
-<meta property="og:image" content="c:/Users/86185/AppData/Roaming/Typora/typora-user-images/image-20220807114757973.png">
-<meta property="og:image" content="c:/Users/86185/AppData/Roaming/Typora/typora-user-images/image-20220807114735324.png">
+<meta property="og:image" content="https://cdn.beekka.com/blogimg/asset/202208/bg2022080102.webp">
+<meta property="og:image" content="https://cdn.beekka.com/blogimg/asset/202208/bg2022080103.webp">
+<meta property="og:image" content="https://cdn.beekka.com/blogimg/asset/202208/bg2022080104.webp">
+<meta property="og:image" content="https://cdn.beekka.com/blogimg/asset/202208/bg2022080105.webp">
+<meta property="og:image" content="https://cdn.beekka.com/blogimg/asset/202208/bg2022080106.webp">
+<meta property="og:image" content="https://cdn.beekka.com/blogimg/asset/202208/bg2022080107.webp">
+<meta property="og:image" content="https://cdn.beekka.com/blogimg/asset/202208/bg2022080108.webp">
+<meta property="og:image" content="https://cdn.beekka.com/blogimg/asset/202208/bg2022080109.webp">
+<meta property="og:image" content="https://cdn.beekka.com/blogimg/asset/202208/bg2022080110.webp">
+<meta property="og:image" content="https://cdn.beekka.com/blogimg/asset/202208/bg2022080112.webp">
+<meta property="og:image" content="https://cdn.beekka.com/blogimg/asset/202208/bg2022080111.webp">
 <meta property="article:published_time" content="2022-08-07T03:39:01.000Z">
-<meta property="article:modified_time" content="2022-08-07T04:02:10.997Z">
+<meta property="article:modified_time" content="2022-08-07T04:13:15.418Z">
 <meta property="article:author" content="SuoLiweng">
-<meta property="article:tag" content="服务器">
+<meta property="article:tag" content="DNS">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="c:/Users/86185/AppData/Roaming/Typora/typora-user-images/image-20220807115110637.png">
+<meta name="twitter:image" content="https://cdn.beekka.com/blogimg/asset/202208/bg2022080102.webp">
   
     <link rel="alternative" href="/atom.xml" title="云卷舒" type="application/atom+xml">
   
@@ -151,7 +148,7 @@
 	
 
 		</nav>
-		<span class="post-count">89.3k</span>
+		<span class="post-count">83k</span>
 	</header>
 
 </div>
@@ -221,20 +218,20 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-服务器软件" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-DNS查询原理" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      服务器软件
+      DNS查询原理详解
     </h1>
   
 
         
         <div align="center" class="post-count">
-字数：2.9k字 | 预计阅读时长：10分钟</div>
+字数：1.8k字 | 预计阅读时长：6分钟</div>
 
         <!--显示阅读次数-->
 
@@ -264,99 +261,118 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>通常来讲，只要运行在服务器系统之上，<strong>绑定了服务器IP</strong>地址并且<strong>在某一个端口监听</strong>用户请求并提供服务的软件都可以叫服务器软件。</p>
-<hr>
-<h2 id="静态服务-VS-动态服务"><a href="#静态服务-VS-动态服务" class="headerlink" title="静态服务 VS 动态服务"></a>静态服务 VS 动态服务</h2><p>在开始下文之前，首先必须搞清楚：<strong>静态服务</strong>和<strong>动态服务</strong>这两个基本概念。</p>
-<p>多种博客框架的搭建，比如：<code>Hexo</code>、<code>Hugo</code>、<code>WordPress</code>、<code>Halo</code>等等。像<code>Hexo</code>这种属于静态博客，而<code>Halo</code>，<code>WordPress</code>这种则是动态博客。</p>
+        <p>过 DNS 查询，得到域名的 IP 地址，才能访问网站。</p>
+<p>那么，DNS 查询到底是怎么完成的？本文通过实例，详细介绍背后的步骤。</p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202208/bg2022080102.webp" alt="img"></p>
+<h2 id="一、DNS-服务器"><a href="#一、DNS-服务器" class="headerlink" title="一、DNS 服务器"></a>一、DNS 服务器</h2><p>域名对应的 IP 地址，都保存在 DNS 服务器。</p>
+<p>我们输入域名，浏览器就会在后台，自动向 DNS 服务器发出请求，获取对应的 IP 地址。这就是 DNS 查询。</p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202208/bg2022080103.webp" alt="img"></p>
+<p>举例来说，我输入 <code>es6.ruanyifeng.com</code> 这个域名，浏览器就要向 DNS 服务器查询，它的 IP 地址是什么，然后向该 IP 发出访问请求。</p>
+<p>网上有很多公用的 DNS 服务器，这篇文章选择 Cloudflare 公司提供的 1.1.1.1 进行演示。</p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202208/bg2022080104.webp" alt="img"></p>
+<h2 id="二、dig-命令"><a href="#二、dig-命令" class="headerlink" title="二、dig 命令"></a>二、dig 命令</h2><p>命令行工具 dig 可以跟 DNS 服务器互动，我们就用它演示 DNS 查询。如果你还没有安装，可以搜一下安装方法，在 Linux 系统下是非常容易的。</p>
+<p>它的查询语法如下（美元符号<code>$</code>是命令行提示符）。</p>
+<blockquote>
+<pre class=" language-bash"><code class="language-bash">$ <span class="token function">dig</span> @<span class="token punctuation">[</span>DNS 服务器<span class="token punctuation">]</span> <span class="token punctuation">[</span>域名<span class="token punctuation">]</span>
+</code></pre>
+</blockquote>
+<p>向 1.1.1.1 查询域名，就执行下面的命令。</p>
+<blockquote>
+<pre class=" language-bash"><code class="language-bash">$ <span class="token function">dig</span> @1.1.1.1 es6.ruanyifeng.com
+</code></pre>
+</blockquote>
+<p>正常情况下，它会输出一大堆内容。</p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202208/bg2022080105.webp" alt="img"></p>
+<p>在其中找到 ANSWER SECTION 这个部分，它给出了查询的答案，域名对应的 IP 地址是 104.198.14.52。</p>
+<h2 id="三、域名的树状结构"><a href="#三、域名的树状结构" class="headerlink" title="三、域名的树状结构"></a>三、域名的树状结构</h2><p>你可能会问，难道 DNS 服务器（比如 1.1.1.1）保存了世界上所有域名（包括二级域名、三级域名）的 IP 地址？</p>
+<p>当然不是。DNS 是一个分布式系统，1.1.1.1 只是用户查询入口，它也需要再向其他 DNS 服务器查询，才能获得最终的 IP 地址。</p>
+<p>要说清楚 DNS 完整的查询过程，就必须了解 <strong>域名是一个树状结构</strong>。</p>
+<p>最顶层的域名是根域名（root），然后是顶级域名（top-level domain，简写 TLD），再是一级域名、二级域名、三级域名。</p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202208/bg2022080106.webp" alt="img"></p>
+<p><strong>（1）根域名</strong></p>
+<p>所有域名的起点都是根域名，它写作一个点<code>.</code>，放在域名的结尾。因为这部分对于所有域名都是相同的，所以就省略不写了，比如<code>example.com</code>等同于<code>example.com.</code>（结尾多一个点）。</p>
+<p>你可以试试，任何一个域名结尾加一个点，浏览器都可以正常解读。</p>
+<p><strong>（2）顶级域名</strong></p>
+<p>根域名的下一级是顶级域名。它分成两种：通用顶级域名（gTLD，比如 .com 和 .net）和国别顶级域名（ccTLD，比如 .cn 和 .us）。</p>
+<p>顶级域名由国际域名管理机构 ICANN 控制，它委托商业公司管理 gTLD，委托各国管理自己的国别域名。</p>
+<p><strong>（3）一级域名</strong></p>
+<p>一级域名就是你在某个顶级域名下面，自己注册的域名。比如，<code>ruanyifeng.com</code>就是我在顶级域名<code>.com</code>下面注册的。</p>
+<p><strong>（4）二级域名</strong></p>
+<p>二级域名是一级域名的子域名，是域名拥有者自行设置的，不用得到许可。比如，<code>es6</code> 就是 <code>ruanyifeng.com</code> 的二级域名。</p>
+<h2 id="四、域名的逐级查询"><a href="#四、域名的逐级查询" class="headerlink" title="四、域名的逐级查询"></a>四、域名的逐级查询</h2><p>这种树状结构的意义在于，<strong>只有上级域名，才知道下一级域名的 IP 地址，需要逐级查询。</strong></p>
+<p>每一级域名都有自己的 DNS 服务器，存放下级域名的 IP 地址。</p>
+<p>所以，如果想要查询二级域名 <code>es6.ruanyifeng.com</code> 的 IP 地址，需要三个步骤。</p>
+<blockquote>
+<p>第一步，查询根域名服务器，获得顶级域名服务器<code>.com</code>（又称 TLD 服务器）的 IP 地址。</p>
+<p>第二步，查询 TLD 服务器 <code>.com</code>，获得一级域名服务器 <code>ruanyifeng.com</code> 的 IP 地址。</p>
+<p>第三步，查询一级域名服务器 <code>ruanyifeng.com</code>，获得二级域名 <code>es6</code> 的 IP 地址。</p>
+</blockquote>
+<p>下面依次演示这三个步骤。</p>
+<h2 id="五、根域名服务器"><a href="#五、根域名服务器" class="headerlink" title="五、根域名服务器"></a>五、根域名服务器</h2><p>根域名服务器全世界一共有13台（都是服务器集群）。它们的域名和 IP 地址如下。</p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202208/bg2022080107.webp" alt="img"></p>
+<p>根域名服务器的 IP 地址是不变的，集成在操作系统里面。</p>
+<p>操作系统会选其中一台，查询 TLD 服务器的 IP 地址。</p>
+<blockquote>
+<pre class=" language-bash"><code class="language-bash">$ <span class="token function">dig</span> @192.33.4.12 es6.ruanyifeng.com
+</code></pre>
+</blockquote>
+<p>上面示例中，我们选择<code>192.33.4.12</code>，向它发出查询，询问<code>es6.ruanyifeng.com</code>的 TLD 服务器的 IP 地址。</p>
+<p>dig 命令的输出结果如下。</p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202208/bg2022080108.webp" alt="img"></p>
+<p>因为它给不了 <code>es6.ruanyifeng.com</code> 的 IP 地址，所以输出结果中没有 ANSWER SECTION，只有一个 AUTHORITY SECTION，给出了<code>com.</code>的13台 TLD 服务器的域名。</p>
+<p>下面还有一个 ADDITIONAL SECTION，给出了这13台 TLD 服务器的 IP 地址（包含 IPv4 和 IPv6 两个地址）。</p>
+<h2 id="六、TLD-服务器"><a href="#六、TLD-服务器" class="headerlink" title="六、TLD 服务器"></a>六、TLD 服务器</h2><p>有了 TLD 服务器的 IP 地址以后，我们再选一台接着查询。</p>
+<blockquote>
+<pre class=" language-bash"><code class="language-bash">$ <span class="token function">dig</span> @192.41.162.30 es6.ruanyifeng.com
+</code></pre>
+</blockquote>
+<p>上面示例中，192.41.162.30 是随便选的一台 .com 的 TLD 服务器，我们向它询问 <code>es6.ruanyifeng.com</code> 的 IP 地址。</p>
+<p>返回结果如下。</p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202208/bg2022080109.webp" alt="img"></p>
+<p>它依然没有 ANSWER SECTION 的部分，只有 AUTHORITY SECTION，给出了一级域名 ruanyifeng.com 的两台 DNS 服务器。</p>
+<p>下面的 ADDITIONAL SECTION 就是这两台 DNS 服务器对应的 IP 地址。</p>
+<h2 id="七、一级域名的-DNS-服务器"><a href="#七、一级域名的-DNS-服务器" class="headerlink" title="七、一级域名的 DNS 服务器"></a>七、一级域名的 DNS 服务器</h2><p>第三步，再向一级域名的 DNS 服务器查询二级域名的 IP 地址。</p>
+<blockquote>
+<pre class=" language-bash"><code class="language-bash">$ <span class="token function">dig</span> @172.64.32.123 es6.ruanyifeng.com
+</code></pre>
+</blockquote>
+<p>返回结果如下。</p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202208/bg2022080110.webp" alt="img"></p>
+<p>这次终于有了 ANSWER SECTION，得到了最终的二级域名的 IP 地址。</p>
+<p>至此，三个步骤的 DNS 查询全部完成。</p>
+<h2 id="八、DNS-服务器的种类"><a href="#八、DNS-服务器的种类" class="headerlink" title="八、DNS 服务器的种类"></a>八、DNS 服务器的种类</h2><p>总结一下，上面一共提到了四种服务器。</p>
+<blockquote>
 <ul>
-<li>静态服务一般返回的是<strong>静态资源</strong>，不同用户无论何时，只要访问同一个服务拿到的内容都是<strong>一毛一样</strong>的。比如不同用户去访问我的个人博客页面，浏览器上看到的内容都一样，因为我的博客是静态博客，因此提供的也就是静态服务。</li>
-<li>而动态服务一般返回的是<strong>动态资源</strong>，比如用户登录一个网站后台，比如就B站吧，肯定会根据不同的<strong>用户身份</strong>和<strong>权限信息</strong>返回给用户不同的内容和资源，所以不同人看到的东西也不一样，这种就可以理解为动态服务。</li>
+<li>1.1.1.1</li>
+<li>根域名服务器</li>
+<li>TLD 服务器</li>
+<li>一级域名服务器</li>
 </ul>
-<span id="more"></span>
-
-<p>所以，在我之前演示过的 <strong>「个人博客搭建系列视频」</strong> 里，像<code>Hexo</code>、<code>Hugo</code>、<code>VuePress</code>这种框架搭建的博客全部都属于静态博客，毕竟它们都是生成了固定<code>HTML</code>页面，然后托管起来，不论谁去访问看到的东西都一样；而像<code>WordPress</code>，<code>Hugo</code>这些有着后台应用服务的博客则属于动态博客，它们需要应用服务器的承载，部署起来也会更加复杂。</p>
-<hr>
-<h2 id="几个基本概念"><a href="#几个基本概念" class="headerlink" title="几个基本概念"></a>几个基本概念</h2><p>在这里，首先搞懂三个基本概念：</p>
+</blockquote>
+<p>它们都属于 DNS 服务器，都用来接受 DNS 查询。但是作用不一样，属于不同的类别。</p>
+<h3 id="8-1-递归-DNS-服务器"><a href="#8-1-递归-DNS-服务器" class="headerlink" title="8.1 递归 DNS 服务器"></a>8.1 递归 DNS 服务器</h3><p>后三种服务器只用来查询下一级域名的 IP 地址，而 1.1.1.1 则把分步骤的查询过程自动化，方便用户一次性得到结果，所以它称为<strong>递归 DNS 服务器</strong>（recursive DNS server），即可以自动递归查询。</p>
+<p>我们平常说的 DNS 服务器，一般都是指递归 DNS 服务器。它把 DNS 查询自动化了，只要向它查询就可以了。</p>
+<p>它内部有缓存，可以保存以前查询的结果，下次再有人查询，就直接返回缓存里面的结果。所以它能加快查询，减轻源头 DNS 服务器的负担。</p>
+<h3 id="8-2-权威-DNS-服务器"><a href="#8-2-权威-DNS-服务器" class="headerlink" title="8.2 权威 DNS 服务器"></a>8.2 权威 DNS 服务器</h3><p>一级域名服务器的正式名称叫做<strong>权威域名服务器</strong>（Authoritative Name Server）。</p>
+<p>“权威”的意思是域名的 IP 地址由它给定，不像递归服务器自己做不了主。我们购买域名后，设置 DNS 服务器就是在设置该域名的权威服务器。</p>
+<h3 id="8-3-四种-DNS-服务器"><a href="#8-3-四种-DNS-服务器" class="headerlink" title="8.3 四种 DNS 服务器"></a>8.3 四种 DNS 服务器</h3><p>综上所述，DNS 服务器可以分成四种：</p>
+<blockquote>
 <ul>
-<li>Web服务器</li>
-<li>HTTP服务器</li>
-<li>应用服务器</li>
+<li>根域名服务器</li>
+<li>TLD 服务器</li>
+<li>权威域名服务器</li>
+<li>递归域名服务器</li>
 </ul>
-<p><strong>1、Web服务器</strong></p>
-<p>我觉得这个概念是最广的！</p>
-<p>顾名思义，Web的功能就是提供Web化服务。那什么又叫Web服务呢，简单点理解比如：网站页面服务、邮件服务、网络下载服务等等，都可以称作Web化服务。</p>
-<p>总而言之，Web服务器从广义上来说，就是响应用户的需求并提供响应和服务。所以从这个角度来讲，当下几乎所有服务器软件都可以称之为Web服务器。</p>
-<p><strong>2、HTTP服务器</strong></p>
-<p>由于当今Web服务器应用层通信协议主要就是<code>HTTP</code>协议，所以我们 <strong>“基本”上可以将HTTP服务器理解为和Web服务器对等</strong>，因此在下文的阐述时这两个概念不会作过多的纠结区分。</p>
-<p>HTTP服务器只是把服务器上的资源通过HTTP协议传输给了客户端，所以这地方我们 <strong>侧重于</strong> 它对于静态资源传输的支持。因此一般也理解为<strong>静态服务器</strong>。</p>
-<p>当然它的功能一般不止这些，实际企业里也常做<strong>反向代理</strong>、<strong>负载均衡</strong>等用途。</p>
-<p><strong>3、应用服务器</strong></p>
-<p>应用服务器，则可以理解为一个特定应用的承载<strong>容器</strong>。一般来说它需要有运行时环境的支持。比如在Java领域比较常用的应用服务器<code>Tomcat</code>，它就必须要Java运行时环境的支持。</p>
-<p>因此，应用服务器也常常被称为：<strong>动态服务器</strong>、<strong>动态容器</strong>、<strong>应用容器</strong>、<strong>Web容器</strong>等等，这些概念基本都是对等的。</p>
-<p>既然属于动态服务器，很明显它就能支持动态响应，比如可以根据不同用户的请求，能够动态的生成资源并返回。这样一来，在客户端，不同用户拿到的返回内容也不一样，不像静态服务器，大家拿到的资源都一样。</p>
-<p>当然一般来说，在流量不大的场景下，应用服务器肯定也是可以做HTTP服务器来用，只不过很少有这么去干的。</p>
-<p>所以接下来我们就以目前市场上常用的服务器软件为例，逐个对号入座，来审视一遍，大致有十几款软件。</p>
-<hr>
-<h2 id="Nginx"><a href="#Nginx" class="headerlink" title="Nginx"></a>Nginx</h2><p><img src="C:\Users\86185\AppData\Roaming\Typora\typora-user-images\image-20220807115110637.png" alt="image-20220807115110637"></p>
-<p>Nginx是一个典型的<strong>HTTP服务器</strong>。它原本的本职工作就是将服务端的某一个<strong>静态内容或资源</strong>通过HTTP协议传到客户端，所以也就是典型的静态服务器。</p>
-<p>当然Nginx服务器的功能远不止这些，现在常用的功能还包括做反向代理、负载均衡。</p>
-<p>现实应用部署场景中，Nginx一般是与后面真正的动态应用服务器<strong>打配合</strong>，比如<code>Tomcat</code>，把用户请求转发给后面的应用服务器，从而提供灵活稳定的Web服务。因为Nginx服务器<strong>性能好</strong>，<strong>稳定性也高</strong>，能扛得住冲击，把它放在前面去直面用户。</p>
-<p><img src="C:\Users\86185\AppData\Roaming\Typora\typora-user-images\image-20220807115056845.png" alt="image-20220807115056845"></p>
-<p>当然，Nginx服务器本身也可以在诸如<code>Lua</code>等脚本的辅助下做二次开发，可以变成一个提供动态服务的应用服务器，这也就是大名鼎鼎的<code>OpenResty</code>！</p>
-<p><img src="C:\Users\86185\AppData\Roaming\Typora\typora-user-images\image-20220807115044291.png" alt="image-20220807115044291"></p>
-<p>Nginx这玩意是纯<code>C</code>语言写的，代码也是开源的，官网就能够下载得到。性能贼高，而且内存消耗贼少，稳定性也是一等的好，所以你看市面上大量的互联网公司在重度使用它。</p>
-<hr>
-<h2 id="Tengine"><a href="#Tengine" class="headerlink" title="Tengine"></a>Tengine</h2><p><img src="C:\Users\86185\AppData\Roaming\Typora\typora-user-images\image-20220807115029631.png" alt="image-20220807115029631"></p>
-<p>Tengine其实是基于Nginx服务器做的改造，可以看做是在Nginx的基础上又做了<strong>加强</strong>和<strong>封装</strong>，主要就是针对大流量网站的需求，添加了很多高级功能和特性。</p>
-<p><img src="C:\Users\86185\AppData\Roaming\Typora\typora-user-images\image-20220807115016013.png" alt="image-20220807115016013"></p>
-<p>Tengine它是淘宝发起的Web服务器项目。它的性能和稳定性已经在大型的网站如淘宝网，天猫商城等得到了很好的检验。它的最终目标是打造一个高效、稳定、安全、易用的Web平台。</p>
-<p>所以Tengine它和Nginx哥俩是一个性质的东西。</p>
-<hr>
-<h2 id="Apache"><a href="#Apache" class="headerlink" title="Apache"></a>Apache</h2><p><img src="C:\Users\86185\AppData\Roaming\Typora\typora-user-images\image-20220807114953945.png" alt="image-20220807114953945"></p>
-<p>当然这个地方的Apache服务器具体指的就是：<code>Apache HTTP Server</code>，它是Apache软件组织旗下的一个HTTP服务器项目。</p>
-<p>Apache从功能上来说和Nginx服务器对等，也是做静态HTTP服务器，只不过在并发、负载和资源消耗等方面的性能都比不上Nginx，所以现在选用Nginx的更多。</p>
-<hr>
-<h2 id="IIS"><a href="#IIS" class="headerlink" title="IIS"></a>IIS</h2><p>IIS是微软阵营的Web服务器，只能运行于Windows系统下，而且并不是开源的。</p>
-<p><img src="C:\Users\86185\AppData\Roaming\Typora\typora-user-images\image-20220807114938752.png" alt="image-20220807114938752"></p>
-<p>IIS的主要身份还是一个HTTP服务器，但由于它也支持比如<code>ASP.NET</code>这种类似环境（毕竟都是微软自家的东西），因此也可以兼做应用服务器，所以它可以定位为一个具有应用服务器能力的HTTP服务器。</p>
-<hr>
-<h2 id="Tomcat"><a href="#Tomcat" class="headerlink" title="Tomcat"></a>Tomcat</h2><p><code>Tomcat</code>和上面所述的<code>Apache HTTP Server</code>一样，虽然都是隶属于Apache软件组织旗下的子项目。</p>
-<p>但Tomcat它却是一个典型的<strong>应用服务器软件</strong>，或者说是<strong>Web容器</strong>、<strong>动态容器</strong>、<strong>应用容器</strong>，提供的是动态服务，而且它需要Java运行环境的支持。所以它和像上面讲过的<code>Nginx</code>、<code>Tengine</code>、<code>Apache</code> 不是一个性质的服务器软件。</p>
-<p><img src="C:\Users\86185\AppData\Roaming\Typora\typora-user-images\image-20220807114922112.png" alt="image-20220807114922112"></p>
-<p>众所周知，现在大名鼎鼎的<code>Spring Boot</code>框架就将Tomcat作为<strong>内嵌的默认应用服务器</strong>，或者叫应用容器。</p>
-<p>Tomcat本身其实就是一个，也仅仅是一个，支持Servlet标准的Java EE应用容器，所以主要用途也就是做Java EE应用服务器。</p>
-<p>虽说Tomcat是一个动态应用服务器，但是在流量不大的场景里，当然也可以直接提供HTTP服务，但一般不会这么去用，不会让Tomcat去直面客户，而是像上文所述，Tomcat一般是和诸如Nginx这种高性能静态服务器打配合，Nginx负责接收请求，然后<strong>转发</strong>到后面真正的Tomcat容器里去处理。</p>
-<hr>
-<h2 id="Jetty"><a href="#Jetty" class="headerlink" title="Jetty"></a>Jetty</h2><p>Jetty也是大名鼎鼎的Spring Boot框架所支持的内嵌应用容器之一，只不过不是默认的而已，所以Jetty是和Tomcat是一个性质的东西。</p>
-<p><img src="C:\Users\86185\AppData\Roaming\Typora\typora-user-images\image-20220807114908087.png" alt="image-20220807114908087"></p>
-<p>按照Jetty官网来说，Jetty是一个开源的<strong>HTTP服务器 + 应用容器</strong>，因此可以提供静态或者动态服务，而且提供了对：<code>HTTP/2</code>，<code>WebSocket</code>，<code>JMX</code>等等许多其他集成的支持。</p>
-<p>如果拿Jetty和Tomcat对比，两者在功能上几乎是一致的，都是做动态应用容器居多，也都符合Servlet标准。只是Jetty比Tomcat要轻量一些，配置也更简单一些而已，所以大家在用Spring Boot框架时，也别光可着Tomcat一种用，也可以切换到Jetty容器用用看。</p>
-<hr>
-<h2 id="Undertow"><a href="#Undertow" class="headerlink" title="Undertow"></a>Undertow</h2><p>Undertow和上面阐述过的Tomcat、Jetty一样，也是大名鼎鼎的Spring Boot框架所支持的内嵌应用容器之一。</p>
-<p><img src="C:\Users\86185\AppData\Roaming\Typora\typora-user-images\image-20220807114852837.png" alt="image-20220807114852837"></p>
-<p>Undertow是Red Hat红帽子公司开源的一款基于Java语言编写的应用服务器，也是下面即将要阐述的一款名为<code>Wildfly</code>应用服务器的默认Web容器。</p>
-<p>Undertow也符合Servlet标准规范，支持<code>HTTP/2</code>，支持<code>WebSocket</code>，是一款灵活的，高性能Web应用服务器。</p>
-<p>在并发量不高的情况下 , Undertow与Tomcat、Jetty的性能区别不大 , 但是在并发量高的情况下, Undertow的性能其实是要<strong>优于</strong>Jetty与Tomcat的。</p>
-<hr>
-<p>小结一下，上面介绍的不管是<code>Tomcat</code>、<code>Jetty</code>、<code>Undertow</code>，其实都还是属于那种蛮轻量的应用服务器，不重，也是开源免费的，实际用得也是非常非常多的。</p>
-<p>然后下面再介绍几款重量级的服务器软件，当然很多也都是商用软件，他们的功能会更加综合、体量更大，虽然主要功能也是做应用服务器（应用容器），但它们更多算是一种平台级别的软件。</p>
-<hr>
-<h2 id="JBoss-x2F-WildFly"><a href="#JBoss-x2F-WildFly" class="headerlink" title="JBoss/WildFly"></a>JBoss/WildFly</h2><p>JBoss也是一个Java EE应用服务器，可以部署动态应用，但它不仅仅是<code>Servlet</code>应用容器，而且还是<code>EJB</code>应用容器。</p>
-<p><img src="C:\Users\86185\AppData\Roaming\Typora\typora-user-images\image-20220807114835730.png" alt="image-20220807114835730"></p>
-<p>JBoss在早年的确是非常火的一款动态应用服务器软件，尤其是在EJB应用时代发挥着巨大的作用。而且更广泛意义上的JBoss已经不仅仅是一个Java应用服务器了，而是一套基于Java EE框架的全套解决方案，所以也算是一个比较重量级的应用服务平台。</p>
-<p>JBoss AS从<strong>版本8</strong>开始更名为<code>WildFly</code>了，因此现在你如果试图去访问JBoss官网的话，JBoss官网已经提示迁移到<code>wildfly.org</code>了。</p>
-<p><img src="C:\Users\86185\AppData\Roaming\Typora\typora-user-images\image-20220807114819821.png" alt="image-20220807114819821"></p>
-<p>所以WildFly也是一款企业级的应用服务器，由Red Hat红帽子公司开发维护，而且Wildfly应用服务器中的默认的Web容器就是上文阐述过的Undertow。</p>
-<hr>
-<h2 id="WebLogic"><a href="#WebLogic" class="headerlink" title="WebLogic"></a>WebLogic</h2><p>WebLogic是Oracle公司出品的用于部署企业级Java EE应用程序的<strong>应用服务器</strong>。</p>
-<p><img src="C:\Users\86185\AppData\Roaming\Typora\typora-user-images\image-20220807114757973.png" alt="image-20220807114757973"></p>
-<p>它可谓是一个“全能型”的重量级应用服务器软件，因为支持Java EE的几乎所有应用规范，包括<code>EJB</code>、<code>Servlet</code>、<code>JMS</code>… 等等，当然，它毕竟是一个商业软件，有着强大的商业化和周边组件的支持，和Tomcat这种开源免费的应用容器的体量当然不一样。</p>
-<hr>
-<h2 id="WebSphere"><a href="#WebSphere" class="headerlink" title="WebSphere"></a>WebSphere</h2><p>WebSphere是IBM公司出品的Java EE应用服务器软件，功能很强大，而且有IBM的开发工具相配套，当然它也是一个价格不菲的商业服务器软件。</p>
-<p><img src="C:\Users\86185\AppData\Roaming\Typora\typora-user-images\image-20220807114735324.png" alt="image-20220807114735324"></p>
-<p>和WebLogic一样，WebSphere也是一个支持更多Java EE标准和规范的综合性应用服务器环境，可靠性高，体量更大，性能更好，功能也更全，当然使用的成本也会高很多。</p>
-<hr>
-<p>每天进步一点点，Peace！</p>
+</blockquote>
+<p>它们的关系如下图。</p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202208/bg2022080112.webp" alt="img"></p>
+<p>知道了 DNS 查询的原理，完全可以自己写一个 DNS 的递归服务器，这是不难的。网上有很多参考资料，有兴趣的话，大家可以试试看。</p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202208/bg2022080111.webp" alt="img"></p>
+<h2 id="九、参考网址"><a href="#九、参考网址" class="headerlink" title="九、参考网址"></a>九、参考网址</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://timothya.com/blog/dns/">Building a Recursive DNS Resolver</a>, Timothy Andrew</li>
+<li><a target="_blank" rel="noopener" href="https://www.dnsfilter.com/blog/authoritative-vs-recursive-dns">Authoritative Vs Recursive DNS: What You Need To Know</a>, Serena Raymond</li>
+<li><a target="_blank" rel="noopener" href="https://www.cloudflare.com/zh-cn/learning/dns/dns-server-types/">DNS 服务器类型</a>，Cloudflare</li>
+</ul>
 
       
 
@@ -398,7 +414,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">服务器</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">DNS</a>
         		</li>
       		
 		</ul>
@@ -483,7 +499,7 @@
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          IP 基础知识
+          hashmap的hash（）方法
         
       </div>
     </a>
@@ -517,7 +533,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%99%E6%80%81%E6%9C%8D%E5%8A%A1-VS-%E5%8A%A8%E6%80%81%E6%9C%8D%E5%8A%A1"><span class="toc-number">1.</span> <span class="toc-text">静态服务 VS 动态服务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%A0%E4%B8%AA%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="toc-number">2.</span> <span class="toc-text">几个基本概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Nginx"><span class="toc-number">3.</span> <span class="toc-text">Nginx</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Tengine"><span class="toc-number">4.</span> <span class="toc-text">Tengine</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Apache"><span class="toc-number">5.</span> <span class="toc-text">Apache</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IIS"><span class="toc-number">6.</span> <span class="toc-text">IIS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Tomcat"><span class="toc-number">7.</span> <span class="toc-text">Tomcat</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Jetty"><span class="toc-number">8.</span> <span class="toc-text">Jetty</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Undertow"><span class="toc-number">9.</span> <span class="toc-text">Undertow</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JBoss-x2F-WildFly"><span class="toc-number">10.</span> <span class="toc-text">JBoss&#x2F;WildFly</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#WebLogic"><span class="toc-number">11.</span> <span class="toc-text">WebLogic</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#WebSphere"><span class="toc-number">12.</span> <span class="toc-text">WebSphere</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81DNS-%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-number">1.</span> <span class="toc-text">一、DNS 服务器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81dig-%E5%91%BD%E4%BB%A4"><span class="toc-number">2.</span> <span class="toc-text">二、dig 命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%9F%9F%E5%90%8D%E7%9A%84%E6%A0%91%E7%8A%B6%E7%BB%93%E6%9E%84"><span class="toc-number">3.</span> <span class="toc-text">三、域名的树状结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E5%9F%9F%E5%90%8D%E7%9A%84%E9%80%90%E7%BA%A7%E6%9F%A5%E8%AF%A2"><span class="toc-number">4.</span> <span class="toc-text">四、域名的逐级查询</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E6%A0%B9%E5%9F%9F%E5%90%8D%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-number">5.</span> <span class="toc-text">五、根域名服务器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81TLD-%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-number">6.</span> <span class="toc-text">六、TLD 服务器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%83%E3%80%81%E4%B8%80%E7%BA%A7%E5%9F%9F%E5%90%8D%E7%9A%84-DNS-%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-number">7.</span> <span class="toc-text">七、一级域名的 DNS 服务器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AB%E3%80%81DNS-%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E7%A7%8D%E7%B1%BB"><span class="toc-number">8.</span> <span class="toc-text">八、DNS 服务器的种类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#8-1-%E9%80%92%E5%BD%92-DNS-%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-number">8.1.</span> <span class="toc-text">8.1 递归 DNS 服务器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-2-%E6%9D%83%E5%A8%81-DNS-%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-number">8.2.</span> <span class="toc-text">8.2 权威 DNS 服务器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-3-%E5%9B%9B%E7%A7%8D-DNS-%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-number">8.3.</span> <span class="toc-text">8.3 四种 DNS 服务器</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B9%9D%E3%80%81%E5%8F%82%E8%80%83%E7%BD%91%E5%9D%80"><span class="toc-number">9.</span> <span class="toc-text">九、参考网址</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -656,7 +672,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">IP全家桶</a>
+                <a href="javascript:void(0)" class="js-tag color4">DNS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -665,10 +681,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">jvm面试题收集一</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">服务器</a>
               </li>
             
             <div class="clearfix"></div>
