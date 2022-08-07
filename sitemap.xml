@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://dick-su-3.github.io/archives/4ac2cecb.html</loc>
+    
+    <lastmod>2022-08-07</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://dick-su-3.github.io/archives/2f76a78a.html</loc>
     
     <lastmod>2022-08-07</lastmod>
@@ -154,6 +163,13 @@
   </url>
   
   <url>
+    <loc>https://dick-su-3.github.io/tags/%E9%80%89%E9%94%AE%E7%9B%98/</loc>
+    <lastmod>2022-08-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://dick-su-3.github.io/tags/jvm%E9%9D%A2%E8%AF%95%E9%A2%98%E6%94%B6%E9%9B%86%E4%B8%80/</loc>
     <lastmod>2022-08-07</lastmod>
     <changefreq>weekly</changefreq>
@@ -184,13 +200,6 @@
   </url>
   
   <url>
-    <loc>https://dick-su-3.github.io/categories/IP/</loc>
-    <lastmod>2022-08-07</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://dick-su-3.github.io/categories/hexo%E3%80%81yilia/</loc>
     <lastmod>2022-08-07</lastmod>
     <changefreq>weekly</changefreq>
@@ -205,7 +214,21 @@
   </url>
   
   <url>
+    <loc>https://dick-su-3.github.io/categories/IP/</loc>
+    <lastmod>2022-08-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://dick-su-3.github.io/categories/hexo%E3%80%81github/</loc>
+    <lastmod>2022-08-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://dick-su-3.github.io/categories/%E9%94%AE%E7%9B%98/</loc>
     <lastmod>2022-08-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
