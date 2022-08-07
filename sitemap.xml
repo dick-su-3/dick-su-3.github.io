@@ -110,13 +110,6 @@
 
   
   <url>
-    <loc>https://dick-su-3.github.io/tags/DNS/</loc>
-    <lastmod>2022-08-07</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://dick-su-3.github.io/tags/hashmap/</loc>
     <lastmod>2022-08-07</lastmod>
     <changefreq>weekly</changefreq>
@@ -124,14 +117,14 @@
   </url>
   
   <url>
-    <loc>https://dick-su-3.github.io/tags/yilia%E9%85%8D%E7%BD%AE/</loc>
+    <loc>https://dick-su-3.github.io/tags/DNS/</loc>
     <lastmod>2022-08-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://dick-su-3.github.io/tags/springboot%E6%91%98%E5%BD%95%E5%AD%A6%E4%B9%A0/</loc>
+    <loc>https://dick-su-3.github.io/tags/yilia%E9%85%8D%E7%BD%AE/</loc>
     <lastmod>2022-08-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -151,14 +144,14 @@
     <priority>0.2</priority>
   </url>
   
-
-  
   <url>
-    <loc>https://dick-su-3.github.io/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/</loc>
+    <loc>https://dick-su-3.github.io/tags/springboot%E6%91%98%E5%BD%95%E5%AD%A6%E4%B9%A0/</loc>
     <lastmod>2022-08-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
+  
+
   
   <url>
     <loc>https://dick-su-3.github.io/categories/hashmap/</loc>
@@ -168,14 +161,14 @@
   </url>
   
   <url>
-    <loc>https://dick-su-3.github.io/categories/hexo%E3%80%81yilia/</loc>
+    <loc>https://dick-su-3.github.io/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/</loc>
     <lastmod>2022-08-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://dick-su-3.github.io/categories/springboot/</loc>
+    <loc>https://dick-su-3.github.io/categories/hexo%E3%80%81yilia/</loc>
     <lastmod>2022-08-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -197,6 +190,13 @@
   
   <url>
     <loc>https://dick-su-3.github.io/categories/JVM/</loc>
+    <lastmod>2022-08-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://dick-su-3.github.io/categories/springboot/</loc>
     <lastmod>2022-08-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
