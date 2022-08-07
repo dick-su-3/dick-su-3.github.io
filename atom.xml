@@ -6,7 +6,7 @@
   <link href="https://dick-su-3.github.io/atom.xml" rel="self"/>
   
   <link href="https://dick-su-3.github.io/"/>
-  <updated>2022-08-07T12:59:46.228Z</updated>
+  <updated>2022-08-07T13:06:20.076Z</updated>
   <id>https://dick-su-3.github.io/</id>
   
   <author>
@@ -21,15 +21,25 @@
     <link href="https://dick-su-3.github.io/archives/e48a9d1b.html"/>
     <id>https://dick-su-3.github.io/archives/e48a9d1b.html</id>
     <published>2022-08-07T12:46:25.000Z</published>
-    <updated>2022-08-07T12:59:46.228Z</updated>
+    <updated>2022-08-07T13:06:20.076Z</updated>
     
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>在<code>themes\yilia\source\</code>文件夹下<br>增加一个css文件<code>avatarrotation.css</code>用来旋转360度<br>内容如下：</p><pre><code>.left-col #header .profilepic img {    /* 控制旋转速度时间*/  -webkit-transition: -webkit-transform 1.0s ease-out;  -moz-transition: -moz-transform 1.0s ease-out;  transition: transform 1.0s ease-out;}.left-col #header .profilepic img:hover {    /* 鼠标经过360% */  -webkit-transform: rotateZ(360deg);  -moz-transform: rotateZ(360deg);  transform: rotateZ(360deg);}</code></pre><p>然后在<code>themes\yilia\layout\_partial\head.ejs</code>文件中添加进去创建的<code>css</code>文件：<br>找到<code>&lt;%- partial('css') %&gt;</code>，在它的下面添加代码，把刚才写的文件添加进去，<strong>注意！！是在它的下面添加，不然旋转速度将不会生效</strong></p><pre><code>&lt;% if (theme.avatarrotation){ %&gt;    &lt;link rel="stylesheet" type="text/css" href="/./avatarrotation.css"&gt;&lt;% } %&gt;</code></pre><p>如果<code>css</code>不生效，查看<code>css</code>中的<code>href</code>位置是否写错了，可根据你具体存放的位置写路径。<br>最后在<code>主题文件_config.yml</code>中添加</p><pre><code>#头像是否旋转(如果不要旋转取false)avatarrotation: true</code></pre><p>最终就可以旋转了！</p>]]></content>
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>在<code>themes\yilia\source\</code>文件夹下<br>增加一个css文件<code>avatarrotation.css</code>用来旋转360度<br>内容如下：</p><pre><code>.left-col #header .profilepic img {    /* 控制旋转速度时间*/  -webkit-transition: -webkit-transform 1.0s ease-out;  -moz-transition: -moz-transform 1.0s ease-out;  transition: transform 1.0s ease-out;}.left-col #header .profilepic img:hover {    /* 鼠标经过360% */  -webkit-transform: rotateZ(360deg);  -moz-transform: rotateZ(360deg);  transform: rotateZ(360deg);}</code></pre><span id="more"></span><p>然后在<code>themes\yilia\layout\_partial\head.ejs</code>文件中添加进去创建的<code>css</code>文件：<br>找到<code>&lt;%- partial('css') %&gt;</code>，在它的下面添加代码，把刚才写的文件添加进去，<strong>注意！！是在它的下面添加，不然旋转速度将不会生效</strong></p><pre><code>&lt;% if (theme.avatarrotation){ %&gt;    &lt;link rel="stylesheet" type="text/css" href="/./avatarrotation.css"&gt;&lt;% } %&gt;</code></pre><p>如果<code>css</code>不生效，查看<code>css</code>中的<code>href</code>位置是否写错了，可根据你具体存放的位置写路径。<br>最后在<code>主题文件_config.yml</code>中添加</p><pre><code>#头像是否旋转(如果不要旋转取false)avatarrotation: true</code></pre><p>最终就可以旋转了！</p>]]></content>
     
     
-      
-      
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla</summary>
-      
+    <summary type="html">&lt;p&gt;在&lt;code&gt;themes\yilia\source\&lt;/code&gt;文件夹下&lt;br&gt;增加一个css文件&lt;code&gt;avatarrotation.css&lt;/code&gt;用来旋转360度&lt;br&gt;内容如下：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;.left-col #header .profilepic img {
+    /* 控制旋转速度时间*/
+  -webkit-transition: -webkit-transform 1.0s ease-out;
+  -moz-transition: -moz-transform 1.0s ease-out;
+  transition: transform 1.0s ease-out;
+}
+.left-col #header .profilepic img:hover {
+    /* 鼠标经过360% */
+  -webkit-transform: rotateZ(360deg);
+  -moz-transform: rotateZ(360deg);
+  transform: rotateZ(360deg);
+}
+&lt;/code&gt;&lt;/pre&gt;</summary>
     
     
     
@@ -45,15 +55,27 @@
     <link href="https://dick-su-3.github.io/archives/fbe1990d.html"/>
     <id>https://dick-su-3.github.io/archives/fbe1990d.html</id>
     <published>2022-08-07T12:43:02.000Z</published>
-    <updated>2022-08-07T12:59:46.231Z</updated>
+    <updated>2022-08-07T13:06:01.374Z</updated>
     
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><ul><li>node_modules：文件夹中放依赖包</li><li>public：存放的是hexo根据source里的内容生成的页面</li><li>scaffolds：命令生成文章等的模板</li><li>source：用hexo命令创建的各种文章</li><li>themes：所下载的主题全放里面</li><li>_config.yml：整个博客站点的配置</li><li>db.json：source解析所得到的</li><li>package.json：项目所需模块项目的配置信息</li></ul><p>在<code>_config.yml</code>中添加配置, 部署到自己的GitHub网站上</p><pre><code>deploy:  type: git  repo: https://github.com/YourgithubName/YourgithubName.github.io.git  branch: master</code></pre><blockquote><p>常用hexo指令：<a href="https://hexo.io/zh-cn/docs/commands.html">（官网查看指令链接）</a></p></blockquote><p><code>hexo version</code>: 显示版本号<br><code>hexo init</code>: 初始化<br><code>hexo new &lt;title&gt;</code>: 新建文章(默认等同于<code>hexo new post &lt;title&gt;</code>)<br><code>hexo generate</code>或者<code>hexo g</code>: 静态文件生成<br><code>hexo publish</code>: 发布<br><code>hexo server</code>或者<code>hexo s</code>: 启动本地服务器<br><code>hexo deploy</code>或者<code>hexo d</code>: 自动生成静态文件并部署网站<br><code>hexo clean</code>: 清除缓存和已生成的静态文件(一般在更换主题或者修改没有生效的情况下)<br><code>hexo --safe/--debug/--slient</code>: 安全/调试/简洁模式<br><code>hexo new draft "&lt;title&gt;"</code>: 创建草稿，可以把不用的却不舍得删的文件已到这个目录下<br><code>hexo new tags "&lt;title&gt;"</code>: 创建标签<br><code>hexo new categories "&lt;title&gt;"</code>: 创建分类</p><blockquote><p>组合操作</p></blockquote><p><code>hexo deploy -g</code> 生成静态文件并部署网站<br><code>hexo server -g </code>生成静态文件并且启动本地服务器<br><code>hexo clean &amp;&amp; hexo s</code>: 清理并启动本地服务器<br><code>hexo clean &amp;&amp; hexo d</code>: 清理并部署网站</p><blockquote><p>标题、标签、分类</p></blockquote><p>在Markdown文件的开头添加</p><pre><code>---title: 标题category:  分类tags: 标签---</code></pre><p>例子：</p><pre><code>---title: hexo相关date: 2018-09-29 13:05:30categories: [technology]tags: [hexo]---</code></pre><p>如果使用<code>hexo new</code>命令或者是用工具<code>hexoEdit.app</code>新建文章会自动生成上面的结构。<br><strong>（注：<a href="https://github.com/zhuzhuyule/HexoEditor">hexoEdit</a>是一款书写markdown的工具，在windows和mac上都有版本，这款工具内核是以<a href="https://moeditor.github.io/">moeditor</a>为基础改造成可以快速用于hexo blog。<br>在工具内的<code>设置</code>中配好<code>hexo配置文件</code>，<code>创建Post</code>就会创建hexo文章并把文件保存路径自动定位到hexo的目录中）</strong></p><p>多个标签的设置</p><p>方式一：仿照Hexo配置文件中的写法</p><pre><code>tags:  - Hexo  - java  - JavaScript</code></pre><p>方式二：数组写法</p><pre><code>tags: [前端,Hexo,HTML,JavaScript]</code></pre>]]></content>
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><ul><li><p>node_modules：文件夹中放依赖包</p></li><li><p>public：存放的是hexo根据source里的内容生成的页面</p></li><li><p>scaffolds：命令生成文章等的模板</p></li><li><p>source：用hexo命令创建的各种文章</p></li><li><p>themes：所下载的主题全放里面</p></li><li><p>_config.yml：整个博客站点的配置</p></li><li><p>db.json：source解析所得到的</p></li><li><p>package.json：项目所需模块项目的配置信息</p><span id="more"></span></li></ul><p>在<code>_config.yml</code>中添加配置, 部署到自己的GitHub网站上</p><pre><code>deploy:  type: git  repo: https://github.com/YourgithubName/YourgithubName.github.io.git  branch: master</code></pre><blockquote><p>常用hexo指令：<a href="https://hexo.io/zh-cn/docs/commands.html">（官网查看指令链接）</a></p></blockquote><p><code>hexo version</code>: 显示版本号<br><code>hexo init</code>: 初始化<br><code>hexo new &lt;title&gt;</code>: 新建文章(默认等同于<code>hexo new post &lt;title&gt;</code>)<br><code>hexo generate</code>或者<code>hexo g</code>: 静态文件生成<br><code>hexo publish</code>: 发布<br><code>hexo server</code>或者<code>hexo s</code>: 启动本地服务器<br><code>hexo deploy</code>或者<code>hexo d</code>: 自动生成静态文件并部署网站<br><code>hexo clean</code>: 清除缓存和已生成的静态文件(一般在更换主题或者修改没有生效的情况下)<br><code>hexo --safe/--debug/--slient</code>: 安全/调试/简洁模式<br><code>hexo new draft "&lt;title&gt;"</code>: 创建草稿，可以把不用的却不舍得删的文件已到这个目录下<br><code>hexo new tags "&lt;title&gt;"</code>: 创建标签<br><code>hexo new categories "&lt;title&gt;"</code>: 创建分类</p><blockquote><p>组合操作</p></blockquote><p><code>hexo deploy -g</code> 生成静态文件并部署网站<br><code>hexo server -g </code>生成静态文件并且启动本地服务器<br><code>hexo clean &amp;&amp; hexo s</code>: 清理并启动本地服务器<br><code>hexo clean &amp;&amp; hexo d</code>: 清理并部署网站</p><blockquote><p>标题、标签、分类</p></blockquote><p>在Markdown文件的开头添加</p><pre><code>---title: 标题category:  分类tags: 标签---</code></pre><p>例子：</p><pre><code>---title: hexo相关date: 2018-09-29 13:05:30categories: [technology]tags: [hexo]---</code></pre><p>如果使用<code>hexo new</code>命令或者是用工具<code>hexoEdit.app</code>新建文章会自动生成上面的结构。<br><strong>（注：<a href="https://github.com/zhuzhuyule/HexoEditor">hexoEdit</a>是一款书写markdown的工具，在windows和mac上都有版本，这款工具内核是以<a href="https://moeditor.github.io/">moeditor</a>为基础改造成可以快速用于hexo blog。<br>在工具内的<code>设置</code>中配好<code>hexo配置文件</code>，<code>创建Post</code>就会创建hexo文章并把文件保存路径自动定位到hexo的目录中）</strong></p><p>多个标签的设置</p><p>方式一：仿照Hexo配置文件中的写法</p><pre><code>tags:  - Hexo  - java  - JavaScript</code></pre><p>方式二：数组写法</p><pre><code>tags: [前端,Hexo,HTML,JavaScript]</code></pre>]]></content>
     
     
-      
-      
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla</summary>
-      
+    <summary type="html">&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;node_modules：文件夹中放依赖包&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;public：存放的是hexo根据source里的内容生成的页面&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;scaffolds：命令生成文章等的模板&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;source：用hexo命令创建的各种文章&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;themes：所下载的主题全放里面&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;_config.yml：整个博客站点的配置&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;db.json：source解析所得到的&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;package.json：项目所需模块项目的配置信息&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;</summary>
     
     
     
