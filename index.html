@@ -97,7 +97,7 @@
 		</nav>
 		
 		<nav>
-总文章数 7
+总文章数 8
 </nav>
 
 		<nav class="header-smart-menu">
@@ -136,7 +136,7 @@
 	
 
 		</nav>
-		<span class="post-count">83.8k</span>
+		<span class="post-count">88.6k</span>
 	</header>
 
 </div>
@@ -775,6 +775,116 @@
 
 
   
+    <article id="post-Hexo-Yilia-高级配置" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/archives/a5f1f796.html">Hexo Yilia高级配置</a>
+    </h1>
+  
+
+        
+        <!-- 目录内容 -->
+
+<!-- 目录内容结束 -->
+
+        <div align="center" class="post-count">
+字数：4.8k字 | 预计阅读时长：22分钟</div>
+
+        <!--显示阅读次数-->
+
+<!--显示阅读次数完毕-->
+
+        
+        
+
+<a href="/archives/a5f1f796.html" class="archive-article-date">
+  	<time datetime="2022-08-07T14:19:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-08-07</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>这篇文章列举了搭建博客至今遇到所有问题的解决方法以及一些新功能的添加方法。</strong><br>这篇文章集合了几乎所有的Hexo Yilia进阶用法教程，包括且不限于：<br>1.微信分享异常 2.“所有文章”无显示 3.显示总文章数 4.置顶文章 5.文章加密 6.文章点击数统计 7.版权声明 8.字数、阅读时长 9.点击红心 10.文章结束 11.404 12.Sitemap 13.自动推送 14.百度统计 15.链接提交 16.google收录 17.Valine增删改查，邮件提示，云引擎 18.板娘<br>19.Yilia标签搜索Bug 20.添加文章顶部转载说明 21.google广告投放 22 Gitment/Gitalk评论系统 23.tag中含有大写字母的bug 24.hexo-d失败 25 跳转到指定位置</p>
+<h1 id="1、微信分享异常"><a href="#1、微信分享异常" class="headerlink" title="1、微信分享异常"></a>1、微信分享异常</h1><p>这里是themes\yilia\layout\ _partial\post\share.ejs出了问题。<br>而且是两个问题：</p>
+<h2 id="1-1-首先是百度网盘取消了生成二维码的功能。"><a href="#1-1-首先是百度网盘取消了生成二维码的功能。" class="headerlink" title="1.1 首先是百度网盘取消了生成二维码的功能。"></a>1.1 首先是百度网盘取消了生成二维码的功能。</h2><p>解决方法是修改themes\yilia\layout_partial\post\share.ejs<br>文件中的</p>
+<pre><code>//pan.baidu.com/share/qrcode?url=
+</code></pre>
+<p>修改为</p>
+<pre><code>//api.qrserver.com/v1/create-qr-code/?size=150x150&amp;data=
+</code></pre>
+        
+          <a class="article-more-a" href="/archives/a5f1f796.html#more">more >></a>
+        
+      
+
+
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">yilia配置</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/hexo、yilia//" class="article-tag-list-link color1">hexo、yilia</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/archives/a5f1f796.html">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-hexo相关2" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1134,15 +1244,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">yilia配置</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">springboot摘录学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">jvm面试题收集一</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">springboot摘录学习</a>
               </li>
             
             <div class="clearfix"></div>
