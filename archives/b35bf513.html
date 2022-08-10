@@ -6,17 +6,26 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://dick-su-3.github.io">
-  <title>Category: spring、AOP | 云卷舒</title>
+  <title>png图片压缩原理 | 云卷舒</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="岁月不回头，且行且珍惜">
-<meta property="og:type" content="website">
-<meta property="og:title" content="云卷舒">
-<meta property="og:url" content="https://dick-su-3.github.io/categories/spring%E3%80%81AOP/index.html">
+  <meta name="description" content="什么是PNGPNG的全称叫便携式网络图型（Portable Network Graphics）是目前最流行的网络传输和展示的图片格式，原因有如下几点：  无损压缩：PNG图片采取了基于LZ77派生算法对文件进行压缩，使得它压缩比率更高，生成的文件体积更小，并且不损失数据。  体积小：它利用特殊的编码方法标记重复出现的数据，使得同样格式的图片，PNG图片文件的体积更小。网络通讯中因受带宽制约，在保证">
+<meta property="og:type" content="article">
+<meta property="og:title" content="png图片压缩原理">
+<meta property="og:url" content="https://dick-su-3.github.io/archives/b35bf513.html">
 <meta property="og:site_name" content="云卷舒">
-<meta property="og:description" content="岁月不回头，且行且珍惜">
+<meta property="og:description" content="什么是PNGPNG的全称叫便携式网络图型（Portable Network Graphics）是目前最流行的网络传输和展示的图片格式，原因有如下几点：  无损压缩：PNG图片采取了基于LZ77派生算法对文件进行压缩，使得它压缩比率更高，生成的文件体积更小，并且不损失数据。  体积小：它利用特殊的编码方法标记重复出现的数据，使得同样格式的图片，PNG图片文件的体积更小。网络通讯中因受带宽制约，在保证">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://segmentfault.com/img/bVbp1Nb?w=340&amp;h=580">
+<meta property="og:image" content="https://segmentfault.com/img/bVbp1Nj?w=1000&amp;h=360">
+<meta property="og:image" content="https://segmentfault.com/img/bVbp1NC?w=208&amp;h=210">
+<meta property="og:image" content="https://segmentfault.com/img/bVbp1NL?w=454&amp;h=176">
+<meta property="og:image" content="https://segmentfault.com/img/bVbp1NN?w=624&amp;h=405">
+<meta property="article:published_time" content="2022-08-10T17:22:26.000Z">
+<meta property="article:modified_time" content="2022-08-10T17:24:03.085Z">
 <meta property="article:author" content="SuoLiweng">
+<meta property="article:tag" content="png">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://segmentfault.com/img/bVbp1Nb?w=340&amp;h=580">
   
     <link rel="alternative" href="/atom.xml" title="云卷舒" type="application/atom+xml">
   
@@ -97,7 +106,7 @@
 		</nav>
 		
 		<nav>
-总文章数 24
+总文章数 26
 </nav>
 
 		<nav class="header-smart-menu">
@@ -136,7 +145,7 @@
 	
 
 		</nav>
-		<span class="post-count">135.8k</span>
+		<span class="post-count">138.8k</span>
 	</header>
 
 </div>
@@ -210,73 +219,303 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-png图片压缩原理" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2022" class="archive-year">2022</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-
-<a href="/archives/b6262337.html" class="archive-article-date">
-  	<time datetime="2022-08-07T15:02:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-08-07</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/archives/b6262337.html">Spring中AOP的理解</a>
+    <h1 class="article-title" itemprop="name">
+      png图片压缩原理
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <!-- 目录内容 -->
+
+<!-- 目录内容结束 -->
+
+        <div align="center" class="post-count">
+字数：2k字 | 预计阅读时长：7分钟</div>
+
+        <!--显示阅读次数-->
+
+  <br/>
+  <a class="cloud-tie-join-count" href="javascript:void(0);" style="color:gray;font-size:14px;">
+  <span class="icon-sort"></span>
+  <span id="busuanzi_container_page_pv" style="color:#ef7522;font-size:14px;">
+            阅读数: <span id="busuanzi_value_page_pv"></span>次 &nbsp;&nbsp;
+  </span>
+  </a>
+
+<!--显示阅读次数完毕-->
+
+        
+        
+        <!-- 不蒜子统计 -->
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
+
+<a href="/archives/b35bf513.html" class="archive-article-date">
+  	<time datetime="2022-08-10T17:22:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-08-11</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="什么是PNG"><a href="#什么是PNG" class="headerlink" title="什么是PNG"></a>什么是PNG</h2><p>PNG的全称叫便携式网络图型（Portable Network Graphics）是目前最流行的网络传输和展示的图片格式，原因有如下几点：</p>
+<ul>
+<li><p><code>无损压缩</code>：PNG图片采取了基于LZ77派生算法对文件进行压缩，使得它压缩比率更高，生成的文件体积更小，并且不损失数据。</p>
+</li>
+<li><p><code>体积小</code>：它利用特殊的编码方法标记重复出现的数据，使得同样格式的图片，PNG图片文件的体积更小。网络通讯中因受带宽制约，在保证图片清晰、逼真的前提下，优先选择PNG格式的图片。</p>
+</li>
+<li><p><code>支持透明效果</code>：PNG支持对原图像定义256个透明层次，使得图像的边缘能与任何背景平滑融合，这种功能是GIF和JPEG没有的。</p>
+<span id="more"></span></li>
+</ul>
+<h2 id="PNG类型"><a href="#PNG类型" class="headerlink" title="PNG类型"></a>PNG类型</h2><p>PNG图片主要有三个类型，分别为 PNG 8/ PNG 24 / PNG 32。</p>
+<ul>
+<li><code>PNG 8</code>：PNG 8中的8，其实指的是8bits，相当于用2^8（2的8次方）大小来存储一张图片的颜色种类，2^8等于256，也就是说PNG 8能存储256种颜色，一张图片如果颜色种类很少，将它设置成PNG 8得图片类型是非常适合的。</li>
+<li><code>PNG 24</code>：PNG 24中的24，相当于3乘以8 等于 24，就是用三个8bits分别去表示 R（红）、G（绿）、B（蓝）。R(0<del>255),G(0</del>255),B(0~255)，可以表达256乘以256乘以256=16777216种颜色的图片，这样PNG 24就能比PNG 8表示色彩更丰富的图片。但是所占用的空间相对就更大了。</li>
+<li><code>PNG 32</code>：PNG 32中的32，相当于PNG 24 加上 8bits的透明颜色通道，就相当于R（红）、G（绿）、B（蓝）、A（透明）。R(0<del>255),G(0</del>255),B(0<del>255),A(0</del>255)。比PNG 24多了一个A（透明），也就是说PNG 32能表示跟PNG 24一样多的色彩，并且还支持256种透明的颜色，能表示更加丰富的图片颜色类型。</li>
+</ul>
+<p>怎么说呢，总的来说，PNG 8/ PNG 24 / PNG 32就相当于我们屌丝心中，把女神分为三类：</p>
+<ul>
+<li><code>一类女神 = PNG 8</code>：屌丝舔狗们见到第一类女神，顿时会觉得心情愉悦、笑逐颜开，屌丝发黑的印堂逐渐舒展，确认过眼神，是心动的感觉。</li>
+<li><code>二类女神 = PNG 24</code>：第二类女神开始厉害了，会给屌丝们一种菊花一紧、振聋发聩的心弦震撼，接触多了第二类女神能让屌丝每天精神抖擞，延年益寿。</li>
+<li><code>三类女神 = PNG 32</code>：在第三类女神面前，所有的语言都显得苍白无力。那是一种看了让屌丝上下通透、手眼通天的至尊级存在。超凡脱俗、天神下凡都不足以描摹她美色的二分之一。我曾经只有在梦里才见到过。</li>
+</ul>
+<p>哎。。。我的初恋，看着她现在的照片，应该是触及PNG 24这一等级了。</p>
+<h2 id="PNG图片数据结构"><a href="#PNG图片数据结构" class="headerlink" title="PNG图片数据结构"></a>PNG图片数据结构</h2><p>PNG图片的数据结构其实跟http请求的结构很像，都是一个数据头，后面跟着很多的数据块，如下图所示：</p>
+<p><img src="https://segmentfault.com/img/bVbp1Nb?w=340&amp;h=580" alt="图片描述"></p>
+<p>如果你用vim的查看编码模式打开一张png图片，会是下面这个样子：</p>
+<p><img src="https://segmentfault.com/img/bVbp1Nj?w=1000&amp;h=360" alt="图片描述"></p>
+<p>握草，第一眼看到这一坨坨十六进制编码是不是感觉和女神的心思一样晦涩难懂？</p>
+<p>老弟 莫慌，讲实话，如果撩妹纸有那一坨坨乱码那么简单，哥哥我早就妻妾成群啦。<br>接下来我就一一讲解这一堆十六进制编码的含义。</p>
+<p><code>8950 4e47 0d0a 1a0a</code>：这个是PNG图片的头，所有的PNG图片的头都是这一串编码，图片软件通过这串编码判定这个文件是不是PNG格式的图片。</p>
+<p><code>0000 000d</code>：是iHDR数据块的长度，为13。</p>
+<p><code>4948 4452</code>：是数据块的type,为IHDR，之后紧跟着是data。</p>
+<p><code>0000 02bc</code>：是图片的宽度。</p>
+<p><code>0000 03a5</code>：是高度。</p>
+<p>以此类推，每一段十六进制编码就代表着一个特定的含义。下面其他的就不一一分析了，太多了，小伙伴们自己去查吧。</p>
+<h2 id="什么样的PNG图片更适合压缩"><a href="#什么样的PNG图片更适合压缩" class="headerlink" title="什么样的PNG图片更适合压缩"></a>什么样的PNG图片更适合压缩</h2><p>常规的png图片，颜色越单一，颜色值越少，压缩率就越大，比如下面这张图：</p>
+<p><img src="https://segmentfault.com/img/bVbp1NC?w=208&amp;h=210" alt="图片描述"></p>
+<p>它仅仅由红色和绿色构成，如果用0代表红色，用1代表绿色，那用数字表示这张图就是下面这个样子：</p>
+<p>00000000000000000</p>
+<p>00000000000000000</p>
+<p>00000000000000000</p>
+<p>1111111111111111111111111</p>
+<p>1111111111111111111111111</p>
+<p>1111111111111111111111111</p>
+<p>我们可以看到，这张图片是用了大量重复的数字，我们可以将重复的数字去掉，直接用数组形式的[0, 1]就可以直接表示出这张图片了，仅仅用两个数字，就能表示出一张很大的图片，这样就极大的压缩了一张png图片。</p>
+<p>所以！颜色越单一，颜色值越少，颜色差异越小的png图片，压缩率就越大，体积就越小。</p>
+<h2 id="PNG的压缩"><a href="#PNG的压缩" class="headerlink" title="PNG的压缩"></a>PNG的压缩</h2><p>PNG图片的压缩，分两个阶段：</p>
+<ul>
+<li><code>预解析（Prediction）</code>：这个阶段就是对png图片进行一个预处理，处理后让它更方便后续的压缩。说白了，就是一个女神，在化妆前，会先打底，先涂乳液和精华，方便后续上妆、美白、眼影、打光等等。</li>
+<li><code>压缩（Compression）</code>：执行Deflate压缩，该算法结合了 LZ77 算法和 Huffman 算法对图片进行编码。</li>
+</ul>
+<h3 id="预解析（Prediction）"><a href="#预解析（Prediction）" class="headerlink" title="预解析（Prediction）"></a>预解析（Prediction）</h3><p>png图片用差分编码（Delta encoding）对图片进行预处理，处理每一个的像素点中每条通道的值，差分编码主要有几种：</p>
+<ul>
+<li>不过滤</li>
+<li>X-A</li>
+<li>X-B</li>
+<li>X-(A+B)/2(又称平均值)</li>
+<li>Paeth推断（这种比较复杂）</li>
+</ul>
+<p>假设，一张png图片如下:</p>
+<p><img src="https://segmentfault.com/img/bVbp1NL?w=454&amp;h=176" alt="图片描述"></p>
+<p>这张图片是一个红色逐渐增强的渐变色图，它的红色从左到右逐渐加强，映射成数组的值为[1,2,3,4,5,6,7,8]，使用X-A的差分编码的话，那就是:</p>
+<p>[2-1=1, 3-2=1, 4-3=1, 5-4=1, 6-5=1, 7-6=1, 8-7=1]</p>
+<p>得到的结果为</p>
+<p>[1,1,1,1,1,1,1]</p>
+<p>最后的[1,1,1,1,1,1,1]这个结果出现了大量的重复数字，这样就非常适合进行压缩。</p>
+<p>这就是为什么渐变色图片、颜色值变化不大并且颜色单一的图片更容易压缩的原理。</p>
+<p>差分编码的目的，就是尽可能的将png图片数据值转换成一组重复的、低的值，这样的值更容易被压缩。</p>
+<p>最后还要注意的是，差分编码处理的是每一个的像素点中每条颜色通道的值，R（红）、G（绿）、B（蓝）、A（透明）四个颜色通道的值分别进行处理。</p>
+<h3 id="压缩（Compression）"><a href="#压缩（Compression）" class="headerlink" title="压缩（Compression）"></a>压缩（Compression）</h3><p>压缩阶段会将预处理阶段得到的结果进行Deflate压缩，它由 Huffman 编码 和 LZ77压缩构成。</p>
+<p>如前面所说，Deflate压缩会标记图片所有的重复数据，并记录数据特征和结构，会得到一个压缩比最大的png图片 编码数据。</p>
+<p>Deflate是一种压缩数据流的算法. 任何需要流式压缩的地方都可以用。</p>
+<p>还有就是我们前面说过，一个png图片，是由很多的数据块构成的，但是数据块里面的一些信息其实是没有用的，比如用Photoshop保存了一张png图片，图片里就会有一个区块记录“这张图片是由photshop创建的”，很多类似这些信息都是无用的，如果用photoshop的“导出web格式”就能去掉这些无用信息。导出web格式前后对比效果如下图所示：</p>
+<p><img src="https://segmentfault.com/img/bVbp1NN?w=624&amp;h=405" alt="图片描述"></p>
+<p>可以看到，导出web格式，去除了很多无用信息后，图片明显小了很多。</p>
+<h2 id><a href="#" class="headerlink" title></a></h2>
+      
+
+
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/alipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/weixin.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">spring</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">png</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/spring、AOP//" class="article-tag-list-link color1">spring、AOP</a>
+        			<a href="/categories/广知//" class="article-tag-list-link color3">广知</a>
         		</li>
       		
 		</ul>
 	</div>
 
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://dick-su-3.github.io/archives/b35bf513.html" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/archives/efe3ac5e.html" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">前端好文整理一</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFPNG"><span class="toc-number">1.</span> <span class="toc-text">什么是PNG</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PNG%E7%B1%BB%E5%9E%8B"><span class="toc-number">2.</span> <span class="toc-text">PNG类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PNG%E5%9B%BE%E7%89%87%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="toc-number">3.</span> <span class="toc-text">PNG图片数据结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%A0%B7%E7%9A%84PNG%E5%9B%BE%E7%89%87%E6%9B%B4%E9%80%82%E5%90%88%E5%8E%8B%E7%BC%A9"><span class="toc-number">4.</span> <span class="toc-text">什么样的PNG图片更适合压缩</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PNG%E7%9A%84%E5%8E%8B%E7%BC%A9"><span class="toc-number">5.</span> <span class="toc-text">PNG的压缩</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%84%E8%A7%A3%E6%9E%90%EF%BC%88Prediction%EF%BC%89"><span class="toc-number">5.1.</span> <span class="toc-text">预解析（Prediction）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8E%8B%E7%BC%A9%EF%BC%88Compression%EF%BC%89"><span class="toc-number">5.2.</span> <span class="toc-text">压缩（Compression）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-number">6.</span> <span class="toc-text"></span></a></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -321,10 +560,10 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
-		isCategory: true,
+		isCategory: false,
 		open_in_new: [object Object],
 		toc_hide_index: true,
 		root: "/",
@@ -413,11 +652,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Redis</a>
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+                <a href="javascript:void(0)" class="js-tag color1">Redis</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -433,7 +672,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">springboot摘录学习</a>
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -441,11 +680,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color4">png</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Hexo GitHub Mac Windows</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">springboot摘录学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">前端文章</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">选键盘</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -458,10 +709,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">jvm面试题收集一</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">选键盘</a>
               </li>
              
               <li class="article-tag-list-item">

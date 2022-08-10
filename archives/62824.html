@@ -148,7 +148,7 @@
 		</nav>
 		
 		<nav>
-总文章数 24
+总文章数 26
 </nav>
 
 		<nav class="header-smart-menu">
@@ -187,7 +187,7 @@
 	
 
 		</nav>
-		<span class="post-count">135.8k</span>
+		<span class="post-count">138.8k</span>
 	</header>
 
 </div>
@@ -1369,14 +1369,14 @@ jps -v
 <p>常见的垃圾回收器有哪些？</p>
 </blockquote>
 <p>先上一张图，这张图是Java虚拟机的jdk1.7及以前版本的所有垃圾回收器，也可以说是比较成熟的垃圾回收器，除了这些垃圾回收器，面试的时候最多也就再怼怼G1和ZGC了。</p>
-<img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltYWdlLm91eWFuZ3NpaGFpLmNuL0ZoNE1EWTdQLVRPMXRRZ3RVUVFKeXlramliQ1o?x-oss-process=image/format,png" alt="">
+<img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltYWdlLm91eWFuZ3NpaGFpLmNuL0ZoNE1EWTdQLVRPMXRRZ3RVUVFKeXlramliQ1o?x-oss-process=image/format,png" alt>
 
 <p>上面的表示是年轻代的垃圾回收器：Serial、ParNew、Parallel Scavenge，下面表示是老年代的垃圾回收器：CMS、Parallel Old、Serial Old，以及不分老年代和年轻代的G1。之间的相互的连线表示可以相互配合使用。</p>
 <p>说完是不是一篇明朗，其实也就是那么回事。</p>
 <h4 id="新生代垃圾回收器"><a href="#新生代垃圾回收器" class="headerlink" title="新生代垃圾回收器"></a>新生代垃圾回收器</h4><h5 id="Serial"><a href="#Serial" class="headerlink" title="Serial"></a>Serial</h5><p>Serial（串行）收集器是<strong>最基本、发展历史最悠久</strong>的收集器，它是采用<strong>复制算法</strong>的新生代收集器，曾经（JDK 1.3.1之前）是虚拟机新生代收集的唯一选择。它是一个<strong>单线程收集器</strong>，只会使用一个CPU或一条收集线程去完成垃圾收集工作，更重要的是它在进行垃圾收集时，必须暂停其他所有的工作线程，直至Serial收集器收集结束为止（“Stop The World”）。</p>
 <p>其实对于这个垃圾回收器，你只要记住是一个<strong>单线程、采用复制算法的，会进行“Stop The World”</strong> 即可，因为面试官一般不问这个，为什么，因为太简单了，没什么可问的呗。</p>
 <p>好了，再放一张图好吧，说明一下Serial的回收过程，完事。</p>
-<img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltYWdlLm91eWFuZ3NpaGFpLmNuL0Z0SXctUHozUEROSmxScDJ2ODlYZkl6eEpja0c?x-oss-process=image/format,png" alt="">
+<img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltYWdlLm91eWFuZ3NpaGFpLmNuL0Z0SXctUHozUEROSmxScDJ2ODlYZkl6eEpja0c?x-oss-process=image/format,png" alt>
 
 <p>说明：这张图的意思就是<strong>单线程，新生代使用复制算法标记、老年代使用标记整理算法标记</strong>，就是这么简单。</p>
 <h5 id="ParNew"><a href="#ParNew" class="headerlink" title="ParNew"></a>ParNew</h5><p><strong>ParNew收集器就是Serial收集器的</strong>多线程<strong>版本</strong>，它也是一个新生代收集器。除了使用多线程进行垃圾收集外，其余行为包括Serial收集器可用的所有控制参数、收集算法（复制算法）、Stop The World、对象分配规则、回收策略等与Serial收集器完全相同。</p>
@@ -1397,12 +1397,12 @@ jps -v
 <p>  其实，看了我前面的文章你可能就知道了，因为在新生代绝大多数的内存都是会被回收的，所以留下来的需要回收的垃圾就很少了，所以复制算法更合适，你可以发现，基本的老年代的都是使用标记整理算法，当然，CMS是个杂种哈。 </p>
 </blockquote>
 <p>它的工作流程与Serial收集器相同，下图是Serial/Serial Old配合使用的工作流程图：</p>
-<img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltYWdlLm91eWFuZ3NpaGFpLmNuL0Z0SXctUHozUEROSmxScDJ2ODlYZkl6eEpja0c?x-oss-process=image/format,png" alt="">
+<img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltYWdlLm91eWFuZ3NpaGFpLmNuL0Z0SXctUHozUEROSmxScDJ2ODlYZkl6eEpja0c?x-oss-process=image/format,png" alt>
 
 <h5 id="Parallel-Old"><a href="#Parallel-Old" class="headerlink" title="Parallel Old"></a>Parallel Old</h5><p>Parallel Old收集器是Parallel Scavenge收集器的老年代版本，使用<strong>多线程</strong>和“<strong>标记-整理</strong>”算法，是不是前面说的，老年代出了杂种CMS不是“<strong>标记-整理</strong>”算法，其他都是。</p>
 <p>另外，有了Parallel Old垃圾回收器后，就出现了以“<strong>吞吐量优先</strong>”著称的“男女朋友”收集器了，这就是：<strong>Parallel Old和Parallel Scavenge收集器的组合</strong>。</p>
 <p>Parallel Old收集器的工作流程与Parallel Scavenge相同，这里给出Parallel Scavenge/Parallel Old收集器配合使用的流程图：</p>
-<img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltYWdlLm91eWFuZ3NpaGFpLmNuL0Z2OTZmbmtTbmJWODVCUzJFNm1yX1pGQmQ5V2U?x-oss-process=image/format,png" alt="">
+<img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltYWdlLm91eWFuZ3NpaGFpLmNuL0Z2OTZmbmtTbmJWODVCUzJFNm1yX1pGQmQ5V2U?x-oss-process=image/format,png" alt>
 
 <p>你是不是以为我还要讲CMS和G1，我任性，我就是要接着讲，哈哈哈。</p>
 <h4 id="CMS"><a href="#CMS" class="headerlink" title="CMS"></a>CMS</h4><h5 id="小伙子，你说一下-CMS-垃圾回收器吧！"><a href="#小伙子，你说一下-CMS-垃圾回收器吧！" class="headerlink" title="小伙子，你说一下 CMS 垃圾回收器吧！"></a>小伙子，你说一下 CMS 垃圾回收器吧！</h5><p>这个题目一来，吓出一身冷汗，差点就没有复习这个CMS，还好昨晚抱佛脚看了一下哈。</p>
@@ -2086,11 +2086,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Redis</a>
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+                <a href="javascript:void(0)" class="js-tag color1">Redis</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2106,7 +2106,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">springboot摘录学习</a>
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2114,11 +2114,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color4">png</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Hexo GitHub Mac Windows</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">springboot摘录学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">前端文章</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">选键盘</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2131,10 +2143,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">jvm面试题收集一</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">选键盘</a>
               </li>
              
               <li class="article-tag-list-item">
