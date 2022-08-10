@@ -16,7 +16,7 @@
 <meta property="og:description" content="一、学习Redis基础 在前面学习了MySQL数据库，它是一种传统的关系型数据库，我们可以使用MySQL来更好地管理和组织我们的数据，虽然在小型Web下，只需要一个MySQL+Mybatis自带的缓存系统就可以胜任大部分的数据存储工作，但是MySQL的缺点也很明显，他的数据始终是存储在硬盘上，对于我们的用户信息这种不需要经常发生修改的内容，使用MySQL确实可以，但是如果是快速更新或是频繁使用的数">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-08-07T15:09:42.000Z">
-<meta property="article:modified_time" content="2022-08-07T15:13:09.657Z">
+<meta property="article:modified_time" content="2022-08-10T03:29:09.888Z">
 <meta property="article:author" content="SuoLiweng">
 <meta property="article:tag" content="Redis">
 <meta name="twitter:card" content="summary">
@@ -100,7 +100,7 @@
 		</nav>
 		
 		<nav>
-总文章数 22
+总文章数 24
 </nav>
 
 		<nav class="header-smart-menu">
@@ -139,7 +139,7 @@
 	
 
 		</nav>
-		<span class="post-count">131.9k</span>
+		<span class="post-count">135.8k</span>
 	</header>
 
 </div>
@@ -261,8 +261,11 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="一、学习Redis基础"><a href="#一、学习Redis基础" class="headerlink" title="一、学习Redis基础"></a>一、学习Redis基础</h2><ol>
-<li>在前面学习了MySQL数据库，它是一种传统的关系型数据库，我们可以使用MySQL来更好地管理和组织我们的数据，虽然在小型Web下，只需要一个MySQL+Mybatis自带的缓存系统就可以胜任大部分的数据存储工作，但是MySQL的缺点也很明显，他的数据始终是存储在硬盘上，对于我们的用户信息这种不需要经常发生修改的内容，使用MySQL确实可以，但是如果是快速更新或是频繁使用的数据，比如微博resource、双十一秒杀，这些数据不仅要求服务器需要提供更高的响应速度，而且还需要面对短时间内上百万甚至上千万次访问，而MySQL的磁盘IO读写性能完全不能满足上面的需求，能够满足上述需求的只有内存，因为速度远高于磁盘IO。</li>
-<li>NoSQL概论<br>NoSQL全称是Not Only SQL(不仅仅是SQL) 它是一种非关系型数据库，相比传统SQL关系型数据库，它：</li>
+<li><p>在前面学习了MySQL数据库，它是一种传统的关系型数据库，我们可以使用MySQL来更好地管理和组织我们的数据，虽然在小型Web下，只需要一个MySQL+Mybatis自带的缓存系统就可以胜任大部分的数据存储工作，但是MySQL的缺点也很明显，他的数据始终是存储在硬盘上，对于我们的用户信息这种不需要经常发生修改的内容，使用MySQL确实可以，但是如果是快速更新或是频繁使用的数据，比如微博resource、双十一秒杀，这些数据不仅要求服务器需要提供更高的响应速度，而且还需要面对短时间内上百万甚至上千万次访问，而MySQL的磁盘IO读写性能完全不能满足上面的需求，能够满足上述需求的只有内存，因为速度远高于磁盘IO。</p>
+<span id="more"></span>
+</li>
+<li><p>NoSQL概论<br>NoSQL全称是Not Only SQL(不仅仅是SQL) 它是一种非关系型数据库，相比传统SQL关系型数据库，它：</p>
+</li>
 </ol>
 <ul>
 <li>特点：<ol>
@@ -283,7 +286,7 @@
 <li><p>高可用</p>
 <blockquote>
 <p>这样，NoSQL的优势就出来了，这就是我们正在寻找的高并发海量数据的解决方案。</p>
-<span id="more"></span>
+<!--more-->
 </blockquote>
 </li>
 <li><p>NoSQL数据库分为以下几种：</p>
@@ -719,11 +722,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+                <a href="javascript:void(0)" class="js-tag color1">Redis</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Redis</a>
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -735,15 +738,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Spring</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Hexo GitHub Mac Windows</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -751,15 +746,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Tomcat</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Hexo GitHub Mac Windows</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">计算机</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">选键盘</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">开发手册</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -768,6 +767,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">jvm面试题收集一</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">选键盘</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">开发手册</a>
               </li>
             
             <div class="clearfix"></div>
