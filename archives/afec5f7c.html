@@ -1,0 +1,2490 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="Mybatis-plus笔记, 云卷舒">
+    <meta name="description" content="一、MyBatis-Plus1.简介MyBatis-Plus (opens new window)（简称 MP）是一个 MyBatis (opens new window)的增强工具，在 MyBatis 的基础上只做增强不做改变，为简化开发">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>Mybatis-plus笔记 | 云卷舒</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    
+
+
+    <!-- bg-cover style     -->
+
+
+
+<link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+<link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+<link rel="stylesheet" type="text/css" href="/css/matery.css">
+<link rel="stylesheet" type="text/css" href="/css/my.css">
+<link rel="stylesheet" type="text/css" href="/css/dark.css" media="none" onload="if(media!='all')media='all'">
+
+
+
+
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+    <link rel="stylesheet" href="/css/post.css">
+
+
+
+
+    
+        <link rel="stylesheet" type="text/css" href="/css/reward.css">
+    
+
+
+
+    <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
+
+<meta name="generator" content="Hexo 6.2.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="云卷舒" type="application/atom+xml">
+</head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">云卷舒</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+  <li>
+    <a href="javascript:;" class="waves-effect waves-light" onclick="switchNightMode()" title="深色/浅色模式" >
+      <i id="sum-moon-icon" class="fas fa-sun" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">云卷舒</div>
+        <div class="logo-desc">
+            
+            岁月不回头，且行且珍惜
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/16.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">Mybatis-plus笔记</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/SSM/">
+                                <span class="chip bg-color">SSM</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/SSM%E6%A1%86%E6%9E%B6/" class="post-category">
+                                SSM框架
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2023-09-20
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.min.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="一、MyBatis-Plus"><a href="#一、MyBatis-Plus" class="headerlink" title="一、MyBatis-Plus"></a>一、MyBatis-Plus</h1><h2 id="1-简介"><a href="#1-简介" class="headerlink" title="1.简介"></a>1.简介</h2><p><a target="_blank" rel="noopener" href="https://github.com/baomidou/mybatis-plus">MyBatis-Plus (opens new window)</a>（简称 MP）是一个 <a target="_blank" rel="noopener" href="https://www.mybatis.org/mybatis-3/">MyBatis (opens new window)</a>的增强工具，在 MyBatis 的基础上只做增强不做改变，为简化开发、提高效率而生。</p>
+<blockquote>
+<p>我们的愿景是成为 MyBatis 最好的搭档，就像 <a target="_blank" rel="noopener" href="https://baomidou.com/img/contra.jpg">魂斗罗</a> 中的 1P、2P，基友搭配，效率翻倍。</p>
+</blockquote>
+<p><img src="https://image-bed-vz.oss-cn-hangzhou.aliyuncs.com/MyBatis-Plus/relationship-with-mybatis.png" alt="img"></p>
+<span id="more"></span>
+
+<h2 id="2-特性"><a href="#2-特性" class="headerlink" title="2.特性"></a>2.特性</h2><ul>
+<li><strong>无侵入</strong>：只做增强不做改变，引入它不会对现有工程产生影响，如丝般顺滑</li>
+<li><strong>损耗小</strong>：启动即会自动注入基本 CURD，性能基本无损耗，直接面向对象操作</li>
+<li><strong>强大的 CRUD 操作</strong>：内置通用 Mapper、通用 Service，仅仅通过少量配置即可实现单表大部分 CRUD 操作，更有强大的条件构造器，满足各类使用需求</li>
+<li><strong>支持 Lambda 形式调用</strong>：通过 Lambda 表达式，方便的编写各类查询条件，无需再担心字段写错</li>
+<li><strong>支持主键自动生成</strong>：支持多达 4 种主键策略（内含分布式唯一 ID 生成器 - Sequence），可自由配置，完美解决主键问题</li>
+<li><strong>支持 ActiveRecord 模式</strong>：支持 ActiveRecord 形式调用，实体类只需继承 Model 类即可进行强大的 CRUD 操作</li>
+<li><strong>支持自定义全局通用操作</strong>：支持全局通用方法注入（ Write once, use anywhere ）</li>
+<li><strong>内置代码生成器</strong>：采用代码或者 Maven 插件可快速生成 Mapper 、 Model 、 Service 、 Controller 层代码，支持模板引擎，更有超多自定义配置等您来使用</li>
+<li><strong>内置分页插件</strong>：基于 MyBatis 物理分页，开发者无需关心具体操作，配置好插件之后，写分页等同于普通 List 查询</li>
+<li><strong>分页插件支持多种数据库</strong>：支持 MySQL、MariaDB、Oracle、DB2、H2、HSQL、SQLite、Postgre、SQLServer 等多种数据库</li>
+<li><strong>内置性能分析插件</strong>：可输出 SQL 语句以及其执行时间，建议开发测试时启用该功能，能快速揪出慢查询</li>
+<li><strong>内置全局拦截插件</strong>：提供全表 delete 、 update 操作智能分析阻断，也可自定义拦截规则，预防误操作</li>
+</ul>
+<h2 id="3-支持数据库"><a href="#3-支持数据库" class="headerlink" title="3.支持数据库"></a>3.支持数据库</h2><blockquote>
+<p>任何能使用 <code>MyBatis</code> 进行 CRUD, 并且支持标准 SQL 的数据库，具体支持情况如下，如果不在下列表查看分页部分教程 PR 您的支持。</p>
+</blockquote>
+<ul>
+<li>MySQL，Oracle，DB2，H2，HSQL，SQLite，PostgreSQL，SQLServer，Phoenix，Gauss ，ClickHouse，Sybase，OceanBase，Firebird，Cubrid，Goldilocks，csiidb</li>
+<li>达梦数据库，虚谷数据库，人大金仓数据库，南大通用(华库)数据库，南大通用数据库，神通数据库，瀚高数据库</li>
+</ul>
+<h2 id="4-框架结构"><a href="#4-框架结构" class="headerlink" title="4.框架结构"></a>4.框架结构</h2><p><img src="https://baomidou.com/img/mybatis-plus-framework.jpg" alt="framework"></p>
+<h2 id="5-官方地址"><a href="#5-官方地址" class="headerlink" title="5.官方地址"></a>5.官方地址</h2><blockquote>
+<p><strong>官方网站</strong>：<a target="_blank" rel="noopener" href="https://baomidou.com/">https://baomidou.com/</a></p>
+<p><strong>官方文档</strong>：<a target="_blank" rel="noopener" href="https://baomidou.com/pages/24112f/">https://baomidou.com/pages/24112f/</a></p>
+</blockquote>
+<h1 id="二、入门案例"><a href="#二、入门案例" class="headerlink" title="二、入门案例"></a>二、入门案例</h1><h2 id="1-开发环境"><a href="#1-开发环境" class="headerlink" title="1.开发环境"></a>1.开发环境</h2><ul>
+<li><strong>IDE：IDEA 2019.3.5</strong></li>
+<li><strong>JDK：JDK8+</strong></li>
+<li><strong>构建工具：Maven 3.5.4</strong></li>
+<li><strong>MySQL：MySQL 8.0.24</strong></li>
+<li><strong>Navicat：Navicat Premium 15</strong></li>
+<li><strong>Spring Boot：2.6.7</strong></li>
+<li><strong>MyBatis-Plus：3.5.1</strong></li>
+</ul>
+<h2 id="2-建库建表"><a href="#2-建库建表" class="headerlink" title="2.建库建表"></a>2.建库建表</h2><ul>
+<li><p><strong>打开Navicat运行以下SQL脚本进行建库建表</strong></p>
+<pre class="line-numbers language-none"><code class="language-none">CREATE DATABASE `mybatis_plus` /*!40100 DEFAULT CHARACTER SET utf8mb4 */; 
+use `mybatis_plus`; 
+CREATE TABLE `user` ( 
+    `id` bigint(20) NOT NULL COMMENT '主键ID', 
+    `name` varchar(30) DEFAULT NULL COMMENT '姓名', 
+    `age` int(11) DEFAULT NULL COMMENT '年龄', 
+    `email` varchar(50) DEFAULT NULL COMMENT '邮箱', 
+    PRIMARY KEY (`id`) 
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+sql<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p><strong>插入几条测试数据</strong></p>
+<pre class="line-numbers language-none"><code class="language-none">INSERT INTO user (id, name, age, email) VALUES 
+(1, 'Jone', 18, 'test1@baomidou.com'), 
+(2, 'Jack', 20, 'test2@baomidou.com'), 
+(3, 'Tom', 28, 'test3@baomidou.com'), 
+(4, 'Sandy', 21, 'test4@baomidou.com'), 
+(5, 'Billie', 24, 'test5@baomidou.com');
+sql<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ul>
+<h2 id="3-创建工程"><a href="#3-创建工程" class="headerlink" title="3.创建工程"></a>3.创建工程</h2><ul>
+<li><p><strong>使用<code>Spring Initializer</code>快速初始化一个 Spring Boot 工程</strong></p>
+</li>
+<li><p><strong>引入<code>MyBatis-Plus</code>的依赖</strong></p>
+<pre class="line-numbers language-none"><code class="language-none">&lt;dependency&gt;
+    &lt;groupId&gt;com.baomidou&lt;/groupId&gt;
+    &lt;artifactId&gt;mybatis-plus-boot-starter&lt;/artifactId&gt;
+    &lt;version&gt;3.5.1&lt;/version&gt;
+&lt;/dependency&gt;
+xml<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p><strong>安装<code>Lombok</code>插件</strong></p>
+</li>
+</ul>
+<h2 id="4-配置编码"><a href="#4-配置编码" class="headerlink" title="4.配置编码"></a>4.配置编码</h2><ul>
+<li><p><strong>配置<code>application.yml</code>文件</strong></p>
+<pre class="line-numbers language-none"><code class="language-none">#配置端口
+server:
+  port: 80
+
+spring:
+  #配置数据源
+  datasource:
+    #配置数据源类型
+    type: com.zaxxer.hikari.HikariDataSource
+    #配置连接数据库的信息
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/mybatis_plus?characterEncoding=utf-8&amp;useSSL=false
+    username: {username}
+    password: {password}
+
+#MyBatis-Plus相关配置
+mybatis-plus:
+  configuration:
+    #配置日志
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+yml<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p><strong>在 Spring Boot 启动类中添加 <code>@MapperScan</code> 注解，扫描 Mapper 文件夹</strong></p>
+<pre class="line-numbers language-none"><code class="language-none">@SpringBootApplication
+@MapperScan("指定Mapper接口所在的包")
+public class MybatisPlusDemoApplication {
+	public static void main(String[] args) {
+		SpringApplication.run(MybatisPlusDemoApplication.class, args);
+	}
+}
+java<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p><strong>编写实体类 <code>User.java</code>（此处使用了 Lombok 简化代码）</strong></p>
+<pre class="line-numbers language-none"><code class="language-none">@Data
+public class User {
+    private Long id;
+    private String name;
+    private Integer age;
+    private String email;
+}
+java<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p><strong>编写 Mapper 包下的 <code>UserMapper</code>接口</strong></p>
+<pre class="line-numbers language-none"><code class="language-none">public interface UserMapper extends BaseMapper&lt;User&gt; {}
+java<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></li>
+</ul>
+<h2 id="5-测试查询"><a href="#5-测试查询" class="headerlink" title="5.测试查询"></a>5.测试查询</h2><ul>
+<li><p><strong>编写一个测试类<code>MyBatisPlusTest.java</code></strong></p>
+<pre class="line-numbers language-none"><code class="language-none">@SpringBootTest
+public class MyBatisPlusTest {
+    @Resource
+    private UserMapper userMapper;
+
+    /**
+     * 测试查询所有数据
+     */
+    @Test
+    void testSelectList(){
+        //通过条件构造器查询一个list集合，若没有条件，则可以设置null为参数
+        List&lt;User&gt; users = userMapper.selectList(null);
+        users.forEach(System.out::println);
+    }
+}
+java<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p><strong>控制台打印查询结果</strong></p>
+<p><img src="https://image-bed-vz.oss-cn-hangzhou.aliyuncs.com/MyBatis-Plus/image-20220519150454211.png" alt="image-20220519150454211"></p>
+</li>
+</ul>
+<h1 id="三、增删改查"><a href="#三、增删改查" class="headerlink" title="三、增删改查"></a>三、增删改查</h1><h2 id="1-BaseMapper"><a href="#1-BaseMapper" class="headerlink" title="1.BaseMapper"></a>1.BaseMapper<t></t></h2><blockquote>
+<p>说明:</p>
+<p>通用 CRUD 封装BaseMapper 接口，为 <code>Mybatis-Plus</code> 启动时自动解析实体表关系映射转换为 <code>Mybatis</code> 内部对象注入容器</p>
+<p>泛型 <code>T</code> 为任意实体对象</p>
+<p>参数 <code>Serializable</code> 为任意类型主键 <code>Mybatis-Plus</code> 不推荐使用复合主键约定每一张表都有自己的唯一 <code>id</code> 主键</p>
+<p>对象 <code>Wrapper</code> 为条件构造器</p>
+</blockquote>
+<p>MyBatis-Plus中的基本CRUD在内置的BaseMapper中都已得到了实现，因此我们继承该接口以后可以直接使用。</p>
+<p>本次演示的CRUD操作不包含参数带有条件构造器的方法，关于条件构造器将单独在一个章节进行演示。</p>
+<hr>
+<blockquote>
+<p><strong>BaseMapper中提供的CRUD方法：</strong></p>
+</blockquote>
+<ul>
+<li><p><strong>增加：Insert</strong></p>
+<pre class="line-numbers language-none"><code class="language-none">// 插入一条记录
+int insert(T entity);
+java<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p><strong>删除：Delete</strong></p>
+<pre class="line-numbers language-none"><code class="language-none">// 根据 entity 条件，删除记录
+int delete(@Param(Constants.WRAPPER) Wrapper&lt;T&gt; wrapper);
+// 删除（根据ID 批量删除）
+int deleteBatchIds(@Param(Constants.COLLECTION) Collection&lt;? extends Serializable&gt; idList);
+// 根据 ID 删除
+int deleteById(Serializable id);
+// 根据 columnMap 条件，删除记录
+int deleteByMap(@Param(Constants.COLUMN_MAP) Map&lt;String, Object&gt; columnMap);
+java<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p><strong>修改：Update</strong></p>
+<pre class="line-numbers language-none"><code class="language-none">// 根据 whereWrapper 条件，更新记录
+int update(@Param(Constants.ENTITY) T updateEntity, @Param(Constants.WRAPPER) Wrapper&lt;T&gt; whereWrapper);
+// 根据 ID 修改
+int updateById(@Param(Constants.ENTITY) T entity);
+java<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p><strong>查询：Selete</strong></p>
+<pre class="line-numbers language-none"><code class="language-none">// 根据 ID 查询
+T selectById(Serializable id);
+// 根据 entity 条件，查询一条记录
+T selectOne(@Param(Constants.WRAPPER) Wrapper&lt;T&gt; queryWrapper);
+
+// 查询（根据ID 批量查询）
+List&lt;T&gt; selectBatchIds(@Param(Constants.COLLECTION) Collection&lt;? extends Serializable&gt; idList);
+// 根据 entity 条件，查询全部记录
+List&lt;T&gt; selectList(@Param(Constants.WRAPPER) Wrapper&lt;T&gt; queryWrapper);
+// 查询（根据 columnMap 条件）
+List&lt;T&gt; selectByMap(@Param(Constants.COLUMN_MAP) Map&lt;String, Object&gt; columnMap);
+// 根据 Wrapper 条件，查询全部记录
+List&lt;Map&lt;String, Object&gt;&gt; selectMaps(@Param(Constants.WRAPPER) Wrapper&lt;T&gt; queryWrapper);
+// 根据 Wrapper 条件，查询全部记录。注意： 只返回第一个字段的值
+List&lt;Object&gt; selectObjs(@Param(Constants.WRAPPER) Wrapper&lt;T&gt; queryWrapper);
+
+// 根据 entity 条件，查询全部记录（并翻页）
+IPage&lt;T&gt; selectPage(IPage&lt;T&gt; page, @Param(Constants.WRAPPER) Wrapper&lt;T&gt; queryWrapper);
+// 根据 Wrapper 条件，查询全部记录（并翻页）
+IPage&lt;Map&lt;String, Object&gt;&gt; selectMapsPage(IPage&lt;T&gt; page, @Param(Constants.WRAPPER) Wrapper&lt;T&gt; queryWrapper);
+// 根据 Wrapper 条件，查询总记录数
+Integer selectCount(@Param(Constants.WRAPPER) Wrapper&lt;T&gt; queryWrapper);
+java<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ul>
+<h2 id="2-调用Mapper层实现CRUD"><a href="#2-调用Mapper层实现CRUD" class="headerlink" title="2.调用Mapper层实现CRUD"></a>2.调用Mapper层实现CRUD</h2><h3 id="2-1-插入"><a href="#2-1-插入" class="headerlink" title="2.1 插入"></a>2.1 插入</h3><hr>
+<blockquote>
+<p><strong>最终执行的结果，所获取的id为1527206783590903810</strong></p>
+<p><strong>这是因为MyBatis-Plus在实现插入数据时，会默认基于雪花算法的策略生成id</strong></p>
+</blockquote>
+<pre class="line-numbers language-none"><code class="language-none">/**
+  * 测试插入一条数据
+  * MyBatis-Plus在实现插入数据时，会默认基于雪花算法的策略生成id
+  */
+@Test
+public void testInsert(){
+    User user = new User();
+    user.setName("Vz");
+    user.setAge(21);
+    user.setEmail("vz@oz6.cn");
+    int result = userMapper.insert(user);
+    System.out.println(result &gt; 0 ? "添加成功！" : "添加失败！");
+    System.out.println("受影响的行数为：" + result);
+    //1527206783590903810（当前 id 为雪花算法自动生成的id）
+    System.out.println("id自动获取" + user.getId());
+}
+java<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="2-2-删除"><a href="#2-2-删除" class="headerlink" title="2.2 删除"></a>2.2 删除</h3><hr>
+<h4 id="a、根据ID删除数据"><a href="#a、根据ID删除数据" class="headerlink" title="a、根据ID删除数据"></a>a、根据ID删除数据</h4><blockquote>
+<p><strong>调用方法：int deleteById(Serializable id);</strong></p>
+</blockquote>
+<pre class="line-numbers language-none"><code class="language-none">/**
+  * 测试根据id删除一条数据
+  */
+@Test
+public void testDeleteById(){
+    int result = userMapper.deleteById(1527206783590903810L);
+    System.out.println(result &gt; 0 ? "删除成功！" : "删除失败！");
+    System.out.println("受影响的行数为：" + result);
+}
+java<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="b、根据ID批量删除数据"><a href="#b、根据ID批量删除数据" class="headerlink" title="b、根据ID批量删除数据"></a>b、根据ID批量删除数据</h4><blockquote>
+<p><strong>调用方法：int deleteBatchIds(@Param(Constants.COLLECTION) Collection&lt;? extends Serializable&gt; idList);</strong></p>
+</blockquote>
+<pre class="line-numbers language-none"><code class="language-none">/**
+  * 测试通过id批量删除数据
+  */
+@Test
+public void testDeleteBatchIds(){
+    List&lt;Long&gt; ids = Arrays.asList(6L,7L,8L);
+    int result = userMapper.deleteBatchIds(ids);
+    System.out.println(result &gt; 0 ? "删除成功！" : "删除失败！");
+    System.out.println("受影响的行数为：" + result);
+}
+java<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="c、根据Map条件删除数据"><a href="#c、根据Map条件删除数据" class="headerlink" title="c、根据Map条件删除数据"></a>c、根据Map条件删除数据</h4><blockquote>
+<p><strong>调用方法：int deleteByMap(@Param(Constants.COLUMN_MAP) Map&lt;String, Object&gt; columnMap);</strong></p>
+</blockquote>
+<pre class="line-numbers language-none"><code class="language-none">/**
+   * 测试根据Map集合中所设置的条件删除数据
+   */
+@Test
+public void testDeleteByMap(){
+    //当前演示为根据name和age删除数据
+    //执行SQL为：DELETE FROM user WHERE name = ? AND age = ?
+    Map&lt;String,Object&gt; map = new HashMap&lt;&gt;();
+    map.put("name","Vz");
+    map.put("age",21);
+    int result = userMapper.deleteByMap(map);
+    System.out.println(result &gt; 0 ? "删除成功！" : "删除失败！");
+    System.out.println("受影响的行数为：" + result);
+}
+java<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="2-3-修改"><a href="#2-3-修改" class="headerlink" title="2.3 修改"></a>2.3 修改</h3><blockquote>
+<p><strong>调用方法：int updateById(@Param(Constants.ENTITY) T entity);</strong></p>
+</blockquote>
+<pre class="line-numbers language-none"><code class="language-none">/**
+  * 测试根据id修改用户信息
+  */
+@Test
+public void testUpdateById(){
+    //执行SQL为： UPDATE user SET name=?, age=?, email=? WHERE id=?
+    User user = new User();
+    user.setId(6L);
+    user.setName("VzUpdate");
+    user.setAge(18);
+    user.setEmail("Vz@sina.com");
+    int result = userMapper.updateById(user);
+    System.out.println(result &gt; 0 ? "修改成功！" : "修改失败！");
+    System.out.println("受影响的行数为：" + result);
+}
+java<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="2-4-查询"><a href="#2-4-查询" class="headerlink" title="2.4 查询"></a>2.4 查询</h3><hr>
+<h4 id="a、根据ID查询用户信息"><a href="#a、根据ID查询用户信息" class="headerlink" title="a、根据ID查询用户信息"></a>a、根据ID查询用户信息</h4><blockquote>
+<p><strong>调用方法：T selectById(Serializable id);</strong></p>
+</blockquote>
+<pre class="line-numbers language-none"><code class="language-none">/**
+  * 测试根据id查询用户数据
+  */
+@Test
+public void testSelectById(){
+    User user = userMapper.selectById(1L);
+    System.out.println(user);
+}
+java<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="b、根据多个ID查询多个用户信息"><a href="#b、根据多个ID查询多个用户信息" class="headerlink" title="b、根据多个ID查询多个用户信息"></a>b、根据多个ID查询多个用户信息</h4><blockquote>
+<p><strong>调用方法：List selectBatchIds(@Param(Constants.COLLECTION) Collection&lt;? extends Serializable&gt; idList);</strong></p>
+</blockquote>
+<pre class="line-numbers language-none"><code class="language-none">/**
+  * 根据多个id查询用户数据
+  */
+@Test
+public void testSelectBatchIds(){
+    //执行SQL为：SELECT id,name,age,email FROM user WHERE id IN ( ? , ? , ? )
+    List&lt;Long&gt; ids = Arrays.asList(1L,2L,3L);
+    List&lt;User&gt; users = userMapper.selectBatchIds(ids);
+    users.forEach(System.out::println);
+}
+java<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="c、根据Map条件查询用户信息"><a href="#c、根据Map条件查询用户信息" class="headerlink" title="c、根据Map条件查询用户信息"></a>c、根据Map条件查询用户信息</h4><blockquote>
+<p><strong>调用方法：List selectByMap(@Param(Constants.COLUMN_MAP) Map&lt;String, Object&gt; columnMap);</strong></p>
+</blockquote>
+<pre class="line-numbers language-none"><code class="language-none">/**
+  * 根据Map所设置的条件查询用户
+  */
+@Test
+public void testSelectByMap(){
+    //执行SQL为：SELECT id,name,age,email FROM user WHERE age = ?
+    Map&lt;String,Object&gt; map = new HashMap&lt;&gt;();
+    map.put("age",18);
+    List&lt;User&gt; users = userMapper.selectByMap(map);
+    users.forEach(System.out::println);
+}
+java<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="d、查询所有用户信息"><a href="#d、查询所有用户信息" class="headerlink" title="d、查询所有用户信息"></a>d、查询所有用户信息</h4><blockquote>
+<p><strong>调用方法：List selectList(@Param(Constants.WRAPPER) Wrapper queryWrapper);</strong></p>
+</blockquote>
+<pre class="line-numbers language-none"><code class="language-none">/**
+  * 测试查询所有数据
+  */
+@Test
+void testSelectList(){
+    List&lt;User&gt; users = userMapper.selectList(null);
+    users.forEach(System.out::println);
+}
+java<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="3-通用Service"><a href="#3-通用Service" class="headerlink" title="3.通用Service"></a>3.通用Service</h2><blockquote>
+<p>说明:</p>
+<p>通用 Service CRUD 封装<code>IService</code>接口，进一步封装 CRUD 采用 <code>get 查询单行</code> <code>remove 删除</code> <code>list 查询集合</code> <code>page 分页</code> 前缀命名方式区分 <code>Mapper</code> 层避免混淆</p>
+<p>泛型 <code>T</code> 为任意实体对象</p>
+<p>建议如果存在自定义通用 Service 方法的可能，请创建自己的 <code>IBaseService</code> 继承 <code>Mybatis-Plus</code> 提供的基类</p>
+<p>对象 <code>Wrapper</code> 为 条件构造器</p>
+</blockquote>
+<p>MyBatis-Plus中有一个接口 <code>IService</code>和其实现类 <code>ServiceImpl</code>，封装了常见的业务层逻辑，详情查看源码IService和ServiceImpl</p>
+<p>因此我们在使用的时候仅需在自己定义的<code>Service</code>接口中继承<code>IService</code>接口，在自己的实现类中实现自己的Service并继承<code>ServiceImpl</code>即可</p>
+<hr>
+<blockquote>
+<p><strong>IService中的CRUD方法</strong></p>
+</blockquote>
+<ul>
+<li><p><strong>增加：Save、SaveOrUpdate</strong></p>
+<pre class="line-numbers language-none"><code class="language-none">// 插入一条记录（选择字段，策略插入）
+boolean save(T entity);
+// 插入（批量）
+boolean saveBatch(Collection&lt;T&gt; entityList);
+// 插入（批量）
+boolean saveBatch(Collection&lt;T&gt; entityList, int batchSize);
+
+// TableId 注解存在更新记录，否插入一条记录
+boolean saveOrUpdate(T entity);
+// 根据updateWrapper尝试更新，否继续执行saveOrUpdate(T)方法
+boolean saveOrUpdate(T entity, Wrapper&lt;T&gt; updateWrapper);
+// 批量修改插入
+boolean saveOrUpdateBatch(Collection&lt;T&gt; entityList);
+// 批量修改插入
+boolean saveOrUpdateBatch(Collection&lt;T&gt; entityList, int batchSize);
+java<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p><strong>删除：Remove</strong></p>
+<pre class="line-numbers language-none"><code class="language-none">// 根据 entity 条件，删除记录
+boolean remove(Wrapper&lt;T&gt; queryWrapper);
+// 根据 ID 删除
+boolean removeById(Serializable id);
+// 根据 columnMap 条件，删除记录
+boolean removeByMap(Map&lt;String, Object&gt; columnMap);
+// 删除（根据ID 批量删除）
+boolean removeByIds(Collection&lt;? extends Serializable&gt; idList);
+java<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p><strong>修改：Update</strong></p>
+<pre class="line-numbers language-none"><code class="language-none">// 根据 UpdateWrapper 条件，更新记录 需要设置sqlset
+boolean update(Wrapper&lt;T&gt; updateWrapper);
+// 根据 whereWrapper 条件，更新记录
+boolean update(T updateEntity, Wrapper&lt;T&gt; whereWrapper);
+// 根据 ID 选择修改
+boolean updateById(T entity);
+// 根据ID 批量更新
+boolean updateBatchById(Collection&lt;T&gt; entityList);
+// 根据ID 批量更新
+boolean updateBatchById(Collection&lt;T&gt; entityList, int batchSize);
+java<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p><strong>查询：Get、List、Count</strong></p>
+<pre class="line-numbers language-none"><code class="language-none">// 根据 ID 查询
+T getById(Serializable id);
+// 根据 Wrapper，查询一条记录。结果集，如果是多个会抛出异常，随机取一条加上限制条件 wrapper.last("LIMIT 1")
+T getOne(Wrapper&lt;T&gt; queryWrapper);
+// 根据 Wrapper，查询一条记录
+T getOne(Wrapper&lt;T&gt; queryWrapper, boolean throwEx);
+// 根据 Wrapper，查询一条记录
+Map&lt;String, Object&gt; getMap(Wrapper&lt;T&gt; queryWrapper);
+// 根据 Wrapper，查询一条记录
+&lt;V&gt; V getObj(Wrapper&lt;T&gt; queryWrapper, Function&lt;? super Object, V&gt; mapper);
+
+
+// 查询所有
+List&lt;T&gt; list();
+// 查询列表
+List&lt;T&gt; list(Wrapper&lt;T&gt; queryWrapper);
+// 查询（根据ID 批量查询）
+Collection&lt;T&gt; listByIds(Collection&lt;? extends Serializable&gt; idList);
+// 查询（根据 columnMap 条件）
+Collection&lt;T&gt; listByMap(Map&lt;String, Object&gt; columnMap);
+// 查询所有列表
+List&lt;Map&lt;String, Object&gt;&gt; listMaps();
+// 查询列表
+List&lt;Map&lt;String, Object&gt;&gt; listMaps(Wrapper&lt;T&gt; queryWrapper);
+// 查询全部记录
+List&lt;Object&gt; listObjs();
+// 查询全部记录
+&lt;V&gt; List&lt;V&gt; listObjs(Function&lt;? super Object, V&gt; mapper);
+// 根据 Wrapper 条件，查询全部记录
+List&lt;Object&gt; listObjs(Wrapper&lt;T&gt; queryWrapper);
+// 根据 Wrapper 条件，查询全部记录
+&lt;V&gt; List&lt;V&gt; listObjs(Wrapper&lt;T&gt; queryWrapper, Function&lt;? super Object, V&gt; mapper);
+
+// 查询总记录数
+int count();
+// 根据 Wrapper 条件，查询总记录数
+int count(Wrapper&lt;T&gt; queryWrapper);
+java<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p><strong>分页：Page</strong></p>
+<pre class="line-numbers language-none"><code class="language-none">// 根据 ID 查询
+T getById(Serializable id);
+// 根据 Wrapper，查询一条记录。结果集，如果是多个会抛出异常，随机取一条加上限制条件 wrapper.last("LIMIT 1")
+T getOne(Wrapper&lt;T&gt; queryWrapper);
+// 根据 Wrapper，查询一条记录
+T getOne(Wrapper&lt;T&gt; queryWrapper, boolean throwEx);
+// 根据 Wrapper，查询一条记录
+Map&lt;String, Object&gt; getMap(Wrapper&lt;T&gt; queryWrapper);
+// 根据 Wrapper，查询一条记录
+&lt;V&gt; V getObj(Wrapper&lt;T&gt; queryWrapper, Function&lt;? super Object, V&gt; mapper);
+java<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ul>
+<h2 id="4-调用Service层操作数据"><a href="#4-调用Service层操作数据" class="headerlink" title="4.调用Service层操作数据"></a>4.调用Service层操作数据</h2><blockquote>
+<p>我们在自己的Service接口中通过继承MyBatis-Plus提供的IService接口，不仅可以获得其提供的CRUD方法，而且还可以使用自身定义的方法。</p>
+</blockquote>
+<ul>
+<li><p><strong>创建<code>UserService</code>并继承<code>IService</code></strong></p>
+<pre class="line-numbers language-none"><code class="language-none">/**
+  * UserService继承IService模板提供的基础功能 
+  */
+public interface UserService extends IService&lt;User&gt; {}
+java<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p><strong>创建<code>UserService</code>的实现类并继承<code>ServiceImpl</code></strong></p>
+<pre class="line-numbers language-none"><code class="language-none">/**
+  * ServiceImpl实现了IService，提供了IService中基础功能的实现 
+  * 若ServiceImpl无法满足业务需求，则可以使用自定的UserService定义方法，并在实现类中实现
+  */
+@Service
+public class UserServiceImpl extends ServiceImpl&lt;UserMapper,User&gt; implements UserService{}
+java<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p><strong>测试查询记录数</strong></p>
+<blockquote>
+<p><strong>调用方法：int count();</strong></p>
+</blockquote>
+<pre class="line-numbers language-none"><code class="language-none">@Test
+public void testGetCount(){
+    //查询总记录数
+    //执行的SQL为：SELECT COUNT( * ) FROM user
+    long count = userService.count();
+    System.out.println("总记录数：" + count);
+}
+java<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p><strong>测试批量插入数据</strong></p>
+<blockquote>
+<p><strong>调用方法：boolean saveBatch(Collection entityList);</strong></p>
+</blockquote>
+<pre class="line-numbers language-none"><code class="language-none">@Test
+public void test(){
+    List&lt;User&gt; list = new ArrayList&lt;&gt;();
+    for (int i = 1; i &lt;= 10; i++) {
+        User user = new User();
+        user.setName("Vz"+i);
+        user.setAge(20+i);
+        list.add(user);
+    }
+    boolean b = userService.saveBatch(list);
+    System.out.println(b ? "添加成功！" : "添加失败！");
+}
+java<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ul>
+<h1 id="四、常用注解"><a href="#四、常用注解" class="headerlink" title="四、常用注解"></a>四、常用注解</h1><blockquote>
+<p>MyBatis-Plus提供的注解可以帮我们解决一些数据库与实体之间相互映射的问题。</p>
+</blockquote>
+<h2 id="1-TableName"><a href="#1-TableName" class="headerlink" title="1.@TableName"></a>1.@TableName</h2><blockquote>
+<p>经过以上的测试，在使用MyBatis-Plus实现基本的CRUD时，我们并没有指定要操作的表，只是在Mapper接口继承BaseMapper时，设置了泛型User，而操作的表为user表，由此得出结论，MyBatis-Plus在确定操作的表时，由BaseMapper的泛型决定，即实体类型决定，且默认操作的表名和实体类型的类名一致。</p>
+</blockquote>
+<h3 id="1-1-引出问题"><a href="#1-1-引出问题" class="headerlink" title="1.1 引出问题"></a>1.1 引出问题</h3><hr>
+<blockquote>
+<p><strong>若实体类类型的类名和要操作的表的表名不一致，会出现什么问题？</strong></p>
+</blockquote>
+<ul>
+<li><p>我们将表<code>user</code>更名为<code>t_user</code>，测试查询功能</p>
+<p><img src="https://image-bed-vz.oss-cn-hangzhou.aliyuncs.com/MyBatis-Plus/image-20220520093844842.png" alt="image-20220520093844842"></p>
+</li>
+<li><p>程序抛出异常，<strong>Table ‘mybatis_plus.user’ doesn’t exist</strong>，因为现在的表名为<code>t_user</code>，而默认操作的表名和实体类型的类名一致，即<code>user</code>表</p>
+<p><img src="https://image-bed-vz.oss-cn-hangzhou.aliyuncs.com/MyBatis-Plus/image-20220520094126411.png" alt="image-20220520094126411"></p>
+</li>
+</ul>
+<h3 id="1-2-解决问题"><a href="#1-2-解决问题" class="headerlink" title="1.2 解决问题"></a>1.2 解决问题</h3><hr>
+<h4 id="a、使用注解解决问题"><a href="#a、使用注解解决问题" class="headerlink" title="a、使用注解解决问题"></a>a、使用注解解决问题</h4><blockquote>
+<p><strong>在实体类类型上添加<code>@TableName("t_user")</code>，标识实体类对应的表，即可成功执行SQL语句</strong></p>
+</blockquote>
+<pre class="line-numbers language-none"><code class="language-none">@Data
+@TableName("t_user")
+public class User {
+    private Long id;
+    private String name;
+    private Integer age;
+    private String email;
+}
+java<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="b、使用全局配置解决问题"><a href="#b、使用全局配置解决问题" class="headerlink" title="b、使用全局配置解决问题"></a>b、使用全局配置解决问题</h4><blockquote>
+<p><strong>在开发的过程中，我们经常遇到以上的问题，即实体类所对应的表都有固定的前缀，例如 <code>t_</code> 或 <code>tbl_</code> 此时，可以使用MyBatis-Plus提供的全局配置，为实体类所对应的表名设置默认的前缀，那么就不需要在每个实体类上通过@TableName标识实体类对应的表</strong></p>
+</blockquote>
+<pre class="line-numbers language-none"><code class="language-none">mybatis-plus:
+  global-config:
+    db-config:
+      # 设置实体类所对应的表的统一前缀
+      table-prefix: t_
+yml<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="2-TableId"><a href="#2-TableId" class="headerlink" title="2.@TableId"></a>2.@TableId</h2><blockquote>
+<p><strong>经过以上的测试，MyBatis-Plus在实现CRUD时，会默认将id作为主键列，并在插入数据时，默认基于雪花算法的策略生成id</strong></p>
+</blockquote>
+<h3 id="2-1-引出问题"><a href="#2-1-引出问题" class="headerlink" title="2.1 引出问题"></a>2.1 引出问题</h3><hr>
+<blockquote>
+<p><strong>若实体类和表中表示主键的不是id，而是其他字段，例如uid，MyBatis-Plus会自动识别uid为主键列吗？</strong></p>
+</blockquote>
+<ul>
+<li><p>我们实体类中的属性<code>id</code>改为<code>uid</code>，将表中的字段<code>id</code>也改为<code>uid</code>，测试添加功能</p>
+<p><img src="https://image-bed-vz.oss-cn-hangzhou.aliyuncs.com/MyBatis-Plus/image-20220520100939157.png" alt="image-20220520100939157"></p>
+<p><img src="https://image-bed-vz.oss-cn-hangzhou.aliyuncs.com/MyBatis-Plus/image-20220520100715109.png" alt="image-20220520100715109"></p>
+</li>
+<li><p>程序抛出异常，<strong>Field ‘uid’ doesn’t have a default value</strong>，说明MyBatis-Plus没有将<code>uid</code>作为主键赋值</p>
+<p><img src="https://image-bed-vz.oss-cn-hangzhou.aliyuncs.com/MyBatis-Plus/image-20220520101317761.png" alt="image-20220520101317761"></p>
+</li>
+</ul>
+<h3 id="2-2-解决问题"><a href="#2-2-解决问题" class="headerlink" title="2.2 解决问题"></a>2.2 解决问题</h3><hr>
+<blockquote>
+<p><strong>在实体类中uid属性上通过<code>@TableId</code>将其标识为主键，即可成功执行SQL语句</strong></p>
+</blockquote>
+<pre class="line-numbers language-none"><code class="language-none">@Date
+public class User {
+    @TableId
+    private Long uid;
+    private String name;
+    private Integer age;
+    private String email;
+}
+java<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="2-3-TableId的value属性"><a href="#2-3-TableId的value属性" class="headerlink" title="2.3 @TableId的value属性"></a>2.3 @TableId的value属性</h3><hr>
+<blockquote>
+<p>若实体类中主键对应的属性为id，而表中表示主键的字段为uid，此时若只在属性id上添加注解@TableId，则抛出异常<strong>Unknown column ‘id’ in ‘field list’</strong>，即MyBatis-Plus仍然会将id作为表的主键操作，而表中表示主键的是字段uid此时需要通过@TableId注解的value属性，指定表中的主键字段，<code>@TableId("uid")</code>或<code>@TableId(value="uid")</code></p>
+</blockquote>
+<p><img src="https://image-bed-vz.oss-cn-hangzhou.aliyuncs.com/MyBatis-Plus/image-20220520103030977.png" alt="image-20220520103030977"></p>
+<h3 id="2-4-TableId的type属性"><a href="#2-4-TableId的type属性" class="headerlink" title="2.4 @TableId的type属性"></a>2.4 @TableId的type属性</h3><hr>
+<blockquote>
+<p><strong>type属性用来定义主键策略：默认雪花算法</strong></p>
+</blockquote>
+<p><strong>常用的主键策略：</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">值</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">IdType.ASSIGN_ID（默认）</td>
+<td align="center">基于雪花算法的策略生成数据id，与数据库id是否设置自增无关</td>
+</tr>
+<tr>
+<td align="center">IdType.AUTO</td>
+<td align="center">使用数据库的自增策略，注意，该类型请确保数据库设置了id自增，</td>
+</tr>
+</tbody></table>
+<p><strong>配置全局主键策略：</strong></p>
+<pre class="line-numbers language-none"><code class="language-none">#MyBatis-Plus相关配置
+mybatis-plus:
+  configuration:
+    #配置日志
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      #配置mp的主键策略为自增
+      id-type: auto
+      # 设置实体类所对应的表的统一前缀
+      table-prefix: t_
+yml<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="3-TbaleField"><a href="#3-TbaleField" class="headerlink" title="3.@TbaleField"></a>3.@TbaleField</h2><blockquote>
+<p>经过以上的测试，我们可以发现，MyBatis-Plus在执行SQL语句时，要保证实体类中的属性名和表中的字段名一致</p>
+<p>如果实体类中的属性名和字段名不一致的情况，会出现什么问题呢？</p>
+</blockquote>
+<h3 id="3-1-情况一"><a href="#3-1-情况一" class="headerlink" title="3.1 情况一"></a>3.1 情况一</h3><hr>
+<p>若实体类中的属性使用的是驼峰命名风格，而表中的字段使用的是下划线命名风格</p>
+<p>例如实体类属性<code>userName</code>，表中字段<code>user_name</code></p>
+<p>此时MyBatis-Plus会自动将下划线命名风格转化为驼峰命名风格</p>
+<p>相当于在MyBatis中配置</p>
+<h3 id="3-2-情况二"><a href="#3-2-情况二" class="headerlink" title="3.2 情况二"></a>3.2 情况二</h3><hr>
+<blockquote>
+<p>若实体类中的属性和表中的字段不满足情况1</p>
+<p>例如实体类属性<code>name</code>，表中字段<code>username</code></p>
+<p>此时需要在实体类属性上使用<code>@TableField("username")</code>设置属性所对应的字段名</p>
+</blockquote>
+<pre class="line-numbers language-none"><code class="language-none">public class User {
+    @TableId("uid")
+    private Long id;
+    @TableField("username")
+    private String name;
+    private Integer age;
+    private String email;
+}
+java<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="4-TableLogic"><a href="#4-TableLogic" class="headerlink" title="4.@TableLogic"></a>4.@TableLogic</h2><h3 id="4-1-逻辑删除"><a href="#4-1-逻辑删除" class="headerlink" title="4.1 逻辑删除"></a>4.1 逻辑删除</h3><hr>
+<blockquote>
+<p>物理删除：真实删除，将对应数据从数据库中删除，之后查询不到此条被删除的数据</p>
+<p>逻辑删除：假删除，将对应数据中代表是否被删除字段的状态修改为“被删除状态”，之后在数据库中仍旧能看到此条数据记录</p>
+<p>使用场景：可以进行数据恢复</p>
+</blockquote>
+<h3 id="4-2-实现逻辑删除"><a href="#4-2-实现逻辑删除" class="headerlink" title="4.2 实现逻辑删除"></a>4.2 实现逻辑删除</h3><hr>
+<ul>
+<li><p><strong>数据库中创建逻辑删除状态列，设置默认值为0</strong></p>
+<p><img src="https://image-bed-vz.oss-cn-hangzhou.aliyuncs.com/MyBatis-Plus/image-20220520134529809.png" alt="image-20220520134529809"></p>
+</li>
+<li><p><strong>实体类中添加逻辑删除属性</strong></p>
+<p><img src="https://image-bed-vz.oss-cn-hangzhou.aliyuncs.com/MyBatis-Plus/image-20220520134636112.png" alt="image-20220520134636112"></p>
+</li>
+<li><p><strong>测试删除功能，真正执行的是修改</strong></p>
+<pre class="line-numbers language-none"><code class="language-none">public void testDeleteById(){
+    int result = userMapper.deleteById(1527472864163348482L);
+    System.out.println(result &gt; 0 ? "删除成功！" : "删除失败！");
+    System.out.println("受影响的行数为：" + result);
+}
+java<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><img src="https://image-bed-vz.oss-cn-hangzhou.aliyuncs.com/MyBatis-Plus/image-20220520135637388.png" alt="image-20220520135637388"></p>
+</li>
+<li><p><strong>此时执行查询方法，查询的结果为自动添加条件<code>is_deleted=0</code></strong></p>
+<p><img src="https://image-bed-vz.oss-cn-hangzhou.aliyuncs.com/MyBatis-Plus/image-20220520140036445.png" alt="image-20220520140036445"></p>
+</li>
+</ul>
+<h1 id="五、条件构造器"><a href="#五、条件构造器" class="headerlink" title="五、条件构造器"></a>五、条件构造器</h1><h2 id="1-Wrapper介绍"><a href="#1-Wrapper介绍" class="headerlink" title="1.Wrapper介绍"></a>1.Wrapper介绍</h2><p><img src="https://image-bed-vz.oss-cn-hangzhou.aliyuncs.com/MyBatis-Plus/image-20220521092812125.png" alt="image-20220521092812125"></p>
+<ul>
+<li><code>Wrapper</code> ： 条件构造抽象类，最顶端父类<ul>
+<li><code>AbstractWrapper </code>： 用于查询条件封装，生成 sql 的 where 条件</li>
+<li><code>QueryWrapper </code>： 查询条件封装</li>
+<li><code>UpdateWrapper </code>： Update 条件封装</li>
+<li><code>AbstractLambdaWrapper </code>： 使用Lambda 语法<ul>
+<li><code>LambdaQueryWrapper </code>：用于Lambda语法使用的查询Wrapper</li>
+<li><code>LambdaUpdateWrapper </code>： Lambda 更新封装Wrapper</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="2-QueryWrapper"><a href="#2-QueryWrapper" class="headerlink" title="2.QueryWrapper"></a>2.QueryWrapper</h2><ul>
+<li><p><strong>组装查询条件</strong></p>
+<blockquote>
+<p><strong>执行SQL</strong>：SELECT uid AS id,username AS name,age,email,is_deleted FROM t_user WHERE is_deleted=0 AND (username LIKE ? AND age BETWEEN ? AND ? AND email IS NOT NULL)</p>
+</blockquote>
+<pre class="line-numbers language-none"><code class="language-none">public void test01(){
+    //查询用户名包含a，年龄在20到30之间，邮箱信息不为null的用户信息
+    QueryWrapper&lt;User&gt; queryWrapper = new QueryWrapper&lt;&gt;();
+    queryWrapper.like("username","a").between("age",20,30).isNotNull("email");
+    List&lt;User&gt; users = userMapper.selectList(queryWrapper);
+    users.forEach(System.out::println);
+}
+java<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p><strong>组装排序条件</strong></p>
+<blockquote>
+<p><strong>执行SQL</strong>：SELECT uid AS id,username AS name,age,email,is_deleted FROM t_user WHERE is_deleted=0 ORDER BY age DESC,id ASC</p>
+</blockquote>
+<pre class="line-numbers language-none"><code class="language-none">public void test02(){
+    //查询用户信息，按照年龄的降序排序，若年龄相同，则按照id升序排序
+    QueryWrapper&lt;User&gt; queryWrapper = new QueryWrapper&lt;&gt;();
+    queryWrapper.orderByDesc("age").orderByAsc("id");
+    List&lt;User&gt; users = userMapper.selectList(queryWrapper);
+    users.forEach(System.out::println);
+}
+java<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p><strong>组装删除条件</strong></p>
+<blockquote>
+<p><strong>执行SQL</strong>：UPDATE t_user SET is_deleted=1 WHERE is_deleted=0 AND (email IS NULL)</p>
+</blockquote>
+<pre class="line-numbers language-none"><code class="language-none">public void test03(){
+    //删除邮箱地址为null的用户信息
+    QueryWrapper&lt;User&gt; queryWrapper = new QueryWrapper&lt;&gt;();
+    queryWrapper.isNull("email");
+    int result = userMapper.delete(queryWrapper);
+    System.out.println(result &gt; 0 ? "删除成功！" : "删除失败！");
+    System.out.println("受影响的行数为：" + result);
+}
+java<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p><strong>条件的优先级</strong></p>
+<blockquote>
+<p><strong>执行SQL</strong>：UPDATE t_user SET user_name=?, email=? WHERE is_deleted=0 AND (age &gt; ? AND user_name LIKE ? OR email IS NULL)</p>
+</blockquote>
+<pre class="line-numbers language-none"><code class="language-none">public void test04(){
+    //将（年龄大于20并且用户名中包含有a）或邮箱为null的用户信息修改
+    UpdateWrapper&lt;User&gt; updateWrapper = new UpdateWrapper&lt;&gt;();
+    updateWrapper.gt("age",20).like("username","a").or().isNull("email");
+    User user = new User();
+    user.setName("Oz");
+    user.setEmail("test@oz6.com");
+
+    int result = userMapper.update(user, updateWrapper);
+    System.out.println(result &gt; 0 ? "修改成功！" : "修改失败！");
+    System.out.println("受影响的行数为：" + result);
+}
+java<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<blockquote>
+<p><strong>执行SQL</strong>：UPDATE t_user SET username=?, email=? WHERE is_deleted=0 AND (username LIKE ? AND (age &gt; ? OR email IS NULL))</p>
+</blockquote>
+<pre class="line-numbers language-none"><code class="language-none">public void test05(){
+    //将用户名中包含有a并且（年龄大于20或邮箱为null）的用户信息修改
+    UpdateWrapper&lt;User&gt; updateWrapper = new UpdateWrapper&lt;&gt;();
+    updateWrapper.like("username","a").and(i-&gt;i.gt("age",20).or().isNull("email"));
+    User user = new User();
+    user.setName("Vz7797");
+    user.setEmail("test@ss8o.com");
+
+    int result = userMapper.update(user, updateWrapper);
+    System.out.println(result &gt; 0 ? "修改成功！" : "修改失败！");
+    System.out.println("受影响的行数为：" + result);
+}
+java<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p><strong>组装select子句</strong></p>
+<blockquote>
+<p><strong>执行SQL</strong>：SELECT username,age,email FROM t_user WHERE is_deleted=0</p>
+</blockquote>
+<pre class="line-numbers language-none"><code class="language-none">public void test06(){
+    //查询用户的用户名、年龄、邮箱信息
+    QueryWrapper&lt;User&gt; queryWrapper = new QueryWrapper&lt;&gt;();
+    queryWrapper.select("username","age","email");
+    List&lt;Map&lt;String, Object&gt;&gt; maps = userMapper.selectMaps(queryWrapper);
+    maps.forEach(System.out::println);
+}
+java<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p><strong>实现子查询</strong></p>
+<blockquote>
+<p><strong>执行SQL</strong>：SELECT uid AS id,user_name AS name,age,email,is_deleted FROM t_user WHERE is_deleted=0 AND (uid IN (select uid from t_user where uid &lt;= 100))</p>
+</blockquote>
+<pre class="line-numbers language-none"><code class="language-none">public void test07(){
+    //查询id小于等于100的用户信息
+    QueryWrapper&lt;User&gt; queryWrapper = new QueryWrapper&lt;&gt;();
+    queryWrapper.inSql("uid", "select uid from t_user where uid &lt;= 100");
+    List&lt;User&gt; list = userMapper.selectList(queryWrapper);
+    list.forEach(System.out::println);
+}
+java<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ul>
+<h2 id="3-UpdateWrapper"><a href="#3-UpdateWrapper" class="headerlink" title="3.UpdateWrapper"></a>3.UpdateWrapper</h2><blockquote>
+<p>UpdateWrapper不仅拥有QueryWrapper的组装条件功能，还提供了set方法进行修改对应条件的数据库信息</p>
+</blockquote>
+<pre class="line-numbers language-none"><code class="language-none">public void test08(){
+    //将用户名中包含有a并且（年龄大于20或邮箱为null）的用户信息修改
+    UpdateWrapper&lt;User&gt; updateWrapper = new UpdateWrapper&lt;&gt;();
+    updateWrapper.like("username","a").and( i -&gt; i.gt("age",20).or().isNull("email")).set("email","svip@qq.com");
+    int result = userMapper.update(null, updateWrapper);
+    System.out.println(result &gt; 0 ? "修改成功！" : "修改失败！");
+    System.out.println("受影响的行数为：" + result);
+}
+java<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="4-condition"><a href="#4-condition" class="headerlink" title="4.condition"></a>4.condition</h2><blockquote>
+<p>在真正开发的过程中，组装条件是常见的功能，而这些条件数据来源于用户输入，是可选的，因此我们在组装这些条件时，必须先判断用户是否选择了这些条件，若选择则需要组装该条件，若没有选择则一定不能组装，以免影响SQL执行的结果</p>
+</blockquote>
+<ul>
+<li><p><strong>思路一</strong></p>
+<blockquote>
+<p><strong>执行SQL</strong>：SELECT uid AS id,user_name AS name,age,email,is_deleted FROM t_user WHERE is_deleted=0 AND (user_name LIKE ? AND age &lt;= ?)</p>
+</blockquote>
+<pre class="line-numbers language-none"><code class="language-none"> public void test09(){
+     String username = "a";
+     Integer ageBegin = null;
+     Integer ageEnd = 30;
+     QueryWrapper&lt;User&gt; queryWrapper = new QueryWrapper&lt;&gt;();
+     if(StringUtils.isNotBlank(username)){
+         //isNotBlank判断某个字符创是否不为空字符串、不为null、不为空白符
+         queryWrapper.like("user_name", username);
+     }
+     if(ageBegin != null){
+         queryWrapper.ge("age", ageBegin);
+     }
+     if(ageEnd != null){
+         queryWrapper.le("age", ageEnd);
+     }
+     List&lt;User&gt; list = userMapper.selectList(queryWrapper);
+     list.forEach(System.out::println);
+ }
+java<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p><strong>思路二</strong></p>
+<blockquote>
+<p>上面的实现方案没有问题，但是代码比较复杂，我们可以使用带condition参数的重载方法构建查询条件，简化代码的编写</p>
+</blockquote>
+<pre class="line-numbers language-none"><code class="language-none">public void test10(){
+    String username = "a";
+    Integer ageBegin = null;
+    Integer ageEnd = 30;
+    QueryWrapper&lt;User&gt; queryWrapper = new QueryWrapper&lt;&gt;();
+    queryWrapper.like(StringUtils.isNotBlank(username), "user_name", username)
+        .ge(ageBegin != null, "age", ageBegin)
+        .le(ageEnd != null, "age", ageEnd);
+    List&lt;User&gt; list = userMapper.selectList(queryWrapper);
+    list.forEach(System.out::println);
+}
+java<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ul>
+<h2 id="5-LambdaQueryWrapper"><a href="#5-LambdaQueryWrapper" class="headerlink" title="5.LambdaQueryWrapper"></a>5.LambdaQueryWrapper</h2><blockquote>
+<p>功能等同于QueryWrapper，提供了Lambda表达式的语法可以避免填错列名。</p>
+</blockquote>
+<pre class="line-numbers language-none"><code class="language-none">public void test11(){
+    String username = "a";
+    Integer ageBegin = null;
+    Integer ageEnd = 30;
+    LambdaQueryWrapper&lt;User&gt; queryWrapper = new LambdaQueryWrapper&lt;&gt;();
+    queryWrapper.like(StringUtils.isNotBlank(username), User::getName, username)
+        .ge(ageBegin != null, User::getAge, ageBegin)
+        .le(ageEnd != null, User::getAge, ageEnd);
+    List&lt;User&gt; list = userMapper.selectList(queryWrapper);
+    list.forEach(System.out::println);
+}
+java<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="6-LambdaUpdateWrapper"><a href="#6-LambdaUpdateWrapper" class="headerlink" title="6.LambdaUpdateWrapper"></a>6.LambdaUpdateWrapper</h2><blockquote>
+<p>功能等同于UpdateWrapper，提供了Lambda表达式的语法可以避免填错列名。</p>
+</blockquote>
+<pre class="line-numbers language-none"><code class="language-none">public void test12(){
+    //将用户名中包含有a并且（年龄大于20或邮箱为null）的用户信息修改
+    LambdaUpdateWrapper&lt;User&gt; updateWrapper = new LambdaUpdateWrapper&lt;&gt;();
+    updateWrapper.like(User::getName, "a")
+        .and(i -&gt; i.gt(User::getAge, 20).or().isNull(User::getEmail));
+    updateWrapper.set(User::getName, "小黑").set(User::getEmail,"abc@atguigu.com");
+    int result = userMapper.update(null, updateWrapper);
+    System.out.println("result："+result);
+}
+java<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h1 id="六、常用插件"><a href="#六、常用插件" class="headerlink" title="六、常用插件"></a>六、常用插件</h1><h2 id="1-分页插件"><a href="#1-分页插件" class="headerlink" title="1.分页插件"></a>1.分页插件</h2><blockquote>
+<p>MyBatis Plus自带分页插件，只要简单的配置即可实现分页功能</p>
+</blockquote>
+<ul>
+<li><p><strong>添加配置类<code>MyBatisPlusConfig</code></strong></p>
+<pre class="line-numbers language-none"><code class="language-none">@Configuration
+@MapperScan("com.atguigu.mybatisplus.mapper")
+public class MyBatisPlusConfig {
+    @Bean
+    public MybatisPlusInterceptor mybatisPlusInterceptor(){
+        MybatisPlusInterceptor interceptor = new MybatisPlusInterceptor();
+        //添加分页插件
+        interceptor.addInnerInterceptor(new PaginationInnerInterceptor(DbType.MYSQL));
+        return interceptor;
+    }
+}
+java<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p><strong>编写测试方法</strong></p>
+<pre class="line-numbers language-none"><code class="language-none">@Test
+public void testPage(){
+    //new Page()中的两个参数分别是当前页码，每页显示数量
+    Page&lt;User&gt; page = userMapper.selectPage(new Page&lt;&gt;(1, 2), null);
+    List&lt;User&gt; users = page.getRecords();
+    users.forEach(System.out::println);
+}
+java<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ul>
+<h2 id="2-自定义分页"><a href="#2-自定义分页" class="headerlink" title="2.自定义分页"></a>2.自定义分页</h2><blockquote>
+<p>上面调用的是MyBatis-Plus提供的带有分页的方法，那么我们自己定义的方法如何实现分页呢？</p>
+</blockquote>
+<ul>
+<li><p><strong>在<code>UserMapper</code>接口中定义一个方法</strong></p>
+<pre class="line-numbers language-none"><code class="language-none">/**
+  * 根据年龄查询用户列表，分页显示 
+  * @param page 分页对象,xml中可以从里面进行取值,传递参数 Page 即自动分页,必须放在第一位 
+  * @param age 年龄 
+  * @return 
+  */
+Page&lt;User&gt; selectPageVo(@Param("page") Page&lt;User&gt; page,@Param("age") Integer age);
+java<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p><strong>在<code>UserMapper.xml</code>中编写SQL实现该方法</strong></p>
+<pre class="line-numbers language-none"><code class="language-none">&lt;select id="selectPageVo" resultType="User"&gt;
+    select id,username as name,age,email from t_user where age &gt; #{age}
+&lt;/select&gt;
+xml<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p><strong>编写测试方法</strong></p>
+<pre class="line-numbers language-none"><code class="language-none">@Test
+public void testPageVo(){
+    Page&lt;User&gt; page = userMapper.selectPageVo(new Page&lt;User&gt;(1,2), 20);
+    List&lt;User&gt; users = page.getRecords();
+    users.forEach(System.out::println);
+}
+java<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ul>
+<h2 id="3-乐观锁"><a href="#3-乐观锁" class="headerlink" title="3.乐观锁"></a>3.乐观锁</h2><blockquote>
+<p><strong>作用：当要更新一条记录的时候，希望这条记录没有被别人更新</strong></p>
+</blockquote>
+<p>乐观锁的实现方式：</p>
+<ul>
+<li>取出记录时，获取当前 version</li>
+<li>更新时，带上这个 version</li>
+<li>执行更新时， set version = newVersion where version = oldVersion</li>
+<li>如果 version 不对，就更新失败</li>
+</ul>
+<h3 id="3-1-场景"><a href="#3-1-场景" class="headerlink" title="3.1 场景"></a>3.1 场景</h3><hr>
+<ul>
+<li>一件商品，成本价是80元，售价是100元。老板先是通知小李，说你去把商品价格增加50元。小李正在玩游戏，耽搁了一个小时。正好一个小时后，老板觉得商品价格增加到150元，价格太高，可能会影响销量。又通知小王，你把商品价格降低30元。</li>
+<li>此时，小李和小王同时操作商品后台系统。小李操作的时候，系统先取出商品价格100元；小王也在操作，取出的商品价格也是100元。小李将价格加了50元，并将100+50=150元存入了数据库；小王将商品减了30元，并将100-30=70元存入了数据库。是的，如果没有锁，小李的操作就完全被小王的覆盖了。</li>
+<li>现在商品价格是70元，比成本价低10元。几分钟后，这个商品很快出售了1千多件商品，老板亏1万多。</li>
+</ul>
+<h3 id="3-2-乐观锁与悲观锁"><a href="#3-2-乐观锁与悲观锁" class="headerlink" title="3.2 乐观锁与悲观锁"></a>3.2 乐观锁与悲观锁</h3><hr>
+<ul>
+<li>上面的故事，如果是乐观锁，小王保存价格前，会检查下价格是否被人修改过了。如果被修改过了，则重新取出的被修改后的价格，150元，这样他会将120元存入数据库。</li>
+<li>如果是悲观锁，小李取出数据后，小王只能等小李操作完之后，才能对价格进行操作，也会保证最终的价格是120元。</li>
+</ul>
+<h3 id="3-3-模拟修改冲突"><a href="#3-3-模拟修改冲突" class="headerlink" title="3.3 模拟修改冲突"></a>3.3 模拟修改冲突</h3><hr>
+<ul>
+<li><p><strong>数据库中增加商品表</strong></p>
+<pre class="line-numbers language-none"><code class="language-none">CREATE TABLE t_product ( 
+    id BIGINT(20) NOT NULL COMMENT '主键ID', 
+    NAME VARCHAR(30) NULL DEFAULT NULL COMMENT '商品名称', 
+    price INT(11) DEFAULT 0 COMMENT '价格', 
+    VERSION INT(11) DEFAULT 0 COMMENT '乐观锁版本号', 
+    PRIMARY KEY (id) 
+);
+sql<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p><strong>添加一条数据</strong></p>
+<pre class="line-numbers language-none"><code class="language-none">INSERT INTO t_product (id, NAME, price) VALUES (1, '外星人笔记本', 100);
+sql<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+</li>
+<li><p><strong>添加一个实体类<code>Product</code></strong></p>
+<pre class="line-numbers language-none"><code class="language-none">@Data
+public class Product {
+    private Long id;
+    private String name;
+    private Integer price;
+    private Integer version;
+}
+java<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p><strong>添加一个Mapper接口<code>ProductMapper</code></strong></p>
+<pre class="line-numbers language-none"><code class="language-none">public interface ProductMapper extends BaseMapper&lt;Product&gt; {}
+java<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+</li>
+<li><p><strong>测试方法</strong></p>
+<pre class="line-numbers language-none"><code class="language-none">@Test
+public void testProduct01(){
+    //1.小李获取商品价格
+    Product productLi = productMapper.selectById(1);
+    System.out.println("小李获取的商品价格为：" + productLi.getPrice());
+
+    //2.小王获取商品价格
+    Product productWang = productMapper.selectById(1);
+    System.out.println("小李获取的商品价格为：" + productWang.getPrice());
+
+    //3.小李修改商品价格+50
+    productLi.setPrice(productLi.getPrice()+50);
+    productMapper.updateById(productLi);
+
+    //4.小王修改商品价格-30
+    productWang.setPrice(productWang.getPrice()-30);
+    productMapper.updateById(productWang);
+
+    //5.老板查询商品价格
+    Product productBoss = productMapper.selectById(1);
+    System.out.println("老板获取的商品价格为：" + productBoss.getPrice());
+}
+java<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p><strong>执行结果</strong></p>
+<p><img src="https://image-bed-vz.oss-cn-hangzhou.aliyuncs.com/MyBatis-Plus/image-20220521225803162.png" alt="image-20220521225803162"></p>
+</li>
+</ul>
+<h3 id="3-4-乐观锁解决问题"><a href="#3-4-乐观锁解决问题" class="headerlink" title="3.4 乐观锁解决问题"></a>3.4 乐观锁解决问题</h3><hr>
+<ul>
+<li><p><strong>实体类<code>version</code>字段添加注解<code>@Version</code></strong></p>
+<pre class="line-numbers language-none"><code class="language-none">@Data
+public class Product {
+    private Long id;
+    private String name;
+    private Integer price;
+    @Version
+    private Integer version;
+}
+java<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p><strong>添加乐观锁插件配置</strong></p>
+<pre class="line-numbers language-none"><code class="language-none">@Bean
+public MybatisPlusInterceptor mybatisPlusInterceptor(){
+    MybatisPlusInterceptor interceptor = new MybatisPlusInterceptor();
+    //添加分页插件
+    interceptor.addInnerInterceptor(new PaginationInnerInterceptor(DbType.MYSQL));
+    //添加乐观锁插件
+    interceptor.addInnerInterceptor(new OptimisticLockerInnerInterceptor());
+    return interceptor;
+}
+java<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p><strong>再次执行测试方法</strong></p>
+<blockquote>
+<p>小李查询商品信息：</p>
+<p> SELECT id,name,price,version FROM t_product WHERE id=?</p>
+<p>小王查询商品信息：</p>
+<p> SELECT id,name,price,version FROM t_product WHERE id=?</p>
+<p>小李修改商品价格，自动将version+1</p>
+<p> UPDATE t_product SET name=?, price=?, version=? WHERE id=? AND version=?</p>
+<p> Parameters: 外星人笔记本(String), 150(Integer), 1(Integer), 1(Long), 0(Integer)</p>
+<p>小王修改商品价格，此时version已更新，条件不成立，修改失败</p>
+<p> UPDATE t_product SET name=?, price=?, version=? WHERE id=? AND version=?</p>
+<p> Parameters: 外星人笔记本(String), 70(Integer), 1(Integer), 1(Long), 0(Integer)</p>
+<p>最终，小王修改失败，查询价格：150</p>
+<p> SELECT id,name,price,version FROM t_product WHERE id=?</p>
+</blockquote>
+</li>
+<li><p><strong>优化执行流程</strong></p>
+<pre class="line-numbers language-none"><code class="language-none">@Test
+public void testProduct01(){
+    //1.小李获取商品价格
+    Product productLi = productMapper.selectById(1);
+    System.out.println("小李获取的商品价格为：" + productLi.getPrice());
+
+    //2.小王获取商品价格
+    Product productWang = productMapper.selectById(1);
+    System.out.println("小李获取的商品价格为：" + productWang.getPrice());
+
+    //3.小李修改商品价格+50
+    productLi.setPrice(productLi.getPrice()+50);
+    productMapper.updateById(productLi);
+
+    //4.小王修改商品价格-30
+    productWang.setPrice(productWang.getPrice()-30);
+    int result = productMapper.updateById(productWang);
+    if(result == 0){
+        //操作失败，重试
+        Product productNew = productMapper.selectById(1);
+        productNew.setPrice(productNew.getPrice()-30);
+        productMapper.updateById(productNew);
+    }
+
+    //5.老板查询商品价格
+    Product productBoss = productMapper.selectById(1);
+    System.out.println("老板获取的商品价格为：" + productBoss.getPrice());
+}
+java<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><img src="https://image-bed-vz.oss-cn-hangzhou.aliyuncs.com/MyBatis-Plus/image-20220521230448577.png" alt="image-20220521230448577"></p>
+</li>
+</ul>
+<h1 id="七、通用枚举"><a href="#七、通用枚举" class="headerlink" title="七、通用枚举"></a>七、通用枚举</h1><blockquote>
+<p>表中的有些字段值是固定的，例如性别（男或女），此时我们可以使用MyBatis-Plus的通用枚举来实现</p>
+</blockquote>
+<ul>
+<li><p><strong>数据库表添加字段<code>sex</code></strong></p>
+<p><img src="https://image-bed-vz.oss-cn-hangzhou.aliyuncs.com/MyBatis-Plus/image-20220521231317777.png" alt="image-20220521231317777"></p>
+</li>
+<li><p><strong>创建通用枚举类型</strong></p>
+<pre class="line-numbers language-none"><code class="language-none">@Getter
+public enum SexEnum {
+    MALE(1, "男"),
+    FEMALE(2, "女");
+
+    @EnumValue //将注解所标识的属性的值存储到数据库中
+    private int sex;
+    private String sexName;
+
+    SexEnum(Integer sex, String sexName) {
+        this.sex = sex;
+        this.sexName = sexName;
+    }
+}
+java<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p><strong>User实体类中添加属性sex</strong></p>
+<pre class="line-numbers language-none"><code class="language-none">public class User {
+    private Long id;
+    @TableField("username")
+    private String name;
+    private Integer age;
+    private String email;
+
+    @TableLogic
+    private int isDeleted;  //逻辑删除
+
+    private SexEnum sex;
+}
+java<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p><strong>配置扫描通用枚举</strong></p>
+<pre class="line-numbers language-none"><code class="language-none">#MyBatis-Plus相关配置
+mybatis-plus:
+  #指定mapper文件所在的地址
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    #配置日志
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    banner: off
+    db-config:
+      #配置mp的主键策略为自增
+      id-type: auto
+      # 设置实体类所对应的表的统一前缀
+      table-prefix: t_
+  #配置类型别名所对应的包
+  type-aliases-package: com.atguigu.mybatisplus.pojo
+  # 扫描通用枚举的包
+  type-enums-package: com.atguigu.mybatisplus.enums
+yml<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p><strong>执行测试方法</strong></p>
+<pre class="line-numbers language-none"><code class="language-none">@Test
+public void test(){
+    User user = new User();
+    user.setName("admin");
+    user.setAge(33);
+    user.setSex(SexEnum.MALE);
+    int result = userMapper.insert(user);
+    System.out.println("result:"+result);
+}
+java<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ul>
+<h1 id="八、多数据源"><a href="#八、多数据源" class="headerlink" title="八、多数据源"></a>八、多数据源</h1><blockquote>
+<p>适用于多种场景：纯粹多库、 读写分离、 一主多从、 混合模式等</p>
+</blockquote>
+<p>场景说明：</p>
+<p>我们创建两个库，分别为：<code>mybatis_plus</code>（以前的库不动）与<code>mybatis_plus_1</code>（新建），将mybatis_plus库的<code>product</code>表移动到mybatis_plus_1库，这样每个库一张表，通过一个测试用例分别获取用户数据与商品数据，如果获取到说明多库模拟成功</p>
+<h2 id="1-创建数据库及表"><a href="#1-创建数据库及表" class="headerlink" title="1.创建数据库及表"></a>1.创建数据库及表</h2><ul>
+<li><p><strong>创建数据库<code>mybatis_plus_1</code>和表`product</strong></p>
+<pre class="line-numbers language-none"><code class="language-none">CREATE DATABASE `mybatis_plus_1` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
+use `mybatis_plus_1`; 
+CREATE TABLE product ( 
+    id BIGINT(20) NOT NULL COMMENT '主键ID', 
+    name VARCHAR(30) NULL DEFAULT NULL COMMENT '商品名称', 
+    price INT(11) DEFAULT 0 COMMENT '价格', 
+    version INT(11) DEFAULT 0 COMMENT '乐观锁版本号', 
+    PRIMARY KEY (id) 
+);
+sql<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p><strong>添加测试数据</strong></p>
+<pre class="line-numbers language-none"><code class="language-none">INSERT INTO product (id, NAME, price) VALUES (1, '外星人笔记本', 100);
+sql<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+</li>
+<li><p><strong>删除<code>mybatis_plus</code>库中的<code>product</code>表</strong></p>
+<pre class="line-numbers language-none"><code class="language-none">use mybatis_plus; 
+DROP TABLE IF EXISTS product;
+sql<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></li>
+</ul>
+<h2 id="2-新建工程引入依赖"><a href="#2-新建工程引入依赖" class="headerlink" title="2.新建工程引入依赖"></a>2.新建工程引入依赖</h2><blockquote>
+<p><strong>自行新建一个Spring Boot工程并选择MySQL驱动及Lombok依赖</strong></p>
+</blockquote>
+<p><strong>引入MyBaits-Plus的依赖及多数据源的依赖</strong></p>
+<pre class="line-numbers language-none"><code class="language-none">&lt;dependency&gt;
+    &lt;groupId&gt;com.baomidou&lt;/groupId&gt;
+    &lt;artifactId&gt;mybatis-plus-boot-starter&lt;/artifactId&gt;
+    &lt;version&gt;3.5.1&lt;/version&gt;
+&lt;/dependency&gt;
+
+&lt;dependency&gt;
+    &lt;groupId&gt;com.baomidou&lt;/groupId&gt;
+    &lt;artifactId&gt;dynamic-datasource-spring-boot-starter&lt;/artifactId&gt;
+    &lt;version&gt;3.5.0&lt;/version&gt;
+&lt;/dependency&gt;
+xml<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="3-编写配置文件"><a href="#3-编写配置文件" class="headerlink" title="3.编写配置文件"></a>3.编写配置文件</h2><pre class="line-numbers language-none"><code class="language-none">spring:
+  # 配置数据源信息
+  datasource:
+    dynamic:
+      # 设置默认的数据源或者数据源组,默认值即为master
+      primary: master
+      # 严格匹配数据源,默认false.true未匹配到指定数据源时抛异常,false使用默认数据源
+      strict: false
+      datasource:
+        master:
+          url: jdbc:mysql://localhost:3306/mybatis_plus?characterEncoding=utf-8&amp;useSSL=false
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          username: root
+          password: 132537
+        slave_1:
+          url: jdbc:mysql://localhost:3306/mybatis_plus_1?characterEncoding=utf-8&amp;useSSL=false
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          username: root
+          password: 132537
+yml<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="4-创建实体类"><a href="#4-创建实体类" class="headerlink" title="4.创建实体类"></a>4.创建实体类</h2><ul>
+<li><p>新建一个<code>User</code>实体类（如果数据库表名有t_前缀记得配置）</p>
+<pre class="line-numbers language-none"><code class="language-none">@Data
+public class User {
+    private Long id;
+    private String name;
+    private Integer age;
+    private String email;
+}
+java<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p>新建一个实体类<code>Product</code></p>
+<pre class="line-numbers language-none"><code class="language-none">@Data
+public class Product {
+    private Long id;
+    private String name;
+    private Integer price;
+    private Integer version;
+}
+java<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ul>
+<h2 id="5-创建Mapper及Service"><a href="#5-创建Mapper及Service" class="headerlink" title="5.创建Mapper及Service"></a>5.创建Mapper及Service</h2><ul>
+<li><p>新建接口<code>UserMapper</code></p>
+<pre class="line-numbers language-none"><code class="language-none">public interface UserMapper extends BaseMapper&lt;User&gt; {}
+java<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+</li>
+<li><p>新建接口<code>ProductMapper</code></p>
+<pre class="line-numbers language-none"><code class="language-none">public interface ProductMapper extends BaseMapper&lt;Product&gt; {}
+java<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+</li>
+<li><p>新建Service接口<code>UserService</code>指定操作的数据源</p>
+<pre class="line-numbers language-none"><code class="language-none">@DS("master") //指定操作的数据源，master为user表
+public interface UserService extends IService&lt;User&gt; {}
+java<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p>新建Service接口<code>ProductService</code>指定操作的数据源</p>
+<pre class="line-numbers language-none"><code class="language-none">@DS("slave_1")
+public interface ProductService extends IService&lt;Product&gt; {}
+java<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p>自行建立Service的实现类</p>
+<pre class="line-numbers language-none"><code class="language-none">...
+java<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></li>
+</ul>
+<h2 id="6-编写测试方法"><a href="#6-编写测试方法" class="headerlink" title="6.编写测试方法"></a>6.编写测试方法</h2><blockquote>
+<p><strong>记得在启动类中添加注解<code>@MapperScan()</code></strong></p>
+</blockquote>
+<pre class="line-numbers language-none"><code class="language-none">class TestDatasourceApplicationTests {
+	@Resource
+	UserService userService;
+
+	@Resource
+	ProductService productService;
+
+	@Test
+	void contextLoads() {
+		User user = userService.getById(1L);
+		Product product = productService.getById(1L);
+		System.out.println("User = " + user);
+		System.out.println("Product = " + product);
+	}
+
+}
+java<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><img src="https://image-bed-vz.oss-cn-hangzhou.aliyuncs.com/MyBatis-Plus/image-20220522113049945.png" alt="image-20220522113049945"></p>
+<h1 id="九、MyBatisX插件"><a href="#九、MyBatisX插件" class="headerlink" title="九、MyBatisX插件"></a>九、MyBatisX插件</h1><blockquote>
+<p>MyBatis-Plus为我们提供了强大的mapper和service模板，能够大大的提高开发效率。</p>
+<p>但是在真正开发过程中，MyBatis-Plus并不能为我们解决所有问题，例如一些复杂的SQL，多表联查，我们就需要自己去编写代码和SQL语句，我们该如何快速的解决这个问题呢，这个时候可以使用MyBatisX插件。</p>
+<p>MyBatisX一款基于 IDEA 的快速开发插件，为效率而生。</p>
+</blockquote>
+<h2 id="1-安装MyBatisX插件"><a href="#1-安装MyBatisX插件" class="headerlink" title="1.安装MyBatisX插件"></a>1.安装MyBatisX插件</h2><blockquote>
+<p><strong>打开IDEA，File-&gt; Setteings-&gt;Plugins-&gt;MyBatisX，搜索栏搜索MyBatisX然后安装。</strong></p>
+</blockquote>
+<p><img src="https://image-bed-vz.oss-cn-hangzhou.aliyuncs.com/MyBatis-Plus/image-20220522115718361.png" alt="image-20220522115718361"></p>
+<h2 id="2-快速生成代码"><a href="#2-快速生成代码" class="headerlink" title="2.快速生成代码"></a>2.快速生成代码</h2><ul>
+<li><p>新建一个Spring Boot项目引入依赖（创建工程时记得勾选lombok及mysql驱动）</p>
+<pre class="line-numbers language-none"><code class="language-none">&lt;dependency&gt;
+    &lt;groupId&gt;com.baomidou&lt;/groupId&gt;
+    &lt;artifactId&gt;mybatis-plus-boot-starter&lt;/artifactId&gt;
+    &lt;version&gt;3.5.1&lt;/version&gt;
+&lt;/dependency&gt;
+
+&lt;dependency&gt;
+    &lt;groupId&gt;com.baomidou&lt;/groupId&gt;
+    &lt;artifactId&gt;dynamic-datasource-spring-boot-starter&lt;/artifactId&gt;
+    &lt;version&gt;3.5.0&lt;/version&gt;
+&lt;/dependency&gt;
+xml<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p>配置数据源信息</p>
+<pre class="line-numbers language-none"><code class="language-none">spring:
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/mybatis_plus?characterEncoding=utf-8&amp;useSSL=false
+    username: root
+    password: 132537
+yml<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p>在IDEA中与数据库建立链接</p>
+<p><img src="https://image-bed-vz.oss-cn-hangzhou.aliyuncs.com/MyBatis-Plus/image-20220522120758740.png" alt="image-20220522120758740"></p>
+</li>
+<li><p>填写数据库信息并保存</p>
+<p><img src="https://image-bed-vz.oss-cn-hangzhou.aliyuncs.com/MyBatis-Plus/image-20220522121434468.png" alt="image-20220522121434468"></p>
+</li>
+<li><p>找到我们需要生成的表点击右键</p>
+<p><img src="https://image-bed-vz.oss-cn-hangzhou.aliyuncs.com/MyBatis-Plus/image-20220522121613909.png" alt="image-20220522121613909"></p>
+</li>
+<li><p>填写完信息以后下一步</p>
+<p><img src="https://image-bed-vz.oss-cn-hangzhou.aliyuncs.com/MyBatis-Plus/image-20220522122127649.png" alt="image-20220522122127649"></p>
+</li>
+<li><p>继续填写信息</p>
+<p><img src="https://image-bed-vz.oss-cn-hangzhou.aliyuncs.com/MyBatis-Plus/image-20220522122525598.png" alt="image-20220522122525598"></p>
+</li>
+<li><p><strong>大功告成（真特么好用yyds）</strong></p>
+<p><img src="https://image-bed-vz.oss-cn-hangzhou.aliyuncs.com/MyBatis-Plus/image-20220522122612334.png" alt="image-20220522122612334"></p>
+</li>
+</ul>
+<h2 id="3-快速生成CRUD"><a href="#3-快速生成CRUD" class="headerlink" title="3.快速生成CRUD"></a>3.快速生成CRUD</h2><blockquote>
+<p>MyBaitsX可以根据我们在Mapper接口中输入的方法名快速帮我们生成对应的sql语句</p>
+</blockquote>
+<p><img src="https://image-bed-vz.oss-cn-hangzhou.aliyuncs.com/MyBatis-Plus/image-20220522123143852.png" alt="image-20220522123143852"></p>
+<p><img src="https://image-bed-vz.oss-cn-hangzhou.aliyuncs.com/MyBatis-Plus/image-20220522123202310.png" alt="image-20220522123202310"></p>
+<p>笔记来自<a target="_blank" rel="noopener" href="https://www.oz6.cn/articles/55">MyBatis-Plus (oz6.cn)</a></p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">SuoLiweng</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://dick-su-3.github.io/archives/afec5f7c.html">https://dick-su-3.github.io/archives/afec5f7c.html</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">SuoLiweng</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/SSM/">
+                                    <span class="chip bg-color">SSM</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/archives/ee568259.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="《史记》中30句名言和注解">
+                        
+                        <span class="card-title">《史记》中30句名言和注解</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2023-09-21
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E6%96%87%E5%AD%A6/" class="post-category">
+                                    文学
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E6%91%98%E5%BD%95/">
+                        <span class="chip bg-color">摘录</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/archives/337fcc87.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="MySQL基础篇">
+                        
+                        <span class="card-title">MySQL基础篇</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            一、SQL
+全称 Structured Query Language，结构化查询语言。操作关系型数据库的编程语言，定义了一套操作关系型数据库统一标准 。
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-09-20
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="post-category">
+                                    数据库
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/mysql/">
+                        <span class="chip bg-color">mysql</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+
+  <!-- 是否加载使用自带的 prismjs. -->
+  <script type="text/javascript" src="/libs/prism/prism.min.js"></script>
+
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="26467411"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.5'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="/libs/aplayer/Meting.min.js"></script>
+
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2022-2023</span>
+            
+            <a href="/about" target="_blank">SuoLiweng</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            
+                <span id="translate">|&nbsp;繁/简：</span><a id="translateLink" href="javascript:translatePage();">繁</a>
+            
+            <br>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/Jacksu3" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:1530265947@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1530265947" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1530265947" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 白天和黑夜主题 -->
+<div class="stars-con">
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>  
+</div>
+
+<script>
+    function switchNightMode() {
+        $('<div class="Cuteen_DarkSky"><div class="Cuteen_DarkPlanet"></div></div>').appendTo($('body')),
+        setTimeout(function () {
+            $('body').hasClass('DarkMode') 
+            ? ($('body').removeClass('DarkMode'), localStorage.setItem('isDark', '0'), $('#sum-moon-icon').removeClass("fa-sun").addClass('fa-moon')) 
+            : ($('body').addClass('DarkMode'), localStorage.setItem('isDark', '1'), $('#sum-moon-icon').addClass("fa-sun").removeClass('fa-moon')),
+            
+            setTimeout(function () {
+            $('.Cuteen_DarkSky').fadeOut(1e3, function () {
+                $(this).remove()
+            })
+            }, 2e3)
+        })
+    }
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    
+
+    
+        <script type="text/javascript" src="/js/tw_cn.js"></script>
+        <script type="text/javascript">
+          var defaultEncoding = 2; //网站编写字体是否繁体，1-繁体，2-简体
+          var translateDelay = 0; //延迟时间,若不在前, 要设定延迟翻译时间, 如100表示100ms,默认为0
+          var cookieDomain = "https://dick-su-3.github.io"; //Cookie地址, 一定要设定, 通常为你的网址
+          var msgToTraditionalChinese = "繁"; //此处可以更改为你想要显示的文字
+          var msgToSimplifiedChinese = "简"; //同上，但两处均不建议更改
+          var translateButtonId = "translateLink"; //默认互换id
+          translateInitilization();
+        </script>
+    
+    
+    
+
+    <!-- 雪花特效 -->
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+     
+        <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+        <script src="/libs/others/TencentCaptcha.js"></script>
+        <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+
+</html>

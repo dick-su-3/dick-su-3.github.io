@@ -1,0 +1,1575 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="Java 异常分析, 云卷舒">
+    <meta name="description" content="本文是对以下内容的分析：
+
+Java异常设计
+Java 异常分类
+Java异常可以告诉什么问题
+Java异常处理最佳实践
+
+Java Exception 是为了处理应用程序的异常行为而创建的类。在本文中，将解释如何使用 Java Excep">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>Java 异常分析 | 云卷舒</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    
+
+
+    <!-- bg-cover style     -->
+
+
+
+<link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+<link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+<link rel="stylesheet" type="text/css" href="/css/matery.css">
+<link rel="stylesheet" type="text/css" href="/css/my.css">
+<link rel="stylesheet" type="text/css" href="/css/dark.css" media="none" onload="if(media!='all')media='all'">
+
+
+
+
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+    <link rel="stylesheet" href="/css/post.css">
+
+
+
+
+    
+        <link rel="stylesheet" type="text/css" href="/css/reward.css">
+    
+
+
+
+    <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
+
+<meta name="generator" content="Hexo 6.2.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="云卷舒" type="application/atom+xml">
+</head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">云卷舒</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+  <li>
+    <a href="javascript:;" class="waves-effect waves-light" onclick="switchNightMode()" title="深色/浅色模式" >
+      <i id="sum-moon-icon" class="fas fa-sun" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">云卷舒</div>
+        <div class="logo-desc">
+            
+            岁月不回头，且行且珍惜
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/14.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">Java 异常分析</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/Java/">
+                                <span class="chip bg-color">Java</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/Java/" class="post-category">
+                                Java
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2022-08-08
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.min.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <p><strong>本文是对以下内容的分析：</strong></p>
+<ul>
+<li><strong>Java异常设计</strong></li>
+<li><strong>Java 异常分类</strong></li>
+<li><strong>Java异常可以告诉什么问题</strong></li>
+<li><strong>Java异常处理最佳实践</strong></li>
+</ul>
+<p>Java Exception 是为了处理应用程序的异常行为而创建的类。在本文中，将解释如何使用 Java Exception 类以及如何在考虑现有 Java Exception 设计的情况下创建异常结构。Java 异常概念是 Java 中的重要里程碑之一，每个开发人员都<em><strong>必须</strong></em>知道它。</p>
+<span id="more"></span>
+
+<h2 id="Java-异常体系结构"><a href="#Java-异常体系结构" class="headerlink" title="Java 异常体系结构"></a>Java 异常体系结构</h2><p>基本结构如下图：</p>
+<p><img src="https://img2020.cnblogs.com/blog/1373850/202109/1373850-20210916171610134-74256038.png" alt="img"></p>
+<p><code>Throwable</code> 是所有异常的父类，它有两个子类：<code>Error</code> 和 <code>Exception</code>。</p>
+<p><strong>Error ：程序一旦出现 Error 错误，程序可能会停止运行。</strong></p>
+<p><strong>Exception：与 Error 不同，程序中出现 Exception 异常有机会从问题中恢复，并尝试保持程序运行。</strong></p>
+<!--more-->
+
+<h2 id="Java-检查异常和非检查异常"><a href="#Java-检查异常和非检查异常" class="headerlink" title="Java 检查异常和非检查异常"></a>Java 检查异常和非检查异常</h2><p><strong>检查异常：</strong>所有不是 <code>Runtime Exception</code> 的异常，统称为 <code>Checked Exception</code>，又被称为检查性异常。这类异常的产生不是程序本身的问题，通常由外界因素造成的。为了预防这些异常产生时，造成程序的中断或得到不正确的结果，Java 要求编写可能产生这类异常的程序代码时，一定要去做异常的处理。</p>
+<p><strong>非检查异常：</strong> Java 语言将派生于 <code>RuntimeException</code> 类或 <code>Error</code> 类的所有异常称为非检查性异常。</p>
+<p><img src="https://img2020.cnblogs.com/blog/1373850/202109/1373850-20210916171647519-902584283.png" alt="img"></p>
+<h2 id="Java-中的异常处理"><a href="#Java-中的异常处理" class="headerlink" title="Java 中的异常处理"></a>Java 中的异常处理</h2><p>有两种方法可以处理抛出的异常：</p>
+<ol>
+<li><strong>在当前方法中通过 <code>try-catch</code> 的方式处理该异常。</strong></li>
+<li><strong>在方法签名的后面通过 <code>throws</code> 重新抛出该异常。</strong></li>
+</ol>
+<p><img src="https://img2020.cnblogs.com/blog/1373850/202109/1373850-20210916171732070-500009018.png" alt="img"></p>
+<h2 id="Java-中的异常分类"><a href="#Java-中的异常分类" class="headerlink" title="Java 中的异常分类"></a>Java 中的异常分类</h2><p>我们可以将所有的异常分为三类：</p>
+<ul>
+<li><strong>检查性异常(checked exceptions)</strong> 是必须在在方法的 throws 子句中声明的异常。它们扩展了异常，旨在成为一种“在你面前”的异常类型。JAVA希望你能够处理它们，因为它们以某种方式依赖于程序之外的外部因素。检查的异常表示在正常系统操作期间可能发生的预期问题。 当你尝试通过网络或文件系统使用外部系统时，通常会发生这些异常。 大多数情况下，对检查性异常的正确响应应该是稍后重试，或者提示用户修改其输入。</li>
+<li><strong>非检查性异常(unchecked Exceptions)</strong> 是不需要在throws子句中声明的异常。 由于程序错误，JVM并不会强制你处理它们，因为它们大多数是在运行时生成的。 它们扩展了 RuntimeException。 最常见的例子是 NullPointerException， 未经检查的异常可能不应该重试，正确的操作通常应该是什么都不做，并让它从你的方法和执行堆栈中出来。</li>
+<li><strong>错误(errors)</strong> 是严重的运行时环境问题，肯定无法恢复。 例如 <code>OutOfMemoryError</code>，<code>LinkageError</code> 和 <code>StackOverflowError</code>，通常会让程序崩溃。</li>
+</ul>
+<p>了解异常类的类型后，我们可能需要回答以下问题：</p>
+<ul>
+<li><strong>异常情况有多糟糕以及异常的原因是什么？</strong></li>
+<li><strong>如何解决这个异常？</strong></li>
+<li><strong>我们需要重启JVM吗？</strong></li>
+<li><strong>我们需要重写代码吗？</strong></li>
+</ul>
+<p>知道异常类，我们可以预测可能出错的地方。考虑潜在的原因，我们可以假设问题的原因是什么以及如何解决它。在接下来的段落中，我们将回顾常见的异常并调查潜在的原因是什么。在我们的调查中，我们假设应用程序足够稳定并且已经完成开发和测试。</p>
+<h3 id="常见-Error-异常"><a href="#常见-Error-异常" class="headerlink" title="常见 Error 异常"></a>常见 Error 异常</h3><p><img src="https://img2020.cnblogs.com/blog/1373850/202109/1373850-20210916171750289-1950745888.png" alt="img"></p>
+<table>
+<thead>
+<tr>
+<th>异常类型</th>
+<th>潜在原因</th>
+<th>原因的可能性有多大</th>
+<th>怎么修复</th>
+<th>需要重写代码吗？</th>
+<th>需要重启JVM吗？</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>OutOfMemoryError</td>
+<td>应用程序吃掉了所有内存</td>
+<td>高的</td>
+<td>增加堆内存大小</td>
+<td>不</td>
+<td>是的</td>
+</tr>
+<tr>
+<td>内存泄漏</td>
+<td>低的</td>
+<td>查找内存泄漏并修复</td>
+<td>是的</td>
+<td>是的</td>
+<td></td>
+</tr>
+<tr>
+<td>StackOverflowError</td>
+<td>堆栈内存不足</td>
+<td>高的</td>
+<td>增加堆栈内存大小</td>
+<td>不</td>
+<td>是的</td>
+</tr>
+<tr>
+<td>无限递归</td>
+<td>低的</td>
+<td>设置递归调用的限制</td>
+<td>是的</td>
+<td>是的</td>
+<td></td>
+</tr>
+<tr>
+<td>NoClassDefFoundError</td>
+<td>缺少依赖</td>
+<td>高的</td>
+<td>添加依赖或修复依赖配置</td>
+<td>不</td>
+<td>是的</td>
+</tr>
+<tr>
+<td>初始化期间加载类失败</td>
+<td>低的</td>
+<td>更改初始化过程</td>
+<td>是的</td>
+<td>是的</td>
+<td></td>
+</tr>
+</tbody></table>
+<p>在大多数情况下，需要做的就是更改 JVM 配置或添加缺少的依赖项，仍然存在需要更改代码的情况，但它们不太可能在每种情况下更改。</p>
+<h3 id="常见-Runtime-异常"><a href="#常见-Runtime-异常" class="headerlink" title="常见 Runtime 异常"></a>常见 Runtime 异常</h3><p><img src="https://img2020.cnblogs.com/blog/1373850/202109/1373850-20210916171907687-1229459232.png" alt="img"></p>
+<table>
+<thead>
+<tr>
+<th>异常类型</th>
+<th>潜在原因</th>
+<th>原因的可能性有多大</th>
+<th>怎么修复</th>
+<th>需要重写代码吗？</th>
+<th>需要重启吗？</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>NullPointerException</td>
+<td>预期的不可为空的对象为空</td>
+<td>高的</td>
+<td>调用前添加验证层</td>
+<td>是的</td>
+<td>是的</td>
+</tr>
+<tr>
+<td>某些资源不可用并返回空数据</td>
+<td>中等的</td>
+<td>调用前添加验证层</td>
+<td>是的</td>
+<td>是的</td>
+<td></td>
+</tr>
+<tr>
+<td>ConcurrentModificationException</td>
+<td>迭代期间集合已更改</td>
+<td>高的</td>
+<td>分别进行集合迭代和修改</td>
+<td>是的</td>
+<td>是的</td>
+</tr>
+<tr>
+<td></td>
+<td>集合在迭代期间已从另一个线程更改</td>
+<td>高的</td>
+<td>为集合添加同步</td>
+<td>是的</td>
+<td>是的</td>
+</tr>
+<tr>
+<td>IlliegalArgumentException</td>
+<td>传递的参数无效</td>
+<td>高的</td>
+<td>在传递参数之前添加验证</td>
+<td>是的</td>
+<td>是的</td>
+</tr>
+<tr>
+<td>NumberFormatException</td>
+<td>传递的参数格式错误或符号错误</td>
+<td>高的</td>
+<td>在传递数据之前添加格式或删除不可见符号</td>
+<td>是的</td>
+<td>是的</td>
+</tr>
+<tr>
+<td>ArrayIndexOutOfBoundsException</td>
+<td>指令试图通过不存在的索引访问单元格</td>
+<td>高的</td>
+<td>将访问逻辑更改为正确的逻辑</td>
+<td>是的</td>
+<td>是的</td>
+</tr>
+<tr>
+<td>NoSuchElementException</td>
+<td>当指针已经改变位置时访问元素</td>
+<td>高的</td>
+<td>将访问逻辑更改为正确的逻辑</td>
+<td>是的</td>
+<td>是的</td>
+</tr>
+<tr>
+<td>集合在迭代过程中被修改</td>
+<td>高的</td>
+<td>为集合添加同步</td>
+<td>是的</td>
+<td>是的</td>
+<td></td>
+</tr>
+</tbody></table>
+<p>Checked 和 Error 异常错误不会导致任何代码更改，但是在大多数情况下，运行时异常突出了代码中的真正问题，如果不重写代码就无法修复这些问题。</p>
+<h3 id="常见-Checked-异常"><a href="#常见-Checked-异常" class="headerlink" title="常见 Checked 异常"></a>常见 Checked 异常</h3><p><img src="https://img2020.cnblogs.com/blog/1373850/202109/1373850-20210916171930515-322340961.png" alt="img"></p>
+<table>
+<thead>
+<tr>
+<th>异常类型</th>
+<th>潜在原因</th>
+<th>原因的可能性有多大</th>
+<th>怎么修复</th>
+<th>需要重写代码吗？</th>
+<th>需要重启吗？</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>FileNotFoundException</td>
+<td>该文件不存在</td>
+<td>高的</td>
+<td>创建文件</td>
+<td>不</td>
+<td>不</td>
+</tr>
+<tr>
+<td>应用程序调用错误的路径</td>
+<td>低的</td>
+<td>修复错误的路径生成</td>
+<td>是的</td>
+<td>是的</td>
+<td></td>
+</tr>
+<tr>
+<td>IOException</td>
+<td>访问资源无效</td>
+<td>高的</td>
+<td>让资源再次可用</td>
+<td>不</td>
+<td>不</td>
+</tr>
+<tr>
+<td>ClassNotFoundException</td>
+<td>该类未添加依赖项</td>
+<td>高的</td>
+<td>添加缺少的依赖项</td>
+<td>不</td>
+<td>是的</td>
+</tr>
+<tr>
+<td>实现调用了错误的类</td>
+<td>中等的</td>
+<td>更改类调用</td>
+<td>是的</td>
+<td>是的</td>
+<td></td>
+</tr>
+<tr>
+<td>SqlException</td>
+<td>架构与查询不匹配</td>
+<td>高的</td>
+<td>将缺失的脚本应用到数据库</td>
+<td>不</td>
+<td>不</td>
+</tr>
+<tr>
+<td>查询错误</td>
+<td>低的</td>
+<td>更改查询</td>
+<td>是的</td>
+<td>是的</td>
+<td></td>
+</tr>
+<tr>
+<td>拒绝连接</td>
+<td>高的</td>
+<td>打开数据库，更改端口</td>
+<td>不</td>
+<td>不</td>
+<td></td>
+</tr>
+<tr>
+<td>InterruptedException</td>
+<td>依赖线程通知中断（锁释放，另一个线程完成操作）</td>
+<td>高的</td>
+<td>没有必要修复它；这是一种通知相关线程中事件的方法</td>
+<td>不</td>
+<td>不</td>
+</tr>
+<tr>
+<td>另一个线程中断并使用中断通知相关</td>
+<td>中等的</td>
+<td>修复另一个线程中出现的问题（可以是任何东西）</td>
+<td>是的</td>
+<td>是的</td>
+<td></td>
+</tr>
+<tr>
+<td>SocketException</td>
+<td>端口被占用</td>
+<td>高的</td>
+<td>打开/释放端口</td>
+<td>不</td>
+<td>不</td>
+</tr>
+<tr>
+<td>服务器断开连接</td>
+<td>高的</td>
+<td>检查网络连接</td>
+<td>不</td>
+<td>不</td>
+<td></td>
+</tr>
+</tbody></table>
+<p>如果我们查看最可能的原因，我们会发现其中的<em>大多数</em> 不仅不需要任何代码更改，甚至不需要重新启动应用程序。</p>
+<h1 id="Java-异常处理最佳实践"><a href="#Java-异常处理最佳实践" class="headerlink" title="Java 异常处理最佳实践"></a>Java 异常处理最佳实践</h1><h2 id="1-不要忽略捕获的异常"><a href="#1-不要忽略捕获的异常" class="headerlink" title="1. 不要忽略捕获的异常"></a>1. 不要忽略捕获的异常</h2><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">Copycatch</span> <span class="token punctuation">(</span><span class="token class-name">NoSuchMethodException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+   <span class="token keyword">return</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>虽然捕获了异常但是却没有做任何处理，除非你确信这个异常可以忽略，不然不应该这样做，这样会导致外面无法知晓该方法发生了错误，无法定位错误原因。</p>
+<h2 id="2-在你的方法里抛出具体的检查性异常"><a href="#2-在你的方法里抛出具体的检查性异常" class="headerlink" title="2. 在你的方法里抛出具体的检查性异常"></a>2. 在你的方法里抛出具体的检查性异常</h2><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">Copypublic</span> <span class="token keyword">void</span> <span class="token function">foo</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">Exception</span> <span class="token punctuation">{</span> <span class="token comment">//错误方式</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>一定要避免出现上面的代码示例，它破坏了检查性异常的目的。 声明你的方法可能抛出的具体检查性异常，如果有太多这样的检查性异常，你应该把它们包装在你自己的异常中，并在异常消息中添加信息。 如果可能的话，你也可以考虑代码重构。</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">Copypublic</span> <span class="token keyword">void</span> <span class="token function">foo</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">SpecificException1</span><span class="token punctuation">,</span> <span class="token class-name">SpecificException2</span> <span class="token punctuation">{</span> <span class="token comment">//正确方式</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<h2 id="3-捕获具体的子类而不是捕获-Exception-类"><a href="#3-捕获具体的子类而不是捕获-Exception-类" class="headerlink" title="3. 捕获具体的子类而不是捕获 Exception 类"></a>3. 捕获具体的子类而不是捕获 Exception 类</h2><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">Copytry</span> <span class="token punctuation">{</span>
+   <span class="token function">someMethod</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment">//错误方式</span>
+   LOGGER<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">"method has failed"</span><span class="token punctuation">,</span> e<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>捕获 <code>Exception</code> 的问题是，如果稍后调用的方法为其方法声明添加了新的检查性异常，则开发人员的意图是应该处理具体的新异常，但是你的代码只是捕获 <code>Exception</code> （或 <code>Throwable</code>），那么永远不会知道这个新的异常，并且你的程序可能会在运行时的任何时候中断。</p>
+<h2 id="3-永远不要捕获-Throwable-类"><a href="#3-永远不要捕获-Throwable-类" class="headerlink" title="3. 永远不要捕获 Throwable 类"></a>3. 永远不要捕获 Throwable 类</h2><p>这是一个更严重的问题，因为 <code>Error</code> 也是 <code>Throwable</code> 的子类，<code>Error</code> 是 JVM 本身无法处理的不可逆转的错误，对于某些 JVM 的实现，JVM 可能实际上甚至不会在 Error 上调用 catch 子句。</p>
+<h2 id="4-始终正确包装自定义异常中的异常，以便堆栈跟踪不会丢失"><a href="#4-始终正确包装自定义异常中的异常，以便堆栈跟踪不会丢失" class="headerlink" title="4. 始终正确包装自定义异常中的异常，以便堆栈跟踪不会丢失"></a>4. 始终正确包装自定义异常中的异常，以便堆栈跟踪不会丢失</h2><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">Copycatch</span> <span class="token punctuation">(</span><span class="token class-name">NoSuchMethodException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+   <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">MyServiceException</span><span class="token punctuation">(</span><span class="token string">"Some information: "</span> <span class="token operator">+</span> e<span class="token punctuation">.</span><span class="token function">getMessage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">//错误方式</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>这破坏了原始异常的堆栈跟踪，并且始终是错误的，正确的做法是：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">Copycatch</span> <span class="token punctuation">(</span><span class="token class-name">NoSuchMethodException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+   <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">MyServiceException</span><span class="token punctuation">(</span><span class="token string">"Some information: "</span> <span class="token punctuation">,</span> e<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">//正确方式</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="5-要么记录异常要么抛出异常，但不要一起执行"><a href="#5-要么记录异常要么抛出异常，但不要一起执行" class="headerlink" title="5. 要么记录异常要么抛出异常，但不要一起执行"></a>5. 要么记录异常要么抛出异常，但不要一起执行</h2><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">Copycatch</span> <span class="token punctuation">(</span><span class="token class-name">NoSuchMethodException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+	<span class="token comment">//错误方式 </span>
+   LOGGER<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">"Some information"</span><span class="token punctuation">,</span> e<span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token keyword">throw</span> e<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>正如上面的代码中，记录和抛出异常会在日志文件中产生多条日志消息，代码中存在单个问题，并且对尝试分析日志的同事很不友好。</p>
+<h2 id="6-finally-块中永远不要抛出任何异常"><a href="#6-finally-块中永远不要抛出任何异常" class="headerlink" title="6. finally 块中永远不要抛出任何异常"></a>6. finally 块中永远不要抛出任何异常</h2><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">Copytry</span> <span class="token punctuation">{</span>
+  <span class="token function">someMethod</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">//Throws exceptionOne</span>
+<span class="token punctuation">}</span> <span class="token keyword">finally</span> <span class="token punctuation">{</span>
+  <span class="token function">cleanUp</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment">//如果finally还抛出异常，那么exceptionOne将永远丢失</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>只要 <code>cleanUp()</code> 永远不会抛出任何异常，上面的代码没有问题，但是如果 <code>someMethod()</code> 抛出一个异常，并且在 <code>finally</code> 块中，<code>cleanUp()</code> 也抛出另一个异常，那么程序只会把第二个异常抛出来，原来的第一个异常（正确的原因）将永远丢失。如果在 <code>finally</code> 块中调用的代码可能会引发异常，请确保要么处理它，要么将其记录下来，永远不要让它从 finally 块中抛出来。</p>
+<h2 id="7-始终只捕获实际可处理的异常"><a href="#7-始终只捕获实际可处理的异常" class="headerlink" title="7. 始终只捕获实际可处理的异常"></a>7. 始终只捕获实际可处理的异常</h2><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">Copycatch</span> <span class="token punctuation">(</span><span class="token class-name">NoSuchMethodException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+   <span class="token keyword">throw</span> e<span class="token punctuation">;</span> <span class="token comment">//避免这种情况，因为它没有任何帮助</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>这是最重要的概念，不要为了捕获异常而捕获，只有在想要处理异常时才捕获异常，或者希望在该异常中提供其他上下文信息。如果你不能在 catch 块中处理它，那么最好的建议就是不要只为了重新抛出它而捕获它。</p>
+<h2 id="8-不要使用-printStackTrace-语句或类似的方法"><a href="#8-不要使用-printStackTrace-语句或类似的方法" class="headerlink" title="8. 不要使用 printStackTrace() 语句或类似的方法"></a>8. 不要使用 printStackTrace() 语句或类似的方法</h2><p>完成代码后，切勿忽略 <code>printStackTrace()</code>，最终别人可能会得到这些堆栈，并且对于如何处理它完全没有任何帮助，因为它不会附加任何上下文信息。</p>
+<h2 id="9-对于不打算处理的异常，直接使用-finally"><a href="#9-对于不打算处理的异常，直接使用-finally" class="headerlink" title="9. 对于不打算处理的异常，直接使用 finally"></a>9. 对于不打算处理的异常，直接使用 finally</h2><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">Copytry</span> <span class="token punctuation">{</span>
+  <span class="token function">someMethod</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">//Method 2</span>
+<span class="token punctuation">}</span> <span class="token keyword">finally</span> <span class="token punctuation">{</span>
+  <span class="token function">cleanUp</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment">//do cleanup here</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>这是一个很好的做法，如果在你的方法中你正在访问 Method 2，而 Method 2 抛出一些你不想在 Method 1 中处理的异常，但是仍然希望在发生异常时进行一些清理，然后在 finally 块中进行清理，不要使用 catch 块。</p>
+<h2 id="10-记住早-throw-晚-catch-原则"><a href="#10-记住早-throw-晚-catch-原则" class="headerlink" title="10. 记住早 throw 晚 catch 原则"></a>10. 记住早 throw 晚 catch 原则</h2><p>这可能是关于异常处理最著名的原则，简单说，应该尽快抛出(throw)异常，并尽可能晚地捕获(catch)它。应该等到有足够的信息来妥善处理它。</p>
+<p>这个原则隐含地说，你将更有可能把它放在低级方法中，在那里你将检查单个值是否为空或不适合。而且你会让异常堆栈跟踪上升好几个级别，直到达到足够的抽象级别才能处理问题。</p>
+<h2 id="11-在异常处理后清理资源"><a href="#11-在异常处理后清理资源" class="headerlink" title="11. 在异常处理后清理资源"></a>11. 在异常处理后清理资源</h2><p>如果你正在使用数据库连接或网络连接等资源，请确保关闭它们。如果你正在调用的 API 仅使用非检查性异常，则仍应使用 try-finally 块来清理资源。 在 try 模块里面访问资源，在 finally 里面最后关闭资源。即使在访问资源时发生任何异常，资源也会优雅地关闭。</p>
+<h2 id="12-只抛出和方法相关的异常"><a href="#12-只抛出和方法相关的异常" class="headerlink" title="12. 只抛出和方法相关的异常"></a>12. 只抛出和方法相关的异常</h2><p>相关性对于应用程序排查问题非常重要。一种尝试读取文件的方法，如果抛出 <code>NullPointerException</code>，那么它不会给用户任何相关的信息。相反，如果这种异常被包裹在自定义异常中，则会更好，<code>NoSuchFileFoundException</code> 则对该方法的用户更有用。</p>
+<h2 id="13-切勿在程序中使用异常来进行流程控制"><a href="#13-切勿在程序中使用异常来进行流程控制" class="headerlink" title="13. 切勿在程序中使用异常来进行流程控制"></a>13. 切勿在程序中使用异常来进行流程控制</h2><p>不要在项目中出现使用异常来处理应用程序逻辑，永远不要这样做，它会使代码很难阅读和理解。</p>
+<h2 id="14-尽早验证用户输入以在请求处理的早期捕获异常"><a href="#14-尽早验证用户输入以在请求处理的早期捕获异常" class="headerlink" title="14. 尽早验证用户输入以在请求处理的早期捕获异常"></a>14. 尽早验证用户输入以在请求处理的早期捕获异常</h2><p>始终要在非常早的阶段验证用户输入，甚至在达到 <code>controller</code> 之前，它将帮助你把核心应用程序逻辑中的异常处理代码量降到最低。如果用户输入出现错误，还可以保证与应用程序一致。</p>
+<p>例如：如果在用户注册应用程序中，遵循以下逻辑：</p>
+<ol>
+<li>验证用户</li>
+<li>插入用户</li>
+<li>验证地址</li>
+<li>插入地址</li>
+<li>如果出问题回滚一切</li>
+</ol>
+<p>这是不正确的做法，它会使数据库在各种情况下处于不一致的状态，应该首先验证所有内容，然后将用户数据置于 <code>dao</code> 层并进行数据库更新。正确的做法是：</p>
+<ol>
+<li>验证用户</li>
+<li>验证地址</li>
+<li>插入用户</li>
+<li>插入地址</li>
+<li>如果问题回滚一切</li>
+</ol>
+<h2 id="15-一个异常只能包含在一个日志中"><a href="#15-一个异常只能包含在一个日志中" class="headerlink" title="15. 一个异常只能包含在一个日志中"></a>15. 一个异常只能包含在一个日志中</h2><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">CopyLOGGER</span><span class="token punctuation">.</span><span class="token function">debug</span><span class="token punctuation">(</span><span class="token string">"Using cache sector A"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+LOGGER<span class="token punctuation">.</span><span class="token function">debug</span><span class="token punctuation">(</span><span class="token string">"Using retry sector B"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>不要像上面这样做，对多个 <code>LOGGER.debug()</code> 调用使用多行日志消息可能在你的测试用例中看起来不错，但是当它在具有 100 个并行运行的线程的应用程序服务器的日志文件中显示时，所有信息都输出到相同的日志文件，即使它们在实际代码中为前后行，但是在日志文件中这两个日志消息可能会间隔 100 多行。应该这样做：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">CopyLOGGER</span><span class="token punctuation">.</span><span class="token function">debug</span><span class="token punctuation">(</span><span class="token string">"Using cache sector A, using retry sector B"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h2 id="16-将所有相关信息尽可能地传递给异常"><a href="#16-将所有相关信息尽可能地传递给异常" class="headerlink" title="16. 将所有相关信息尽可能地传递给异常"></a>16. 将所有相关信息尽可能地传递给异常</h2><p>有用的异常消息和堆栈跟踪非常重要，如果你的日志不能定位异常位置，那要日志有什么用呢？</p>
+<h2 id="17-终止掉被中断的线程"><a href="#17-终止掉被中断的线程" class="headerlink" title="17. 终止掉被中断的线程"></a>17. 终止掉被中断的线程</h2><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">Copywhile</span> <span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">try</span> <span class="token punctuation">{</span>
+    <span class="token class-name">Thread</span><span class="token punctuation">.</span><span class="token function">sleep</span><span class="token punctuation">(</span><span class="token number">100000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">InterruptedException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span> <span class="token comment">//别这样做</span>
+  <span class="token function">doSomethingCool</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><code>InterruptedException</code> 异常提示应该停止程序正在做的事情，比如事务超时或线程池被关闭等。</p>
+<p>应该尽最大努力完成正在做的事情，并完成当前执行的线程，而不是忽略 <code>InterruptedException</code>。修改后的程序如下：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">Copywhile</span> <span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">try</span> <span class="token punctuation">{</span>
+    <span class="token class-name">Thread</span><span class="token punctuation">.</span><span class="token function">sleep</span><span class="token punctuation">(</span><span class="token number">100000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">InterruptedException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">break</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token function">doSomethingCool</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="18-对于重复的-try-catch，使用模板方法"><a href="#18-对于重复的-try-catch，使用模板方法" class="headerlink" title="18. 对于重复的 try-catch，使用模板方法"></a>18. 对于重复的 try-catch，使用模板方法</h2><p>在代码中有许多类似的 catch 块是无用的，只会增加代码的重复性，针对这样的问题可以使用模板方法。</p>
+<p>例如，在尝试关闭数据库连接时的异常处理。</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">Copyclass</span> <span class="token class-name">DBUtil</span><span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">closeConnection</span><span class="token punctuation">(</span><span class="token class-name">Connection</span> conn<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">try</span><span class="token punctuation">{</span>
+            conn<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">catch</span><span class="token punctuation">(</span><span class="token class-name">Exception</span> ex<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token comment">//Log Exception - Cannot close connection</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>这类的方法将在应用程序很多地方使用，不要把这块代码放的到处都是，而是定义上面的方法，然后像下面这样使用它：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">Copypublic</span> <span class="token keyword">void</span> <span class="token function">dataAccessCode</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token class-name">Connection</span> conn <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+    <span class="token keyword">try</span><span class="token punctuation">{</span>
+        conn <span class="token operator">=</span> <span class="token function">getConnection</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+    <span class="token punctuation">}</span> <span class="token keyword">finally</span><span class="token punctuation">{</span>
+        <span class="token class-name">DBUtil</span><span class="token punctuation">.</span><span class="token function">closeConnection</span><span class="token punctuation">(</span>conn<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="19-使用-JavaDoc-中记录应用程序中的所有异常"><a href="#19-使用-JavaDoc-中记录应用程序中的所有异常" class="headerlink" title="19. 使用 JavaDoc 中记录应用程序中的所有异常"></a>19. 使用 JavaDoc 中记录应用程序中的所有异常</h2><p>把用 JavaDoc 记录运行时可能抛出的所有异常作为一种习惯，其中也尽量包括用户应该遵循的操作，以防这些异常发生。</p>
+<h2 id="20-使用-try-with-resource-自动地关闭资源"><a href="#20-使用-try-with-resource-自动地关闭资源" class="headerlink" title="20. 使用 try-with-resource 自动地关闭资源"></a>20. 使用 try-with-resource 自动地关闭资源</h2><p>1、当一个外部资源的句柄对象实现了 <code>AutoCloseable</code> 接口，JDK7中便可以利用 try-with-resource 语法更优雅的关闭资源，消除板式代码。</p>
+<p>2、使用 try-with-resource 时，如果对外部资源的处理和对外部资源的关闭均遭遇了异常，“关闭异常”将被抑制，“处理异常”将被抛出，但“关闭异常”并没有丢失，而是存放在“处理异常”的被抑制的异常列表中。</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">try</span> <span class="token punctuation">(</span><span class="token class-name">FileInputStream</span> inputStream <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">FileInputStream</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">File</span><span class="token punctuation">(</span><span class="token string">"test"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>inputStream<span class="token punctuation">.</span><span class="token function">read</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">IOException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">RuntimeException</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span><span class="token function">getMessage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> e<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><strong>将外部资源的句柄对象的创建放在try关键字后面的括号中</strong>，当这个try-catch代码块执行完毕后，Java会确保外部资源的close方法被调用。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>这篇文章首先介绍了什么是异常，以及异常的三种分类，然后通过 20 个最佳实践来讨论如何处理异常，希望能在以后异常处理的时候有所改进及感悟。</p>
+<p>参考文档：</p>
+<p><a target="_blank" rel="noopener" href="https://dzone.com/articles/java-exceptions-1">https://dzone.com/articles/java-exceptions-1</a></p>
+<p><a target="_blank" rel="noopener" href="http://www.yinwang.org/blog-cn/2015/11/21/programming-philosophy">http://www.yinwang.org/blog-cn/2015/11/21/programming-philosophy</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/wupeixuan/p/11746117.html">https://www.cnblogs.com/wupeixuan/p/11746117.html</a></p>
+<p><a target="_blank" rel="noopener" href="https://howtodoinjava.com/best-practices/java-exception-handling-best-practices/">https://howtodoinjava.com/best-practices/java-exception-handling-best-practices/</a></p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">SuoLiweng</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://dick-su-3.github.io/archives/b563544.html">https://dick-su-3.github.io/archives/b563544.html</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">SuoLiweng</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/Java/">
+                                    <span class="chip bg-color">Java</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/archives/6ab7fbd2.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="阅读阿里Java开发手册记录">
+                        
+                        <span class="card-title">阅读阿里Java开发手册记录</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            概述在阅读完阿里Java开发手册(嵩山版)后，发现自己在开发过程中有一些没有按照规范开发的情况，这里将容易忘记的规范记录下来，并且添加自己的理解，一方面方便自己巩固记忆，另一方面希望对其他同学能够提供一下帮助。这里将收集的阿里Java开发手
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-08-08
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E9%98%BF%E9%87%8C%E5%BC%80%E5%8F%91%E6%89%8B%E5%86%8C/" class="post-category">
+                                    阿里开发手册
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E5%BC%80%E5%8F%91%E6%89%8B%E5%86%8C/">
+                        <span class="chip bg-color">开发手册</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/archives/fe29e710.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="Redis基础">
+                        
+                        <span class="card-title">Redis基础</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            一、学习Redis基础
+在前面学习了MySQL数据库，它是一种传统的关系型数据库，我们可以使用MySQL来更好地管理和组织我们的数据，虽然在小型Web下，只需要一个MySQL+Mybatis自带的缓存系统就可以胜任大部分的数据存储工作，但是
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-08-07
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Git/" class="post-category">
+                                    Git
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Redis/">
+                        <span class="chip bg-color">Redis</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+
+  <!-- 是否加载使用自带的 prismjs. -->
+  <script type="text/javascript" src="/libs/prism/prism.min.js"></script>
+
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="26467411"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.5'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="/libs/aplayer/Meting.min.js"></script>
+
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2022-2023</span>
+            
+            <a href="/about" target="_blank">SuoLiweng</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            
+                <span id="translate">|&nbsp;繁/简：</span><a id="translateLink" href="javascript:translatePage();">繁</a>
+            
+            <br>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/Jacksu3" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:1530265947@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1530265947" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1530265947" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 白天和黑夜主题 -->
+<div class="stars-con">
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>  
+</div>
+
+<script>
+    function switchNightMode() {
+        $('<div class="Cuteen_DarkSky"><div class="Cuteen_DarkPlanet"></div></div>').appendTo($('body')),
+        setTimeout(function () {
+            $('body').hasClass('DarkMode') 
+            ? ($('body').removeClass('DarkMode'), localStorage.setItem('isDark', '0'), $('#sum-moon-icon').removeClass("fa-sun").addClass('fa-moon')) 
+            : ($('body').addClass('DarkMode'), localStorage.setItem('isDark', '1'), $('#sum-moon-icon').addClass("fa-sun").removeClass('fa-moon')),
+            
+            setTimeout(function () {
+            $('.Cuteen_DarkSky').fadeOut(1e3, function () {
+                $(this).remove()
+            })
+            }, 2e3)
+        })
+    }
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    
+
+    
+        <script type="text/javascript" src="/js/tw_cn.js"></script>
+        <script type="text/javascript">
+          var defaultEncoding = 2; //网站编写字体是否繁体，1-繁体，2-简体
+          var translateDelay = 0; //延迟时间,若不在前, 要设定延迟翻译时间, 如100表示100ms,默认为0
+          var cookieDomain = "https://dick-su-3.github.io"; //Cookie地址, 一定要设定, 通常为你的网址
+          var msgToTraditionalChinese = "繁"; //此处可以更改为你想要显示的文字
+          var msgToSimplifiedChinese = "简"; //同上，但两处均不建议更改
+          var translateButtonId = "translateLink"; //默认互换id
+          translateInitilization();
+        </script>
+    
+    
+    
+
+    <!-- 雪花特效 -->
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+     
+        <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+        <script src="/libs/others/TencentCaptcha.js"></script>
+        <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+
+</html>

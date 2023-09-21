@@ -1,0 +1,1709 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="爬虫Scrapy基础, 云卷舒">
+    <meta name="description" content="一. 概述最近学习了一下这个非常强大的爬虫框架，这里将自己的学习过程记录下来
+本文主要从下面几个方面进行介绍：
+
+我的学习过程
+
+需求分析
+
+搭建项目
+
+编写代码实现需求
+
+部署爬虫项目到 SpiderKeeper
+
+
+二. 我的学习过程学">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>爬虫Scrapy基础 | 云卷舒</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    
+
+
+    <!-- bg-cover style     -->
+
+
+
+<link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+<link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+<link rel="stylesheet" type="text/css" href="/css/matery.css">
+<link rel="stylesheet" type="text/css" href="/css/my.css">
+<link rel="stylesheet" type="text/css" href="/css/dark.css" media="none" onload="if(media!='all')media='all'">
+
+
+
+
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+    <link rel="stylesheet" href="/css/post.css">
+
+
+
+
+    
+        <link rel="stylesheet" type="text/css" href="/css/reward.css">
+    
+
+
+
+    <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
+
+<meta name="generator" content="Hexo 6.2.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="云卷舒" type="application/atom+xml">
+</head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">云卷舒</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+  <li>
+    <a href="javascript:;" class="waves-effect waves-light" onclick="switchNightMode()" title="深色/浅色模式" >
+      <i id="sum-moon-icon" class="fas fa-sun" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">云卷舒</div>
+        <div class="logo-desc">
+            
+            岁月不回头，且行且珍惜
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">爬虫Scrapy基础</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E7%88%AC%E8%99%ABScrapy/">
+                                <span class="chip bg-color">爬虫Scrapy</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/Scarpy%E3%80%81%E7%88%AC%E8%99%AB/" class="post-category">
+                                Scarpy、爬虫
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2022-08-08
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.min.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="一-概述"><a href="#一-概述" class="headerlink" title="一. 概述"></a>一. 概述</h1><p>最近学习了一下这个非常强大的爬虫框架，这里将自己的学习过程记录下来</p>
+<p>本文主要从下面几个方面进行介绍：</p>
+<ul>
+<li><p>我的学习过程</p>
+</li>
+<li><p>需求分析</p>
+</li>
+<li><p>搭建项目</p>
+</li>
+<li><p>编写代码实现需求</p>
+</li>
+<li><p>部署爬虫项目到 <code>SpiderKeeper</code></p>
+<span id="more"></span></li>
+</ul>
+<h1 id="二-我的学习过程"><a href="#二-我的学习过程" class="headerlink" title="二. 我的学习过程"></a>二. 我的学习过程</h1><p>学习一个新的技术，首先就是去阅读它的官方文档，因为官方文档写的是比较全面的而且权威。</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://docs.scrapy.org/en/latest/">scrapy 官方文档地址</a>： <a target="_blank" rel="noopener" href="https://docs.scrapy.org/en/latest/">https://docs.scrapy.org/en/latest/</a></p>
+</blockquote>
+<p>上面是 <code>scrapy</code> 的官方文档地址，文档是英文的，如果英文比较好建议直接看英文文档，其实自己的英语也不是很好，但是一直强迫自己看英文文档，遇到不认识的单词，就是用 <code>chrome</code> 的 一个叫做 <code>沙拉查词</code> 的插件翻译，翻译完就记下这些单词，慢慢的读这些英文技术文档就没有太大问题了。</p>
+<p>如果学习的时间比较充足，可以看完整个文档再进行实践开发，如果需要快速上手，可以看文档中的快速开始。因为自己在开发需求之前有空闲的时间，所以把它的文档看了七七八八。</p>
+<h2 id="Scrapy-简介"><a href="#Scrapy-简介" class="headerlink" title="Scrapy 简介"></a>Scrapy 简介</h2><p>下面根据自己阅读官方文档的过程做一个总结：</p>
+<p><code>Scrapy</code> 是一个快速强大的高级 web 抓取框架，用于抓取网站和从网页中提取结构化数据，它可以用于从数据挖掘到监控和自动化测试等广泛的用途。</p>
+<p><code>Scrapy</code> 提供了许多强大的功能来使抓取变得简单高效，例如：</p>
+<ul>
+<li>内置支持使用扩展的 <code>CSS</code> 选择器和 <code>XPath</code> 表达式从 <code>HTML/XML</code> 源中<a target="_blank" rel="noopener" href="https://docs.scrapy.org/en/latest/topics/selectors.html#topics-selectors">选择和提取</a>数据，以及使用正则表达式提取的辅助方法。</li>
+<li>一个<a target="_blank" rel="noopener" href="https://docs.scrapy.org/en/latest/topics/shell.html#topics-shell">交互式 shell 控制台</a>（IPython 感知），用于尝试使用 <code>CSS</code> 和 <code>XPath</code> 表达式来抓取数据，在编写或调试时非常有用。</li>
+<li>内置支持以多种格式（<code>JSON、CSV、XML</code>）<a target="_blank" rel="noopener" href="https://docs.scrapy.org/en/latest/topics/feed-exports.html#topics-feed-exports">生成提要导出</a>并将它们存储在多个后端（FTP、S3、本地文件系统）</li>
+<li>强大的编码支持和自动检测，用于处理外部、非标准和损坏的编码声明。</li>
+<li><a target="_blank" rel="noopener" href="https://docs.scrapy.org/en/latest/index.html#extending-scrapy">强大的可扩展性支持</a>，允许您使用<a target="_blank" rel="noopener" href="https://docs.scrapy.org/en/latest/topics/signals.html#topics-signals">signals</a>和定义良好的 API（中间件、<a target="_blank" rel="noopener" href="https://docs.scrapy.org/en/latest/topics/extensions.html#topics-extensions">扩展</a>和 <a target="_blank" rel="noopener" href="https://docs.scrapy.org/en/latest/topics/item-pipeline.html#topics-item-pipeline">pipeline </a>）插入自己的功能。</li>
+<li>一个<a target="_blank" rel="noopener" href="https://docs.scrapy.org/en/latest/topics/telnetconsole.html#topics-telnetconsole">Telnet 控制台，</a>用于连接到在 <code>Scrapy</code> 进程中运行的 Python 控制台，以检查和调试您的爬虫</li>
+<li>可重复使用的spider从<a target="_blank" rel="noopener" href="https://www.sitemaps.org/index.html">站点地图</a>和 <code>XML/CSV</code> 提要中抓取站点、用于<a target="_blank" rel="noopener" href="https://docs.scrapy.org/en/latest/topics/media-pipeline.html#topics-media-pipeline">自动下载</a>与抓取的项目相关联的<a target="_blank" rel="noopener" href="https://docs.scrapy.org/en/latest/topics/media-pipeline.html#topics-media-pipeline">图像</a>（或任何其他媒体）的媒体 pipeline 、缓存 DNS 解析器等等！</li>
+<li>用于处理的各种内置扩展和中间件：<ul>
+<li>cookie 和会话处理</li>
+<li>HTTP 功能，如压缩、身份验证、缓存</li>
+<li>用户代理欺骗</li>
+<li>robots.txt</li>
+<li>爬行深度限制</li>
+</ul>
+</li>
+</ul>
+<p>从前面的介绍可以看出 <code>scrapy</code> 的功能非常强大，如果要掌握全部功能，需要花费大量的时间，并且也没有那个必要，只是需要的时候再去查阅官方文档即可。对于一般的网站都没有特别的反爬虫措施，除非一些数据比较敏感的网站，可能需要输入图形验证码之类的，个人觉得对于一般的网站，在抓取网页的过程中合理设置请求头，控制爬取的速度都能够将网页抓取下来。获取到网页内容之后，我们开发的内容就是根据需求解析出需要的结构化数据，所以重点是掌握 <code>scrapy</code> 的选择器。</p>
+<!--more-->
+
+<h2 id="Scrapy-选择器"><a href="#Scrapy-选择器" class="headerlink" title="Scrapy 选择器"></a>Scrapy 选择器</h2><p><code>scrapy</code> 使用的选择器包括如下：</p>
+<ul>
+<li><code>css</code> 选择器</li>
+<li><code>xpath</code> 选择器</li>
+<li>正则表达式提取</li>
+</ul>
+<p><code>XPath</code> 表达式非常强大，是 <code>Scrapy</code> 选择器的基础，事实上，<code>CSS</code> 选择器在后台被转换为 <code>XPath</code>。虽然可能不如 <code>CSS</code> 选择器流行，但 <code>XPath</code> 表达式提供了更强大的功能，因为除了导航结构之外，它还可以查看内容。使用 <code>XPath</code> 您可以选择以下内容：<em>选择包含文本“下一页”的链接</em>，这使得 <code>XPath</code> 非常适合抓取任务。</p>
+<p><strong><code>XPath</code> 常用规则</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left">表达式</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">nodename</td>
+<td align="left">选取此节点的所有子节点</td>
+</tr>
+<tr>
+<td align="left">/</td>
+<td align="left">从当前节点选区直接子节点</td>
+</tr>
+<tr>
+<td align="left">//</td>
+<td align="left">从当前节点选取子孙节点</td>
+</tr>
+<tr>
+<td align="left">.</td>
+<td align="left">选取当前节点</td>
+</tr>
+<tr>
+<td align="left">..</td>
+<td align="left">选取当前节点的父节点</td>
+</tr>
+<tr>
+<td align="left">@</td>
+<td align="left">选取属性</td>
+</tr>
+<tr>
+<td align="left">text()</td>
+<td align="left">获取节点中的文本</td>
+</tr>
+</tbody></table>
+<h1 id="三-需求分析"><a href="#三-需求分析" class="headerlink" title="三. 需求分析"></a>三. 需求分析</h1><p>通过前面的介绍我们大概了解了 <code>Scrapy</code> 的特性，接下来，自己模拟一个实际的需求，该需求是在网上找的，只是用来学习 <code>Scrapy</code> 的一个 <code>demo</code>，需求如下：</p>
+<p>目标网站：站长之家 <a target="_blank" rel="noopener" href="https://top.chinaz.com/">https://top.chinaz.com/</a></p>
+<p>需求：在站长之家的网站排行板块中，提供了行业排名、地区排名等多种分类网站排行数据。现在请你任选一种感兴趣的排名方式，摘取其中的数据。</p>
+<p><img src="https://gitee.com/peterwd/pic-oss/raw/master/image/202201071459767.png" alt="image-20220107145943621"></p>
+<p>字段要求，一共5个字段，分别是:</p>
+<ul>
+<li>网站名称：web_name</li>
+<li>网站域名：domain</li>
+<li>排名：rank</li>
+<li>得分：score</li>
+<li>网站简介：abstract</li>
+</ul>
+<p>技术要求：使用 <code>scrapy</code> 编写爬虫，最终将提取到的数据存到 <code>mongodb</code> 中；</p>
+<h1 id="四-搭建项目"><a href="#四-搭建项目" class="headerlink" title="四. 搭建项目"></a>四. 搭建项目</h1><p>前面已经介绍了需求，现在我们开始从零搭建一个 <code>scrapy</code> 的项目，因为 <code>scrapy</code> 是使用 <code>python</code> 开发的，所以需要提前安装 <code>python</code> 的环境，推荐使用 <code>Anaconda</code>，关于 <code>Anaconda</code> 的安装可以查阅其官方文档，这里默认已经安装好了。</p>
+<h2 id="1-安装-scrapy"><a href="#1-安装-scrapy" class="headerlink" title="1. 安装 scrapy"></a>1. 安装 scrapy</h2><p>在 <code>CMD</code> 控制台使用如下命令安装 <code>scrapy</code> :</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pip <span class="token function">install</span> scrapy<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>安装完成后输入 <code>scrapy</code> 可以看到如下输出：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">D:<span class="token punctuation">\</span>my-projects<span class="token operator">&gt;</span>scrapy
+Scrapy <span class="token number">2.5</span>.1 - no active project
+
+Usage:
+  scrapy <span class="token operator">&lt;</span>command<span class="token operator">&gt;</span> <span class="token punctuation">[</span>options<span class="token punctuation">]</span> <span class="token punctuation">[</span>args<span class="token punctuation">]</span>
+
+Available commands:
+  bench         Run quick benchmark <span class="token builtin class-name">test</span>
+  check         Check spider contracts
+  commands
+  crawl         Run a spider
+  edit          Edit spider
+  fetch         Fetch a URL using the Scrapy downloader
+  genspider     Generate new spider using pre-defined templates
+  list          List available spiders
+  parse         Parse URL <span class="token punctuation">(</span>using its spider<span class="token punctuation">)</span> and print the results
+  runspider     Run a self-contained spider <span class="token punctuation">(</span>without creating a project<span class="token punctuation">)</span>
+  settings      Get settings values
+  shell         Interactive scraping console
+  startproject  Create new project
+  version       Print Scrapy version
+  view          Open URL <span class="token keyword">in</span> browser, as seen by Scrapy
+
+Use <span class="token string">"scrapy &lt;command&gt; -h"</span> to see <span class="token function">more</span> info about a <span class="token builtin class-name">command</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="2-创建项目"><a href="#2-创建项目" class="headerlink" title="2. 创建项目"></a>2. 创建项目</h2><p>语法：<code>scrapy startproject &lt;project_name&gt; [project_dir]</code></p>
+<p>在 <code>project_dir</code> 目录下创建一个名为 <code>&lt;project_name&gt;</code> 的新 Scrapy 项目，如果 <code>project_dir</code> 未指定，表示当前目录。</p>
+<blockquote>
+<p>项目名只能使用数字、字母、下划线组成</p>
+</blockquote>
+<p>使用如下命令创建一个叫做 <code>scrapy_demo</code> 的项目：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">scrapy startproject scrapy_demo<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>输出内容如下：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">D:<span class="token punctuation">\</span>my-projects<span class="token operator">&gt;</span>scrapy startproject scrapy_demo
+New Scrapy project <span class="token string">'scrapy_demo'</span>, using template directory <span class="token string">'e:\anaconda3\lib\site-packages\scrapy\templates\project'</span>, created in:
+    D:<span class="token punctuation">\</span>my-projects<span class="token punctuation">\</span>scrapy_demo
+
+You can start your first spider with:
+    <span class="token builtin class-name">cd</span> scrapy_demo
+    scrapy genspider example example.com<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>自动生成的项目目录结构如下：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">scrapy_demo
+├── scrapy_demo
+│   ├── items.py       <span class="token comment"># 数据模型文件</span>
+│   ├── middlewares.py <span class="token comment"># 中间件文件，配置所有中间件</span>
+│   ├── pipelines.py   <span class="token comment">#  pipeline 文件，用于存放自定义pipeline的处理逻辑，比如配置保存数据库的逻辑</span>
+│   ├── settings.py    <span class="token comment"># 项目的配置文件，自定义的外部配置都可以放在这里</span>
+│   └── spiders        <span class="token comment"># Spider类文件夹，我们编写的解析代码均存放在这里</span>
+└── scrapy.cfg         <span class="token comment"># 项目的部署配置文件</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="3-生成-spider-文件"><a href="#3-生成-spider-文件" class="headerlink" title="3. 生成 spider 文件"></a>3. 生成 spider 文件</h2><p>语法：<code>scrapy genspider [-t template] &lt;name&gt; &lt;domain&gt;</code></p>
+<p>如果在 scrapy 项目中调用，将在当前项目的 spiders 文件夹中创建一个新的 spider 文件，该<code>&lt;name&gt;</code>参数设置为 spider 的<code>name</code>，而<code>&lt;domain&gt;</code>用于生成<code>allowed_domains </code>和 <code>start_urls </code>的属性值。</p>
+<p>执行下面的命令，生成 spider 文件：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">scrapy genspider tech_web top.chinaz.com<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>输出内容如下：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">D:<span class="token punctuation">\</span>my-projects<span class="token punctuation">\</span>scrapy_demo<span class="token operator">&gt;</span>scrapy genspider tech_web top.chinaz.com
+Created spider <span class="token string">'tech_web'</span> using template <span class="token string">'basic'</span> <span class="token keyword">in</span> module:
+  scrapy_demo.spiders.tech_web<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>生成的 spider 文件内容如下图所示：</p>
+<p><img src="https://gitee.com/peterwd/pic-oss/raw/master/image/202201071550723.png" alt="image-20220107155030530"></p>
+<h1 id="五-代码实现"><a href="#五-代码实现" class="headerlink" title="五. 代码实现"></a>五. 代码实现</h1><p>按照前面的步骤，我们已经完成项目的搭建，接下来开始正式实现需求。</p>
+<h2 id="1-在-items-py-文件中定义采集的字段"><a href="#1-在-items-py-文件中定义采集的字段" class="headerlink" title="1. 在 items.py 文件中定义采集的字段"></a>1. 在 items.py 文件中定义采集的字段</h2><p>前面已经知道要采集的字段，所以我们需要在 <code>items.py</code> 文件中定义采集的字段以及一些其他需要的字段，如下所示：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># Define here the models for your scraped items</span>
+<span class="token comment">#</span>
+<span class="token comment"># See documentation in:</span>
+<span class="token comment"># https://docs.scrapy.org/en/latest/topics/items.html</span>
+
+<span class="token keyword">import</span> scrapy
+
+
+<span class="token keyword">class</span> <span class="token class-name">ScrapyDemoItem</span><span class="token punctuation">(</span>scrapy<span class="token punctuation">.</span>Item<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token comment"># define the fields for your item here like:</span>
+    <span class="token comment"># name = scrapy.Field()</span>
+    _id <span class="token operator">=</span> scrapy<span class="token punctuation">.</span>Field<span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment"># 保存到 mongodb 中的 _id</span>
+    web_name <span class="token operator">=</span> scrapy<span class="token punctuation">.</span>Field<span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment"># 网站名称</span>
+    domain <span class="token operator">=</span> scrapy<span class="token punctuation">.</span>Field<span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment"># 网站域名</span>
+    rank <span class="token operator">=</span> scrapy<span class="token punctuation">.</span>Field<span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment"># 排名</span>
+    score <span class="token operator">=</span> scrapy<span class="token punctuation">.</span>Field<span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment"># 得分</span>
+    abstract <span class="token operator">=</span> scrapy<span class="token punctuation">.</span>Field<span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment"># 摘要</span>
+    create_time <span class="token operator">=</span> scrapy<span class="token punctuation">.</span>Field<span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment"># 创建时间</span>
+    update_time <span class="token operator">=</span> scrapy<span class="token punctuation">.</span>Field<span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment"># 更新时间</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="2-在-spider-文件中编写采集逻辑"><a href="#2-在-spider-文件中编写采集逻辑" class="headerlink" title="2. 在 spider 文件中编写采集逻辑"></a>2. 在 spider 文件中编写采集逻辑</h2><p>我们这里打算采集网络科技网站排行榜，它的地址为：<code>https://top.chinaz.com/hangye/index_wangluo.html</code>，在正式编写代码之前，我们可以使用 scrapy 提供的 shell 工具进行测试，通过交互式的方式解析需要的字段，使用方式如下：</p>
+<p>语法： <code>scrapy shell [url]</code></p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">scrapy shell https://top.chinaz.com/hangye/index_wangluo.html --nolog<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>如果使用上面的命令输出如下：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">D:<span class="token punctuation">\</span>my-projects<span class="token punctuation">\</span>scrapy_demo<span class="token operator">&gt;</span>scrapy shell https://top.chinaz.com/hangye/index_wangluo.html --nolog
+<span class="token punctuation">[</span>s<span class="token punctuation">]</span> Available Scrapy objects:
+<span class="token punctuation">[</span>s<span class="token punctuation">]</span>   scrapy     scrapy module <span class="token punctuation">(</span>contains scrapy.Request, scrapy.Selector, etc<span class="token punctuation">)</span>
+<span class="token punctuation">[</span>s<span class="token punctuation">]</span>   crawler    <span class="token operator">&lt;</span>scrapy.crawler.Crawler object at 0x0000011BEAE8474<span class="token operator"><span class="token file-descriptor important">8</span>&gt;</span>
+<span class="token punctuation">[</span>s<span class="token punctuation">]</span>   item       <span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token punctuation">[</span>s<span class="token punctuation">]</span>   request    <span class="token operator">&lt;</span>GET https://top.chinaz.com/hangye/index_wangluo.html<span class="token operator">&gt;</span>
+<span class="token punctuation">[</span>s<span class="token punctuation">]</span>   response   <span class="token operator">&lt;</span><span class="token number">200</span> https://top.chinaz.com/hangye/index_wangluo.html<span class="token operator">&gt;</span>
+<span class="token punctuation">[</span>s<span class="token punctuation">]</span>   settings   <span class="token operator">&lt;</span>scrapy.settings.Settings object at 0x0000011BEB0F1B8<span class="token operator"><span class="token file-descriptor important">8</span>&gt;</span>
+<span class="token punctuation">[</span>s<span class="token punctuation">]</span>   spider     <span class="token operator">&lt;</span>TechWebSpider <span class="token string">'tech_web'</span> at 0x11beb53848<span class="token operator"><span class="token file-descriptor important">8</span>&gt;</span>
+<span class="token punctuation">[</span>s<span class="token punctuation">]</span> Useful shortcuts:
+<span class="token punctuation">[</span>s<span class="token punctuation">]</span>   fetch<span class="token punctuation">(</span>url<span class="token punctuation">[</span>, <span class="token assign-left variable">redirect</span><span class="token operator">=</span>True<span class="token punctuation">]</span><span class="token punctuation">)</span> Fetch URL and update <span class="token builtin class-name">local</span> objects <span class="token punctuation">(</span>by default, redirects are followed<span class="token punctuation">)</span>
+<span class="token punctuation">[</span>s<span class="token punctuation">]</span>   fetch<span class="token punctuation">(</span>req<span class="token punctuation">)</span>                  Fetch a scrapy.Request and update <span class="token builtin class-name">local</span> objects
+<span class="token punctuation">[</span>s<span class="token punctuation">]</span>   shelp<span class="token punctuation">(</span><span class="token punctuation">)</span>           Shell <span class="token builtin class-name">help</span> <span class="token punctuation">(</span>print this <span class="token builtin class-name">help</span><span class="token punctuation">)</span>
+<span class="token punctuation">[</span>s<span class="token punctuation">]</span>   view<span class="token punctuation">(</span>response<span class="token punctuation">)</span>    View response <span class="token keyword">in</span> a browser
+In <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>: 
+ <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>此时你可以使用 <code>response.text</code> 来检查我们是否获取了整个页面的源码，scrapy的所有资源解析操作都被集成在了<code>response</code>这个对象中，使用 <code>Tab</code> 建可以提示补全相关的内容。</p>
+<p>接下来我们可以在浏览器中分析需要抓取的页面的信息</p>
+<p><img src="https://gitee.com/peterwd/pic-oss/raw/master/image/202201071632306.png" alt="image-20220107163221087"></p>
+<p>解析网页的 spider 代码如下：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> datetime
+<span class="token keyword">from</span> hashlib <span class="token keyword">import</span> md5
+<span class="token keyword">import</span> scrapy
+<span class="token keyword">from</span> scrapy_demo<span class="token punctuation">.</span>items <span class="token keyword">import</span> ScrapyDemoItem
+
+
+<span class="token keyword">class</span> <span class="token class-name">TechWebSpider</span><span class="token punctuation">(</span>scrapy<span class="token punctuation">.</span>Spider<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    name <span class="token operator">=</span> <span class="token string">'tech_web'</span>
+    allowed_domains <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'top.chinaz.com'</span><span class="token punctuation">]</span>
+    url <span class="token operator">=</span> <span class="token string">'https://top.chinaz.com/hangye/index_wangluo_{}.html'</span>
+    pagesize <span class="token operator">=</span> <span class="token number">1</span>
+    start_urls <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'https://top.chinaz.com/hangye/index_wangluo.html'</span><span class="token punctuation">]</span>
+
+    <span class="token keyword">def</span> <span class="token function">parse</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> response<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        li_list <span class="token operator">=</span> response<span class="token punctuation">.</span>xpath<span class="token punctuation">(</span><span class="token string">'//ul[@class="listCentent"]/li'</span><span class="token punctuation">)</span>
+        <span class="token keyword">for</span> li <span class="token keyword">in</span> li_list<span class="token punctuation">:</span>
+            web_name <span class="token operator">=</span> li<span class="token punctuation">.</span>xpath<span class="token punctuation">(</span><span class="token string">'.//h3/a/text()'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token punctuation">)</span>
+            domain <span class="token operator">=</span> li<span class="token punctuation">.</span>xpath<span class="token punctuation">(</span><span class="token string">'.//h3/span/text()'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token punctuation">)</span>
+            abstract <span class="token operator">=</span> li<span class="token punctuation">.</span>xpath<span class="token punctuation">(</span><span class="token string">'.//div[@class="CentTxt"]/p/text()'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>get<span class="token punctuation">(</span>default<span class="token operator">=</span><span class="token string">''</span><span class="token punctuation">)</span>
+            rank <span class="token operator">=</span> li<span class="token punctuation">.</span>xpath<span class="token punctuation">(</span><span class="token string">'.//div[@class="RtCRateCent"]/strong/text()'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>get<span class="token punctuation">(</span>default<span class="token operator">=</span><span class="token string">''</span><span class="token punctuation">)</span>
+            score <span class="token operator">=</span> li<span class="token punctuation">.</span>xpath<span class="token punctuation">(</span><span class="token string">'.//div[@class="RtCRateCent"]/span/text()'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>get<span class="token punctuation">(</span>default<span class="token operator">=</span><span class="token string">''</span><span class="token punctuation">)</span>
+            <span class="token comment"># 封装数据</span>
+            item <span class="token operator">=</span> ScrapyDemoItem<span class="token punctuation">(</span><span class="token punctuation">)</span>
+            date <span class="token operator">=</span> datetime<span class="token punctuation">.</span>datetime<span class="token punctuation">.</span>now<span class="token punctuation">(</span><span class="token punctuation">)</span>
+            item<span class="token punctuation">[</span><span class="token string">'_id'</span><span class="token punctuation">]</span> <span class="token operator">=</span> md5<span class="token punctuation">(</span><span class="token builtin">str</span><span class="token punctuation">(</span>web_name<span class="token punctuation">)</span><span class="token punctuation">.</span>encode<span class="token punctuation">(</span><span class="token string">'utf-8'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span>hexdigest<span class="token punctuation">(</span><span class="token punctuation">)</span>
+            item<span class="token punctuation">[</span><span class="token string">'web_name'</span><span class="token punctuation">]</span> <span class="token operator">=</span> web_name
+            item<span class="token punctuation">[</span><span class="token string">'domain'</span><span class="token punctuation">]</span> <span class="token operator">=</span> domain
+            item<span class="token punctuation">[</span><span class="token string">'abstract'</span><span class="token punctuation">]</span> <span class="token operator">=</span> abstract
+            item<span class="token punctuation">[</span><span class="token string">'rank'</span><span class="token punctuation">]</span> <span class="token operator">=</span> rank
+            item<span class="token punctuation">[</span><span class="token string">'score'</span><span class="token punctuation">]</span> <span class="token operator">=</span> score
+            item<span class="token punctuation">[</span><span class="token string">'create_time'</span><span class="token punctuation">]</span> <span class="token operator">=</span> date
+            item<span class="token punctuation">[</span><span class="token string">'update_time'</span><span class="token punctuation">]</span> <span class="token operator">=</span> date
+            <span class="token keyword">yield</span> item
+        <span class="token comment"># 构造下一页的请求</span>
+        self<span class="token punctuation">.</span>pagesize <span class="token operator">=</span> self<span class="token punctuation">.</span>pagesize <span class="token operator">+</span> <span class="token number">1</span>
+        url <span class="token operator">=</span> self<span class="token punctuation">.</span>url<span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>pagesize<span class="token punctuation">)</span>
+        <span class="token keyword">if</span> <span class="token builtin">len</span><span class="token punctuation">(</span>li_list<span class="token punctuation">)</span> <span class="token operator">&gt;</span> <span class="token number">0</span><span class="token punctuation">:</span>
+            <span class="token keyword">yield</span> scrapy<span class="token punctuation">.</span>Request<span class="token punctuation">(</span>url<span class="token operator">=</span>url<span class="token punctuation">,</span> callback<span class="token operator">=</span>self<span class="token punctuation">.</span>parse<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<blockquote>
+<p><code>Spider parse</code>方法：所有的<code>parse</code>方法都必须返回 Item 对象(目前可以理解为数据项)或者 Request 对象(下一条请求)。这里所有的<code>parse</code>的意思是不是特指<code>Spider</code>类中生成的<code>parse</code>方法，而是所有具备解析功能的函数都应该返回 Item 或者 Request。</p>
+</blockquote>
+<p>启动 spider ：</p>
+<p>语法：<code>scrapy crawl &lt;spider&gt;</code></p>
+<p>其中的 <code>&lt;spider&gt;</code> 是我们 spider 文件中 <code>name</code> 属性的值，我们在 scrapy 项目中可以通过 <code>scrapy list</code> 命令查看，如下所示：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">D:<span class="token punctuation">\</span>my-projects<span class="token punctuation">\</span>scrapy_demo<span class="token operator">&gt;</span>scrapy list
+tech_web<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>所以我们可以使用下面的命令启动我们创建的这个 spider :</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">scrapy crawl tech_web<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>那么现在有一个问题是我需要将数据保存应该如何做呢？</p>
+<pre class="line-numbers language-none"><code class="language-none">Scrapy` 提供了许多`Feed exports`的方法，可以将输出数据保存为`json, json lines, csv, xml<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>在启动命令后面加 <code>-o xx.json</code> 就可以将文件保存为<code>json</code>格式。</p>
+<p>例如使用如下命令将抓取的数据保存到一个 <code>json</code> 文件中：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">scrapy crawl tech_web -o result.json<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>打开保存的 json 文件，发现出现了乱码，出于历史原因，JSON 输出使用安全数字编码（<code>\uXXXX</code>序列），如果想要 UTF-8 用于 JSON，请使用 <code>FEED_EXPORT_ENCODING = 'utf-8'</code>。官方文档对该字段的说明如下：</p>
+<p><img src="https://gitee.com/peterwd/pic-oss/raw/master/image/202201071740442.png" alt="image-20220107174023299"></p>
+<h2 id="3-保存数据到-mongodb"><a href="#3-保存数据到-mongodb" class="headerlink" title="3. 保存数据到 mongodb"></a>3. 保存数据到 mongodb</h2><p>前面我们介绍了如何将采集的结构化数据保存到 json 文件中，下面将介绍如何将采集的数据保存到 mongodb 中，保存到其他数据库也是类似的。</p>
+<p>首先由于我们需要保存数据到 mongodb 中，所以这里先用 docker 部署一个 mongodb 数据库，如果已经有了 mongodb 数据库，就不需要这个操作。</p>
+<blockquote>
+<p>docker 部署 mongodb 地址：<a target="_blank" rel="noopener" href="https://hub.docker.com/r/bitnami/mongodb">https://hub.docker.com/r/bitnami/mongodb</a></p>
+</blockquote>
+<p>使用下面的命令启动一个 <code>mongodb</code> 数据库：</p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">docker run --name mongodb  -e MONGODB_ROOT_PASSWORD=password123 -p 27017:27017  bitnami/mongodb:latest<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>其次需要介绍一下 <code>scrapy</code> 的 <code>pipeline</code> ，在每一个item 被抓取之后，都会被发送到 <code>pipeline</code> 中，每个 <code>pipeline</code> 都是一个实现简单方法的 <code>python</code> 类，</p>
+<p>它们接收一个 <code>item</code> 并对其执行操作，同时决定该 <code>item</code> 是应该继续进入下一个 <code>pipeline</code> 还是被丢弃不再处理。</p>
+<p><strong>pipeline 的典型用途如下：</strong></p>
+<ul>
+<li>清洗 HTML 数据</li>
+<li>验证抓取的数据（检查项目是否包含某些字段）</li>
+<li>检查重复项（并删除它们）</li>
+<li>将抓取的项目存储在数据库中</li>
+</ul>
+<p><strong>编写自己的 pipeline</strong></p>
+<p>每个 pipeline 组件都是一个必须实现 <code>process_item</code> 方法的 Python 类：</p>
+<ul>
+<li><p><strong>process_item ( *self* , *item* , *spider* )<a target="_blank" rel="noopener" href="https://docs.scrapy.org/en/latest/topics/item-pipeline.html#process_item">¶</a></strong></p>
+<p>处理每个 item 都会调用此方法。item是一个<a target="_blank" rel="noopener" href="https://docs.scrapy.org/en/latest/topics/items.html#item-types">item 对象</a>，请参阅 <a target="_blank" rel="noopener" href="https://docs.scrapy.org/en/latest/topics/items.html#supporting-item-types">支持所有项目类型</a>。<a target="_blank" rel="noopener" href="https://docs.scrapy.org/en/latest/topics/item-pipeline.html#process_item"><code>process_item()</code></a>必须要么：返回一个<a target="_blank" rel="noopener" href="https://docs.scrapy.org/en/latest/topics/items.html#item-types">项目对象</a>，返回一个<a target="_blank" rel="noopener" href="https://twistedmatrix.com/documents/current/api/twisted.internet.defer.Deferred.html"><code>Deferred</code></a>或引发 <a target="_blank" rel="noopener" href="https://docs.scrapy.org/en/latest/topics/exceptions.html#scrapy.exceptions.DropItem"><code>DropItem</code></a>异常。丢弃的项目不再由进一步的 pipeline 组件处理。</p>
+<p>参数</p>
+<ul>
+<li><strong>item</strong> ( <a target="_blank" rel="noopener" href="https://docs.scrapy.org/en/latest/topics/items.html#item-types">item object</a> ) – 抓取的项目</li>
+<li><strong>spider</strong> ( <a target="_blank" rel="noopener" href="https://docs.scrapy.org/en/latest/topics/spiders.html#scrapy.spiders.Spider"><code>Spider</code></a>object) – 抓取物品的spider</li>
+</ul>
+<p>返回值</p>
+<ul>
+<li>返回一个 <a target="_blank" rel="noopener" href="https://docs.scrapy.org/en/latest/topics/items.html#item-types">Item 对象</a>，让后续的 pipeline 处理</li>
+<li>返回一个<a target="_blank" rel="noopener" href="https://twistedmatrix.com/documents/current/api/twisted.internet.defer.Deferred.html"><code>Deferred</code></a>或引发 <a target="_blank" rel="noopener" href="https://docs.scrapy.org/en/latest/topics/exceptions.html#scrapy.exceptions.DropItem"><code>DropItem</code></a>异常，丢弃 item 不再由后续的 pipeline 组件处理。</li>
+</ul>
+</li>
+</ul>
+<p>此外，它们还可以实现以下方法：</p>
+<ul>
+<li><p><strong>open_spider（self，spider）</strong><a target="_blank" rel="noopener" href="https://docs.scrapy.org/en/latest/topics/item-pipeline.html#open_spider">¶</a></p>
+<p>这个方法在 spider 打开时被调用。参数<strong>spider</strong>– 打开的 spider</p>
+</li>
+<li><p><strong>close_spider（self，spider）</strong><a target="_blank" rel="noopener" href="https://docs.scrapy.org/en/latest/topics/item-pipeline.html#close_spider">¶</a></p>
+<p>当 spider 关闭时调用此方法。参数 <strong>spider</strong> – 关闭的spider</p>
+</li>
+<li><p><strong>from_crawler ( *cls* , *crawler* )</strong><a target="_blank" rel="noopener" href="https://docs.scrapy.org/en/latest/topics/item-pipeline.html#from_crawler">¶</a></p>
+<p>如果存在，必须返回 pipeline 的新实例，通常在这个方法中传入一些外部配置，构造一个新的 pipeline 实例。Crawler 对象提供对所有 Scrapy 核心组件的访问，如 settings 和 signals ；这是 pipeline 访问它们并将其功能挂钩到 Scrapy 的一种方式。参数<strong>crawler</strong> ( <a target="_blank" rel="noopener" href="https://docs.scrapy.org/en/latest/topics/api.html#scrapy.crawler.Crawler"><code>Crawler</code></a>object) – 使用这个 pipeline 的爬虫。</p>
+</li>
+</ul>
+<p>知道了 pipeline 的作用和定义方法后，我们定义一个保存数据到 <code>mongodb</code> 的 <code>pipeline</code> ，如下所示：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># Define your item pipelines here</span>
+<span class="token comment">#</span>
+<span class="token comment"># Don't forget to add your pipeline to the ITEM_PIPELINES setting</span>
+<span class="token comment"># See: https://docs.scrapy.org/en/latest/topics/item-pipeline.html</span>
+
+
+<span class="token comment"># useful for handling different item types with a single interface</span>
+<span class="token keyword">from</span> itemadapter <span class="token keyword">import</span> ItemAdapter
+<span class="token keyword">import</span> pymongo
+
+
+<span class="token keyword">class</span> <span class="token class-name">ScrapyDemoPipeline</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">process_item</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> item<span class="token punctuation">,</span> spider<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> item
+
+
+<span class="token keyword">class</span> <span class="token class-name">SaveToMongoPipeline</span><span class="token punctuation">:</span>
+    
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> mongo_uri<span class="token punctuation">,</span> mongo_db<span class="token punctuation">,</span> collection<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>mongo_uri <span class="token operator">=</span> mongo_uri
+        self<span class="token punctuation">.</span>mongo_db <span class="token operator">=</span> mongo_db
+        self<span class="token punctuation">.</span>collection <span class="token operator">=</span> collection
+
+    <span class="token decorator annotation punctuation">@classmethod</span>
+    <span class="token keyword">def</span> <span class="token function">from_crawler</span><span class="token punctuation">(</span>cls<span class="token punctuation">,</span> crawler<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token comment"># 从 settings.py 文件中读取对应的配置</span>
+        env <span class="token operator">=</span> crawler<span class="token punctuation">.</span>settings<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">'ENV'</span><span class="token punctuation">,</span> <span class="token string">'local'</span><span class="token punctuation">)</span>
+        config <span class="token operator">=</span> crawler<span class="token punctuation">.</span>settings<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">'CONFIG'</span><span class="token punctuation">)</span>
+        config <span class="token operator">=</span> config<span class="token punctuation">[</span>env<span class="token punctuation">]</span>
+        mongo_uri <span class="token operator">=</span> config<span class="token punctuation">.</span>MONGO_URI
+        mongo_db <span class="token operator">=</span> config<span class="token punctuation">.</span>MONGODB_DB
+        collection <span class="token operator">=</span> config<span class="token punctuation">.</span>COLLECTION_NAME
+        <span class="token comment"># 返回当前 pipeline 的实例，传入从 settings 中读取的配置</span>
+        <span class="token keyword">return</span> cls<span class="token punctuation">(</span>
+            mongo_uri<span class="token operator">=</span>mongo_uri<span class="token punctuation">,</span>
+            mongo_db<span class="token operator">=</span>mongo_db<span class="token punctuation">,</span>
+            collection<span class="token operator">=</span>collection<span class="token punctuation">,</span>
+        <span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">open_spider</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> spider<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">"""
+        打开 spider 的时候调用一次，可以在这里创建数据的连接
+        """</span>
+        self<span class="token punctuation">.</span>client <span class="token operator">=</span> pymongo<span class="token punctuation">.</span>MongoClient<span class="token punctuation">(</span>self<span class="token punctuation">.</span>mongo_uri<span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>db <span class="token operator">=</span> self<span class="token punctuation">.</span>client<span class="token punctuation">[</span>self<span class="token punctuation">.</span>mongo_db<span class="token punctuation">]</span>
+
+    <span class="token keyword">def</span> <span class="token function">process_item</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> item<span class="token punctuation">,</span> spider<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">"""
+        每一个 item 都会调用这个方法，可以在这里清洗数据，并保存到数据库
+        """</span>
+        adapter <span class="token operator">=</span> ItemAdapter<span class="token punctuation">(</span>item<span class="token punctuation">)</span>
+        coll <span class="token operator">=</span> self<span class="token punctuation">.</span>db<span class="token punctuation">[</span>self<span class="token punctuation">.</span>collection<span class="token punctuation">]</span>
+        <span class="token comment"># 使用 ItemAdapter 的 asdict() 方法可以处理嵌套的 item 格式，获取 json 字符串</span>
+        doc <span class="token operator">=</span> adapter<span class="token punctuation">.</span>asdict<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        count <span class="token operator">=</span> coll<span class="token punctuation">.</span>find<span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token string">'_id'</span><span class="token punctuation">:</span> doc<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">'_id'</span><span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span>count<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token keyword">if</span> count <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">:</span>
+            coll<span class="token punctuation">.</span>insert_one<span class="token punctuation">(</span>doc<span class="token punctuation">)</span>
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            <span class="token keyword">del</span> doc<span class="token punctuation">[</span><span class="token string">'create_time'</span><span class="token punctuation">]</span>
+            coll<span class="token punctuation">.</span>update_one<span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token string">"_id"</span><span class="token punctuation">:</span> doc<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">'_id'</span><span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token string">'$set'</span><span class="token punctuation">:</span> doc<span class="token punctuation">}</span><span class="token punctuation">)</span>
+        <span class="token keyword">return</span> item
+
+    <span class="token keyword">def</span> <span class="token function">close_spider</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> spider<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">"""
+        spider 关闭的时候调用一次，可以在这里关闭数据库连接，释放资源
+        """</span>
+        self<span class="token punctuation">.</span>client<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>如果要让自己的 pipeline 生效， 需要配置在 <code>settings.py</code> 文件中，如下所示：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># Configure item pipelines</span>
+<span class="token comment"># See https://docs.scrapy.org/en/latest/topics/item-pipeline.html</span>
+ITEM_PIPELINES <span class="token operator">=</span> <span class="token punctuation">{</span>
+   <span class="token string">'scrapy_demo.pipelines.ScrapyDemoPipeline'</span><span class="token punctuation">:</span> <span class="token number">300</span><span class="token punctuation">,</span>
+   <span class="token string">'scrapy_demo.pipelines.SaveToMongoPipeline'</span><span class="token punctuation">:</span> <span class="token number">400</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><code>ITEM_PIPELINES</code> 是一个字典，它的 <code>key</code> 是 <code>pipeline</code> 的类路径，它的值是一个数字， 这个数字决定了 pipeline 的执行顺序，它的执行顺序为从低到高，数字越大越后执行，自定义的数字范围为 <code>0 - 1000</code>。</p>
+<p>上述的pipeline 中的 <code>from_crawler</code> 方法使用了 settings 中配置的 <code>mongodb</code> 的地址，<code>settings.py</code> 文件的配置如下所示：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># Scrapy settings for scrapy_demo project</span>
+<span class="token comment">#</span>
+<span class="token comment"># For simplicity, this file contains only settings considered important or</span>
+<span class="token comment"># commonly used. You can find more settings consulting the documentation:</span>
+<span class="token comment">#</span>
+<span class="token comment">#     https://docs.scrapy.org/en/latest/topics/settings.html</span>
+<span class="token comment">#     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html</span>
+<span class="token comment">#     https://docs.scrapy.org/en/latest/topics/spider-middleware.html</span>
+
+BOT_NAME <span class="token operator">=</span> <span class="token string">'scrapy_demo'</span>
+
+SPIDER_MODULES <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'scrapy_demo.spiders'</span><span class="token punctuation">]</span>
+NEWSPIDER_MODULE <span class="token operator">=</span> <span class="token string">'scrapy_demo.spiders'</span>
+
+FEED_EXPORT_ENCODING <span class="token operator">=</span> <span class="token string">'utf-8'</span>
+
+<span class="token comment"># Crawl responsibly by identifying yourself (and your website) on the user-agent</span>
+USER_AGENT <span class="token operator">=</span> <span class="token string">'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36'</span>
+
+<span class="token comment"># Obey robots.txt rules</span>
+ROBOTSTXT_OBEY <span class="token operator">=</span> <span class="token boolean">False</span>
+
+<span class="token comment"># Override the default request headers:</span>
+DEFAULT_REQUEST_HEADERS <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token string">'Accept'</span><span class="token punctuation">:</span> <span class="token string">'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9'</span><span class="token punctuation">,</span>
+    <span class="token string">'Accept-Encoding'</span><span class="token punctuation">:</span> <span class="token string">'gzip, deflate, br'</span><span class="token punctuation">,</span>
+    <span class="token string">'Accept-Language'</span><span class="token punctuation">:</span> <span class="token string">'zh-CN,zh;q=0.9,en;q=0.8'</span><span class="token punctuation">,</span>
+    <span class="token string">'Connection'</span><span class="token punctuation">:</span> <span class="token string">'keep-alive'</span><span class="token punctuation">,</span>
+    <span class="token string">'User-Agent'</span><span class="token punctuation">:</span> USER_AGENT
+<span class="token punctuation">}</span>
+
+<span class="token comment"># Configure item pipelines</span>
+<span class="token comment"># See https://docs.scrapy.org/en/latest/topics/item-pipeline.html</span>
+ITEM_PIPELINES <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token string">'scrapy_demo.pipelines.ScrapyDemoPipeline'</span><span class="token punctuation">:</span> <span class="token number">300</span><span class="token punctuation">,</span>
+    <span class="token string">'scrapy_demo.pipelines.SaveToMongoPipeline'</span><span class="token punctuation">:</span> <span class="token number">400</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+
+
+<span class="token keyword">class</span> <span class="token class-name">LocalConfig</span><span class="token punctuation">:</span>
+    <span class="token comment"># 本地环境mongeDB地址</span>
+    MONGODB_HOST <span class="token operator">=</span> <span class="token string">'localhost:27017'</span>
+    MONGODB_USERNAME <span class="token operator">=</span> <span class="token string">'root'</span>
+    MONGODB_PASSWORD <span class="token operator">=</span> <span class="token string">'password123'</span>
+    MONGODB_DB <span class="token operator">=</span> <span class="token string">'admin'</span>
+    COLLECTION_NAME <span class="token operator">=</span> <span class="token string">'tech_web'</span>
+    MONGO_URI <span class="token operator">=</span> <span class="token string">"mongodb://{username}:{password}@{server}/{database}"</span><span class="token punctuation">.</span> \
+        <span class="token builtin">format</span><span class="token punctuation">(</span>username<span class="token operator">=</span>MONGODB_USERNAME<span class="token punctuation">,</span> password<span class="token operator">=</span>MONGODB_PASSWORD<span class="token punctuation">,</span> server<span class="token operator">=</span>MONGODB_HOST<span class="token punctuation">,</span> database<span class="token operator">=</span>MONGODB_DB<span class="token punctuation">)</span>
+
+
+<span class="token keyword">class</span> <span class="token class-name">DevelopmentConfig</span><span class="token punctuation">:</span>
+    <span class="token comment"># 开发环境mongeDB地址</span>
+    MONGODB_HOST <span class="token operator">=</span> <span class="token string">'localhost:27017'</span>
+    MONGODB_USERNAME <span class="token operator">=</span> <span class="token string">'root'</span>
+    MONGODB_PASSWORD <span class="token operator">=</span> <span class="token string">'password123'</span>
+    MONGODB_DB <span class="token operator">=</span> <span class="token string">'admin'</span>
+    COLLECTION_NAME <span class="token operator">=</span> <span class="token string">'tech_web'</span>
+    MONGO_URI <span class="token operator">=</span> <span class="token string">"mongodb://{username}:{password}@{server}/{database}"</span><span class="token punctuation">.</span> \
+        <span class="token builtin">format</span><span class="token punctuation">(</span>username<span class="token operator">=</span>MONGODB_USERNAME<span class="token punctuation">,</span> password<span class="token operator">=</span>MONGODB_PASSWORD<span class="token punctuation">,</span> server<span class="token operator">=</span>MONGODB_HOST<span class="token punctuation">,</span> database<span class="token operator">=</span>MONGODB_DB<span class="token punctuation">)</span>
+
+
+CONFIG <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token string">'local'</span><span class="token punctuation">:</span> LocalConfig<span class="token punctuation">,</span>
+    <span class="token string">'dev'</span><span class="token punctuation">:</span> DevelopmentConfig<span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+
+ENV <span class="token operator">=</span> <span class="token string">'local'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>编写完成后运行下面的命令就可以启动 spider：</p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">scrapy crawl tech_web<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>可以看到数据保存到 mongodb 中了：</p>
+<p><img src="https://gitee.com/peterwd/pic-oss/raw/master/image/202201072015589.png" alt="image-20220107201532414"></p>
+<h1 id="六-部署爬虫项目到-SpiderKeeper"><a href="#六-部署爬虫项目到-SpiderKeeper" class="headerlink" title="六. 部署爬虫项目到 SpiderKeeper"></a>六. 部署爬虫项目到 <code>SpiderKeeper</code></h1><p>前面介绍了使用命令 <code>scrapy crawl &lt;name&gt;</code> 来运行 spider ，如果我们想要定时运行这些爬虫任务应该怎么做呢？</p>
+<ul>
+<li>如果运行在Linux系统中，可以使用 <code>crontab</code> 来执行定时任务</li>
+<li>可以使用 python 的定时库 <code>apscheduler</code> ，通过手动编程的方式执行定时任务</li>
+<li>使用 <code>scrapy</code> 的可视化管理工具 <code>SpiderKeeper</code></li>
+</ul>
+<p>接下来将介绍部署 <code>scrapy</code> 项目到 <code>SpiderKeeper</code>，部署 <code>scrapy</code> 项目到 <code>SpiderKeeper</code> 需要安装两个 python 库：</p>
+<ul>
+<li>spiderkeeper</li>
+<li>scrapyd</li>
+</ul>
+<h2 id="1-SpiderKeeper-简介"><a href="#1-SpiderKeeper-简介" class="headerlink" title="1. SpiderKeeper 简介"></a>1. SpiderKeeper 简介</h2><blockquote>
+<p>SpiderKeeper 的源码地址：<a target="_blank" rel="noopener" href="https://github.com/DormyMo/SpiderKeeper">https://github.com/DormyMo/SpiderKeeper</a></p>
+</blockquote>
+<p><code>SpiderKeeper</code> 是 <code>spider</code> 服务的可扩展管理 ui，包括如下功能：</p>
+<ul>
+<li>从仪表板管理 <code>spider</code> ，并且调度它们自动运行</li>
+<li>只需单击一次，即可部署 <code>scrapy</code> 项目</li>
+<li>显示 <code>spider</code> 运行统计信息</li>
+<li>提供 <code>api</code></li>
+</ul>
+<p><code>spiderkeeper</code> 目前只支持 <code>scrapyd</code> 方式运行的 <code>scrapy</code> 项目的管理，所以在安装 <code>spiderkeeper</code> 之前需要先安装 <code>scrapyd</code>。</p>
+<h2 id="2-Scrapyd-简介"><a href="#2-Scrapyd-简介" class="headerlink" title="2. Scrapyd 简介"></a>2. Scrapyd 简介</h2><blockquote>
+<p>Scrapyd 的源码地址：<a target="_blank" rel="noopener" href="https://github.com/scrapy/scrapyd">https://github.com/scrapy/scrapyd</a></p>
+</blockquote>
+<p><code>Scrapyd</code> 是运行 <code>scrapy</code> 项目的一个守护服务，它允许你部署 <code>scrapy</code> 项目，并且可以使用 <code>http json api</code> 的方式控制 <code>scrapy</code> 的 <code>spider</code> 。</p>
+<h2 id="3-安装-spiderkeeper"><a href="#3-安装-spiderkeeper" class="headerlink" title="3. 安装 spiderkeeper"></a>3. 安装 spiderkeeper</h2><p>使用下面的命令安装 <code>scrapyd</code>：</p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">pip install scrapyd<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>使用下面的命令启动 <code>scrapyd</code>， <code>scrapyd</code> 默认运行在 <code>6800</code> 端口，如下所示：</p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">&gt;scrapyd
+2022-01-09T10:24:19+0800 [-] Loading e:\anaconda3\lib\site-packages\scrapyd\txapp.py...
+2022-01-09T10:24:20+0800 [-] Scrapyd web console available at http://127.0.0.1:6800/
+2022-01-09T10:24:20+0800 [-] Loaded.
+2022-01-09T10:24:20+0800 [twisted.application.app.AppLogger#info] twistd 21.7.0 (e:\anaconda3\python.exe 3.7.6) starting up.
+2022-01-09T10:24:20+0800 [twisted.application.app.AppLogger#info] reactor class: twisted.internet.selectreactor.SelectReactor.
+2022-01-09T10:24:20+0800 [-] Site starting on 6800
+2022-01-09T10:24:20+0800 [twisted.web.server.Site#info] Starting factory &lt;twisted.web.server.Site object at 0x000001DA664F3C88&gt;
+2022-01-09T10:24:20+0800 [Launcher] Scrapyd 1.2.1 started: max_proc=16, runner='scrapyd.runner'<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>使用下面的命令安装 <code>spiderkeeper</code> ：</p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">pip install spiderkeeper<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>使用下面的命令启动 <code>spiderkeeper</code>，默认运行在 <code>5000</code> 端口，如下所示：</p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">&gt;spiderkeeper
+--------------------------------------------------------------------------------
+INFO in run [e:\anaconda3\lib\site-packages\SpiderKeeper\run.py:22]:
+SpiderKeeper startd on 0.0.0.0:5000 username:admin/password:admin with scrapyd servers:http://localhost:6800
+--------------------------------------------------------------------------------
+2022-01-09 10:27:24,828 - SpiderKeeper.app - INFO - SpiderKeeper startd on 0.0.0.0:5000 username:admin/password:admin with scrapyd servers:http://localhost:6800<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><code>spiderkeeper</code> 的其他配置说明如下：</p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">spiderkeeper [options]
+
+Options:
+
+  -h, --help            show this help message and exit
+  --host=HOST           host, default:0.0.0.0
+  --port=PORT           port, default:5000
+  --username=USERNAME   basic auth username ,default: admin
+  --password=PASSWORD   basic auth password ,default: admin
+  --type=SERVER_TYPE    access spider server type, default: scrapyd
+  --server=SERVERS      servers, default: 'http://localhost:6800'
+  --database-url=DATABASE_URL
+                        SpiderKeeper metadata database default: sqlite:////home/souche/SpiderKeeper.db
+  --no-auth             disable basic auth
+  -v, --verbose         log level
+  
+
+example:
+
+spiderkeeper --server=http://localhost:6800<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>启动完成 spiderkeeper 后，在浏览器访问：<code>http://localhost:5000</code>，可以看到如下所示页面：</p>
+<p>默认用户名和密码都为：<code>admin</code></p>
+<p><img src="https://gitee.com/peterwd/pic-oss/raw/master/image/202201091031461.png" alt="image-20220109103152935"></p>
+<p>登录成功后可以看到如下所示页面：</p>
+<p><img src="https://gitee.com/peterwd/pic-oss/raw/master/image/202201091033643.png" alt="image-20220109103307504"></p>
+<p>点击创建一个项目：</p>
+<p><img src="https://gitee.com/peterwd/pic-oss/raw/master/image/202201091034490.png" alt="image-20220109103406400"></p>
+<p>可以看到如下部署页面：</p>
+<p><img src="https://gitee.com/peterwd/pic-oss/raw/master/image/202201091034875.png" alt="image-20220109103452704"></p>
+<p>在 <code>scrapy</code> 项目中使用命令 <code>scrapyd-deploy --build-egg output.egg</code> 生成部署文件，并上传，即可完成 <code>scrapy</code> 项目的部署。</p>
+<p>使用下面的命令生成部署文件：</p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">&gt;scrapyd-deploy --build-egg output.egg
+Writing egg to output.egg<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>将前面的 <code>scrapy</code> 项目生成的 <code>output.egg</code> 上传到 <code>spiderkeeper</code> 中：</p>
+<p><img src="https://gitee.com/peterwd/pic-oss/raw/master/image/202201091039413.png" alt="image-20220109103902307"></p>
+<p>点击 <code>Dashboard</code> –&gt; 点击 <code>Run</code> –&gt; 选择需要运行的 <code>spider</code>，<code>spiderkeeper</code> 会自动识别 spider 中 <code>name</code> 的名称：</p>
+<p><img src="https://gitee.com/peterwd/pic-oss/raw/master/image/202201091043201.png" alt="image-20220109104314079"></p>
+<p>如果要创建定时任务，如下图所示：</p>
+<p><img src="https://gitee.com/peterwd/pic-oss/raw/master/image/202201091045320.png" alt="image-20220109104510161"></p>
+<h1 id="七-总结"><a href="#七-总结" class="headerlink" title="七. 总结"></a>七. 总结</h1><p>这篇文章简单记录自己学习 <code>scrapy</code> 的过程，包括从创建项目到部署项目的完整流程，很多细节并没有详细介绍，更多内容可以查看文章中列出的官方文档。</p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">SuoLiweng</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://dick-su-3.github.io/archives/7c5d4ed3.html">https://dick-su-3.github.io/archives/7c5d4ed3.html</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">SuoLiweng</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/%E7%88%AC%E8%99%ABScrapy/">
+                                    <span class="chip bg-color">爬虫Scrapy</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/archives/c5f0d6d.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="域名">
+                        
+                        <span class="card-title">域名</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            xin是什么域名？经常关注域名的朋友可能有注意到又新出了一个.xin域名。很多朋友对于xin是什么域名还不了解，随着域名后缀越来越多，很多朋友确实混淆不清，小编之所以了解.xin域名，是因为这个与马云有关。话不多说，本文将详细介绍下.xin
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-08-09
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%9F%9F%E5%90%8D/" class="post-category">
+                                    域名
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA/">
+                        <span class="chip bg-color">计算机</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/archives/5c704262.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Java 如何实现线程间通信">
+                        
+                        <span class="card-title">Java 如何实现线程间通信</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            虽然通常每个子线程只需要完成自己的任务，但是有时我们希望多个线程一起工作来完成一个任务，这就涉及到线程间通信。
+关于线程间通信本文涉及到的方法和类包括：thread.join()、object.wait()、object.notify()、
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-08-08
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Java/" class="post-category">
+                                    Java
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Java%E7%BA%BF%E7%A8%8B%E9%97%B4%E9%80%9A%E4%BF%A1/">
+                        <span class="chip bg-color">Java线程间通信</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+
+  <!-- 是否加载使用自带的 prismjs. -->
+  <script type="text/javascript" src="/libs/prism/prism.min.js"></script>
+
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="26467411"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.5'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="/libs/aplayer/Meting.min.js"></script>
+
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2022-2023</span>
+            
+            <a href="/about" target="_blank">SuoLiweng</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            
+                <span id="translate">|&nbsp;繁/简：</span><a id="translateLink" href="javascript:translatePage();">繁</a>
+            
+            <br>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/Jacksu3" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:1530265947@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1530265947" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1530265947" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 白天和黑夜主题 -->
+<div class="stars-con">
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>  
+</div>
+
+<script>
+    function switchNightMode() {
+        $('<div class="Cuteen_DarkSky"><div class="Cuteen_DarkPlanet"></div></div>').appendTo($('body')),
+        setTimeout(function () {
+            $('body').hasClass('DarkMode') 
+            ? ($('body').removeClass('DarkMode'), localStorage.setItem('isDark', '0'), $('#sum-moon-icon').removeClass("fa-sun").addClass('fa-moon')) 
+            : ($('body').addClass('DarkMode'), localStorage.setItem('isDark', '1'), $('#sum-moon-icon').addClass("fa-sun").removeClass('fa-moon')),
+            
+            setTimeout(function () {
+            $('.Cuteen_DarkSky').fadeOut(1e3, function () {
+                $(this).remove()
+            })
+            }, 2e3)
+        })
+    }
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    
+
+    
+        <script type="text/javascript" src="/js/tw_cn.js"></script>
+        <script type="text/javascript">
+          var defaultEncoding = 2; //网站编写字体是否繁体，1-繁体，2-简体
+          var translateDelay = 0; //延迟时间,若不在前, 要设定延迟翻译时间, 如100表示100ms,默认为0
+          var cookieDomain = "https://dick-su-3.github.io"; //Cookie地址, 一定要设定, 通常为你的网址
+          var msgToTraditionalChinese = "繁"; //此处可以更改为你想要显示的文字
+          var msgToSimplifiedChinese = "简"; //同上，但两处均不建议更改
+          var translateButtonId = "translateLink"; //默认互换id
+          translateInitilization();
+        </script>
+    
+    
+    
+
+    <!-- 雪花特效 -->
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+     
+        <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+        <script src="/libs/others/TencentCaptcha.js"></script>
+        <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+
+</html>

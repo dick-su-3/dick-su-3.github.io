@@ -1,0 +1,2028 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="Hexo Yilia高级配置, 云卷舒">
+    <meta name="description" content="这篇文章列举了搭建博客至今遇到所有问题的解决方法以及一些新功能的添加方法。这篇文章集合了几乎所有的Hexo Yilia进阶用法教程，包括且不限于：1.微信分享异常 2.“所有文章”无显示 3.显示总文章数 4.置顶文章 5.文章加密 6.文">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>Hexo Yilia高级配置 | 云卷舒</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    
+
+
+    <!-- bg-cover style     -->
+
+
+
+<link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+<link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+<link rel="stylesheet" type="text/css" href="/css/matery.css">
+<link rel="stylesheet" type="text/css" href="/css/my.css">
+<link rel="stylesheet" type="text/css" href="/css/dark.css" media="none" onload="if(media!='all')media='all'">
+
+
+
+
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+    <link rel="stylesheet" href="/css/post.css">
+
+
+
+
+    
+        <link rel="stylesheet" type="text/css" href="/css/reward.css">
+    
+
+
+
+    <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
+
+<meta name="generator" content="Hexo 6.2.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="云卷舒" type="application/atom+xml">
+</head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">云卷舒</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+  <li>
+    <a href="javascript:;" class="waves-effect waves-light" onclick="switchNightMode()" title="深色/浅色模式" >
+      <i id="sum-moon-icon" class="fas fa-sun" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">云卷舒</div>
+        <div class="logo-desc">
+            
+            岁月不回头，且行且珍惜
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/16.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">Hexo Yilia高级配置</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/yilia%E9%85%8D%E7%BD%AE/">
+                                <span class="chip bg-color">yilia配置</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/hexo/" class="post-category">
+                                hexo
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2022-08-07
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.min.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <p><strong>这篇文章列举了搭建博客至今遇到所有问题的解决方法以及一些新功能的添加方法。</strong><br>这篇文章集合了几乎所有的Hexo Yilia进阶用法教程，包括且不限于：<br>1.微信分享异常 2.“所有文章”无显示 3.显示总文章数 4.置顶文章 5.文章加密 6.文章点击数统计 7.版权声明 8.字数、阅读时长 9.点击红心 10.文章结束 11.404 12.Sitemap 13.自动推送 14.百度统计 15.链接提交 16.google收录 17.Valine增删改查，邮件提示，云引擎 18.板娘<br>19.Yilia标签搜索Bug 20.添加文章顶部转载说明 21.google广告投放 22 Gitment/Gitalk评论系统 23.tag中含有大写字母的bug 24.hexo-d失败 25 跳转到指定位置</p>
+<h1 id="1、微信分享异常"><a href="#1、微信分享异常" class="headerlink" title="1、微信分享异常"></a>1、微信分享异常</h1><p>这里是themes\yilia\layout\ _partial\post\share.ejs出了问题。<br>而且是两个问题：</p>
+<h2 id="1-1-首先是百度网盘取消了生成二维码的功能。"><a href="#1-1-首先是百度网盘取消了生成二维码的功能。" class="headerlink" title="1.1 首先是百度网盘取消了生成二维码的功能。"></a>1.1 首先是百度网盘取消了生成二维码的功能。</h2><p>解决方法是修改themes\yilia\layout_partial\post\share.ejs<br>文件中的</p>
+<pre class="line-numbers language-none"><code class="language-none">//pan.baidu.com/share/qrcode?url=<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p>修改为</p>
+<pre class="line-numbers language-none"><code class="language-none">//api.qrserver.com/v1/create-qr-code/?size=150x150&amp;data=<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<span id="more"></span>
+
+<h2 id="1-2-我这里分享的网址有问题。方法一"><a href="#1-2-我这里分享的网址有问题。方法一" class="headerlink" title="1.2 我这里分享的网址有问题。方法一"></a>1.2 我这里分享的网址有问题。方法一</h2><p>直接在根目录的配置文件中添加你网站的url信息。</p>
+<h2 id="1-3-我这里分享的网址有问题。方法二"><a href="#1-3-我这里分享的网址有问题。方法二" class="headerlink" title="1.3 我这里分享的网址有问题。方法二"></a>1.3 我这里分享的网址有问题。方法二</h2><p>解决方法是在文件中的</p>
+<pre class="line-numbers language-none"><code class="language-none">var sUrl = url.replace(/index\.html$/, '');
+  sUrl = /^(http:|https:)\/\//.test(sUrl) ? sUrl : 'http:' + sUrl;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+
+
+<p>下面加一行（这里的20是根据自己网址长度计算得到的）</p>
+<pre class="line-numbers language-none"><code class="language-none">test=sUrl.substring(20);<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p>然后上面就变成了：</p>
+<pre class="line-numbers language-none"><code class="language-none">&lt;%
+  var sUrl = url.replace(/index\.html$/, '');
+  sUrl = /^(http:|https:)\/\//.test(sUrl) ? sUrl : 'http:' + sUrl;
+  test=sUrl.substring(20);
+%&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>然后将上一步中的</p>
+<pre class="line-numbers language-none"><code class="language-none">'//api.qrserver.com/v1/create-qr-code/?size=150x150&amp;data=' + sUrl<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p>改为</p>
+<pre class="line-numbers language-none"><code class="language-none">'//api.qrserver.com/v1/create-qr-code/?size=150x150&amp;data=你的主页网址' + test<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p>举例，我的网址是（dongshuyan.github.io）那么就改为：</p>
+<pre class="line-numbers language-none"><code class="language-none">&lt;div class="page-modal wx-share js-wx-box"&gt;
+    &lt;a class="close js-modal-close" href="javascript:;"&gt;&lt;i class="icon icon-close"&gt;&lt;/i&gt;&lt;/a&gt;
+    &lt;p&gt;扫一扫，分享到微信&lt;/p&gt;
+    &lt;div class="wx-qrcode"&gt;
+      &lt;img src="&lt;%- 'qrcode' in locals ? qrcode(sUrl) : '//api.qrserver.com/v1/create-qr-code/?size=150x150&amp;data=http://dongshuyan.github.io/' + test  %&gt;" alt="微信分享二维码"&gt;
+    &lt;/div&gt;
+&lt;/div&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h1 id="2-点击“所有文章”无显示"><a href="#2-点击“所有文章”无显示" class="headerlink" title="2.点击“所有文章”无显示"></a>2.点击“所有文章”无显示</h1><p>themes\yilia\ _config.yml文件里面</p>
+<pre class="line-numbers language-none"><code class="language-none">mathjax: true<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p>改成</p>
+<pre class="line-numbers language-none"><code class="language-none">mathjax: false<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<h1 id="3-在左侧显示总文章数"><a href="#3-在左侧显示总文章数" class="headerlink" title="3.在左侧显示总文章数"></a>3.在左侧显示总文章数</h1><p>将themes\yilia\layout_partial\left-col.ejs文件的</p>
+<pre class="line-numbers language-none"><code class="language-none">&lt;nav class="header-menu"&gt;
+    &lt;ul&gt;
+    &lt;% for (var i in theme.menu){ %&gt;
+        &lt;li&gt;&lt;a href="&lt;%- url_for(theme.menu[i]) %&gt;"&gt;&lt;%= i %&gt;&lt;/a&gt;&lt;/li&gt;
+    &lt;%}%&gt;
+    &lt;/ul&gt;
+&lt;/nav&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>后面加上</p>
+<pre class="line-numbers language-none"><code class="language-none">&lt;nav&gt;
+    总文章数 &lt;%=site.posts.length%&gt;
+&lt;/nav&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h1 id="4-怎么置顶文章"><a href="#4-怎么置顶文章" class="headerlink" title="4.怎么置顶文章"></a>4.怎么置顶文章</h1><h2 id="4-1安装插件"><a href="#4-1安装插件" class="headerlink" title="4.1安装插件"></a>4.1安装插件</h2><pre class="line-numbers language-none"><code class="language-none">npm uninstall hexo-generator-index --save
+npm install hexo-generator-index-pin-top --save<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<h2 id="4-2配置置顶标准"><a href="#4-2配置置顶标准" class="headerlink" title="4.2配置置顶标准"></a>4.2配置置顶标准</h2><p>打开：/themes/*/layout（/_macro）/post.ejs<br>直接在最前面加入以下代码即可</p>
+<pre class="line-numbers language-none"><code class="language-none">&lt;% if (page.top) { %&gt;
+  &lt;i class="fa fa-thumb-tack"&gt;&lt;/i&gt;
+  &lt;font color=7D26CD&gt;置顶&lt;/font&gt;
+  &lt;span class="post-meta-divider"&gt;|&lt;/span&gt;
+&lt;% } %&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h2 id="4-3配置文章"><a href="#4-3配置文章" class="headerlink" title="4.3配置文章"></a>4.3配置文章</h2><p>然后在需要置顶的文章的Front-matter中加上top选项即可<br>top后面的数字越大，优先级越高</p>
+<pre class="line-numbers language-none"><code class="language-none">---
+title: 2019
+date: 2019-02-14 16:10:03
+top: 5
+---<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="4-4优先级配置"><a href="#4-4优先级配置" class="headerlink" title="4.4优先级配置"></a>4.4优先级配置</h2><p>修改根目录配置文件/_config.yml,top值-1标示根据top值倒序（正序设置为1即可），同样date也是根据创建日期倒序。</p>
+<pre class="line-numbers language-none"><code class="language-none">index_generator:
+  path: ''
+  per_page: 10
+  order_by:
+    top: -1
+    date: -1<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h1 id="5-Hexo-实现私密文章加密"><a href="#5-Hexo-实现私密文章加密" class="headerlink" title="5.Hexo 实现私密文章加密"></a>5.Hexo 实现私密文章加密</h1><pre class="line-numbers language-none"><code class="language-none">cd /Hexo
+npm install hexo-blog-encrypt
+
+vim /Hexo/_config.yml  添加如下内容
+
+# Security
+## 文章加密 hexo-blog-encrypt
+encrypt:
+    enable: true
+
+然后在想加密的文章头部添加上对应字段，如
+
+---
+title: hello world
+date: 2016-03-30 21:18:02   
+tags:       
+password: 12345   （密码）
+abstract: Welcome to my blog, enter password to read. 
+message: Welcome to my blog, enter password to read.     
+---
+
+password: 是该博客加密使用的密码
+abstract: 是该博客的摘要，会显示在博客的列表页
+message: 这个是博客查看时，密码输入框上面的描述性文字<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h1 id="6-增加不蒜子统计"><a href="#6-增加不蒜子统计" class="headerlink" title="6.增加不蒜子统计"></a>6.增加不蒜子统计</h1><p>利用这个统计，可以知道你博客的访问量</p>
+<h2 id="6-1安装不蒜子脚本"><a href="#6-1安装不蒜子脚本" class="headerlink" title="6.1安装不蒜子脚本"></a>6.1安装不蒜子脚本</h2><p>在 themes\yilia\layout\ _partial\after-footer.ejs最后添加</p>
+<pre class="line-numbers language-none"><code class="language-none">&lt;script  async  src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"&gt;&lt;/script&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<h2 id="6-2单篇文章点击量"><a href="#6-2单篇文章点击量" class="headerlink" title="6.2单篇文章点击量"></a>6.2单篇文章点击量</h2><p>在themes/yilia/layout/_partial/article.ejs中 在</p>
+<pre class="line-numbers language-none"><code class="language-none">&lt;%- partial('post/title', {class_name: 'article-title'}) %&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p>后面插入如下代码</p>
+<pre class="line-numbers language-none"><code class="language-none">&lt;!--显示阅读次数--&gt;
+&lt;% if (!index &amp;&amp; post.comments){ %&gt;
+  &lt;br/&gt;
+  &lt;a class="cloud-tie-join-count" href="javascript:void(0);" style="color:gray;font-size:14px;"&gt;
+  &lt;span class="icon-sort"&gt;&lt;/span&gt;
+  &lt;span id="busuanzi_container_page_pv" style="color:#ef7522;font-size:14px;"&gt;
+            阅读数: &lt;span id="busuanzi_value_page_pv"&gt;&lt;/span&gt;次 &amp;nbsp;&amp;nbsp;
+  &lt;/span&gt;
+  &lt;/a&gt;
+&lt;% } %&gt;
+&lt;!--显示阅读次数完毕--&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h1 id="7-增加版权声明"><a href="#7-增加版权声明" class="headerlink" title="7.增加版权声明"></a>7.增加版权声明</h1><h2 id="7-1配置yilia"><a href="#7-1配置yilia" class="headerlink" title="7.1配置yilia"></a>7.1配置yilia</h2><p>在</p>
+<pre class="line-numbers language-none"><code class="language-none">themes/yilia/layout/_partial/article.ejs<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p>中标注的位置添加代码</p>
+<pre class="line-numbers language-none"><code class="language-none">&lt;div class="article-entry" itemprop="articleBody"&gt;
+  &lt;% if (post.excerpt &amp;&amp; index){ %&gt;
+    &lt;%- post.excerpt %&gt;
+    &lt;% if (theme.excerpt_link) { %&gt;
+      &lt;a class="article-more-a" href="&lt;%- url_for(post.path) %&gt;#more"&gt;&lt;%= theme.excerpt_link %&gt; &gt;&gt;&lt;/a&gt;
+    &lt;% } %&gt;
+  &lt;% } else { %&gt;
+    &lt;%- post.content %&gt;
+  &lt;% } %&gt;
+  &lt;-- 在此处添加代码--&gt;
+  &lt;% if ((theme.reward_type === 2 || (theme.reward_type === 1 &amp;&amp; post.reward)) &amp;&amp; !index){ %&gt;
+  &lt;div class="page-reward"&gt;
+    &lt;a href="javascript:;" class="page-reward-btn tooltip-top"&gt;
+    &lt;div class="tooltip tooltip-east"&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>添加的代码如下</p>
+<pre class="line-numbers language-none"><code class="language-none">http://dongshuyan.com/2019/05/24/hexo%E5%8D%9A%E5%AE%A2%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/#20%E6%96%87%E7%AB%A0%E9%A1%B6%E9%83%A8%E8%BD%AC%E8%BD%BD%E8%AF%B4%E6%98%8E%EF%BC%88%E5%8E%9F%E5%88%9B%EF%BC%89<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>创建新文件</p>
+<pre class="line-numbers language-none"><code class="language-none">themes/yilia/source-src/css/declare.scss<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p>并添加如下CSS代码。</p>
+<pre class="line-numbers language-none"><code class="language-none">.declare {
+    background-color: #eaeaea;
+    margin-top: 2em;
+    border-left: 3px solid #ff1700;
+    padding: .5em 1em;
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>为</p>
+<pre class="line-numbers language-none"><code class="language-none">themes/yilia/source-src/css/main.scss<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p>添加如下代码：</p>
+<pre class="line-numbers language-none"><code class="language-none">@import "./declare";<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h2 id="7-2配置显示"><a href="#7-2配置显示" class="headerlink" title="7.2配置显示"></a>7.2配置显示</h2><p>修改为</p>
+<pre class="line-numbers language-none"><code class="language-none">themes/yilia/_config.yml<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p>在里面加入：</p>
+<pre class="line-numbers language-none"><code class="language-none">#版权基础设定：0-关闭声明； 1-文章对应的md文件里有declare: true属性，才有版权声明； 2-所有文章均有版权声明
+#当前应用的版权协议地址。
+#版权协议的名称
+#版权协议的Logo
+
+declare_type: 1
+licensee_url: https://creativecommons.org/licenses/by-nc-sa/4.0/
+licensee_name: '知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议'
+licensee_img: https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>然后在需要进行版权声明的文章的md文件头部，设置属性</p>
+<pre class="line-numbers language-none"><code class="language-none">declare: true<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p>即可。</p>
+<h1 id="8-字数、阅读时长添加-失败"><a href="#8-字数、阅读时长添加-失败" class="headerlink" title="8.字数、阅读时长添加(失败)"></a>8.字数、阅读时长添加(失败)</h1><h2 id="8-1-安装hexo-wordcount-安装完就报错了-pass"><a href="#8-1-安装hexo-wordcount-安装完就报错了-pass" class="headerlink" title="8.1 安装hexo-wordcount 安装完就报错了 pass"></a>8.1 安装hexo-wordcount 安装完就报错了 pass</h2><p>在博客目录下打开terminal，输入命令</p>
+<pre class="line-numbers language-none"><code class="language-none">npm i --save hexo-wordcount<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<h1 id="9-鼠标点击小红心的设置"><a href="#9-鼠标点击小红心的设置" class="headerlink" title="9.鼠标点击小红心的设置"></a>9.鼠标点击小红心的设置</h1><p>在</p>
+<pre class="line-numbers language-none"><code class="language-none">hexo/themes/yilia/source<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p>文件目录下添加</p>
+<pre class="line-numbers language-none"><code class="language-none">love.js<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p>文件。</p>
+<pre class="line-numbers language-none"><code class="language-none">!function(e,t,a){function r(){for(var e=0;e&lt;s.length;e++)s[e].alpha&lt;=0?(t.body.removeChild(s[e].el),s.splice(e,1)):(s[e].y--,s[e].scale+=.004,s[e].alpha-=.013,s[e].el.style.cssText="left:"+s[e].x+"px;top:"+s[e].y+"px;opacity:"+s[e].alpha+";transform:scale("+s[e].scale+","+s[e].scale+") rotate(45deg);background:"+s[e].color+";z-index:99999");requestAnimationFrame(r)}function n(){var t="function"==typeof e.onclick&amp;&amp;e.onclick;e.onclick=function(e){t&amp;&amp;t(),o(e)}}function o(e){var a=t.createElement("div");a.className="heart",s.push({el:a,x:e.clientX-5,y:e.clientY-5,scale:1,alpha:1,color:c()}),t.body.appendChild(a)}function i(e){var a=t.createElement("style");a.type="text/css";try{a.appendChild(t.createTextNode(e))}catch(t){a.styleSheet.cssText=e}t.getElementsByTagName("head")[0].appendChild(a)}function c(){return"rgb("+~~(255*Math.random())+","+~~(255*Math.random())+","+~~(255*Math.random())+")"}var s=[];e.requestAnimationFrame=e.requestAnimationFrame||e.webkitRequestAnimationFrame||e.mozRequestAnimationFrame||e.oRequestAnimationFrame||e.msRequestAnimationFrame||function(e){setTimeout(e,1e3/60)},i(".heart{width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: '';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: fixed;}.heart:after{top: -5px;}.heart:before{left: -5px;}"),n(),r()}(window,document);<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>在</p>
+<pre class="line-numbers language-none"><code class="language-none">hexo/themes/yilia/layout/_partial/footer.ejs<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p>文件的最后， 添加以下代码：</p>
+<pre class="line-numbers language-none"><code class="language-none">&lt;!--页面点击小红心--&gt;
+&lt;script type="text/javascript" src="/love.js"&gt;&lt;/script&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<h1 id="10-文本结束并且与more无冲突"><a href="#10-文本结束并且与more无冲突" class="headerlink" title="10.文本结束并且与more无冲突"></a>10.文本结束并且与more无冲突</h1><p>打开</p>
+<pre class="line-numbers language-none"><code class="language-none">yourblog\themes\yilia\layout\_partial<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p>文件夹，并编辑</p>
+<pre class="line-numbers language-none"><code class="language-none">article.ejs<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p>文件</p>
+<p>并在这段代码：</p>
+<pre class="line-numbers language-none"><code class="language-none">&lt;% if (!post.noDate){ %&gt;
+        &lt;%- partial('post/date', {class_name: 'archive-article-date', date_format: null}) %&gt;
+        &lt;% } %&gt;
+      &lt;/header&gt;
+    &lt;% } %&gt;
+    &lt;div class="article-entry" itemprop="articleBody"&gt;
+      &lt;% if (post.excerpt &amp;&amp; index){ %&gt;
+        &lt;%- post.excerpt %&gt;
+        &lt;% if (theme.excerpt_link) { %&gt;
+          &lt;a class="article-more-a" href="&lt;%- url_for(post.path) %&gt;#more"&gt;&lt;%= theme.excerpt_link %&gt; &gt;&gt;&lt;/a&gt;
+        &lt;% } %&gt;
+      &lt;% } else { %&gt;
+        &lt;%- post.content %&gt;
+      &lt;% } %&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>的下面添加：</p>
+<pre class="line-numbers language-none"><code class="language-none">http://dongshuyan.com/2019/05/24/hexo%E5%8D%9A%E5%AE%A2%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/#20%E6%96%87%E7%AB%A0%E9%A1%B6%E9%83%A8%E8%BD%AC%E8%BD%BD%E8%AF%B4%E6%98%8E%EF%BC%88%E5%8E%9F%E5%88%9B%EF%BC%89<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>然后在</p>
+<pre class="line-numbers language-none"><code class="language-none">\theme\yilia\_config.yml<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p>文件中找到合适位置添加</p>
+<pre class="line-numbers language-none"><code class="language-none">#文章结束
+essayending_type: 1 #0关闭文章结束提示 2全开 1需要在文章开头加上 essayending: true<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+
+
+<p>这里<br>0表示关闭文章结束提示<br>2表示全开<br>1表示需要在文章开头加上 essayending: true 才会开启文章结束提示</p>
+<h1 id="11-404-页面"><a href="#11-404-页面" class="headerlink" title="11. 404 页面"></a>11. 404 页面</h1><p>直接在hexo/source文件夹里面加一个404.html</p>
+<h1 id="12-Sitemap方式提交网页"><a href="#12-Sitemap方式提交网页" class="headerlink" title="12. Sitemap方式提交网页"></a>12. Sitemap方式提交网页</h1><p>在 Hexo 根目录打开命令行工具，执行以下命令：</p>
+<pre class="line-numbers language-none"><code class="language-none">npm install hexo-generator-sitemap --save
+hexo clean
+hexo g<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>查看</p>
+<pre class="line-numbers language-none"><code class="language-none">{your_hexo_path}/public<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p>文件夹，可以看到</p>
+<pre class="line-numbers language-none"><code class="language-none">sitmap.xml<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p>文件。<br>sitemap 的初衷是给搜索引擎看的，为了提高搜索引擎对自己站点的收录效果，我们最好手动到 google 和百度等搜索引擎提交 sitemap.xml。</p>
+<p>baidu提交网址：<a target="_blank" rel="noopener" href="https://ziyuan.baidu.com/?castk=LTE=">https://ziyuan.baidu.com/?castk=LTE%3D</a></p>
+<h1 id="13-百度自动推送方式提交网页"><a href="#13-百度自动推送方式提交网页" class="headerlink" title="13.百度自动推送方式提交网页"></a>13.百度自动推送方式提交网页</h1><p>在本机</p>
+<pre class="line-numbers language-none"><code class="language-none">&lt;博客根目录&gt;/themes/yilia/layout/_partial<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p>目录下打开article.ejs文件，定位到如下这段代码：</p>
+<pre class="line-numbers language-none"><code class="language-none">&lt;%
+        var sUrl = url.replace(/index\.html$/, '');
+        sUrl = /^(http:|https:)\/\//.test(sUrl) ? sUrl : 'https:' + sUrl;
+      %&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>在它前面加上：</p>
+<pre class="line-numbers language-none"><code class="language-none">&lt;!- 百度自动推送方式提交 --&gt;
+&lt;% if (1){ %&gt;
+  &lt;script&gt;
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+  &lt;/script&gt;
+&lt;% } %&gt;
+&lt;!- 百度自动推送方式提交结束 --&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>即完成了新增博客文章页面（不包括其他页面）的自动推送方式提交。</p>
+<h1 id="14-Hexo添加百度统计"><a href="#14-Hexo添加百度统计" class="headerlink" title="14.Hexo添加百度统计"></a>14.Hexo添加百度统计</h1><p>打开</p>
+<pre class="line-numbers language-none"><code class="language-none">themes/yilia/layout/_partial/baidu-analytics.ejs<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p>将你在百度统计里面得到的代码粘进去</p>
+<p>然后打开</p>
+<pre class="line-numbers language-none"><code class="language-none">themes/yilia/_config.yml<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p>里面</p>
+<pre class="line-numbers language-none"><code class="language-none">baidu_analytics: ''<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p>改为</p>
+<pre class="line-numbers language-none"><code class="language-none">baidu_analytics: 'true'<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<h1 id="15链接提交"><a href="#15链接提交" class="headerlink" title="15链接提交"></a>15链接提交</h1><p>百度站长平台的链接提交方式分为自动提交和手动提交两种，此处只讲自动提交，手动提交按照要求操作即可。</p>
+<h2 id="15-1-主动推送"><a href="#15-1-主动推送" class="headerlink" title="15.1 主动推送"></a>15.1 主动推送</h2><p>主动推送最为快速的提交方式，是被百度收录最快的推送方式。主动推送可以通过安装插件实现：</p>
+<h3 id="15-1-1首先安装插件："><a href="#15-1-1首先安装插件：" class="headerlink" title="15.1.1首先安装插件："></a>15.1.1首先安装插件：</h3><pre class="line-numbers language-none"><code class="language-none">npm install hexo-baidu-url-submit --save<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>修改站点根目录下的配置文件_config.yml，添加以下内容：</p>
+<pre class="line-numbers language-none"><code class="language-none">baidu_url_submit:
+  count: 20 ## 提交最新的20个链接
+  host: www.dongshuyan.com ## 百度站长平台中注册的域名
+  token:  ## 16位准入秘钥
+  path: baidu_urls.txt ## 文本文档的地址， 新链接会保存在此文本文档里<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h3 id="15-1-2准入秘钥获取"><a href="#15-1-2准入秘钥获取" class="headerlink" title="15.1.2准入秘钥获取"></a>15.1.2准入秘钥获取</h3><p>在如下图的网址中：<br><img src="https://mubu.com/document_image/e8d810a8-af7b-40ce-8a7d-1db0e61a8a14-3316715.jpg" alt="img"><br>下拉，找到这里：<br><img src="https://mubu.com/document_image/a94c8872-d402-4ce3-afc2-ea2705e95aeb-3316715.jpg" alt="img"><br>点击进去就是准入秘钥。</p>
+<h3 id="15-1-3-检查"><a href="#15-1-3-检查" class="headerlink" title="15.1.3 检查"></a>15.1.3 检查</h3><p>其次，记得查看根目录下的_config.yml文件中url的值， 必须包含是百度站长平台注册的域名， 比如:</p>
+<pre class="line-numbers language-none"><code class="language-none"># URL
+## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
+url: http://dongshuyan.com
+root: /
+permalink: :year/:month/:day/:title/
+permalink_defaults:<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h3 id="最后，加入新的deployer"><a href="#最后，加入新的deployer" class="headerlink" title="最后，加入新的deployer"></a>最后，加入新的deployer</h3><p>最后，加入新的deployer:</p>
+<pre class="line-numbers language-none"><code class="language-none">deploy:
+- type: git ## 这是我原来的deployer
+  repo:
+  branch:
+- type: baidu_url_submitter ## 添加这里内容即可<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>这里的”-“,必不可少！ 否则报错。</p>
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><p>其主动推送的实现原理如下：<br>新链接的产生， hexo generate 会产生一个文本文件，里面包含最新的链接<br>新链接的提交， hexo deploy 会从上述文件中读取链接，提交至百度搜索引擎</p>
+<h2 id="15-2-自动推送"><a href="#15-2-自动推送" class="headerlink" title="15.2 自动推送"></a>15.2 自动推送</h2><p>安装自动推送JS代码的网页，在页面被访问时，页面URL将立即被推送给百度。</p>
+<p>修改主题目录下的layout/post.ejs文件，末尾添加自动推送代码，代码如下：</p>
+<pre class="line-numbers language-none"><code class="language-none">&lt;script&gt;
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+&lt;/script&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h1 id="16-google收录"><a href="#16-google收录" class="headerlink" title="16 google收录"></a>16 google收录</h1><p><a target="_blank" rel="noopener" href="https://www.google.com/webmasters/#?modal_active=none">网址</a><br>这里我选择的是右边的里面的html方式，把下载下来的网页放进根目录下的source文件夹里，然后</p>
+<pre class="line-numbers language-none"><code class="language-none">hexo clean
+hexo g
+hexo d<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>不过google验证非常慢，我等了好几天，才验证成功。</p>
+<p>验证成功之后，进去提交sitemap即可：<br><img src="https://mubu.com/document_image/02f8de29-192e-4dee-a35d-9c243bd41f1d-3316715.jpg" alt="img"></p>
+<h1 id="17-Valine评论系统进阶"><a href="#17-Valine评论系统进阶" class="headerlink" title="17 Valine评论系统进阶"></a>17 Valine评论系统进阶</h1><h2 id="17-0-添加Valine评论"><a href="#17-0-添加Valine评论" class="headerlink" title="17.0 添加Valine评论"></a>17.0 添加Valine评论</h2><p>1.注册<br><a target="_blank" rel="noopener" href="https://leancloud.cn/dashboard/login.html#/signup">点击这里登录或注册Leancloud</a><br>2.创建评论项目<br><a target="_blank" rel="noopener" href="https://leancloud.cn/dashboard/applist.html#/newapp">点这里创建应用，应用名看个人喜好</a><br>3.找到key<br>选择刚刚创建的应用&gt;设置&gt;选择应用 Key，然后你就能看到你的APP ID和APP KEY了<br>4设置中的Web 安全域名<br>为了您的数据安全，请填写应用&gt;设置&gt;安全设置中的Web安全域名，例如：</p>
+<pre class="line-numbers language-none"><code class="language-none">http://dongshuyan.com
+http://dongshuyan.github.io
+https://dongshuyan.com
+https://dongshuyan.github.io<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>5.修改主题配置<br>5.1首先在</p>
+<pre class="line-numbers language-none"><code class="language-none">theme/yilia/_partial/article.ejs<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p>的最末尾加上</p>
+<pre class="line-numbers language-none"><code class="language-none">&lt;% if ((theme.valine_type === 2 || (theme.valine_type === 1 &amp;&amp; post.valineenbale)) &amp;&amp; !index){ %&gt;
+  &lt;% if (theme.valine &amp;&amp; theme.valine.appid &amp;&amp; theme.valine.appkey){ %&gt;
+      &lt;section id="comments" class="comments"&gt;
+        &lt;style&gt;
+          .comments{margin:30px;padding:10px;background:#fff}
+          @media screen and (max-width:800px){.comments{margin:auto;padding:10px;background:#fff}}
+        &lt;/style&gt;
+        &lt;%- partial('post/valine', {
+          key: post.slug,
+          title: post.title,
+          url: config.url+url_for(post.path)
+          }) %&gt;
+    &lt;/section&gt;
+  &lt;% } %&gt;
+&lt;% } %&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>5.2然后在</p>
+<pre class="line-numbers language-none"><code class="language-none">theme/yilia/_config.yml<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p>中找位置加入</p>
+<pre class="line-numbers language-none"><code class="language-none">#6、Valine https://valine.js.org
+valine_type: 1 #0 关闭评论  2全开评论  1需要再文章md开头加入valineenbale:true
+valine: 
+ enable: true
+ appid:  你在注册时候得到的id
+ appkey:  你在注册时候得到的key
+ verify: true #验证码
+ notify: true #评论回复提醒
+ avatar:  identicon #评论列表头像样式：''/mm/identicon/monsterid/wavatar/retro/hide
+
+ placeholder: ヾﾉ≧∀≦)o来啊，快活啊! 
+ guest_info: nick,mail,link # custom comment header
+ pageSize: 10 # pagination size<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>如果你的valine_type: 也是1，那么然后就需要在你文章抬头加上</p>
+<pre class="line-numbers language-none"><code class="language-none">valineenbale:true<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<h2 id="17-1-管理评论系统"><a href="#17-1-管理评论系统" class="headerlink" title="17.1 管理评论系统"></a>17.1 管理评论系统</h2><p><a target="_blank" rel="noopener" href="https://leancloud.cn/">Valine管理界面</a><br>选择你的项目-存储-数据-Comment<br>在这里你就可以尽情地管理你的评论数据了。</p>
+<p>据说有进阶版，不过我暂时还没有尝试，有兴趣的可以去看看教程：<br><a target="_blank" rel="noopener" href="https://deserts.io/diy-a-comment-system/#%E8%AF%84%E8%AE%BA%E5%AE%89%E8%A3%85">Valine: 独立博客评论系统</a><br><a target="_blank" rel="noopener" href="https://deserts.io/valine-admin-document/">Valine Admin 配置手册</a><br><a target="_blank" rel="noopener" href="https://github.com/xCss/Valine/issues">github_Valine</a></p>
+<h2 id="17-2-评论邮件通知（测试失败不知道为什么😂）"><a href="#17-2-评论邮件通知（测试失败不知道为什么😂）" class="headerlink" title="17.2 评论邮件通知（测试失败不知道为什么😂）"></a>17.2 评论邮件通知（测试失败不知道为什么😂）</h2><p>如果要开启email通知要将LeanCloud -&gt; 设置 -&gt; 邮件模板 -&gt; 用于重置密码的邮件主题进行修改<br>原来的是这样：</p>
+<blockquote>
+<p>用于重置密码的邮件主题</p>
+<pre class="line-numbers language-none"><code class="language-none">重设 {{appname}} 的密码<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</blockquote>
+<p>内容</p>
+<pre class="line-numbers language-none"><code class="language-none">&lt;p&gt;Hi, {{username}}&lt;/p&gt;
+&lt;p&gt;
+您请求重设应用 {{appname}} 的密码。点击下列链接来重设您的帐号密码（链接在 48 小时内有效）：
+&lt;/p&gt;
+&lt;p&gt;
+&lt;a href="{{link}}" target="_blank"&gt;{{link}}&lt;/a&gt;
+&lt;/p&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>自定义重置密码页面</p>
+<pre class="line-numbers language-none"><code class="language-none">https://leancloud.cn/reset.html<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p>我们把它改成这样：</p>
+<blockquote>
+<p>用于重置密码的邮件主题</p>
+<pre class="line-numbers language-none"><code class="language-none">你在{{appname}} 的评论收到了新的回复<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</blockquote>
+<p>内容</p>
+<pre class="line-numbers language-none"><code class="language-none">&lt;p&gt;Hi, {{username}}&lt;/p&gt;
+&lt;p&gt;
+你在 {{appname}} 的评论收到了新的回复，请点击查看：
+&lt;/p&gt;
+&lt;p&gt;&lt;a href="你的网址首页链接" style="display: inline-block; padding: 10px 20px; border-radius: 4px; background-color: #3090e4; color: #fff; text-decoration: none;"&gt;马上查看&lt;/a&gt;&lt;/p&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>最后在你本地博客 themes/yilia/_config.yml里面进行修改：把验证码和评论回复打开即可</p>
+<pre class="line-numbers language-none"><code class="language-none">verify: true #验证码
+notify: true #评论回复提醒<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+
+
+<h2 id="17-3-CDN修改"><a href="#17-3-CDN修改" class="headerlink" title="17.3 CDN修改"></a>17.3 CDN修改</h2><p>建议将自带的CDN改成第三方CDN，为啥？？？10+s的加载那酸爽是在是过瘾。<br>文件目录：themes/yilia/layout/_partial/post/valine.ejs</p>
+<pre class="line-numbers language-none"><code class="language-none">//cdn.jsdelivr.net/npm/valine/dist/Valine.min.js<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p>官方的CDN是</p>
+<pre class="line-numbers language-none"><code class="language-none">//unpkg.com/valine/dist/Valine.min.js<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<h2 id="17-4-云引擎"><a href="#17-4-云引擎" class="headerlink" title="17.4 云引擎"></a>17.4 云引擎</h2><p>1.首先要在github上面新建一个项目，可以起名”Valine-Admin”<br>2.在leancloud中 云引擎 -&gt; 设置中找<br>2.1把你的github链接帖进去,例如：</p>
+<pre class="line-numbers language-none"><code class="language-none">https://github.com/dongshuyan/Valine-Admin.git<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p>2.2复制出来Deploy Key<br>2.3在你github的这个项目里面的“settings”里面的“Deploy keys”添加这个Deploy key。<br>3.部署<br>剩下的有时间再搞吧，参考链接：<br><a target="_blank" rel="noopener" href="https://github.com/DesertsP/Valine-Admin">DesertsP/Valine-Admin</a><br><a target="_blank" rel="noopener" href="https://deserts.io/valine-admin-document/">Valine Admin 配置手册</a></p>
+<h1 id="18添加板娘-有点占地方还是不要了"><a href="#18添加板娘-有点占地方还是不要了" class="headerlink" title="18添加板娘(有点占地方还是不要了)"></a>18添加板娘(有点占地方还是不要了)</h1><p>虽然我没有成功不过从<a target="_blank" rel="noopener" href="https://ziven.cc/">Ziven</a>的主页来看，板娘在yilia是可以成功的。<br>可以参考:<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/Aoman_Hao/article/details/82049821">Hexo博客yilia主题首页添加helper-live2d模型插件</a><br><a target="_blank" rel="noopener" href="https://qianlei6148.github.io/2018/10/11/hexo%E6%A8%A1%E7%89%88yilia%E6%B7%BB%E5%8A%A0%E5%8F%AF%E7%88%B1%E7%9A%84%E7%9C%8B%E6%9D%BF%E5%A8%98/">hexo模版yilia添加可爱的看板娘</a><br>1.博客根目录下安装（还是看上面的文档吧）</p>
+<pre class="line-numbers language-none"><code class="language-none">npm install hexo-helper-live2d --save<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p>2.配置<br>打开根目录下的_config.yml文件,添加以下代码：</p>
+<pre class="line-numbers language-none"><code class="language-none">live2d:
+  enable: true
+  scriptFrom: local
+  pluginRootPath: live2dw/
+  pluginJsPath: lib/
+  pluginModelPath: assets/
+  tagMode: false
+  log: false
+  model:
+    use: live2d-widget-model-z16
+  display:
+    position: left
+    width: 100
+    height: 200
+    hOffset: -10
+    vOffset: 40
+  mobile:
+    show: false<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h2 id="下载更多模型"><a href="#下载更多模型" class="headerlink" title="下载更多模型"></a>下载更多模型</h2><p><a target="_blank" rel="noopener" href="https://github.com/dongshuyan/live2dDemo">更多模型</a></p>
+<p>把github模型下载到本地，解压后将assets目录拷贝到博客根目录中的live2d_models（自己新建，文件名不可改）里，再修改_config.yml 里的live2d中model.use即可（改为live2d_models中的模型名字就行）。<br><img src="https://mubu.com/document_image/64ef2c18-ea8b-46e2-bf96-052dbf875c92-3316715.jpg" alt="img"></p>
+<h1 id="19刚发现一个标签的bug"><a href="#19刚发现一个标签的bug" class="headerlink" title="19刚发现一个标签的bug"></a>19刚发现一个标签的bug</h1><p>如果我一个标签A是B的前缀，那么搜索标签A的时候，属于标签B的文章也会被搜索出来。<br>举例，我有一个标签叫“Mac”还有一个标签叫“machine learning”<br>搜索“Mac”的时候属于“machine learning”的文章也会被搜出来。😂</p>
+<h1 id="20文章顶部转载说明（原创）"><a href="#20文章顶部转载说明（原创）" class="headerlink" title="20文章顶部转载说明（原创）"></a>20文章顶部转载说明（原创）</h1><h2 id="20-1配置yilia主题文件"><a href="#20-1配置yilia主题文件" class="headerlink" title="20.1配置yilia主题文件"></a>20.1配置yilia主题文件</h2><p>在</p>
+<pre class="line-numbers language-none"><code class="language-none">themes/yilia/layout/_partial/article.ejs<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p>中下面标注的位置添加代码</p>
+<pre class="line-numbers language-none"><code class="language-none">&lt;% if (!post.noDate){ %&gt;
+        &lt;%- partial('post/date', {class_name: 'archive-article-date', date_format: null}) %&gt;
+        &lt;% } %&gt;
+      &lt;/header&gt;
+    &lt;% } %&gt;
+    &lt;div class="article-entry" itemprop="articleBody"&gt;
+
+
+    &lt;!--在这里添加新代码--&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>添加的代码如下</p>
+<pre class="line-numbers language-none"><code class="language-none">&lt;!-- 文章头增加转载声明 --&gt;
+
+      &lt;%
+        var sUrl = url.replace(/index\.html$/, '');
+        sUrl = /^(http:|https:)\/\//.test(sUrl) ? sUrl : 'https:' + sUrl;
+      %&gt;
+      &lt;% if ((theme.topdeclare_type === 2 || (theme.topdeclare_type === 1 &amp;&amp; post.topdeclare)) &amp;&amp; !index){ %&gt;
+        &lt;div class="topdeclare"&gt;
+
+           &lt;hr&gt;
+          &lt;strong&gt;如需转载，请根据&lt;/strong&gt;
+          &lt;a rel="license" href="&lt;%= theme.toplicensee_url%&gt;"&gt;&lt;%= theme.toplicensee_name%&gt;&lt;/a&gt;
+          许可，附上本文作者及链接。
+          &lt;br&gt;
+
+          &lt;strong&gt;本文作者：&lt;/strong&gt;
+          &lt;% if(config.author != undefined){ %&gt;
+            &lt;%= config.author%&gt;
+          &lt;% }else{%&gt;
+            &lt;font color="red"&gt;请在博客根目录“_config.yml”中填入正确的“author”&lt;/font&gt;
+          &lt;%}%&gt;
+          &lt;br&gt;
+          &lt;strong&gt;作者昵称：&lt;/strong&gt;
+          &lt;% if(theme.topnickname!= undefined){ %&gt;
+            &lt;%= theme.topnickname%&gt;
+          &lt;% }else{%&gt;
+            &lt;font color="red"&gt;请在博客主题目录“_config.yml”中填入正确的“昵称”&lt;/font&gt;
+          &lt;%}%&gt;
+          &lt;br&gt;
+
+          &lt;strong&gt;本文链接：&lt;/strong&gt;
+          &lt;a rel="license" href="&lt;%=sUrl%&gt;"&gt;&lt;%=sUrl%&gt;&lt;/a&gt;
+          &lt;br&gt;
+          &lt;hr&gt;
+
+        &lt;/div&gt;
+      &lt;% } else {%&gt;
+        &lt;div class="topdeclare" hidden="hidden"&gt;&lt;/div&gt;
+      &lt;% } %&gt;
+      
+      &lt;!-- 文章头增加转载声明结束 --&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>创建新文件</p>
+<pre class="line-numbers language-none"><code class="language-none">themes/yilia/source-src/css/topdeclare.scss<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p>并添加如下CSS代码。</p>
+<pre class="line-numbers language-none"><code class="language-none">.declare {
+    background-color: #eaeaea;
+    margin-top: 2em;
+    border-left: 3px solid #ff1700;
+    padding: .5em 1em;
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>为</p>
+<pre class="line-numbers language-none"><code class="language-none">themes/yilia/source-src/css/main.scss<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p>添加如下代码：</p>
+<pre class="line-numbers language-none"><code class="language-none">@import "./topdeclare";<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h2 id="20-2配置显示"><a href="#20-2配置显示" class="headerlink" title="20.2配置显示"></a>20.2配置显示</h2><p>修改为</p>
+<pre class="line-numbers language-none"><code class="language-none">themes/yilia/_config.yml<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p>在里面加入：</p>
+<pre class="line-numbers language-none"><code class="language-none">#顶部版权基础设定：0-关闭声明； 1-文章对应的md文件里有topdeclare: true属性，才有版权声明； 2-所有文章均有版权声明
+#当前应用的版权协议地址。
+#昵称
+#版权协议的名称
+
+topdeclare_type: 1
+toplicensee_url: https://creativecommons.org/licenses/by-nc-sa/4.0/
+topnickname: 莫与 #你的昵称
+toplicensee_name: '知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议'<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>然后在需要进行版权声明的文章的md文件头部，设置属性</p>
+<pre class="line-numbers language-none"><code class="language-none">topdeclare:true<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p>即可。</p>
+<h1 id="21-google广告"><a href="#21-google广告" class="headerlink" title="21 google广告"></a>21 google广告</h1><h2 id="21-1-前提条件"><a href="#21-1-前提条件" class="headerlink" title="21.1 前提条件"></a>21.1 前提条件</h2><p>1.首先你得有个网站<br>2.然后你得有几篇文章 最好是原创的<br>3.有一个google账户<br>4.<strong>你的google账户必须设置过生日，没设置的赶紧先把生日设置好</strong>（我估计可能是限制未成年人吧）</p>
+<p>如果你达成以上条件 那么我们可以开始了</p>
+<h2 id="21-2-注册-Google-Adsense"><a href="#21-2-注册-Google-Adsense" class="headerlink" title="21.2 注册 Google Adsense"></a>21.2 注册 Google Adsense</h2><p>去google Adsense官网即可，链接如下：<br><a target="_blank" rel="noopener" href="https://www.google.com/adsense/">google Adsense官网</a></p>
+<blockquote>
+<p>ps.这个网站打开是真的慢</p>
+</blockquote>
+<p>打开网站之后就可以开始注册了（即使你有google账户也要注册！）<br>1.官网点击注册（sign up）,进入注册页面<br>2.在注册页面填写你的信息（网站地址不可以是二级域名）<br>3.在之后填写你的地址信息<br>4.地址信息填完毕之后会给你一串代码，类似如下：</p>
+<pre class="line-numbers language-none"><code class="language-none">&lt;script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-8955547868703063",
+    enable_page_level_ads: true
+  });
+&lt;/script&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>5.把这一串代码放在</p>
+<pre class="line-numbers language-none"><code class="language-none">博客目录\themes\yilia\layout\_partial\head.ejs<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p>文件的</p>
+<pre class="line-numbers language-none"><code class="language-none">&lt;head&gt;与&lt;/head&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p>之间,然后在命令行里</p>
+<pre class="line-numbers language-none"><code class="language-none">hexo clean
+hexo g
+hexo d<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>将网站同步好<br>6.同步好之后返回Google Adsense点击已经粘贴代码。<br>google从网站检测到这段代码即可，等待启动即可。</p>
+<h2 id="21-3-审核通过"><a href="#21-3-审核通过" class="headerlink" title="21.3 审核通过"></a>21.3 审核通过</h2><p>稍等一天时间，如果没有问题，即可审核通过。<br>有问题就改问题，然后在申请。</p>
+<h2 id="21-4-添加展示广告"><a href="#21-4-添加展示广告" class="headerlink" title="21.4 添加展示广告"></a>21.4 添加展示广告</h2><p>1.在网页上找到“广告” -&gt; “广告单元” -&gt; “创建新的广告单元” -&gt; “展示广告”<br>2.然后再界面里面先填写一个名字(例如ad_google_1)<br>3.点击创建<br>4.将生成的代码添加到</p>
+<pre class="line-numbers language-none"><code class="language-none">博客目录\themes\yilia\layout\_partial\article.ejs<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p>中对应适当位置即可，注意别让广告扰乱了页面布局，影响全局美感。<br>添加代码如下：</p>
+<pre class="line-numbers language-none"><code class="language-none">可以在文章开头添加：
+    &lt;!--文章头google图片--&gt;
+    &lt;% if ((theme.googlead_type === 2 || (theme.googlead_type === 1 &amp;&amp; post.googlead)) &amp;&amp; !index){ %&gt;
+        &lt;hr&gt;
+        &lt;strong&gt;⬇️下面这个看起来像广告的东西，其实是只个图片，根本打不开的。不过听说有时候⬇️&lt;/strong&gt;
+        &lt;br&gt;
+        &lt;script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"&gt;&lt;/script&gt;
+        &lt;!-- googlead1 --&gt;
+        &lt;ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-8955547868703063"
+             data-ad-slot="3853918361"
+             data-ad-format="auto"
+             data-full-width-responsive="true"&gt;&lt;/ins&gt;
+        &lt;script&gt;
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        &lt;/script&gt;
+    &lt;% } %&gt;
+    &lt;!--文章头google图片结束--&gt;
+
+
+可以在结尾处添加：
+&lt;!-- 尾google广告 --&gt;
+      &lt;% if ((theme.googlead_type === 2 || (theme.googlead_type === 1 &amp;&amp; post.googlead)) &amp;&amp; !index){ %&gt;
+          &lt;hr&gt;
+          &lt;strong&gt;⬇️下面这个才是真正的广告哦，如果感觉真的从文章中有带走新东西的话，可以帮我点一下哦⬇️&lt;/strong&gt;
+        &lt;br&gt;
+          这里是google网页生成的代码
+      &lt;% } %&gt;
+&lt;!-- 尾google广告 --&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>然后还需要再</p>
+<pre class="line-numbers language-none"><code class="language-none">/theme/yilia/_config.yml<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p>中合适位置添加</p>
+<pre class="line-numbers language-none"><code class="language-none">#google广告基础设定：0-关闭广告； 1-文章对应的md文件里有googlead: true属性，才有广告； 2-所有文章均有广告
+googlead_type: 1<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+
+
+<p>使用教程如上面提示：<br>0-关闭广告；<br>1-文章对应的md文件里有googlead: true属性，才有广告；<br>2-所有文章均有广告</p>
+<p>5.添加完毕<br>在网页中点击“大功告成”<br>6.想网页上传<br>hexo clean<br>hexo g<br>hexo d<br>7.等待一小时左右大约会出现广告</p>
+<h1 id="22-Gitment-x2F-Gitalk评论系统"><a href="#22-Gitment-x2F-Gitalk评论系统" class="headerlink" title="22 Gitment/Gitalk评论系统"></a>22 Gitment/Gitalk评论系统</h1><p>感觉gitment 和 gitalk也不错<br>可以参考<br><a target="_blank" rel="noopener" href="https://ziven.cc/2018/07/03/Hexo%E4%B8%BB%E9%A2%98yilia%E5%A2%9E%E5%8A%A0gitalk%E8%AF%84%E8%AE%BA%E6%8F%92%E4%BB%B6/">Hexo主题yilia增加gitalk评论插件</a><br><a target="_blank" rel="noopener" href="https://cloudy-liu.github.io/2018/07/14/Hexo%E6%9B%B4%E6%8D%A2%E4%B8%BAGitTalk%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F/">Hexo-yilia使用gitment/gitalk评论系统</a><br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/58722547">Gitment给基于hexo的yilia主题的博客搭建免费评论系统</a></p>
+<p>自己配置了一下gitalk</p>
+<h2 id="22-1-注册-OAuth-Application"><a href="#22-1-注册-OAuth-Application" class="headerlink" title="22.1 注册 OAuth Application"></a>22.1 注册 OAuth Application</h2><p>注册网址：<a target="_blank" rel="noopener" href="https://github.com/settings/applications/new">https://github.com/settings/applications/new</a></p>
+<pre class="line-numbers language-none"><code class="language-none">Application name
+DongBlogComments
+Something users will recognize and trust.
+
+Homepage URL
+https://dongshuyan.github.io/
+The full URL to your application homepage.
+
+Application description
+Shuyan's Blog
+This is displayed to all users of your application.
+
+Authorization callback URL
+http://dongshuyan.com/<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>注册成功后，会获取到 Client ID/scerct 。</p>
+<h2 id="22-2配置"><a href="#22-2配置" class="headerlink" title="22.2配置"></a>22.2配置</h2><pre class="line-numbers language-none"><code class="language-none">layout/_partial/post目录下新增gitalk.ejs文件
+&lt;div id="gitalk-container" style="padding: 0px 30px 0px 30px;"&gt;&lt;/div&gt; 
+
+&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css"&gt;
+&lt;script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript"&gt;
+
+if(&lt;%=theme.gitalk.enable%&gt;){
+  var gitalk = new Gitalk({
+    clientID: '&lt;%=theme.gitalk.ClientID%&gt;',
+    clientSecret: '&lt;%=theme.gitalk.ClientSecret%&gt;',
+    repo: '&lt;%=theme.gitalk.repo%&gt;',
+    owner: '&lt;%=theme.gitalk.githubID%&gt;',
+    admin: ['&lt;%=theme.gitalk.adminUser%&gt;'],
+    id: '&lt;%= page.date %&gt;',
+    distractionFreeMode: '&lt;%=theme.gitalk.distractionFreeMode%&gt;'
+})
+gitalk.render('gitalk-container') 
+}
+&lt;/script&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>修改source-src/css/目录下comment.scss文件</p>
+<pre class="line-numbers language-none"><code class="language-none">disqus_thread, .duoshuo, .cloud-tie-wrapper, #SOHUCS, #gitment-ctn, #gitalk-container {
+  padding: 0 30px !important;
+  min-height: 20px;
+}
+
+#SOHUCS {
+  #SOHU_MAIN .module-cmt-list .block-cont-gw {
+    border-bottom: 1px dashed #c8c8c8 !important;
+  }
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>在</p>
+<pre class="line-numbers language-none"><code class="language-none">layout/_partial<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p>目录下的article.ejs文件内新增gitalk相关的配置代码：</p>
+<pre class="line-numbers language-none"><code class="language-none">&lt;% if(theme.gitalk.enable){ %&gt;
+  &lt;%- partial('post/gitalk', {
+      key: post.slug,
+      title: post.title,
+      url: config.url+url_for(post.path)
+    }) %&gt;
+  &lt;% } %&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>最后在yilia主题配置文件中新增gitalk相关的配置：</p>
+<pre class="line-numbers language-none"><code class="language-none">gitalk:
+  enable:  true
+  githubID:  'dongshuyan'   
+  repo:  'DongBlogComments' #这里可以另开一个也可以就用你博客的那个repo
+  ClientID:  '刚才得到的code'
+  ClientSecret:  '刚才得到的code'
+  adminUser:  'dongshuyan' 
+  distractionFreeMode: true<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>踩坑教程：<br><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/57afa4844aaa">Gitment评论功能接入踩坑教程</a><br>[<a target="_blank" rel="noopener" href="https://blog.csdn.net/w47_csdn/article/details/88858343">gitalk] 解决配置gitalk插件后初始化登录时跳转回首页</a><br><a target="_blank" rel="noopener" href="https://github.com/gitalk/gitalk/issues/162">登录报错/?error=redirect_uri_mismatch&amp; #162</a></p>
+<h1 id="23-tag中含有大写字母的bug"><a href="#23-tag中含有大写字母的bug" class="headerlink" title="23.tag中含有大写字母的bug"></a>23.tag中含有大写字母的bug</h1><p>总之tag别用大写字母！！！</p>
+<h1 id="24-hexo-d上传失败"><a href="#24-hexo-d上传失败" class="headerlink" title="24 hexo d上传失败"></a>24 hexo d上传失败</h1><p>显示：</p>
+<pre class="line-numbers language-none"><code class="language-none">INFO  Deploying: git
+INFO  Clearing .deploy_git folder...
+INFO  Copying files from public folder...
+INFO  Copying files from extend dirs...
+On branch master
+nothing to commit, working tree clean
+Enumerating objects: 396, done.
+Counting objects: 100% (396/396), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (144/144), done.
+error: RPC failed; curl 56 LibreSSL SSL_read: SSL_ERROR_SYSCALL, errno 60
+fatal: the remote end hung up unexpectedly
+Writing objects: 100% (235/235), 2.31 MiB | 14.00 KiB/s, done.
+Total 235 (delta 104), reused 0 (delta 0)
+fatal: the remote end hung up unexpectedly
+Everything up-to-date
+FATAL Something's wrong. Maybe you can find the solution here: http://hexo.io/docs/troubleshooting.html
+Error: Spawn failed
+    at ChildProcess.&lt;anonymous&gt; (/Users/moyu/Desktop/learn/blog_new/node_modules/hexo-util/lib/spawn.js:52:19)
+    at emitTwo (events.js:126:13)
+    at ChildProcess.emit (events.js:214:7)
+    at Process.ChildProcess._handle.onexit (internal/child_process.js:198:12)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>我这里是网络代理问题。</p>
+<h1 id="25-跳转到指定位置"><a href="#25-跳转到指定位置" class="headerlink" title="25 跳转到指定位置"></a>25 跳转到指定位置</h1><p>html里面加上</p>
+<pre class="line-numbers language-none"><code class="language-none">&lt;a name="printcenter1"&gt;&lt;/a&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p>然后跳转xx.html#printcenter1</p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/bdd1239863de">Hexo文章置顶的方法</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/adobeid/article/details/82704982">Hexo增加置顶属性</a><br><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/adb7640c97c2">Hexo 基于yilia主题及其它插件优化</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/lynnbest/article/details/79845944">Hexo yilia 主题一揽子使用方案</a><br><a target="_blank" rel="noopener" href="https://blog.zscself.com/posts/ee4d9ecb/">在Hexo中自动为Yilia主题增加版权声明</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/dta0502/article/details/89607895">Hexo-Yilia进阶笔记</a><br><a target="_blank" rel="noopener" href="http://lawlite.me/2017/04/17/Hexo-yilia%E4%B8%BB%E9%A2%98%E5%AE%9E%E7%8E%B0%E6%96%87%E7%AB%A0%E7%9B%AE%E5%BD%95%E5%92%8C%E6%B7%BB%E5%8A%A0%E8%A7%86%E9%A2%91/#%E4%BA%8C%E3%80%81%E6%96%87%E7%AB%A0%E7%9B%AE%E5%BD%95%E5%8A%9F%E8%83%BD">Hexo+yilia主题实现文章目录和添加视频</a><br><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/f054333ac9e6">hexo的next主题个性化教程:打造炫酷网站</a><br><a target="_blank" rel="noopener" href="https://gzx97.com/posts/20223/">Hexo博客Yilia主题修改记录</a><br><a target="_blank" rel="noopener" href="https://blog.diqigan.cn/posts/hexo-theme-yilia-advanced-settings.html">Hexo Yilia 主题进阶配置</a><br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/28468742">Hexo博客提交百度和Google收录</a><br><a target="_blank" rel="noopener" href="https://github.com/DesertsP/Valine-Admin">DesertsP/Valine-Admin</a><br><a target="_blank" rel="noopener" href="https://deserts.io/valine-admin-document/">Valine Admin 配置手册</a><br><a target="_blank" rel="noopener" href="https://deserts.io/diy-a-comment-system/#%E8%AF%84%E8%AE%BA%E5%AE%89%E8%A3%85">Valine: 独立博客评论系统</a><br><a target="_blank" rel="noopener" href="https://github.com/xCss/Valine/issues">github_Valine</a><br><a target="_blank" rel="noopener" href="https://github.com/EYHN/hexo-helper-live2d/blob/master/README.zh-CN.md">动态版娘</a><br><a target="_blank" rel="noopener" href="http://www.yueluo.xyz/archives/a24869c4.html">Hexo-添加看板娘(进阶版)</a><br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/66052182">hexo yilia 主题添加 google 广告</a><br><a target="_blank" rel="noopener" href="https://kurumi.ink/index.php/archives/51/">Google AdSense 申请日志及教程</a><br><a target="_blank" rel="noopener" href="https://cloudy-liu.github.io/2018/07/14/Hexo%E6%9B%B4%E6%8D%A2%E4%B8%BAGitTalk%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F/">Hexo-yilia使用gitment/gitalk评论系统</a><br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/58722547">Gitment给基于hexo的yilia主题的博客搭建免费评论系统</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/Aoman_Hao/article/details/82049821">Hexo博客yilia主题首页添加helper-live2d模型插件</a><br><a target="_blank" rel="noopener" href="https://qianlei6148.github.io/2018/10/11/hexo%E6%A8%A1%E7%89%88yilia%E6%B7%BB%E5%8A%A0%E5%8F%AF%E7%88%B1%E7%9A%84%E7%9C%8B%E6%9D%BF%E5%A8%98/">hexo模版yilia添加可爱的看板娘</a><br><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/57afa4844aaa">Gitment评论功能接入踩坑教程</a><br>[<a target="_blank" rel="noopener" href="https://blog.csdn.net/w47_csdn/article/details/88858343">gitalk] 解决配置gitalk插件后初始化登录时跳转回首页</a><br><a target="_blank" rel="noopener" href="https://github.com/gitalk/gitalk/issues/162">登录报错/?error=redirect_uri_mismatch&amp; #162</a><br><a target="_blank" rel="noopener" href="https://ziven.cc/2018/07/03/Hexo%E4%B8%BB%E9%A2%98yilia%E5%A2%9E%E5%8A%A0gitalk%E8%AF%84%E8%AE%BA%E6%8F%92%E4%BB%B6/">Hexo主题yilia增加gitalk评论插件</a></p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">SuoLiweng</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://dick-su-3.github.io/archives/a5f1f796.html">https://dick-su-3.github.io/archives/a5f1f796.html</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">SuoLiweng</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/yilia%E9%85%8D%E7%BD%AE/">
+                                    <span class="chip bg-color">yilia配置</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/archives/2f76a78a.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="从零搭建hexo博客">
+                        
+                        <span class="card-title">从零搭建hexo博客</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            搭建博客1.在GitHub创建个人仓库「名字必须是user.github.io」（此处省略，文章底部有教程链接）2.本地安装Git（此处省略，文章底部有教程链接）3.本地安装Node.js（此处省略，文章底部有教程链接）4.本地安装Hexo
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-08-07
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/hexo%E3%80%81github/" class="post-category">
+                                    hexo、github
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Hexo-GitHub-Mac-Windows/">
+                        <span class="chip bg-color">Hexo GitHub Mac Windows</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/archives/e48a9d1b.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="hexo模版yilia头像增加旋转效果">
+                        
+                        <span class="card-title">hexo模版yilia头像增加旋转效果</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            在themes\yilia\source\文件夹下增加一个css文件avatarrotation.css用来旋转360度内容如下：
+.left-col #header .profilepic img {
+	/* 控制旋转速度时间*/
+  -
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-08-07
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/hexo/" class="post-category">
+                                    hexo
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/hexo/">
+                        <span class="chip bg-color">hexo</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+
+  <!-- 是否加载使用自带的 prismjs. -->
+  <script type="text/javascript" src="/libs/prism/prism.min.js"></script>
+
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="26467411"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.5'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="/libs/aplayer/Meting.min.js"></script>
+
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2022-2023</span>
+            
+            <a href="/about" target="_blank">SuoLiweng</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            
+                <span id="translate">|&nbsp;繁/简：</span><a id="translateLink" href="javascript:translatePage();">繁</a>
+            
+            <br>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/Jacksu3" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:1530265947@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1530265947" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1530265947" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 白天和黑夜主题 -->
+<div class="stars-con">
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>  
+</div>
+
+<script>
+    function switchNightMode() {
+        $('<div class="Cuteen_DarkSky"><div class="Cuteen_DarkPlanet"></div></div>').appendTo($('body')),
+        setTimeout(function () {
+            $('body').hasClass('DarkMode') 
+            ? ($('body').removeClass('DarkMode'), localStorage.setItem('isDark', '0'), $('#sum-moon-icon').removeClass("fa-sun").addClass('fa-moon')) 
+            : ($('body').addClass('DarkMode'), localStorage.setItem('isDark', '1'), $('#sum-moon-icon').addClass("fa-sun").removeClass('fa-moon')),
+            
+            setTimeout(function () {
+            $('.Cuteen_DarkSky').fadeOut(1e3, function () {
+                $(this).remove()
+            })
+            }, 2e3)
+        })
+    }
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    
+
+    
+        <script type="text/javascript" src="/js/tw_cn.js"></script>
+        <script type="text/javascript">
+          var defaultEncoding = 2; //网站编写字体是否繁体，1-繁体，2-简体
+          var translateDelay = 0; //延迟时间,若不在前, 要设定延迟翻译时间, 如100表示100ms,默认为0
+          var cookieDomain = "https://dick-su-3.github.io"; //Cookie地址, 一定要设定, 通常为你的网址
+          var msgToTraditionalChinese = "繁"; //此处可以更改为你想要显示的文字
+          var msgToSimplifiedChinese = "简"; //同上，但两处均不建议更改
+          var translateButtonId = "translateLink"; //默认互换id
+          translateInitilization();
+        </script>
+    
+    
+    
+
+    <!-- 雪花特效 -->
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+     
+        <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+        <script src="/libs/others/TencentCaptcha.js"></script>
+        <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+
+</html>

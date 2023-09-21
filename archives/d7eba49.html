@@ -1,0 +1,1696 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="springboot2.0配置, 云卷舒">
+    <meta name="description" content="本章内容
+
+自定义属性快速入门
+外化配置
+自动配置
+自定义创建 Starter 组件
+
+摘录：读书是读完这些文字还要好好用心去想想，写书也一样，做任何事也一样
+
+图 2 第二章目录结构图
+
+
+第 2 章 Spring Boot 配置Spri">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>springboot2.0配置 | 云卷舒</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    
+
+
+    <!-- bg-cover style     -->
+
+
+
+<link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+<link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+<link rel="stylesheet" type="text/css" href="/css/matery.css">
+<link rel="stylesheet" type="text/css" href="/css/my.css">
+<link rel="stylesheet" type="text/css" href="/css/dark.css" media="none" onload="if(media!='all')media='all'">
+
+
+
+
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+    <link rel="stylesheet" href="/css/post.css">
+
+
+
+
+    
+        <link rel="stylesheet" type="text/css" href="/css/reward.css">
+    
+
+
+
+    <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
+
+<meta name="generator" content="Hexo 6.2.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="云卷舒" type="application/atom+xml">
+</head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">云卷舒</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+  <li>
+    <a href="javascript:;" class="waves-effect waves-light" onclick="switchNightMode()" title="深色/浅色模式" >
+      <i id="sum-moon-icon" class="fas fa-sun" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">云卷舒</div>
+        <div class="logo-desc">
+            
+            岁月不回头，且行且珍惜
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/14.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">springboot2.0配置</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/springboot%E9%85%8D%E7%BD%AE/">
+                                <span class="chip bg-color">springboot配置</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/springboot/" class="post-category">
+                                springboot
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2022-08-19
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.min.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <p>本章内容</p>
+<ol>
+<li>自定义属性快速入门</li>
+<li>外化配置</li>
+<li>自动配置</li>
+<li>自定义创建 Starter 组件</li>
+</ol>
+<p>摘录：读书是读完这些文字还要好好用心去想想，写书也一样，做任何事也一样</p>
+<p><img src="http://springforall.ufile.ucloud.com.cn/static/img/9ebfd97b481d9bda2623e4c80a1746601515130" alt="img"></p>
+<p>图 2 第二章目录结构图</p>
+<span id="more"></span>
+
+<h1 id="第-2-章-Spring-Boot-配置"><a href="#第-2-章-Spring-Boot-配置" class="headerlink" title="第 2 章 Spring Boot 配置"></a>第 2 章 Spring Boot 配置</h1><p>Spring Boot 配置，包括自动配置和外化配置。本章先实现自定义属性工程，将属性外化配置在 application.properties 应用配置文件，然后在工程中获取该属性值。接着会详细介绍属性的获取方式、外化配置和自动配置。最后会介绍利用自动配置自定义 Start 组件。</p>
+<h2 id="2-1-快速入门工程"><a href="#2-1-快速入门工程" class="headerlink" title="2.1 快速入门工程"></a>2.1 快速入门工程</h2><p>第一章的 <code>HelloBookController</code> 控制层中，在代码中以硬编码的方式使用字符串表示书信息。下面把书的信息作为属性，外化配置在 application.properties 。好处是将应用参数、业务参数或第三方参数等统一配置在应用配置文件中，避免配置侵入业务代码，达到可配置的方式，方便及时调整修改。</p>
+<h3 id="2-1-1-配置属性"><a href="#2-1-1-配置属性" class="headerlink" title="2.1.1 配置属性"></a>2.1.1 配置属性</h3><p>新建工程命名为 chapter-2-spring-boot-config ，在 application.properties 中配置书名和作者，配置如下：</p>
+<pre class="line-numbers language-none"><code class="language-none">## 书信息
+demo.book.name=[Spring Boot 2.x Core Action]
+demo.book.writer=BYSocket<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>.properties 文件的每行参数被存储为一对字符串，即一个存储参数名称，被称为键；另一个为值。一般称为键值对配置。井号（#）或者英文状态下的叹号（!）作为第一行中第一个非空字符来表示该行的文本为注释。另外，反斜杠（\）用于转义字符。</p>
+<p>Spring Boot 支持并推荐使用 YAML 格式的配置文件，将 application.properties 文件替换成 application.yml 文件，并配置相同的属性，配置如下：</p>
+<pre class="line-numbers language-none"><code class="language-none">## 书信息
+demo:
+    book:
+        name: 《Spring Boot 2.x 核心技术实战 - 上 基础篇》
+        writer: 泥瓦匠BYSocket<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>YAML 是一个可读性高，用来表达数据序列的格式。表示键值对格式时，注意键和值由冒号及空白字符分开。强调下，空白字符是必须的，IDE 一般也会提示。两种配置方式都非常便捷，在开发中选择 .properties 或 .yml 文件配置。但如果两种配置文件同时存在的时候，默认优先使用 .properties 配置文件。YAML 与 .properties 配置文件对比如图 2-1 所示：</p>
+<p><img src="http://springforall.ufile.ucloud.com.cn/static/img/3ed365aaf6a3e0dbdf1be557a87708391515130" alt="img"></p>
+<p>图 2-1 YAML 与 .properties 配置文件对比</p>
+<p>注意：</p>
+<p>在 application.properties 配置中文值，读取时会出现中文乱码问题。因为 Java .properties 文件默认编码方式是 iso-8859 ，Spring Boot 应用以 UTF-8 的编码方式读取，就导致出现乱码问题。</p>
+<p>官方 Issue 中的解决方法是，将 .properties 文件中配置的中文值转义成 Unicode 编码形式。例如 <code>demo.book.writer=泥瓦匠</code> 应该配置成 <code>demo.book.writer=\u6ce5\u74e6\u5320</code> 。利用 IDEA properties 插件 或利用 Java 文件转码工具 native2ascii 来快速地进行转义。该工具有在线版实现，地址如下：<br><a target="_blank" rel="noopener" href="https://javawind.net/tools/native2ascii.jsp">https://javawind.net/tools/native2ascii.jsp</a></p>
+<h3 id="2-1-2-创建属性类"><a href="#2-1-2-创建属性类" class="headerlink" title="2.1.2 创建属性类"></a>2.1.2 创建属性类</h3><p>在工程中新建包目录 <code>demo.springboot.config</code> ，并在目录中创建名为 BookProperties 的属性类，代码如下：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>beans<span class="token punctuation">.</span>factory<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span></span><span class="token class-name">Value</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>stereotype<span class="token punctuation">.</span></span><span class="token class-name">Component</span></span><span class="token punctuation">;</span>
+
+<span class="token comment">/**
+ * 书属性
+ */</span>
+<span class="token annotation punctuation">@Component</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">BookProperties</span> <span class="token punctuation">{</span>
+
+    <span class="token comment">/**
+     * 书名
+     */</span>
+    <span class="token annotation punctuation">@Value</span><span class="token punctuation">(</span><span class="token string">"${demo.book.name}"</span><span class="token punctuation">)</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> name<span class="token punctuation">;</span>
+
+    <span class="token comment">/**
+     * 作者
+     */</span>
+    <span class="token annotation punctuation">@Value</span><span class="token punctuation">(</span><span class="token string">"${demo.book.writer}"</span><span class="token punctuation">)</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> writer<span class="token punctuation">;</span>
+
+    <span class="token comment">// ... 省略 getter / setter 方法</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>利用 <code>@Component</code> 注解定义了书的属性 Bean，并通过 <code>@Value</code> 注解为该 Bean 的成员变量（或者方法参数）自动注入 application.properties 文件的属性值。<code>@Value</code> 注解是通过 “${propName}” 的形式引用属性，propName 表示属性名称。</p>
+<p>核心注解的知识点：</p>
+<ul>
+<li>@Component 注解：<br><code>@Component</code> 对类进行标注，职责是泛指组件 Bean ，应用启动时会被容器加载并加入容器管理。常见的 <code>@Controller</code>、<code>@Service</code> 、<code>@Repository</code> 是 <code>@Component</code> 的分类细化组件，分别对应控制层、服务层、持久层的 Bean。</li>
+<li>@Value 注解：<br><code>@Value</code> 对 Bean 的字段或者方法参数进行标注，职责是基于表达式给字段或方法参数设置默认属性值。通常格式是注解 + SpEL 表达式，如 <code>@Value("SpEL 表达式")</code>。</li>
+</ul>
+<p>使用 <code>@Vlaue</code> 注解来引用属性值时，确保所引用的属性值在 application.properties 文件存在并且相对应匹配，否则会造成 Bean 的创建错误，引发 <code>java.lang.IllegalArgumentException</code> 非法参数异常。</p>
+<h3 id="2-1-3-获取属性"><a href="#2-1-3-获取属性" class="headerlink" title="2.1.3 获取属性"></a>2.1.3 获取属性</h3><p>修改原有的 <code>HelloBookController</code> 类，通过注入的方式获取书属性 Bean 并返回。代码如下：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">import</span> <span class="token import"><span class="token namespace">demo<span class="token punctuation">.</span>springboot<span class="token punctuation">.</span>config<span class="token punctuation">.</span></span><span class="token class-name">BookProperties</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>beans<span class="token punctuation">.</span>factory<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span></span><span class="token class-name">Autowired</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>web<span class="token punctuation">.</span>bind<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span></span><span class="token class-name">GetMapping</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>web<span class="token punctuation">.</span>bind<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span></span><span class="token class-name">RestController</span></span><span class="token punctuation">;</span>
+
+<span class="token annotation punctuation">@RestController</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">HelloBookController</span> <span class="token punctuation">{</span>
+
+    <span class="token annotation punctuation">@Autowired</span>
+    <span class="token class-name">BookProperties</span> bookProperties<span class="token punctuation">;</span>
+
+    <span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">"/book/hello"</span><span class="token punctuation">)</span>
+    <span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">sayHello</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token string">"Hello， "</span> <span class="token operator">+</span> bookProperties<span class="token punctuation">.</span><span class="token function">getWriter</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">" is writing "</span>
+                <span class="token operator">+</span> bookProperties<span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">" ！"</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>通过 <code>@Autowired</code> 注解标记在 <code>BookProperties</code> 字段，控制层自动装配属性 Bean 并使用。默认情况下要求被注解的 Bean 必须存在，需要允许 NULL 值，可以设置其 required 属性为 false： <code>@Autowired(required = false)</code>。</p>
+<h3 id="2-1-4-运行工程"><a href="#2-1-4-运行工程" class="headerlink" title="2.1.4 运行工程"></a>2.1.4 运行工程</h3><p>执行 <code>ConfigApplication</code> 类启动，在控制台看到成功运行的输出后，打开浏览器访问 /book/hello 地址，可以看到如图 2-2 所示的返回结果：</p>
+<p><img src="http://springforall.ufile.ucloud.com.cn/static/img/d9aea1949788d79ea24568536856e3c51515130" alt="img"></p>
+<p>图 2-2 Hello Book 页面</p>
+<p>也可以通过单元测试的方式验证属性获取是否成功，单元测试具体相关的会在第 9 章节介绍。单元测试代码如下：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">import</span> <span class="token import"><span class="token namespace">demo<span class="token punctuation">.</span>springboot<span class="token punctuation">.</span>config<span class="token punctuation">.</span></span><span class="token class-name">BookProperties</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>junit<span class="token punctuation">.</span></span><span class="token class-name">Assert</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>junit<span class="token punctuation">.</span></span><span class="token class-name">Test</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>junit<span class="token punctuation">.</span>runner<span class="token punctuation">.</span></span><span class="token class-name">RunWith</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>beans<span class="token punctuation">.</span>factory<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span></span><span class="token class-name">Autowired</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>boot<span class="token punctuation">.</span>test<span class="token punctuation">.</span>context<span class="token punctuation">.</span></span><span class="token class-name">SpringBootTest</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>test<span class="token punctuation">.</span>context<span class="token punctuation">.</span>junit4<span class="token punctuation">.</span></span><span class="token class-name">SpringRunner</span></span><span class="token punctuation">;</span>
+
+<span class="token annotation punctuation">@RunWith</span><span class="token punctuation">(</span><span class="token class-name">SpringRunner</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span>
+<span class="token annotation punctuation">@SpringBootTest</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ConfigApplicationTests</span> <span class="token punctuation">{</span>
+    <span class="token annotation punctuation">@Autowired</span>
+    <span class="token class-name">BookProperties</span> bookProperties<span class="token punctuation">;</span>
+
+    <span class="token annotation punctuation">@Test</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">testBookProperties</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name">Assert</span><span class="token punctuation">.</span><span class="token function">assertEquals</span><span class="token punctuation">(</span>bookProperties<span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token string">"'Spring Boot 2.x Core Action'"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">Assert</span><span class="token punctuation">.</span><span class="token function">assertEquals</span><span class="token punctuation">(</span>bookProperties<span class="token punctuation">.</span><span class="token function">getWriter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token string">"BYSocket"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="2-2-配置属性的获取方式"><a href="#2-2-配置属性的获取方式" class="headerlink" title="2.2 配置属性的获取方式"></a>2.2 配置属性的获取方式</h2><p>配置属性的常用获取方式有基于 <code>@Value</code> 和 <code>@ConfigurationProperties</code> 注解两种方式。两种方式适合的场景不同，下面具体介绍其使用方法和场景。</p>
+<h3 id="2-2-1-Value-注解"><a href="#2-2-1-Value-注解" class="headerlink" title="2.2.1 @Value 注解"></a>2.2.1 @Value 注解</h3><p><code>@Value</code> 注解对 Bean 的变量或者方法参数进行标注，职责是基于表达式给字段或方法参数设置默认属性值。通常格式是注解 + SpEL 表达式，如 <code>@Value("SpEL 表达式")</code>，并标注在对应的字段或者方法上方，且必须对变量一一标注。这种方式适用于小而不复杂的属性结构。属性结构复杂，字段很多的情况下，这种方式会比较繁琐，应该考虑使用 <code>@ConfigurationProperties</code> 注解。</p>
+<p>另外通过 <code>@PropertySource</code> 注解引入对应路径的其他 .properties 文件。将书信息重新配置在 classpath 下新的 book.properties 配置文件后，读取新配置文件的代码如下：</p>
+<pre class="line-numbers language-none"><code class="language-none">import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.stereotype.Component;
+
+/**
+ * 书属性
+ */
+@Component
+@PropertySource("classpath:book.properties")
+public class BookProperties {
+
+    /**
+     * 书名
+     */
+    @Value("${demo.book.name}")
+    private String name;
+
+    /**
+     * 作者
+     */
+    @Value("${demo.book.writer}")
+    private String writer;
+
+    // ... 省略 getters / setters 方法
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="2-2-2-ConfigurationProperties-注解"><a href="#2-2-2-ConfigurationProperties-注解" class="headerlink" title="2.2.2 @ConfigurationProperties 注解"></a>2.2.2 @ConfigurationProperties 注解</h3><p>在包目录 <code>demo.springboot.config</code> 中创建名为 BookComponent 的属性类，并使用 <code>@ConfigurationProperties</code> 注解获取属性，代码如下：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>boot<span class="token punctuation">.</span>context<span class="token punctuation">.</span>properties<span class="token punctuation">.</span></span><span class="token class-name">ConfigurationProperties</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>stereotype<span class="token punctuation">.</span></span><span class="token class-name">Component</span></span><span class="token punctuation">;</span>
+
+<span class="token comment">/**
+ * 书属性
+ *
+ */</span>
+<span class="token annotation punctuation">@Component</span>
+<span class="token annotation punctuation">@ConfigurationProperties</span><span class="token punctuation">(</span>prefix <span class="token operator">=</span> <span class="token string">"demo.book"</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">BookComponent</span> <span class="token punctuation">{</span>
+
+    <span class="token comment">/**
+     * 书名
+     */</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> name<span class="token punctuation">;</span>
+
+    <span class="token comment">/**
+     * 作者
+     */</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> writer<span class="token punctuation">;</span>
+
+    <span class="token comment">// ... 省略 getters / setters 方法</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>类似 <code>@Value</code> 注解方式，使用 <code>@ConfigurationProperties(prefix = "demo.book")</code> 注解标注在类上方可以达到相同的效果。 <code>@ConfigurationProperties</code> 注解的 prefix 是指定属性的参数名称。会匹配到配置文件中 “ demo.book. <em>” 结构的属性，星号 “</em> ” 是指会一一对应匹配 <code>BookComponent</code> 类的字段名。例如，字段 name 表示书名，会匹配到 <code>demo.book.name</code> 属性值。</p>
+<p><code>@Value</code> 注解方式强制字段必须对应在配置文件， <code>@ConfigurationProperties</code> 注解方式则不是必须的。一般情况下，所有字段应该保证一一对应在配置文件。如果没有属性值对应的话，该字段默认为空， <code>@ConfigurationProperties</code> 注解方式也不会引发任何异常，Spring Boot 推荐使用 <code>@ConfigurationProperties</code> 注解方式获取属性。</p>
+<p>同样使用单元测试验证获取属性是否成功。单元测试代码如下：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Autowired</span>
+<span class="token class-name">BookComponent</span> bookComponent<span class="token punctuation">;</span>
+
+<span class="token annotation punctuation">@Test</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">testBookComponent</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token class-name">Assert</span><span class="token punctuation">.</span><span class="token function">assertEquals</span><span class="token punctuation">(</span>bookComponent<span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token string">"'Spring Boot 2.x Core Action'"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">Assert</span><span class="token punctuation">.</span><span class="token function">assertEquals</span><span class="token punctuation">(</span>bookComponent<span class="token punctuation">.</span><span class="token function">getWriter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token string">"BYSocket"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h5 id="API-org-springframework-boot-context-properties-ConfigurationProperties-注解参数"><a href="#API-org-springframework-boot-context-properties-ConfigurationProperties-注解参数" class="headerlink" title="API org.springframework.boot.context.properties.ConfigurationProperties 注解参数"></a>API org.springframework.boot.context.properties.ConfigurationProperties 注解参数</h5><ul>
+<li>prefix<br>字符串值，绑定该名称前缀的属性对象。</li>
+<li>value<br>字符串值，功能同 prefix 参数。</li>
+<li>ignoreInvalidFields<br>布尔值，默认 false。绑定对象时，忽略无效字段。</li>
+<li>ignoreUnknownFields<br>布尔值，默认 true。绑定对象时，忽略未知字段。</li>
+</ul>
+<h3 id="2-2-3-ConfigurationProperties-数据验证"><a href="#2-2-3-ConfigurationProperties-数据验证" class="headerlink" title="2.2.3 @ConfigurationProperties 数据验证"></a>2.2.3 @ConfigurationProperties 数据验证</h3><p><code>@ConfigurationProperties</code> 注解方式支持验证功能，即当属性类被 <code>@Validated</code> 注解标注时，Spring Boot 初始化时会验证类的字段。在类的字段上添加 JSR-303 约束注解，进行数据验证。下面为书属性字段添加非 NULL 和字符串非空约束，代码如下：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>boot<span class="token punctuation">.</span>context<span class="token punctuation">.</span>properties<span class="token punctuation">.</span></span><span class="token class-name">ConfigurationProperties</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>stereotype<span class="token punctuation">.</span></span><span class="token class-name">Component</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>validation<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span></span><span class="token class-name">Validated</span></span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">javax<span class="token punctuation">.</span>validation<span class="token punctuation">.</span>constraints<span class="token punctuation">.</span></span><span class="token class-name">NotEmpty</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">javax<span class="token punctuation">.</span>validation<span class="token punctuation">.</span>constraints<span class="token punctuation">.</span></span><span class="token class-name">NotNull</span></span><span class="token punctuation">;</span>
+
+<span class="token comment">/**
+ * 书属性
+ *
+ */</span>
+<span class="token annotation punctuation">@Component</span>
+<span class="token annotation punctuation">@ConfigurationProperties</span><span class="token punctuation">(</span>prefix <span class="token operator">=</span> <span class="token string">"demo.book"</span><span class="token punctuation">)</span>
+<span class="token annotation punctuation">@Validated</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">BookComponent</span> <span class="token punctuation">{</span>
+
+    <span class="token comment">/**
+     * 书名
+     */</span>
+    <span class="token annotation punctuation">@NotEmpty</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> name<span class="token punctuation">;</span>
+
+    <span class="token comment">/**
+     * 作者
+     */</span>
+    <span class="token annotation punctuation">@NotNull</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> writer<span class="token punctuation">;</span>
+
+    <span class="token comment">// ... 省略 getters / setters 方法</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>通过 <code>@Validated</code> 注解开启对 <code>BookComponent </code>类字段的数据验证，如果 name 字段为 NULL 或者为空字符串时，会引发 <code>BindValidationException</code> 绑定数据验证异常。数据验证常用在邮箱格式或者有长度限制的属性字段。另外，验证嵌套属性的值，必须在嵌套对象字段上方标注 <code>@Valid</code> 注解，用来触发其验证。例如，在书属性中新增嵌套对象出版社 <code>Publishing</code>，就需要在该对象上方标注 <code>@Valid</code> 注解，来开启对 <code>Publishing</code> 对象的数据验证。综上，两种属性获取方式各有优缺点，对比如图 2-3 所示：</p>
+<p><img src="http://springforall.ufile.ucloud.com.cn/static/img/9ab13554345f8baada0ff0fae9d226881515130" alt="img"></p>
+<p>图 2-3 @ConfigurationPropertiesd vs @Value</p>
+<h2 id="2-3-外化配置"><a href="#2-3-外化配置" class="headerlink" title="2.3 外化配置"></a>2.3 外化配置</h2><p>Spring Boot 可以将配置外部化，即分离存储在 classpath 之外，这种模式叫做 “外化配置”。常用在不同环境中，将配置从代码中分离外置，只要简单地修改下外化配置，可以依旧运行相同的应用代码。外化配置表现形式不单单是 .properties 和 .yml 属性文件，还可以使用环境变量和命令行参数等来实现。那么，多处配置了相同属性时，Spring Boot 是通过什么方式来控制外化配置的冲突呢？答案是外化配置优先级。</p>
+<h3 id="2-3-1-外化配置优先级"><a href="#2-3-1-外化配置优先级" class="headerlink" title="2.3.1 外化配置优先级"></a>2.3.1 外化配置优先级</h3><p>用命令行配置去覆盖 .properties 文件配置方法很简单。正常情况下利用 Java 命令运行工程，代码如下：</p>
+<pre class="line-numbers language-none"><code class="language-none">// chapter-2-spring-boot-config 目录下运行
+java -jar target/chapter-2-spring-boot-config-1.0.jar<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>下面将书的作者信息 BYSocket 改成 Jeff ， 通过命令行配置覆盖属性，代码如下：</p>
+<pre class="line-numbers language-none"><code class="language-none">java -jar target/chapter-2-spring-boot-config-1.0.jar --demo.book.writer=Jeff<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>在命令行配置中，设置属性值的格式是用两个连续的减号 “–”标志属性。在控制台看到成功运行的输出后，打开浏览器，访问 /book/hello 地址，可以看到如图 2-4 所示的返回结果：</p>
+<p><img src="http://springforall.ufile.ucloud.com.cn/static/img/b5f58da0340ed3f9218ed1d117c31b581515130" alt="img"></p>
+<p>图 2-4 书信息被覆盖页面</p>
+<p>通过命令行配置覆盖属性提供了非常大的作用与便利性，常见于使用 shell 脚本运行工程时，可以方便地修改工程运行的配置。</p>
+<p>但是这就引发了一个问题，岂不让工程很有侵入性，如果开放这个功能，导致未知的安全问题。所以 Spring Boot 提供了屏蔽命令行属性值设置，在应用启动类中设置 <code>setAddCommandLineProperties</code> 方法为 <code>false</code> ，用于关闭命令行配置功能，代码如下：</p>
+<pre class="line-numbers language-none"><code class="language-none">SpringApplication.setAddCommandLineProperties(false);<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>命令行配置属性的优先级是第四。外化配置获取属性时，会按优先级从高到低获取。如果高优先级存在属性，则返回属性，并忽略优先级低的属性。优先级如下：</p>
+<ol>
+<li>本地 Devtools 全局配置</li>
+<li>测试时 <code>@TestPropertySource</code> 注解配置</li>
+<li>测试时 <code>@SpringBootTest</code> 注解的 properties 配置</li>
+<li>命令行配置</li>
+<li>SPRING_APPLICATION_JSON 配置</li>
+<li><code>ServletConfig</code> 初始化参数配置</li>
+<li><code>ServletContext</code> 初始化参数配置</li>
+<li>Java 环境的 JNDI 参数配置</li>
+<li>Java 系统的属性配置</li>
+<li>OS 环境变量配置</li>
+<li>只能随机属性的 <code>RandomValuePropertySource</code> 配置</li>
+<li>工程 jar 之外的多环境配置文件（application- {profile}.properties 或 YAML）</li>
+<li>工程 jar 之内的多环境配置文件（application- {profile}.properties 或 YAML）</li>
+<li>工程 jar 之外的应用配置文件（application.properties 或 YAML）</li>
+<li>工程 jar 之内的应用配置文件（application.properties 或 YAML）</li>
+<li><code>@Configuration</code> 类中的 @PropertySource 注解配置</li>
+<li>默认属性配置（<code>SpringApplication.setDefaultProperties</code> 指定）</li>
+</ol>
+<h3 id="2-3-2-属性引用"><a href="#2-3-2-属性引用" class="headerlink" title="2.3.2 属性引用"></a>2.3.2 属性引用</h3><p>在 application.properties 中配置属性时，属性之间可以直接通过 “${propName}” 的形式引用其他属性。比如新增书的描述 description 属性，代码如下：</p>
+<pre class="line-numbers language-none"><code class="language-none">## 书信息
+demo.book.name=[Spring Boot 2.x Core Action]
+demo.book.writer=BYSocket
+demo.book.description=${demo.book.writer}'s${demo.book.name}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>demo.book.description 属性引用了前面定义的 demo.book.name 和 demo.book.writer 属性，其值为 BYSocket’s[Spring Boot 2.x Core Action] 。一方面可以使相同配置可以复用，另一方面增强了配置的阅读性。</p>
+<h3 id="2-3-3-使用随机数"><a href="#2-3-3-使用随机数" class="headerlink" title="2.3.3 使用随机数"></a>2.3.3 使用随机数</h3><p>在 application.properties 中配置属性时，可以使用随机数配置，例如注入某些密钥、UUID 或者测试用例，需要每次不是一个固定的值。<code>RandomValuePropertySource</code> 类随机提供整形、长整形数、UUID 或者字符串。使用代码如下：</p>
+<pre class="line-numbers language-none"><code class="language-none">my.secret=${random.value}
+my.number=${random.int}
+my.bignumber=${random.long}
+my.uuid=${random.uuid}
+my.number.less.than.ten=${random.int(10)}
+my.number.in.range=${random.int[1024,65536]}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="2-3-4-多环境配置"><a href="#2-3-4-多环境配置" class="headerlink" title="2.3.4 多环境配置"></a>2.3.4 多环境配置</h3><p>多环境是指不同配置的生产服务器使用同一工程代码部署，比如：开发环境、测试环境、预发环境、生产环境等。各个环境的工程端口、数据库配置、Redis 配置、日志配置等都会不同，传统模式下需要修改配置，工程重新编译打包，并部署到指定环境服务器。结果是容易发生配置错误，导致开发部署效率低下。Spring Boot 使用多环境配置去解决这个问题。</p>
+<p>多环境配置，类似 Maven 构建配置文件的思路，即配置多个不同环境的配置文件，再通过 <code>spring.profiles.active</code> 命令去指定读取特定配置文件的属性。多环境配置文件是不同于 application.properties 应用配置文件。多环境配置文件的约定命名格式为 application-{profile}.properties。多环境配置功能默认为激活状态，如果其他配置未被激活，则 {profile} 默认为 default，会加载 application-default.properties 默认配置文件，没有该文件就会加载 application.properties 应用配置文件。</p>
+<p>多环境配置文件的属性读取方式和从 application.properties 应用配置文件读取方式一致。不管多环境配置文件在工程 jar 包内还是包外，按照配置优先级覆盖其他配置文件。在微服务实践开发中，经常会使用一个类似 deploy 工程去管理配置文件和打包其他业务工程。</p>
+<p>在 application.properties 同级目录中，新建 application-dev.properties 作为开发环境配置文件，配置如下：</p>
+<pre class="line-numbers language-none"><code class="language-none">## 书信息
+demo.book.name=[Spring Boot 2.x Core Action]  From Dev
+demo.book.writer=BYSocket<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>新建 application-prod.properties 作为生产环境配置文件，代码如下：</p>
+<pre class="line-numbers language-none"><code class="language-none">## 书信息
+demo.book.name=&lt;Spring Boot 2.x Core Action Dev&gt; From Prod
+demo.book.writer=BYSocket<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>通过命令行指定读取 dev 环境配置文件并运行工程，代码如下：</p>
+<pre class="line-numbers language-none"><code class="language-none">java -jar target/chapter-2-spring-boot-config-1.0.jar --spring.profiles.active=dev<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>在多个环境配置中，通过命令 <code>--spring.profiles.active=dev</code> 指定读取某个配置文件，将 dev 更改成 prod ，轻松切换读取生产环境配置。也可以在控制台的日志中确定配置读取来自 dev ：</p>
+<pre class="line-numbers language-none"><code class="language-none">2017-11-09 12:10:52.978  INFO 72450 --- [           main] demo.springboot.ConfigApplication        : The following profiles are active: dev<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>最后打开浏览器，访问 /book/hello 地址，可以看到如图 2-5 所示的返回结果：</p>
+<p><img src="http://springforall.ufile.ucloud.com.cn/static/img/80fccafce0c406fca72b95064513f7ad1515130" alt="img"></p>
+<p>图 2-5 dev 环境书信息页面</p>
+<h2 id="2-4-自动配置"><a href="#2-4-自动配置" class="headerlink" title="2.4 自动配置"></a>2.4 自动配置</h2><p>Spring Boot <code>spring-boot-autoconfigure</code> 依赖实现了默认的配置项，即应用默认值。这种模式叫做 “自动配置”。Spring Boot 自动配置会根据添加的依赖，自动加载依赖相关的配置属性并启动依赖。例如默认用的内嵌式容器是 Tomcat ，端口默认设置为 8080。</p>
+<p>为什么需要自动配置？顾名思义，自动配置的意义是利用这种模式代替了配置 XML 繁琐模式。以前使用 Spring MVC ，需要进行配置组件扫描、调度器、视图解析器等，使用 Spring Boot 自动配置后，只需要添加 MVC 组件即可自动配置所需要的 Bean。所有自动配置的实现都在 <code>spring-boot-autoconfigure</code> 依赖中，包括 Spring MVC 、Data 和其它框架的自动配置。</p>
+<h3 id="2-4-1-spring-boot-autoconfigure-依赖"><a href="#2-4-1-spring-boot-autoconfigure-依赖" class="headerlink" title="2.4.1 spring-boot-autoconfigure 依赖"></a>2.4.1 spring-boot-autoconfigure 依赖</h3><p><code>spring-boot-autoconfigure</code> 依赖，是 Spring Boot 实现自动配置的核心 Starter 组件。其实现源码包结构如图 2-6 所示：</p>
+<p><img src="http://springforall.ufile.ucloud.com.cn/static/img/20baaeb5e57f7a44e1722c50a92ccc9c1515130" alt="img"></p>
+<p>图 2-6 spring-boot-autoconfigure 依赖包目录</p>
+<p>从图中可以看出，其中常见核心的包如下：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>boot<span class="token punctuation">.</span>autoconfigure
+org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>boot<span class="token punctuation">.</span>autoconfigure<span class="token punctuation">.</span>data<span class="token punctuation">.</span>jpa
+org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>boot<span class="token punctuation">.</span>autoconfigure<span class="token punctuation">.</span>thymeleaf
+org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>boot<span class="token punctuation">.</span>autoconfigure<span class="token punctuation">.</span>web<span class="token punctuation">.</span>servlet
+org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>boot<span class="token punctuation">.</span>autoconfigure<span class="token punctuation">.</span>web<span class="token punctuation">.</span>reactive
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> 省略<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>在各自包目录下有对应的自动配置类，代码如下：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">JpaRepositoriesAutoConfiguration</span> 
+<span class="token class-name">ThymeleafAutoConfiguration</span>
+<span class="token class-name">WebMvcAutoConfiguration</span>
+<span class="token class-name">WebFluxAutoConfiguration</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> 省略<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>上面自动配置类依次是 Jpa 自动配置类、Thymeleaf 自动配置类、Web MVC 自动配置类和 WebFlux 自动配置类。WebFlux 响应式框架会在第 3 章 详细介绍使用。</p>
+<p><code>spring-boot-autoconfigure</code> 职责是通过 <code>@EnableAutoConfiguration</code> 核心注解，扫描 ClassPath 目录中自动配置类对应依赖，并按一定规则获取默认配置并自动初始化所需要的 Bean。在 application.properties 配置文件也可以修改默认配置项，常用配置清单地址如下：</p>
+<p><a target="_blank" rel="noopener" href="https://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html">https://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html</a></p>
+<h3 id="2-4-2-EnableAutoConfiguration-注解"><a href="#2-4-2-EnableAutoConfiguration-注解" class="headerlink" title="2.4.2 @EnableAutoConfiguration 注解"></a>2.4.2 @EnableAutoConfiguration 注解</h3><p>自动配置工作机制是通过 <code>@EnableAutoConfiguration</code> 注解中 <code>@Import</code> 的 <code>AutoConfigurationImportSelector</code> 自动配置导入选择器类实现的。查阅源码可得具体流程如下：</p>
+<ul>
+<li><code>AutoConfigurationImportSelector</code> 通过 <code>SpringFactoriesLoader.loadFactoryNames()</code> 核心方法读取 ClassPath 目录下面的 META-INF/spring.factories 文件。</li>
+<li>spring.factories 文件中配置的 Spring Boot 自动配置类，例如常见的 <code>WebMvcAutoConfiguration</code> Web MVC 自动配置类和<code>ServletWebServerFactoryAutoConfiguration</code> 容器自动配置类 。</li>
+<li>spring.factories 文件和 application.properties 文件都属于配置文件，配置的格式均为键值对。里面配置的每个自动配置类都会定义相关 Bean 的实例配置，也会定义什么条件下自动配置和哪些 Bean 被实例化。</li>
+<li>当 pom.xml 添加某 Starter 依赖组件的时候，就会自动触发该依赖的默认配置。</li>
+</ul>
+<p>例如添加 <code>spring-boot-starter-web</code> 依赖后，启动应用会触发容器自动配置类。容器自动配置类 <code>ServletWebServerFactoryAutoConfiguration</code> 的部分代码如下：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">package</span> <span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>boot<span class="token punctuation">.</span>autoconfigure<span class="token punctuation">.</span>web<span class="token punctuation">.</span>servlet</span><span class="token punctuation">;</span>
+
+<span class="token annotation punctuation">@Configuration</span>
+<span class="token annotation punctuation">@ConditionalOnClass</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token class-name">ServletRequest</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token annotation punctuation">@ConditionalOnWebApplication</span><span class="token punctuation">(</span>
+    type <span class="token operator">=</span> <span class="token class-name">Type</span><span class="token punctuation">.</span>SERVLET
+<span class="token punctuation">)</span>
+<span class="token annotation punctuation">@EnableConfigurationProperties</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token class-name">ServerProperties</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token annotation punctuation">@Import</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token class-name">ServletWebServerFactoryAutoConfiguration<span class="token punctuation">.</span>BeanPostProcessorsRegistrar</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ServletWebServerFactoryAutoConfiguration</span> <span class="token punctuation">{</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> 省略
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>上面代码中，<code>@ConditionalOnClass</code> 注解表示对应的 <code>ServletRequest</code> 类在 ClassPath 目录下面存在，并且 <code>@ConditionalOnWebApplication</code> 注解表示该应用是 Servlet Web 应用时，才会去启动容器自动配置，并通过 ServerProperties 类默认设置了端口为 8080。Type.SERVLET 枚举代表 Servlet Web 应用，Type.REACTIVE 枚举代表响应式 WebFlux 应用。</p>
+<p>自动配置，是一把双刃剑。用好了就像天下武功唯快不破一样。但要注意一些自动化配置造成的问题。常见的问题有：</p>
+<ul>
+<li>Spring Boot 工程添加某些 Starter 组件依赖，又不需要触发组件自动配置</li>
+<li>Spring Boot 配置多个不同数据源配置时，使用 XML 配置多数据源，但其默认数据源配置会触发自动配置出现问题。</li>
+</ul>
+<p>类似场景下，解决方式是通过 exclude 属性指定并排除自动配置类，代码如下：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@SpringBootApplication</span><span class="token punctuation">(</span>exclude <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token class-name">DataSourceAutoConfiguration</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>也等价于配置 <code>@EnableAutoConfiguration</code> 注解，代码如下：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@SpringBootApplication</span>
+<span class="token annotation punctuation">@EnableAutoConfiguration</span><span class="token punctuation">(</span>exclude <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token class-name">DataSourceAutoConfiguration</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>自动配置会最大的智能化，只有配置了 exclude 属性时，Spring Boot 优先初始化用户定义的 Bean ，然后再进行自动配置。</p>
+<h3 id="2-4-3-利用自动配置自定义-Starter-组件"><a href="#2-4-3-利用自动配置自定义-Starter-组件" class="headerlink" title="2.4.3 利用自动配置自定义 Starter 组件"></a>2.4.3 利用自动配置自定义 Starter 组件</h3><p>当公司需要共享或者开源 Spring Boot Starter 组件依赖包，就可以利用自动配置自定义 Starter 组件。一个完整的 Starter 组件包括以下两点：</p>
+<ul>
+<li>提供自动配置功能的自动配置模块。</li>
+<li>提供依赖关系管理功能的组件模块，即封装了组件所有功能，开箱即用。</li>
+</ul>
+<p>实现自定义 Starter 组件，并不会将这两点严格区分，可以将自动配置功能和依赖管理结合在一起实现。下面利用自动配置实现自定义 Starter 组件：spring-boot-starter-swagger 组件是用来快速生成 API 文档，简化原生使用 Swagger2 。</p>
+<p>spring-boot-starter-swagger 组件为 Spring For All 社区（spring4all.com）开源项目，源代码地址是 <a target="_blank" rel="noopener" href="https://github.com/SpringForAll/spring-boot-starter-swagger%E3%80%82">https://github.com/SpringForAll/spring-boot-starter-swagger。</a></p>
+<h5 id="什么是-Swagger2"><a href="#什么是-Swagger2" class="headerlink" title="什么是 Swagger2"></a>什么是 Swagger2</h5><p>Swagger2 是 API 最大的开发框架，基于 OpenAPI 规范（OAS），管理了 API 整个生命周期，即从 API 设计到文档，从测试到部署。具体更多了解见其官网，<a target="_blank" rel="noopener" href="https://swagger.io/">https://swagger.io</a>。</p>
+<h5 id="spring-boot-starter-swagger-组件依赖"><a href="#spring-boot-starter-swagger-组件依赖" class="headerlink" title="spring-boot-starter-swagger 组件依赖"></a>spring-boot-starter-swagger 组件依赖</h5><p>创建一个新的 Spring Boot 工程，命名为 spring-boot-starter-swagger。在 pom.xml 配置相关</p>
+<pre class="line-numbers language-none"><code class="language-none">&lt;dependencies&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-boot-starter&lt;/artifactId&gt;
+        &lt;optional&gt;true&lt;/optional&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-boot-configuration-processor&lt;/artifactId&gt;
+        &lt;optional&gt;true&lt;/optional&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;io.springfox&lt;/groupId&gt;
+        &lt;artifactId&gt;springfox-swagger-ui&lt;/artifactId&gt;
+        &lt;version&gt;${version.swagger}&lt;/version&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;io.springfox&lt;/groupId&gt;
+        &lt;artifactId&gt;springfox-swagger2&lt;/artifactId&gt;
+        &lt;version&gt;${version.swagger}&lt;/version&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;io.springfox&lt;/groupId&gt;
+        &lt;artifactId&gt;springfox-bean-validators&lt;/artifactId&gt;
+        &lt;version&gt;${version.swagger}&lt;/version&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.projectlombok&lt;/groupId&gt;
+        &lt;artifactId&gt;lombok&lt;/artifactId&gt;
+        &lt;version&gt;1.16.12&lt;/version&gt;
+        &lt;scope&gt;provided&lt;/scope&gt;
+    &lt;/dependency&gt;
+&lt;/dependencies&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>配置中添加了 <code>spring-boot-starter</code> 组件依赖用于自动配置特性，<code>springfox-swagger2</code> 依赖是 Swagger2 框架。</p>
+<h4 id="Swagger2-属性配置类-SwaggerProperties"><a href="#Swagger2-属性配置类-SwaggerProperties" class="headerlink" title="Swagger2 属性配置类 SwaggerProperties"></a>Swagger2 属性配置类 SwaggerProperties</h4><p>新建名为 <code>SwaggerProperties</code> Swagger2 属性配置类，包含了所有默认属性值。使用该组件时，可以在 application.properties 配置文件配置对应属性项，进行覆盖默认配置。代码如下：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">import</span> <span class="token import"><span class="token namespace">lombok<span class="token punctuation">.</span></span><span class="token class-name">Data</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">lombok<span class="token punctuation">.</span></span><span class="token class-name">NoArgsConstructor</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>boot<span class="token punctuation">.</span>context<span class="token punctuation">.</span>properties<span class="token punctuation">.</span></span><span class="token class-name">ConfigurationProperties</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">springfox<span class="token punctuation">.</span>documentation<span class="token punctuation">.</span>schema<span class="token punctuation">.</span></span><span class="token class-name">ModelRef</span></span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">ArrayList</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">LinkedHashMap</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">List</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">Map</span></span><span class="token punctuation">;</span>
+
+<span class="token annotation punctuation">@Data</span>
+<span class="token annotation punctuation">@ConfigurationProperties</span><span class="token punctuation">(</span><span class="token string">"swagger"</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SwaggerProperties</span> <span class="token punctuation">{</span>
+
+    <span class="token comment">/**是否开启swagger**/</span>
+    <span class="token keyword">private</span> <span class="token class-name">Boolean</span> enabled<span class="token punctuation">;</span>
+
+    <span class="token comment">/**标题**/</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> title <span class="token operator">=</span> <span class="token string">""</span><span class="token punctuation">;</span>
+    <span class="token comment">/**描述**/</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> description <span class="token operator">=</span> <span class="token string">""</span><span class="token punctuation">;</span>
+    <span class="token comment">/**版本**/</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> version <span class="token operator">=</span> <span class="token string">""</span><span class="token punctuation">;</span>
+    <span class="token comment">/**许可证**/</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> license <span class="token operator">=</span> <span class="token string">""</span><span class="token punctuation">;</span>
+    <span class="token comment">/**许可证URL**/</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> licenseUrl <span class="token operator">=</span> <span class="token string">""</span><span class="token punctuation">;</span>
+    <span class="token comment">/**服务条款URL**/</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> termsOfServiceUrl <span class="token operator">=</span> <span class="token string">""</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">private</span> <span class="token class-name">Contact</span> contact <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Contact</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">/**swagger会解析的包路径**/</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> basePackage <span class="token operator">=</span> <span class="token string">""</span><span class="token punctuation">;</span>
+
+    <span class="token comment">/**swagger会解析的url规则**/</span>
+    <span class="token keyword">private</span> <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">&gt;</span></span> basePath <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">/**在basePath基础上需要排除的url规则**/</span>
+    <span class="token keyword">private</span> <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">&gt;</span></span> excludePath <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">/**分组文档**/</span>
+    <span class="token keyword">private</span> <span class="token class-name">Map</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">DocketInfo</span><span class="token punctuation">&gt;</span></span> docket <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">LinkedHashMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">/**host信息**/</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> host <span class="token operator">=</span> <span class="token string">""</span><span class="token punctuation">;</span>
+
+    <span class="token comment">/**全局参数配置**/</span>
+    <span class="token keyword">private</span> <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">GlobalOperationParameter</span><span class="token punctuation">&gt;</span></span> globalOperationParameters<span class="token punctuation">;</span>
+
+     <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> 省略，具体代码见 <span class="token class-name">GitHub</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>用 <code>@ConfigurationProperties(prefix = "swagger")</code> 标注在类上方是指定属性的参数名称为 swagger。会对应匹配到配置文件中 “ swagger.* ” 结构的属性，例如，字段标题 title 表示标题，会匹配到 <code>swagger.title</code> 属性值。</p>
+<h4 id="Swagger2-自动配置类-SwaggerAutoConfiguration"><a href="#Swagger2-自动配置类-SwaggerAutoConfiguration" class="headerlink" title="Swagger2 自动配置类 SwaggerAutoConfiguration"></a>Swagger2 自动配置类 SwaggerAutoConfiguration</h4><p>新建名为 <code>SwaggerAutoConfiguration </code>Swagger2 自动配置类，提供 Swagger2 依赖关系管理功能和自动配置功能。代码如下：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>context<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span></span><span class="token class-name">Bean</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>context<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span></span><span class="token class-name">Configuration</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>context<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span></span><span class="token class-name">Import</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>boot<span class="token punctuation">.</span>autoconfigure<span class="token punctuation">.</span>condition<span class="token punctuation">.</span></span><span class="token class-name">ConditionalOnMissingBean</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>boot<span class="token punctuation">.</span>autoconfigure<span class="token punctuation">.</span>condition<span class="token punctuation">.</span></span><span class="token class-name">ConditionalOnProperty</span></span><span class="token punctuation">;</span>
+
+<span class="token annotation punctuation">@Configuration</span>
+<span class="token annotation punctuation">@ConditionalOnProperty</span><span class="token punctuation">(</span>name <span class="token operator">=</span> <span class="token string">"swagger.enabled"</span><span class="token punctuation">,</span> matchIfMissing <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">)</span>
+<span class="token annotation punctuation">@Import</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+        <span class="token class-name">Swagger2DocumentationConfiguration</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span>
+        <span class="token class-name">BeanValidatorPluginsConfiguration</span><span class="token punctuation">.</span><span class="token keyword">class</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SwaggerAutoConfiguration</span> <span class="token keyword">implements</span> <span class="token class-name">BeanFactoryAware</span> <span class="token punctuation">{</span>
+
+    <span class="token keyword">private</span> <span class="token class-name">BeanFactory</span> beanFactory<span class="token punctuation">;</span>
+
+    <span class="token annotation punctuation">@Bean</span>
+    <span class="token annotation punctuation">@ConditionalOnMissingBean</span>
+    <span class="token keyword">public</span> <span class="token class-name">SwaggerProperties</span> <span class="token function">swaggerProperties</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">SwaggerProperties</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Bean</span>
+    <span class="token annotation punctuation">@ConditionalOnMissingBean</span>
+    <span class="token annotation punctuation">@ConditionalOnProperty</span><span class="token punctuation">(</span>name <span class="token operator">=</span> <span class="token string">"swagger.enabled"</span><span class="token punctuation">,</span> matchIfMissing <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">)</span>
+    <span class="token keyword">public</span> <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Docket</span><span class="token punctuation">&gt;</span></span> <span class="token function">createRestApi</span><span class="token punctuation">(</span><span class="token class-name">SwaggerProperties</span> swaggerProperties<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> 省略，具体代码见 <span class="token class-name">GitHub</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setBeanFactory</span><span class="token punctuation">(</span><span class="token class-name">BeanFactory</span> beanFactory<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">BeansException</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>beanFactory <span class="token operator">=</span> beanFactory<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>上面代码实现流程如下：</p>
+<ol>
+<li><code>@Configuration</code> 注解标注在类上方，表明该类为配置类。</li>
+<li><code>@Import</code> 注解引入 Swagger2 提供的配置类 <code>Swagger2DocumentationConfiguration</code> 和 Bean 数据验证插件配置类 <code>BeanValidatorPluginsConfiguration</code>。</li>
+<li><code>@ConditionalOnMissingBean</code> 注解标注了两处方法，当 Bean 没有被创建时会执行被标注的初始化方法。第一处被标记方法是 <code>swaggerProperties()</code> ，用来实例化属性配置类 <code>SwaggerProperties</code>;第二处被标记方法是 <code>createRestApi()</code>， 用来实例化 Swagger2 API 映射的 Docket 列表对象。</li>
+<li><code>@ConditionalOnProperty</code> 注解标注在 <code>createRestApi()</code> 方法，name 属性会去检查环境配置项 <code>swagger.enabled</code> 。默认情况下，属性存在且不是 <code>false</code> 的情况下，会触发该初始化方法。matchIfMissing 属性默认值为 <code>false</code> ，这里设置为 <code>true</code>，表示如果环境配置项没被设置，也会触发。</li>
+</ol>
+<h5 id="Swagger2-启动注解类-EnableSwagger2Doc"><a href="#Swagger2-启动注解类-EnableSwagger2Doc" class="headerlink" title="Swagger2 启动注解类 EnableSwagger2Doc"></a>Swagger2 启动注解类 EnableSwagger2Doc</h5><p>新建名为 <code>EnableSwagger2Doc </code>Swagger2 启动注解类，用于开关 spring-boot-starter-swagger 组件依赖。代码如下：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Target</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token class-name">ElementType</span><span class="token punctuation">.</span>TYPE<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token annotation punctuation">@Retention</span><span class="token punctuation">(</span><span class="token class-name">RetentionPolicy</span><span class="token punctuation">.</span>RUNTIME<span class="token punctuation">)</span>
+<span class="token annotation punctuation">@Documented</span>
+<span class="token annotation punctuation">@Inherited</span>
+<span class="token annotation punctuation">@Import</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token class-name">SwaggerAutoConfiguration</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token annotation punctuation">@interface</span> <span class="token class-name">EnableSwagger2Doc</span> <span class="token punctuation">{</span>
+
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>上面代码 <code>@Import</code> 注解引入 Swagger2 自动配置类 <code>SwaggerAutoConfiguration</code>。当将该注解配置在应用启动类上方，即可开启 Swagger2 自动配置及其功能。</p>
+<h5 id="使用-spring-boot-starter-swagger-组件依赖"><a href="#使用-spring-boot-starter-swagger-组件依赖" class="headerlink" title="使用 spring-boot-starter-swagger 组件依赖"></a>使用 spring-boot-starter-swagger 组件依赖</h5><p>上面简单介绍了spring-boot-starter-swagger 组件的核心代码实现，同样使用方式也很简单。在 chapter-2-spring-boot-config 工程的 Maven 配置中添加对应的依赖配置，目前支持 1.5.0.RELEASE 以上版本，配置如下：</p>
+<pre class="line-numbers language-none"><code class="language-none">&lt;!-- 自定义 swagger2 Starter 组件依赖 --&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;com.spring4all&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-boot-starter-swagger&lt;/artifactId&gt;
+    &lt;version&gt;2.0&lt;/version&gt;
+&lt;/dependency&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>另外，需要在 ConfigApplication 应用启动类上方配置启动注解类 <code>EnableSwagger2Doc</code>，代码如下：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">import</span> <span class="token import"><span class="token namespace">com<span class="token punctuation">.</span>spring4all<span class="token punctuation">.</span>swagger<span class="token punctuation">.</span></span><span class="token class-name">EnableSwagger2Doc</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>boot<span class="token punctuation">.</span></span><span class="token class-name">SpringApplication</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>boot<span class="token punctuation">.</span>autoconfigure<span class="token punctuation">.</span></span><span class="token class-name">SpringBootApplication</span></span><span class="token punctuation">;</span>
+
+<span class="token annotation punctuation">@EnableSwagger2Doc</span> <span class="token comment">// 开启 Swagger</span>
+<span class="token annotation punctuation">@SpringBootApplication</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ConfigApplication</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name">SpringApplication</span><span class="token punctuation">.</span><span class="token function">run</span><span class="token punctuation">(</span><span class="token class-name">ConfigApplication</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span> args<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>执行 <code>ConfigApplication</code> 类启动，在控制台看到成功运行的输出后，打开浏览器访问 localhost:8080/swagger-ui.html 地址，可以看到自动生成的 Swagger API 文档，如图 2-7 所示：</p>
+<p><img src="http://springforall.ufile.ucloud.com.cn/static/img/3e86b26eaa67a2e766dac6292f3487f61515130" alt="img"></p>
+<p>图 2-7 Swagger API 文档</p>
+<h5 id="API-org-springframework-boot-autoconfigure-EnableAutoConfiguration-注解参数"><a href="#API-org-springframework-boot-autoconfigure-EnableAutoConfiguration-注解参数" class="headerlink" title="API org.springframework.boot.autoconfigure.EnableAutoConfiguration 注解参数"></a>API org.springframework.boot.autoconfigure.EnableAutoConfiguration 注解参数</h5><ul>
+<li>exclude：<br>Class 数组，排除特定的自动配置类。</li>
+<li>excludeName：<br>字符串数组，排除特定名称的自动配置类。</li>
+</ul>
+<h5 id="API-org-springframework-boot-autoconfigure-ConditionalOnProperty-注解参数"><a href="#API-org-springframework-boot-autoconfigure-ConditionalOnProperty-注解参数" class="headerlink" title="API org.springframework.boot.autoconfigure.ConditionalOnProperty 注解参数"></a>API org.springframework.boot.autoconfigure.ConditionalOnProperty 注解参数</h5><ul>
+<li>havingValue：<br>字符串，属性期望值是否匹配。</li>
+<li>matchIfMissing：<br>布尔值，如果该属性值未设置，则匹配。</li>
+<li>name：<br>字符串数组，要测试的属性名。</li>
+<li>prefix：<br>字符串，属性前缀名。</li>
+<li>value：<br>字符串，功能同 name。</li>
+</ul>
+<h5 id="API-org-springframework-boot-autoconfigure-ConditionalOnClass-注解参数"><a href="#API-org-springframework-boot-autoconfigure-ConditionalOnClass-注解参数" class="headerlink" title="API org.springframework.boot.autoconfigure.ConditionalOnClass 注解参数"></a>API org.springframework.boot.autoconfigure.ConditionalOnClass 注解参数</h5><ul>
+<li>name：<br>字符串数组，类名必须存在。</li>
+<li>value：<br>Class 数组，类必须存在。</li>
+</ul>
+<h5 id="API-org-springframework-boot-autoconfigure-ConditionalOnMissingBean-注解参数"><a href="#API-org-springframework-boot-autoconfigure-ConditionalOnMissingBean-注解参数" class="headerlink" title="API org.springframework.boot.autoconfigure.ConditionalOnMissingBean 注解参数"></a>API org.springframework.boot.autoconfigure.ConditionalOnMissingBean 注解参数</h5><ul>
+<li>annotation：<br>注解 Class 数组，匹配注解装饰的 Bean。</li>
+<li>ignored：<br>Class 数组，匹配时，忽略该类型的 Bean。</li>
+<li>ignoredType：<br>字符串数组，匹配时，忽略该类型名称的 Bean。</li>
+<li>name：<br>字符串数组，匹配要检查的 Bean 名称。</li>
+<li>search：<br>SearchStrategy 对象，通过 SearchStrategy 来决定程序的上下文策略。</li>
+<li>type：<br>字符串史胡族，匹配要检查的 Bean 类型名称。</li>
+<li>value：<br>Class 数组，匹配要检查的 Bean 类型。</li>
+</ul>
+<h5 id="API-org-springframework-boot-autoconfigure-ConditionalOnWebApplication-注解参数"><a href="#API-org-springframework-boot-autoconfigure-ConditionalOnWebApplication-注解参数" class="headerlink" title="API org.springframework.boot.autoconfigure.ConditionalOnWebApplication 注解参数"></a>API org.springframework.boot.autoconfigure.ConditionalOnWebApplication 注解参数</h5><ul>
+<li>type：<br>ConditionalOnWebApplication.Type 对象，匹配对应的 Web 应用程序类型。</li>
+</ul>
+<h2 id="2-5-本章小结"><a href="#2-5-本章小结" class="headerlink" title="2.5 本章小结"></a>2.5 本章小结</h2><p>本章从自定义属性快速入门工程出发，介绍了两种配置文件以及属性的获取方式，然后讲解了外化配置的优先级、属性引用、随机式使用和多环境配置，最后讲解了自动配置的原理、核心注解以及利用自动配置实现了自定义 Starter 组件。下一章介绍 Spring Boot Web 开发相关。</p>
+<p>本章示例代码地址：<a target="_blank" rel="noopener" href="https://github.com/JeffLi1993/springboot-core-action-book-demo/tree/master/chapter-2-spring-boot-config">https://github.com/JeffLi1993/springboot-core-action-book-demo/tree/master/chapter-2-spring-boot-config</a></p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">SuoLiweng</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://dick-su-3.github.io/archives/d7eba49.html">https://dick-su-3.github.io/archives/d7eba49.html</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">SuoLiweng</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/springboot%E9%85%8D%E7%BD%AE/">
+                                    <span class="chip bg-color">springboot配置</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/archives/5760774.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="经典设计原则 - SOLID">
+                        
+                        <span class="card-title">经典设计原则 - SOLID</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            SOLID 设计原则包含以下 5 种原则：
+
+单一职责原则（Single Responsibility Principle, SRP）
+
+开闭原则（Open Closed Principle, OCP）
+
+里式替换原则（Liskov Sub
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-08-20
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" class="post-category">
+                                    设计模式
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E8%AE%BE%E8%AE%A1%E5%8E%9F%E7%90%86/">
+                        <span class="chip bg-color">设计原理</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/archives/dc2c9a78.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="图解九种常见的设计模式">
+                        
+                        <span class="card-title">图解九种常见的设计模式</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            在软件工程中，设计模式（Design Pattern）是对软件设计中普遍存在（反复出现）的各种问题，所提出的解决方案。根据模式的目的来划分的话，GoF（Gang of Four）设计模式可以分为以下 3 种类型：
+
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-08-19
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" class="post-category">
+                                    设计模式
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+                        <span class="chip bg-color">设计模式</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+
+  <!-- 是否加载使用自带的 prismjs. -->
+  <script type="text/javascript" src="/libs/prism/prism.min.js"></script>
+
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="26467411"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.5'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="/libs/aplayer/Meting.min.js"></script>
+
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2022-2023</span>
+            
+            <a href="/about" target="_blank">SuoLiweng</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            
+                <span id="translate">|&nbsp;繁/简：</span><a id="translateLink" href="javascript:translatePage();">繁</a>
+            
+            <br>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/Jacksu3" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:1530265947@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1530265947" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1530265947" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 白天和黑夜主题 -->
+<div class="stars-con">
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>  
+</div>
+
+<script>
+    function switchNightMode() {
+        $('<div class="Cuteen_DarkSky"><div class="Cuteen_DarkPlanet"></div></div>').appendTo($('body')),
+        setTimeout(function () {
+            $('body').hasClass('DarkMode') 
+            ? ($('body').removeClass('DarkMode'), localStorage.setItem('isDark', '0'), $('#sum-moon-icon').removeClass("fa-sun").addClass('fa-moon')) 
+            : ($('body').addClass('DarkMode'), localStorage.setItem('isDark', '1'), $('#sum-moon-icon').addClass("fa-sun").removeClass('fa-moon')),
+            
+            setTimeout(function () {
+            $('.Cuteen_DarkSky').fadeOut(1e3, function () {
+                $(this).remove()
+            })
+            }, 2e3)
+        })
+    }
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    
+
+    
+        <script type="text/javascript" src="/js/tw_cn.js"></script>
+        <script type="text/javascript">
+          var defaultEncoding = 2; //网站编写字体是否繁体，1-繁体，2-简体
+          var translateDelay = 0; //延迟时间,若不在前, 要设定延迟翻译时间, 如100表示100ms,默认为0
+          var cookieDomain = "https://dick-su-3.github.io"; //Cookie地址, 一定要设定, 通常为你的网址
+          var msgToTraditionalChinese = "繁"; //此处可以更改为你想要显示的文字
+          var msgToSimplifiedChinese = "简"; //同上，但两处均不建议更改
+          var translateButtonId = "translateLink"; //默认互换id
+          translateInitilization();
+        </script>
+    
+    
+    
+
+    <!-- 雪花特效 -->
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+     
+        <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+        <script src="/libs/others/TencentCaptcha.js"></script>
+        <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+
+</html>
