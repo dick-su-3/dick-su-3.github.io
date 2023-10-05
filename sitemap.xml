@@ -2,6 +2,24 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://dick-su-3.github.io/archives/ac31e10b.html</loc>
+    
+    <lastmod>2023-10-05</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://dick-su-3.github.io/archives/471485c.html</loc>
+    
+    <lastmod>2023-10-05</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://dick-su-3.github.io/archives/bde3808c.html</loc>
     
     <lastmod>2023-10-05</lastmod>
@@ -791,14 +809,14 @@
   </url>
   
   <url>
-    <loc>https://dick-su-3.github.io/tags/Java/</loc>
+    <loc>https://dick-su-3.github.io/tags/Java%E7%BA%BF%E7%A8%8B%E9%97%B4%E9%80%9A%E4%BF%A1/</loc>
     <lastmod>2023-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://dick-su-3.github.io/tags/Java%E7%BA%BF%E7%A8%8B%E9%97%B4%E9%80%9A%E4%BF%A1/</loc>
+    <loc>https://dick-su-3.github.io/tags/Java/</loc>
     <lastmod>2023-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -833,14 +851,14 @@
   </url>
   
   <url>
-    <loc>https://dick-su-3.github.io/tags/springboot%E6%91%98%E5%BD%95%E5%AD%A6%E4%B9%A0/</loc>
+    <loc>https://dick-su-3.github.io/tags/Spring/</loc>
     <lastmod>2023-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://dick-su-3.github.io/tags/Spring/</loc>
+    <loc>https://dick-su-3.github.io/tags/springboot%E6%91%98%E5%BD%95%E5%AD%A6%E4%B9%A0/</loc>
     <lastmod>2023-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -869,6 +887,13 @@
   
   <url>
     <loc>https://dick-su-3.github.io/tags/bean/</loc>
+    <lastmod>2023-10-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://dick-su-3.github.io/tags/png/</loc>
     <lastmod>2023-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -910,7 +935,7 @@
   </url>
   
   <url>
-    <loc>https://dick-su-3.github.io/tags/png/</loc>
+    <loc>https://dick-su-3.github.io/tags/%E6%BC%94%E8%AE%B2/</loc>
     <lastmod>2023-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -987,6 +1012,13 @@
   </url>
   
   <url>
+    <loc>https://dick-su-3.github.io/tags/%E5%A5%BD%E6%96%87/</loc>
+    <lastmod>2023-10-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://dick-su-3.github.io/tags/%E7%BA%BF%E7%B4%A2%E4%BA%8C%E5%8F%89%E6%A0%91/</loc>
     <lastmod>2023-10-05</lastmod>
     <changefreq>weekly</changefreq>
@@ -994,14 +1026,14 @@
   </url>
   
   <url>
-    <loc>https://dick-su-3.github.io/tags/%E8%AE%BE%E8%AE%A1%E5%8E%9F%E7%90%86/</loc>
+    <loc>https://dick-su-3.github.io/tags/docker/</loc>
     <lastmod>2023-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://dick-su-3.github.io/tags/docker/</loc>
+    <loc>https://dick-su-3.github.io/tags/%E8%AE%BE%E8%AE%A1%E5%8E%9F%E7%90%86/</loc>
     <lastmod>2023-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1094,14 +1126,14 @@
   </url>
   
   <url>
-    <loc>https://dick-su-3.github.io/categories/springboot/</loc>
+    <loc>https://dick-su-3.github.io/categories/Spring/</loc>
     <lastmod>2023-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://dick-su-3.github.io/categories/Spring/</loc>
+    <loc>https://dick-su-3.github.io/categories/springboot/</loc>
     <lastmod>2023-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1122,7 +1154,7 @@
   </url>
   
   <url>
-    <loc>https://dick-su-3.github.io/categories/%E6%91%98%E5%BD%95/</loc>
+    <loc>https://dick-su-3.github.io/categories/%E5%B9%BF%E7%9F%A5/</loc>
     <lastmod>2023-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1130,6 +1162,13 @@
   
   <url>
     <loc>https://dick-su-3.github.io/categories/java/</loc>
+    <lastmod>2023-10-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://dick-su-3.github.io/categories/%E6%91%98%E5%BD%95/</loc>
     <lastmod>2023-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1144,13 +1183,6 @@
   
   <url>
     <loc>https://dick-su-3.github.io/categories/%E9%9A%8F%E7%AC%94/</loc>
-    <lastmod>2023-10-05</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://dick-su-3.github.io/categories/%E5%B9%BF%E7%9F%A5/</loc>
     <lastmod>2023-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1199,14 +1231,14 @@
   </url>
   
   <url>
-    <loc>https://dick-su-3.github.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</loc>
+    <loc>https://dick-su-3.github.io/categories/%E5%9F%9F%E5%90%8D/</loc>
     <lastmod>2023-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://dick-su-3.github.io/categories/%E5%9F%9F%E5%90%8D/</loc>
+    <loc>https://dick-su-3.github.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</loc>
     <lastmod>2023-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

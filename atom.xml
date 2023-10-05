@@ -6,7 +6,7 @@
   <link href="https://dick-su-3.github.io/atom.xml" rel="self"/>
   
   <link href="https://dick-su-3.github.io/"/>
-  <updated>2023-10-05T05:19:54.859Z</updated>
+  <updated>2023-10-05T15:34:20.075Z</updated>
   <id>https://dick-su-3.github.io/</id>
   
   <author>
@@ -15,6 +15,56 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>东京大学入学致词：等待你们的是不公的社会</title>
+    <link href="https://dick-su-3.github.io/archives/ac31e10b.html"/>
+    <id>https://dick-su-3.github.io/archives/ac31e10b.html</id>
+    <published>2023-10-05T15:29:43.000Z</published>
+    <updated>2023-10-05T15:34:20.075Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="笔记" scheme="https://dick-su-3.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="演讲" scheme="https://dick-su-3.github.io/tags/%E6%BC%94%E8%AE%B2/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>秦晖:法家与秦制</title>
+    <link href="https://dick-su-3.github.io/archives/471485c.html"/>
+    <id>https://dick-su-3.github.io/archives/471485c.html</id>
+    <published>2023-10-05T11:49:49.000Z</published>
+    <updated>2023-10-05T11:51:11.638Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="笔记" scheme="https://dick-su-3.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="好文" scheme="https://dick-su-3.github.io/tags/%E5%A5%BD%E6%96%87/"/>
+    
+  </entry>
   
   <entry>
     <title>GFW历史</title>
@@ -445,54 +495,6 @@
     
     
     <category term="操作系统" scheme="https://dick-su-3.github.io/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Vuex学习</title>
-    <link href="https://dick-su-3.github.io/archives/413c71da.html"/>
-    <id>https://dick-su-3.github.io/archives/413c71da.html</id>
-    <published>2023-09-19T18:34:15.000Z</published>
-    <updated>2023-09-20T00:47:48.745Z</updated>
-    
-    
-    <summary type="html">&lt;h2 id=&quot;一、-Vuex简介&quot;&gt;&lt;a href=&quot;#一、-Vuex简介&quot; class=&quot;headerlink&quot; title=&quot;一、 Vuex简介&quot;&gt;&lt;/a&gt;&lt;strong&gt;一、 Vuex简介&lt;/strong&gt;&lt;/h2&gt;&lt;h3 id=&quot;1-1-官方解释&quot;&gt;&lt;a href=&quot;#1-1-官方解释&quot; class=&quot;headerlink&quot; title=&quot;1.1 官方解释&quot;&gt;&lt;/a&gt;1.1 官方解释&lt;/h3&gt;&lt;p&gt;Vuex 是一个专为 Vue.js 应用程序开发的状态管理模式。它采用 集中式存储管理 应用的所有组件的状态，并以相应的规则保证状态以一种可预测的方式发生变化。&lt;/p&gt;
-&lt;p&gt;Vuex 也集成到 Vue 的官方调试工具 devtools extension，提供了诸如零配置的 time-travel 调试、状态快照导入导出等高级调试功能。&lt;/p&gt;
-&lt;hr&gt;
-&lt;h3 id=&quot;1-2-状态管理到底是什么？&quot;&gt;&lt;a href=&quot;#1-2-状态管理到底是什么？&quot; class=&quot;headerlink&quot; title=&quot;1.2 状态管理到底是什么？&quot;&gt;&lt;/a&gt;1.2 状态管理到底是什么？&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;状态管理模式、集中式存储管理这些名词听起来就非常高大上，让人捉摸不透。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;其实，你可以简单的将其看成把需要多个组件共享的变量全部存储在一个对象里面。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;然后，将这个对象放在顶层的Vue实例中，让其他组件可以使用。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;那么，多个组件是不是就可以共享这个对象中的所有变量属性了呢？&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;</summary>
-    
-    
-    
-    <category term="vue" scheme="https://dick-su-3.github.io/categories/vue/"/>
-    
-    
-    <category term="笔记" scheme="https://dick-su-3.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>博客主题重建</title>
-    <link href="https://dick-su-3.github.io/archives/31e5dc06.html"/>
-    <id>https://dick-su-3.github.io/archives/31e5dc06.html</id>
-    <published>2023-09-19T18:20:53.000Z</published>
-    <updated>2023-09-19T18:32:18.074Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;夜里心血来潮，回忆年前的此时此刻，费力搭建了一个静态博客，荒废实在可惜，加上国内网络审查日益严峻，许多笔记摘录无法上传国内生态，于是晚上肝起来修缮一下博客，用以记录点滴生活并摘录学习&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="经验" scheme="https://dick-su-3.github.io/categories/%E7%BB%8F%E9%AA%8C/"/>
-    
-    
-    <category term="博客" scheme="https://dick-su-3.github.io/tags/%E5%8D%9A%E5%AE%A2/"/>
     
   </entry>
   
