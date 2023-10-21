@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>洛雪音乐助手，凉凉了……</title>
+      <link href="/archives/260d606c.html"/>
+      <url>/archives/260d606c.html</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="洛雪音乐助手，凉凉了…"><a href="#洛雪音乐助手，凉凉了…" class="headerlink" title="洛雪音乐助手，凉凉了…"></a>洛雪音乐助手，凉凉了…</h1><p>继上次团灭“李跳跳”等跳广告软件后，南山必胜客再次出手，律师函警告开源音乐<a href="https://www.smzdm.com/ju/s2yw8m2/">播放器</a>“洛雪音乐助手”。</p><p>相信有一些朋友用过洛雪音乐助手，这是一个开源音乐播放器。洛雪音乐助手除了作为音乐播放器，最大特色是可以搜索多个音乐平台资源。为了规避法律问题，洛雪音乐助手本身不提供下载功能（从之前的用户协议就可以看出开发者求生欲满满）。但毕竟调用了音乐平台接口，所以很容易受到平台制约。这次鹅厂就律师函警告了洛雪音乐助手开发者。从法律层面，鹅厂法务不仅可以从音乐版权角度，还可以从擅自调用<a href="https://www.smzdm.com/fenlei/fuwuqi/">服务器</a>资源角度起诉开发者。</p><p><a href="https://post.smzdm.com/p/a20v2n7n/pic_2/"><img src="https://qnam.smzdm.com/202310/20/6531ed94d38f99327.png_e1080.jpg" alt="鹅厂又出手，洛雪音乐助手收到律师函警告"></a></p><p>相比跳广告软件，调用音乐平台接口这种行为法律层面更站不住，所以开发者也第一时间撤下了音乐源调用，停止了在线服务（软件本身还能打开，可以自己换其它音乐源）。又一个优秀开源软件未来结果难料（从软件首次打开提醒就可以看出，作者初心应该很简单）：</p><p><a href="https://post.smzdm.com/p/a20v2n7n/pic_3/"><img src="https://am.zdmimg.com/202310/20/6531ed94151d89327.png_e1080.jpg" alt="鹅厂又出手，洛雪音乐助手收到律师函警告"></a></p><p>这个软件相比于其他“割韭菜”的App，洛雪真的很良心，可惜还是倒下了。</p><p>截至目前，洛雪音乐手机版和PC版已无法正常播放音乐，所有接口全部失效了。</p><p><img src="https://www.i3zh.com/wp-content/uploads/2023/10/4ffce04d92a4d6cb21c1494cdfcd6dc1-333.png" alt="洛雪音乐助手，凉凉了…-i3综合社区"></p><p>在洛雪的项目仓库讨论区已经炸锅了。</p><p><img src="https://www.i3zh.com/wp-content/uploads/2023/10/4ffce04d92a4d6cb21c1494cdfcd6dc1-334.png" alt="洛雪音乐助手，凉凉了…-i3综合社区"></p><p>从留言中得知，洛雪开发者确实收到了某大厂的律师函，并且qq群也已经暂停开放了。</p><p><img src="https://www.i3zh.com/wp-content/uploads/2023/10/4ffce04d92a4d6cb21c1494cdfcd6dc1-335.png" alt="洛雪音乐助手，凉凉了…-i3综合社区"></p><p>虽然早就预料到会有这一天，但没想到来的这么突然，但也完全可以理解，毕竟我也是看着多个优质个人独立开发的优质APP被铁拳制裁过而销声匿迹。</p><p>最后顺便聊点关于版权的个人想法。</p><p>音乐有版权。我觉得大部分人应该尊重版权。版权是一种社会秩序，大部分情况人都应该遵守秩序。</p><p>但社会是有秩序的，现实却可能不合理。人本天生具备违反秩序能力，在面对不合理的现实世界时，为什么要放弃这种能力。</p><p>在知识和文化等无形资产的领域，侵犯版权去获利100%违法。但也存在一个灰色区域，比如出于学习目的个人破解软件等行为，你可以说合理也可以说不合理。这并不是当下才存在的行为和话题，因为很早就“有盗火的普罗米修斯”这样的神话，这是人打破无形之墙的一种原始冲动。</p><p>知识文化是人区别于其它动物的重要原因之一，如果知识文化等可以被垄断，那么就是最坚硬的圈养围墙。尊重版权尊重知识尊重文化，但并非是让版权筑起围墙让一部分人最大化获利，另一部分人却因为这堵围墙对文化触不可及。</p><p>在这个唯利是图的时代，我们需要一点人文主义思想，去思考我们为什么活着！最后无奈地说一句：开源不是法外之地，请大家且行且珍惜！</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 时事 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 杂记 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>东京大学入学致词：等待你们的是不公的社会</title>
       <link href="/archives/ac31e10b.html"/>
       <url>/archives/ac31e10b.html</url>
